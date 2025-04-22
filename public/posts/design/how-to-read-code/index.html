@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>程序员读代码的禅与修炼 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="design">
+<meta name="description" content="程序员读代码的禅与修炼
+🧭 前言
+代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。
+
+📌 1. 先读文档，再读代码
+推荐优先阅读材料：
+
+README / Wiki / 项目介绍页
+CONTRIBUTING.md（可见贡献规范）
+Issues 与 Pull Requests（可见设计动因与变更历史）
+
+理由：
+
+这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。
+
+🧪 2. 能跑，才好读
+做到以下几点：
+
+能顺利构建并运行项目（甚至部署）
+能使用调试工具或 log 打印控制信息
+
+理由：
+
+死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。
+
+🎯 3. 明确阅读目标
+
+是为了修 bug，还是加功能？
+是为了学习架构，还是了解具体模块？
+
+
+有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。
+
+🧠 4. BFS &gt; DFS 的阅读策略
+不要陷入深度优先：
+
+沿着一条调用链不断深入容易迷路。
+要采用广度优先：
+
+快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。
+
+🧱 5. 分块阅读：构建“模块地图”
+
+观察文件结构、类和函数边界
+分析模块的职责划分（谁负责输入、谁负责输出）
+
+
+熟悉块的边界感，就像会认字就能阅读文章。
+
+🧵 6. 管理你的大脑记忆资源
+类比：
+
+工作记忆 = 寄存器
+短期记忆 = RAM
+长期记忆 = 硬盘
+
+技巧：
+
+精简当前需要记住的信息（只记主逻辑）
+将常用 API、框架结构固化为长期记忆
+用笔记或注释辅助记忆缓存
+
+
+🧩 7. 把代码当成自然语言来读
+
+命名风格是“句法”
+缩进结构是“语调”
+注释内容是“修辞”
+
+文献阅读技巧可迁移：
+
+找主语（谁调用谁）
+找动词（干了啥）
+找逻辑连接词（if, while, for 等控制结构）
+
+
+✨ 8. 进阶技巧 Bonus
+📐 制作项目“地图”
+
+用 markdown / 画图记录模块间的关系图
+使用 PlantUML / Mermaid 绘制调用图
+
+🗃️ 卡片式阅读笔记
+
+每个模块/函数做成一张卡片，写用途 &#43; 结构 &#43; 接口
+下次切换项目时秒级上手
+
+🔁 预测 vs 验证
+
+猜代码逻辑，调试验证对错，训练直觉与分析力
+
+
+🧘 总结
+
+读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/design/how-to-read-code/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/design/how-to-read-code/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      程序员读代码的禅与修炼
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="程序员读代码的禅与修炼">程序员读代码的禅与修炼<a hidden class="anchor" aria-hidden="true" href="#程序员读代码的禅与修炼">#</a></h1>
+<h2 id="-前言">🧭 前言<a hidden class="anchor" aria-hidden="true" href="#-前言">#</a></h2>
+<p>代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。</p>
+<hr>
+<h2 id="-1-先读文档再读代码">📌 1. 先读文档，再读代码<a hidden class="anchor" aria-hidden="true" href="#-1-先读文档再读代码">#</a></h2>
+<h3 id="推荐优先阅读材料">推荐优先阅读材料：<a hidden class="anchor" aria-hidden="true" href="#推荐优先阅读材料">#</a></h3>
+<ul>
+<li>README / Wiki / 项目介绍页</li>
+<li>CONTRIBUTING.md（可见贡献规范）</li>
+<li>Issues 与 Pull Requests（可见设计动因与变更历史）</li>
+</ul>
+<h3 id="理由">理由：<a hidden class="anchor" aria-hidden="true" href="#理由">#</a></h3>
+<blockquote>
+<p>这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。</p></blockquote>
+<hr>
+<h2 id="-2-能跑才好读">🧪 2. 能跑，才好读<a hidden class="anchor" aria-hidden="true" href="#-2-能跑才好读">#</a></h2>
+<h3 id="做到以下几点">做到以下几点：<a hidden class="anchor" aria-hidden="true" href="#做到以下几点">#</a></h3>
+<ul>
+<li>能顺利构建并运行项目（甚至部署）</li>
+<li>能使用调试工具或 log 打印控制信息</li>
+</ul>
+<h3 id="理由-1">理由：<a hidden class="anchor" aria-hidden="true" href="#理由-1">#</a></h3>
+<blockquote>
+<p>死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。</p></blockquote>
+<hr>
+<h2 id="-3-明确阅读目标">🎯 3. 明确阅读目标<a hidden class="anchor" aria-hidden="true" href="#-3-明确阅读目标">#</a></h2>
+<ul>
+<li>是为了修 bug，还是加功能？</li>
+<li>是为了学习架构，还是了解具体模块？</li>
+</ul>
+<blockquote>
+<p>有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。</p></blockquote>
+<hr>
+<h2 id="-4-bfs--dfs-的阅读策略">🧠 4. BFS &gt; DFS 的阅读策略<a hidden class="anchor" aria-hidden="true" href="#-4-bfs--dfs-的阅读策略">#</a></h2>
+<h3 id="不要陷入深度优先">不要陷入深度优先：<a hidden class="anchor" aria-hidden="true" href="#不要陷入深度优先">#</a></h3>
+<blockquote>
+<p>沿着一条调用链不断深入容易迷路。</p></blockquote>
+<h3 id="要采用广度优先">要采用广度优先：<a hidden class="anchor" aria-hidden="true" href="#要采用广度优先">#</a></h3>
+<blockquote>
+<p>快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。</p></blockquote>
+<hr>
+<h2 id="-5-分块阅读构建模块地图">🧱 5. 分块阅读：构建“模块地图”<a hidden class="anchor" aria-hidden="true" href="#-5-分块阅读构建模块地图">#</a></h2>
+<ul>
+<li>观察文件结构、类和函数边界</li>
+<li>分析模块的职责划分（谁负责输入、谁负责输出）</li>
+</ul>
+<blockquote>
+<p>熟悉块的边界感，就像会认字就能阅读文章。</p></blockquote>
+<hr>
+<h2 id="-6-管理你的大脑记忆资源">🧵 6. 管理你的大脑记忆资源<a hidden class="anchor" aria-hidden="true" href="#-6-管理你的大脑记忆资源">#</a></h2>
+<p>类比：</p>
+<ul>
+<li>工作记忆 = 寄存器</li>
+<li>短期记忆 = RAM</li>
+<li>长期记忆 = 硬盘</li>
+</ul>
+<h3 id="技巧">技巧：<a hidden class="anchor" aria-hidden="true" href="#技巧">#</a></h3>
+<ul>
+<li>精简当前需要记住的信息（只记主逻辑）</li>
+<li>将常用 API、框架结构固化为长期记忆</li>
+<li>用笔记或注释辅助记忆缓存</li>
+</ul>
+<hr>
+<h2 id="-7-把代码当成自然语言来读">🧩 7. 把代码当成自然语言来读<a hidden class="anchor" aria-hidden="true" href="#-7-把代码当成自然语言来读">#</a></h2>
+<ul>
+<li>命名风格是“句法”</li>
+<li>缩进结构是“语调”</li>
+<li>注释内容是“修辞”</li>
+</ul>
+<h3 id="文献阅读技巧可迁移">文献阅读技巧可迁移：<a hidden class="anchor" aria-hidden="true" href="#文献阅读技巧可迁移">#</a></h3>
+<ul>
+<li>找主语（谁调用谁）</li>
+<li>找动词（干了啥）</li>
+<li>找逻辑连接词（if, while, for 等控制结构）</li>
+</ul>
+<hr>
+<h2 id="-8-进阶技巧-bonus">✨ 8. 进阶技巧 Bonus<a hidden class="anchor" aria-hidden="true" href="#-8-进阶技巧-bonus">#</a></h2>
+<h3 id="-制作项目地图">📐 制作项目“地图”<a hidden class="anchor" aria-hidden="true" href="#-制作项目地图">#</a></h3>
+<ul>
+<li>用 markdown / 画图记录模块间的关系图</li>
+<li>使用 PlantUML / Mermaid 绘制调用图</li>
+</ul>
+<h3 id="-卡片式阅读笔记">🗃️ 卡片式阅读笔记<a hidden class="anchor" aria-hidden="true" href="#-卡片式阅读笔记">#</a></h3>
+<ul>
+<li>每个模块/函数做成一张卡片，写用途 + 结构 + 接口</li>
+<li>下次切换项目时秒级上手</li>
+</ul>
+<h3 id="-预测-vs-验证">🔁 预测 vs 验证<a hidden class="anchor" aria-hidden="true" href="#-预测-vs-验证">#</a></h3>
+<ul>
+<li>猜代码逻辑，调试验证对错，训练直觉与分析力</li>
+</ul>
+<hr>
+<h2 id="-总结">🧘 总结<a hidden class="anchor" aria-hidden="true" href="#-总结">#</a></h2>
+<blockquote>
+<p>读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。</p></blockquote>
+<p>学会读代码，不只是成为一名好程序员，而是成为一个拥有“洞察力”的工程师。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/design/">Design</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

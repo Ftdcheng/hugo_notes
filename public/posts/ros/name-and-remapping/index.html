@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ROS 名称 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="ROS">
+<meta name="description" content="ROS 名称
+名称
+名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等
+为了让名称减少冲突，引入了名称空间（namespace）的概念。名称存在于命名空间中，命名空间可以存在于命名空间中，命名空间中可以有多个名称。这样的话，我们知道名称空间肯定是一层套一层的，是有层次的。这就引出了不同类别的名称：
+
+基名称(base)，没有带名称空间修饰的名称，事实上是相对名称的一种，和相对名称有相同的解析规则，常用来初始化节点
+相对名称(relative)，相对于名称空间的名称，在解析的时候会添加上前面的名称空间修饰
+全局名称(global)，以/开头的都是全局名称，在代码中尽量不要用这种名称，这会限制代码的通用性
+私有名称(private)，把名称转换成一个命名空间，从参数服务器上传递参数到特定节点的时候很有用。
+
+名称的解析与命名空间相关，比如你在一个命名空间aicv下创建了一个节点turtle_control那么它的完整的名称就是/aicv/turtle_control
+你在launch文件中启动node的时候有规定name属性，这个name就是我们的名称，比如
+&lt;?xml version=&#34;1.0&#34;?&gt;
+&lt;launch&gt;
+    &lt;group ns=&#34;aicv&#34;&gt;
+    	&lt;node pkg=&#34;rosplayground&#34; type=&#34;time_service&#34; name=&#34;operation&#34;/&gt;
+    &lt;/group&gt;
+&lt;/launch&gt;
+这个launch文件规定了名称为operation的节点会启动。启动之后，节点完整的名称就是/aicv/operation
+如果你没有使用launch文件，你直接执行了rosrun，并没有规定命名空间。那么默认你在全局的命名空间中操作。比如
+rosrun rosplayground time_service 
+这样启动完之后你的节点名称就变成了/time_service_node（我们在ros::init中规定的名称，launch文件中的name会覆盖这个设置）
+你在发布/订阅话题或者服务的时候也会规定话题或者服务的名称，这个名称就是这里的名称
+此外消息类型和服务类型也有名称，他们的名称通常是包名/类型名，比如std_msgs/String
+重映射
+为什么要重映射
+有这么一种情况，一个话题被一系列节点订阅，这个时候你有一个新的节点，这个新的节点也想订阅这个话题，但我们的话题固然有个名字，而新的节点订阅的话题不是这个话题的名字，但是它们的话题类型是一样的，这个时候我们就可以重映射，这就像在没有修改我们新节点代码的情况下，更改了新节点订阅话题的名字。
+重映射的方法
+&lt;remap&gt;标签
+在launch文件中，你启动节点时可以在节点标签&lt;node&gt;中添加&lt;remap&gt;标签，让节点订阅的话题/服务的名称换成新的。
+&lt;?xml version=&#34;1.0&#34;?&gt;
+&lt;launch&gt;
+    &lt;group ns=&#34;aicv&#34;&gt;
+    	&lt;node pkg=&#34;rosplayground&#34; type=&#34;time_client&#34; name=&#34;time_client&#34;&gt;
+            &lt;remap from=&#34;time_service&#34; to=&#34;operation&#34;/&gt;
+        &lt;/node&gt;
+    &lt;/group&gt;
+&lt;/launch&gt;
+这里我们的time_client节点原先请求的服务是time_service，重映射之后就请求operation服务了。
+rosrun参数
+rosrun rosplayground time_client time_service:=operation
+">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/ros/name-and-remapping/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/name-and-remapping/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      ROS 名称
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="ros-名称">ROS 名称<a hidden class="anchor" aria-hidden="true" href="#ros-名称">#</a></h1>
+<h2 id="名称">名称<a hidden class="anchor" aria-hidden="true" href="#名称">#</a></h2>
+<p>名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等</p>
+<p>为了让名称减少冲突，引入了名称空间（namespace）的概念。名称存在于命名空间中，命名空间可以存在于命名空间中，命名空间中可以有多个名称。这样的话，我们知道名称空间肯定是一层套一层的，是有层次的。这就引出了不同类别的名称：</p>
+<ul>
+<li>基名称(base)，没有带名称空间修饰的名称，事实上是相对名称的一种，和相对名称有相同的解析规则，常用来初始化节点</li>
+<li>相对名称(relative)，相对于名称空间的名称，在解析的时候会添加上前面的名称空间修饰</li>
+<li>全局名称(global)，以<code>/</code>开头的都是全局名称，在代码中尽量不要用这种名称，这会限制代码的通用性</li>
+<li>私有名称(private)，把名称转换成一个命名空间，从参数服务器上传递参数到特定节点的时候很有用。</li>
+</ul>
+<p>名称的解析与命名空间相关，比如你在一个命名空间<code>aicv</code>下创建了一个节点<code>turtle_control</code>那么它的完整的名称就是<code>/aicv/turtle_control</code></p>
+<p>你在launch文件中启动node的时候有规定name属性，这个name就是我们的名称，比如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;launch&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;group</span> <span style="color:#a6e22e">ns=</span><span style="color:#e6db74">&#34;aicv&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#f92672">&lt;node</span> <span style="color:#a6e22e">pkg=</span><span style="color:#e6db74">&#34;rosplayground&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;time_service&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;operation&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/group&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/launch&gt;</span>
+</span></span></code></pre></div><p>这个launch文件规定了名称为operation的节点会启动。启动之后，节点完整的名称就是<code>/aicv/operation</code></p>
+<p>如果你没有使用launch文件，你直接执行了rosrun，并没有规定命名空间。那么默认你在全局的命名空间中操作。比如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun rosplayground time_service 
+</span></span></code></pre></div><p>这样启动完之后你的节点名称就变成了<code>/time_service_node</code>（我们在ros::init中规定的名称，launch文件中的name会覆盖这个设置）</p>
+<p>你在发布/订阅话题或者服务的时候也会规定话题或者服务的名称，这个名称就是这里的名称</p>
+<p>此外消息类型和服务类型也有名称，他们的名称通常是包名/类型名，比如std_msgs/String</p>
+<h2 id="重映射">重映射<a hidden class="anchor" aria-hidden="true" href="#重映射">#</a></h2>
+<h3 id="为什么要重映射">为什么要重映射<a hidden class="anchor" aria-hidden="true" href="#为什么要重映射">#</a></h3>
+<p>有这么一种情况，一个话题被一系列节点订阅，这个时候你有一个新的节点，这个新的节点也想订阅这个话题，但我们的话题固然有个名字，而新的节点订阅的话题不是这个话题的名字，但是它们的话题类型是一样的，这个时候我们就可以重映射，这就像在没有修改我们新节点代码的情况下，更改了新节点订阅话题的名字。</p>
+<h3 id="重映射的方法">重映射的方法<a hidden class="anchor" aria-hidden="true" href="#重映射的方法">#</a></h3>
+<h4 id="remap标签">&lt;remap&gt;标签<a hidden class="anchor" aria-hidden="true" href="#remap标签">#</a></h4>
+<p>在launch文件中，你启动节点时可以在节点标签&lt;node&gt;中添加&lt;remap&gt;标签，让节点订阅的话题/服务的名称换成新的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;launch&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;group</span> <span style="color:#a6e22e">ns=</span><span style="color:#e6db74">&#34;aicv&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#f92672">&lt;node</span> <span style="color:#a6e22e">pkg=</span><span style="color:#e6db74">&#34;rosplayground&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;time_client&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;time_client&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;remap</span> <span style="color:#a6e22e">from=</span><span style="color:#e6db74">&#34;time_service&#34;</span> <span style="color:#a6e22e">to=</span><span style="color:#e6db74">&#34;operation&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/node&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/group&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/launch&gt;</span>
+</span></span></code></pre></div><p>这里我们的time_client节点原先请求的服务是time_service，重映射之后就请求operation服务了。</p>
+<h4 id="rosrun参数">rosrun参数<a hidden class="anchor" aria-hidden="true" href="#rosrun参数">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rosrun rosplayground time_client time_service:<span style="color:#f92672">=</span>operation
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ROS回调处理 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="ROS">
+<meta name="description" content="ROS回调处理
+概述
+你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。
+回调函数队列
+你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。
+spin()和spinOnce()
+然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()
+spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。
+spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。
+全局队列与局部队列
+一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。
+当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-&gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-&gt;callOne()
+#include &lt;ros/callback_queue.h&gt;
+
+ros::CallbackQueue my_queue;
+ros::NodeHandle nh;
+nh.setCallbackQueue(&amp;my_callback_queue);
+甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。
+什么时候使用节点特有的回调函数队列
+
+长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了
+有计算时间长的回调函数，和长时间允许服务类似。
+
+参考文档
+Callbacks and Spinning">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      ROS回调处理
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="ros回调处理">ROS回调处理<a hidden class="anchor" aria-hidden="true" href="#ros回调处理">#</a></h1>
+<h2 id="概述">概述<a hidden class="anchor" aria-hidden="true" href="#概述">#</a></h2>
+<p>你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。</p>
+<h2 id="回调函数队列">回调函数队列<a hidden class="anchor" aria-hidden="true" href="#回调函数队列">#</a></h2>
+<p>你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。</p>
+<h2 id="spin和spinonce">spin()和spinOnce()<a hidden class="anchor" aria-hidden="true" href="#spin和spinonce">#</a></h2>
+<p>然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是<code>spin()</code>和<code>spinOnce()</code></p>
+<p>spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。</p>
+<p>spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。</p>
+<h2 id="全局队列与局部队列">全局队列与局部队列<a hidden class="anchor" aria-hidden="true" href="#全局队列与局部队列">#</a></h2>
+<p>一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。</p>
+<p>当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用<code>ros::getGlobalCallbackQueue()</code>获取全局回调函数队列，spin()实际上是<code>ros::getGlobalCallbackQueue()-&gt;callAvailable()</code>，spinOnce实际上是<code>ros::getGlobalCallbackQueue()-&gt;callOne()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ros/callback_queue.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>ros<span style="color:#f92672">::</span>CallbackQueue my_queue;
+</span></span><span style="display:flex;"><span>ros<span style="color:#f92672">::</span>NodeHandle nh;
+</span></span><span style="display:flex;"><span>nh.setCallbackQueue(<span style="color:#f92672">&amp;</span>my_callback_queue);
+</span></span></code></pre></div><p>甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。</p>
+<h2 id="什么时候使用节点特有的回调函数队列">什么时候使用节点特有的回调函数队列<a hidden class="anchor" aria-hidden="true" href="#什么时候使用节点特有的回调函数队列">#</a></h2>
+<ol>
+<li>长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了</li>
+<li>有计算时间长的回调函数，和长时间允许服务类似。</li>
+</ol>
+<h2 id="参考文档">参考文档<a hidden class="anchor" aria-hidden="true" href="#参考文档">#</a></h2>
+<p><a href="https://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning">Callbacks and Spinning</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

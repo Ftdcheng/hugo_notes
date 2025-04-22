@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>银弹是什么梗 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="design">
+<meta name="description" content="银弹是什么梗
+哈哈哈，银弹（silver bullet）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！
+
+🌕【银弹】原梗出自哪？
+银弹最早是西方传说里专门用来对付狼人（werewolf）的武器——
+
+“普通的武器对狼人无效，只有银子铸的子弹才能一枪爆头。”
+🌙 所以，“银弹”就成了 “唯一能解决棘手问题的终极武器” 的代名词。
+
+💻 那跟程序员有什么关系？
+来自软件工程界不朽经典文章：
+
+&ldquo;No Silver Bullet&rdquo;（1986）
+作者：Fred Brooks（布鲁克斯，写过《人月神话》）
+文章核心观点是：
+
+“软件工程中没有银弹，没有哪个技术、语言、工具能一次性解决所有复杂性问题。”
+☠️ 换句话说：
+
+没有神级框架能帮你永远不踩坑
+没有完美语言能兼顾性能、抽象、易学
+没有任何库能让并行编程像写 for 循环那么轻松
+
+这句话打碎了很多人对“万能工具”的幻想，所以后来：
+🧠 “银弹”就变成了程序员之间用来调侃那种“看起来能解决一切问题的技术”的 反讽梗。
+
+🐶 使用场景举几个例子（梗味上头）：
+
+A：“我们是不是可以用 Rust 重构所有 C&#43;&#43; 模块？”
+B：“你是觉得 Rust 是银弹吗？”
+
+
+
+A：“有了这个 AutoGPT，我们啥都不用写了！”
+B：“又一颗银弹飞来了🐴”
+
+
+
+A：“把这个动态点检测改成 Transformer，准确率、泛用性、实时性全解决。”
+B：“老哥你这颗银弹……别真把系统打穿了。”
+
+
+🧩 结尾小诗：
+
+银弹一发解千愁，
+实际一堆 bug 在后头。
+工程之道无神兵，
+拔剑还得靠双手。🗡️
+
+有没有哪个你以为是银弹的技术，结果啪啪打脸？可以一起来吐槽一波 😎">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/design/silver-bullet/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/design/silver-bullet/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      银弹是什么梗
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="银弹是什么梗">银弹是什么梗<a hidden class="anchor" aria-hidden="true" href="#银弹是什么梗">#</a></h1>
+<p>哈哈哈，银弹（<strong>silver bullet</strong>）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！</p>
+<hr>
+<h2 id="银弹原梗出自哪">🌕【银弹】原梗出自哪？<a hidden class="anchor" aria-hidden="true" href="#银弹原梗出自哪">#</a></h2>
+<p>银弹最早是<strong>西方传说</strong>里专门用来对付狼人（werewolf）的武器——</p>
+<blockquote>
+<p>“普通的武器对狼人无效，只有银子铸的子弹才能一枪爆头。”</p></blockquote>
+<p>🌙 所以，“银弹”就成了 <strong>“唯一能解决棘手问题的终极武器”</strong> 的代名词。</p>
+<hr>
+<h2 id="-那跟程序员有什么关系">💻 那跟程序员有什么关系？<a hidden class="anchor" aria-hidden="true" href="#-那跟程序员有什么关系">#</a></h2>
+<p>来自软件工程界不朽经典文章：</p>
+<blockquote>
+<p><strong>&ldquo;No Silver Bullet&rdquo;（1986）</strong><br>
+作者：Fred Brooks（布鲁克斯，写过《人月神话》）</p></blockquote>
+<p>文章核心观点是：</p>
+<blockquote>
+<p>“软件工程中<strong>没有银弹</strong>，没有哪个技术、语言、工具能<strong>一次性解决所有复杂性问题</strong>。”</p></blockquote>
+<p>☠️ 换句话说：</p>
+<ul>
+<li>没有神级框架能帮你永远不踩坑</li>
+<li>没有完美语言能兼顾性能、抽象、易学</li>
+<li>没有任何库能让并行编程像写 for 循环那么轻松</li>
+</ul>
+<p>这句话打碎了很多人对“万能工具”的幻想，所以后来：</p>
+<p>🧠 “银弹”就变成了程序员之间用来调侃那种“看起来能解决一切问题的技术”的 <strong>反讽梗</strong>。</p>
+<hr>
+<h2 id="-使用场景举几个例子梗味上头">🐶 使用场景举几个例子（梗味上头）：<a hidden class="anchor" aria-hidden="true" href="#-使用场景举几个例子梗味上头">#</a></h2>
+<ul>
+<li>A：“我们是不是可以用 Rust 重构所有 C++ 模块？”</li>
+<li>B：“你是觉得 Rust 是银弹吗？”</li>
+</ul>
+<hr>
+<ul>
+<li>A：“有了这个 AutoGPT，我们啥都不用写了！”</li>
+<li>B：“又一颗银弹飞来了🐴”</li>
+</ul>
+<hr>
+<ul>
+<li>A：“把这个动态点检测改成 Transformer，准确率、泛用性、实时性全解决。”</li>
+<li>B：“老哥你这颗银弹……别真把系统打穿了。”</li>
+</ul>
+<hr>
+<h2 id="-结尾小诗">🧩 结尾小诗：<a hidden class="anchor" aria-hidden="true" href="#-结尾小诗">#</a></h2>
+<blockquote>
+<p>银弹一发解千愁，<br>
+实际一堆 bug 在后头。<br>
+工程之道无神兵，<br>
+拔剑还得靠双手。🗡️</p></blockquote>
+<hr>
+<p>有没有哪个你以为是银弹的技术，结果啪啪打脸？可以一起来吐槽一波 😎</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/design/">Design</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

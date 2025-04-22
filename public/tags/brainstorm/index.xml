@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Brainstorm on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/brainstorm/</link>
+    <description>Recent content in Brainstorm on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/brainstorm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SLAM Ideas</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/ideas/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/ideas/</guid>
+      <description>&lt;h1 id=&#34;slam-ideas&#34;&gt;SLAM Ideas&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。&lt;/li&gt;
+&lt;li&gt;数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道&lt;/li&gt;
+&lt;li&gt;使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强&lt;/li&gt;
+&lt;li&gt;和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？&lt;/li&gt;
+&lt;li&gt;FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？&lt;/li&gt;
+&lt;li&gt;Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图&lt;/li&gt;
+&lt;li&gt;其它传感器的信息是否可以助力目标检测剔除动态&lt;/li&gt;
+&lt;li&gt;地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;残差图&#34;&gt;残差图&lt;/h2&gt;
+&lt;p&gt;两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。&lt;/p&gt;
+&lt;p&gt;基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了&lt;/p&gt;
+&lt;p&gt;如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。&lt;/p&gt;
+&lt;p&gt;如果是scan2map的残差图，能判断分割相对场景是否运动。&lt;/p&gt;
+&lt;h2 id=&#34;一致性约束&#34;&gt;一致性约束&lt;/h2&gt;
+&lt;p&gt;如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？&lt;/p&gt;
+&lt;h3 id=&#34;1-scan-to-scan-配准利用运动模型检测动态点干扰&#34;&gt;&lt;strong&gt;1. Scan-to-Scan 配准：利用运动模型检测动态点干扰&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;(a) 车辆运动模型的约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;车载激光雷达的运动是受约束的，例如：
+&lt;ul&gt;
+&lt;li&gt;车辆通常不会瞬间大幅度转向或漂移&lt;/li&gt;
+&lt;li&gt;速度、加速度、角速度等参数通常平滑变化&lt;/li&gt;
+&lt;li&gt;车辆的运动基本符合&lt;strong&gt;非完整约束（Non-holonomic Constraint）&lt;/strong&gt;，即不会随意横向滑移（除非漂移）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果ICP或其他配准方法的结果与&lt;strong&gt;车辆的合理运动模型不匹配&lt;/strong&gt;，则说明：
+&lt;ul&gt;
+&lt;li&gt;可能有较多动态物体（如行人、车辆）干扰了配准&lt;/li&gt;
+&lt;li&gt;可能发生了错误匹配，导致错误的变换估计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(b) 运动一致性检测&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;预测位姿&lt;/strong&gt;：使用&lt;strong&gt;上一帧位姿&lt;/strong&gt;和&lt;strong&gt;运动模型&lt;/strong&gt;（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配准后的位姿对比&lt;/strong&gt;：将Scan-to-Scan配准的结果与预测位姿进行对比，计算&lt;strong&gt;位姿残差&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异常检测&lt;/strong&gt;：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-scan-to-map-配准利用全局位姿约束检测配准错误&#34;&gt;&lt;strong&gt;2. Scan-to-Map 配准：利用全局位姿约束检测配准错误&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;(a) 全局位姿的运动一致性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿&lt;/li&gt;
+&lt;li&gt;通过比较&lt;strong&gt;当前帧的全局位姿 (T_{t})&lt;/strong&gt; 和 &lt;strong&gt;上一帧全局位姿 (T_{t-1})&lt;/strong&gt;，可以检查位姿变化是否符合车辆的运动模型&lt;/li&gt;
+&lt;li&gt;例如：
+&lt;ul&gt;
+&lt;li&gt;如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(b) 误配准检测和修正&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果Scan-to-Map配准的结果&lt;strong&gt;与车辆运动模型不符&lt;/strong&gt;，可以：
+&lt;ul&gt;
+&lt;li&gt;重新优化Scan-to-Map的匹配权重，降低动态点的影响&lt;/li&gt;
+&lt;li&gt;结合IMU、轮速计、GPS等其他信息进行&lt;strong&gt;数据融合校正&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-可能的改进与应用&#34;&gt;&lt;strong&gt;3. 可能的改进与应用&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基于运动模型的动态点剔除&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;在Scan-to-Scan过程中，如果某些点的&lt;strong&gt;残差过大且不符合车辆运动模型&lt;/strong&gt;，则可以认为它们是&lt;strong&gt;动态点&lt;/strong&gt;，进行剔除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结合IMU进行位姿约束&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;通过IMU提供的&lt;strong&gt;角速度、加速度&lt;/strong&gt;信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异常位姿回溯修正&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SLAM代码库</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/repos/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/repos/</guid>
+      <description>&lt;h1 id=&#34;slam代码库&#34;&gt;SLAM代码库&lt;/h1&gt;
+&lt;p&gt;这里是一些开源的SLAM相关的代码库，提供内容描述和资源链接&lt;/p&gt;
+&lt;h2 id=&#34;roadlib&#34;&gt;RoadLib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;作者：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	武汉大学GREAT实验室，leader是李星星。他们是做卫星和导航的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简介：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;strong&gt;一个开源的基于道路标识的增量式建图与定位系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	算法部分主要包括&lt;strong&gt;道路标识提取与建模&lt;/strong&gt;、&lt;strong&gt;局部增量式建图&lt;/strong&gt;、&lt;strong&gt;地图管理&lt;/strong&gt;与&lt;strong&gt;地图匹配定位&lt;/strong&gt;等模块。&lt;/p&gt;
+&lt;p&gt;​	好像是单目的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相关链接：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://github.com/GREAT-WHU/RoadLib&#34;&gt;RoadLib 代码库&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://www.bilibili.com/video/BV1bp42117N1&#34;&gt;预览视频1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://www.bilibili.com/video/BV1dS421d71n&#34;&gt;预览视频2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://mp.weixin.qq.com/s/_tT5t0kh3_oiwWlbdEPLlg&#34;&gt;武汉大学开源RoadLib：基于道路标识的增量式SLAM！&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;monolanemapping&#34;&gt;MonoLaneMapping&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;简介&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	实时单目摄像机车道建图。IROS23（IEEE的一个会议，智能机器人系统国际会议） 已经接受了这篇论文&lt;/p&gt;
+&lt;p&gt;这个框架接受图片和里程计（比如VIO）信息，估计位姿和车道地图。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作者：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	香港科技大学航空机器人实验室，leader是沈邵劼，香港科技大学-大疆联合创新实验室主任。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相关链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://github.com/HKUST-Aerial-Robotics/MonoLaneMapping&#34;&gt;HKUST-Aerial-Robotics/MonoLaneMapping: Online Monocular Lane Mapping Using Catmull-Rom Spline (IROS 2023)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;a-loam&#34;&gt;A-LOAM&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;LOAM的一个高级的实现，没有复杂的数学推导，没有冗余的计算，代码更好看，适合新手。&lt;/p&gt;
+&lt;p&gt;代码库里使用的传感器有&lt;code&gt;VLP-16&lt;/code&gt;，&lt;code&gt;Velodyne HDL-64&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作者&lt;/p&gt;
+&lt;p&gt;香港科技大学航空机器人实验室&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;相关链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/HKUST-Aerial-Robotics/A-LOAM&#34;&gt;HKUST-Aerial-Robotics/A-LOAM: Advanced implementation of LOAM&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图示&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;kitti_gif&#34; loading=&#34;lazy&#34; src=&#34;d:\\ftdcheng\\Desktop\\文档\\笔记\\imgs\\slam-repo\\a-loam_kitti_gif.gif&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>SLAM数据集</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/datasets/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/datasets/</guid>
+      <description>&lt;h1 id=&#34;slam数据集&#34;&gt;SLAM数据集&lt;/h1&gt;
+&lt;p&gt;这里是一些SLAM相关的数据集，提供描述和链接&lt;/p&gt;
+&lt;p&gt;CoVLA&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;包含视觉、语言和动作的大规模标注数据集。这是一种基于CoVLA数据集的新型VLA模型，用于可解释的端到端自动驾驶。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;相关链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/datasets/turing-motors/CoVLA-Dataset-Mini&#34;&gt;turing-motors/CoVLA-Dataset-Mini · Datasets at Hugging Face&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Semantic KITTI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;SemanticKITTI 对 KITTI &lt;strong&gt;360° 激光雷达扫描点云&lt;/strong&gt;（Velodyne 数据）进行了逐点标注。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;类别数量&lt;/strong&gt;：分为 &lt;strong&gt;28个语义类别&lt;/strong&gt;（其中有19个主要类别用于评估，其他为未标注或忽略类别）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;语义类别示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;静态物体&lt;/strong&gt;：道路、建筑物、树木、草地、路标等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;动态物体&lt;/strong&gt;：行人、车辆、骑行者、动物等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;其他&lt;/strong&gt;：天空、未标注区域等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 SemanticKITTI 中，动态物体（如行人、骑行者、车辆等）与静态物体（如道路、建筑物、树木等）被明确区分，方便研究动态环境下的语义分割和物体检测任务。&lt;/p&gt;
+&lt;p&gt;这对于开发能适应 &lt;strong&gt;动态环境的 SLAM&lt;/strong&gt; 或感知系统非常有帮助。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>代码调试问题</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/debugging/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/debugging/</guid>
+      <description>&lt;h1 id=&#34;代码调试问题&#34;&gt;代码调试问题&lt;/h1&gt;
+&lt;h2 id=&#34;livox-ros-driver找不到&#34;&gt;livox ros driver找不到&lt;/h2&gt;
+&lt;p&gt;关掉所有的vscode终端，开一个新终端，在你的项目目录自己新建build，然后cmake。
+因为vscode终端的环境和cmake插件使用的环境是一样的，所以你source之后，那么cmake config就可以找到livox ros driver。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>动态SLAM的一些信息</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</guid>
+      <description>&lt;h1 id=&#34;动态slam的一些信息&#34;&gt;动态SLAM的一些信息&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;静态假设&lt;/p&gt;
+&lt;p&gt;SLAM的正常工作依赖于动态假设，如果忽视环境中的动态物体，会给配准、地图带来影响。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态SLAM的方法&lt;/p&gt;
+&lt;p&gt;基于去除的方法：一种是手工设计的特征算法对动态点进行去除，另外一种是通过机器学习的方式找到动态点。有使用预先建立的地图和当前scan进行比对找到动态点的。还有一些人是直接等建图完了，直接对鬼影下手清除的。基于地图的方法离线的居多。&lt;/p&gt;
+&lt;p&gt;基于追踪的方法：对动态物体进行追踪，对动态点进行去除。有先生成BBOX的，然后再追踪BBOX的变化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;benchmark&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/KTH-RPL/DynamicMap_Benchmark&#34;&gt;KTH-RPL/DynamicMap_Benchmark: The First Dynamic Map Removal Benchmark | Included 8 SOTA methods | Continous updating&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关注作者&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kin-zhang.github.io/&#34;&gt;Qingwen Zhang&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>杂项信息</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/misc/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/misc/</guid>
+      <description>&lt;h1 id=&#34;杂项信息&#34;&gt;杂项信息&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;相机的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有RGB信息&lt;/li&gt;
+&lt;li&gt;成本低&lt;/li&gt;
+&lt;li&gt;重量轻&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺少直接的深度信息，后期会消耗算力去估计&lt;/li&gt;
+&lt;li&gt;对光照敏感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;激光雷达的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;能直接读出点的深度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;成本高，固态雷达稍微便宜一点&lt;/li&gt;
+&lt;li&gt;特征点可能很多，如果算法不当，计算成本很高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配准、运动估计算法的发展&lt;/p&gt;
+&lt;p&gt;最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错&lt;/p&gt;
+&lt;p&gt;后面有泛化的ICP方法，基于点到面距离。&lt;/p&gt;
+&lt;p&gt;LOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;松耦合激光雷达惯性里程计(Loosely-coupled LIO)&lt;/p&gt;
+&lt;p&gt;IMU可以缓解激光雷达在缺乏特征的环境下的退化。&lt;/p&gt;
+&lt;p&gt;松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。&lt;/p&gt;
+&lt;p&gt;松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;紧耦合LIO&lt;/p&gt;
+&lt;p&gt;紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。&lt;/p&gt;
+&lt;p&gt;紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;粒子滤波器的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;精度可控&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在特征点数量多、系统状态多的时候计算复杂度高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;迭代扩展卡尔曼滤波器（IEKF）&lt;/p&gt;
+&lt;p&gt;KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>激光雷达SLAM</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</guid>
+      <description>&lt;h1 id=&#34;激光雷达slam&#34;&gt;激光雷达SLAM&lt;/h1&gt;
+&lt;h2 id=&#34;loam&#34;&gt;LOAM&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
+为了减少运动模糊，LOAM采用了雷达姿态线性插值，也有用后端优化的方法减少运动模糊的方法（In2laama: Inertial lidar localisation autocalibration and mapping）。后端优化的方法相对准确一点，但是不能实时运行。&lt;/p&gt;
+&lt;h2 id=&#34;lego-loam&#34;&gt;LeGO-LOAM&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/8594299&#34;&gt;Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;loam-livox&#34;&gt;LOAM livox&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/9197440&#34;&gt;Loam livox: A fast, robust, high-precision lidar odometry and mapping package for lidars of small fov&lt;/a&gt;
+提出了新的减少运动模糊的方法，并且并行化了。提出的方法比LOAM的线性插值更精确，运行效率更高。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>论文备忘</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</guid>
+      <description>&lt;h1 id=&#34;论文备忘&#34;&gt;论文备忘&lt;/h1&gt;
+&lt;p&gt;这里放一些想看的论文，以及想看的理由&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;LeGO-Loam&lt;/p&gt;
+&lt;p&gt;Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain,” in 2018 IEEE/RSJ&lt;/p&gt;
+&lt;p&gt;这个方法好像扣掉了小物体提高了精度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MULLS&lt;/p&gt;
+&lt;p&gt;Mulls: Versatile lidar slam via multi-metric linear least square, 2021 ICRA&lt;/p&gt;
+&lt;p&gt;这个方法使用了PCA提取了充足稳定的特征，这个方法独立于扫描线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;KISS-ICP&lt;/p&gt;
+&lt;p&gt;Kiss-icp: In defense of point-to-point icp – simple, accurate, and robust registration if done the right way,” IEEE Robotics and Automation Letters, vol. 8, no. 2, pp. 1029–1036, 2023.&lt;/p&gt;
+&lt;p&gt;一个比较新的点云配准方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是因子图优化
+看gtsam或者g2o&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>配准方法</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/register-method/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/register-method/</guid>
+      <description>&lt;h1 id=&#34;配准方法&#34;&gt;配准方法&lt;/h1&gt;
+&lt;h2 id=&#34;icp&#34;&gt;ICP&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/121791&#34;&gt;A method for registration of 3-D shapes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;generialized-icp-泛化icp&#34;&gt;generialized-ICP （泛化ICP）&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.roboticsproceedings.org/rss05/p21.pdf&#34;&gt;Generalized-icp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP&lt;/p&gt;
+&lt;h2 id=&#34;loam-改进的generialzed-icp&#34;&gt;LOAM 改进的generialzed-ICP&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
+在泛化ICP的基础上添加了点到边的距离&lt;/p&gt;
+&lt;h2 id=&#34;基于3d关键点的方法&#34;&gt;基于3D关键点的方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning informative point classes for the acquisition of object model maps&lt;/li&gt;
+&lt;li&gt;Fast point feature histograms (fpfh) for 3d registration&lt;/li&gt;
+&lt;li&gt;Fast 3d recognition and pose using the viewpoint feature histogram&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这类方法从稠密的点云中提取特征，减少计算资源的占用。
+诸多方法已经使用并行化来提高效率&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>问题集</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/issues/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/issues/</guid>
+      <description>&lt;h1 id=&#34;问题集&#34;&gt;问题集&lt;/h1&gt;
+&lt;p&gt;这个文档会给出一些研究中遇到的问题，如果找到了答案会写在问题下面&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;什么是ICP算法，原理如何&lt;/li&gt;
+&lt;li&gt;什么是catmull-rom样条插值，什么是参数化&lt;/li&gt;
+&lt;li&gt;什么是Levenberg-Marquardt算法&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>

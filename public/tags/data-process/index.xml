@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Data-Process on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/data-process/</link>
+    <description>Recent content in Data-Process on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/data-process/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KITTI</title>
+      <link>http://localhost:1313/posts/data-process/kitti/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/data-process/kitti/</guid>
+      <description>&lt;h1 id=&#34;kitti&#34;&gt;KITTI&lt;/h1&gt;
+&lt;h2 id=&#34;点云数据&#34;&gt;点云数据&lt;/h2&gt;
+&lt;h3 id=&#34;文件结构&#34;&gt;文件结构&lt;/h3&gt;
+&lt;p&gt;放在&lt;code&gt;velodyne_points&lt;/code&gt;下，
+&lt;code&gt;velodyne_points/data&lt;/code&gt;放置的是所有点云扫描文件，
+&lt;code&gt;velodyne_points/timestamps.txt&lt;/code&gt;放置的是每个扫描的时间戳，
+&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;是扫描开始的时间戳，
+&lt;code&gt;velodyne_points/timestamps_end.txt&lt;/code&gt;是扫描结束的时间戳。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/data&lt;/code&gt;下的文件数量和&lt;code&gt;velodyne_points/timestamps*&lt;/code&gt;文件的行数是对应的，
+也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/timestamps.txt&lt;/code&gt;的每一行是&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;的每一行和&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;的每一行表示的时间段的中点。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/data&lt;/code&gt;中的单个文件表示一个扫描，一个扫描大概有10w+的点。文件一行代表一个点，一个点有三个字段： &lt;code&gt;(x, y, z, intensity)&lt;/code&gt;。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。&lt;/p&gt;
+&lt;h3 id=&#34;激光雷达信息&#34;&gt;激光雷达信息&lt;/h3&gt;
+&lt;p&gt;KITTI采集点云使用的激光雷达是&lt;code&gt;Velodyne&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线数: 16&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>pandas</title>
+      <link>http://localhost:1313/posts/data-process/pandas/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/data-process/pandas/</guid>
+      <description>&lt;h1 id=&#34;pandas&#34;&gt;pandas&lt;/h1&gt;
+&lt;h2 id=&#34;基本属性&#34;&gt;基本属性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.columns&lt;/code&gt;: 表头，一个列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据访问&#34;&gt;数据访问&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.loc[row_idx, col_idx]&lt;/code&gt;: 访问&lt;code&gt;row_idx&lt;/code&gt;行&lt;code&gt;col_idx&lt;/code&gt;列的元素&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Series[idx]&lt;/code&gt;: 访问&lt;code&gt;idx&lt;/code&gt;处的元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;合并&#34;&gt;合并&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pandas.concat([df1, df2, ..., dfn], axis=a)&lt;/code&gt; 沿着轴&lt;code&gt;a&lt;/code&gt;合并df1, df2, &amp;hellip;, dfn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;批量操作&#34;&gt;批量操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.apply(f)&lt;/code&gt;，对DataFrame的每一行应用f，f的参数是一行数据，一行数据使用&lt;code&gt;Series&lt;/code&gt;封装&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

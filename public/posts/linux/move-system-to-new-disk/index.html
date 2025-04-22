@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>旧磁盘数据迁移到新磁盘 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="Linux">
+<meta name="description" content="旧磁盘数据迁移到新磁盘
+安装硬盘
+关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。
+查看旧磁盘上挂载了哪些文件系统
+我们假设旧磁盘设备是/dev/sda，然后可以使用lsblk -f查看，输出样例如下：
+loop0       squashfs                                                  0   100% /snap/bare/5
+loop1       squashfs                                                  0   100% /snap/core20/2496
+loop2       squashfs                                                  0   100% /snap/gnome-42-2204/202
+loop3       squashfs                                                  0   100% /snap/snap-store/1113
+loop4       squashfs                                                  0   100% /snap/gnome-42-2204/176
+loop5       squashfs                                                  0   100% /snap/core22/1748
+loop6       squashfs                                                  0   100% /snap/gtk-common-themes/1535
+loop7       squashfs                                                  0   100% /snap/core22/1802
+loop8       squashfs                                                  0   100% /snap/snap-store/1216
+loop9       squashfs                                                  0   100% /snap/gnome-3-38-2004/143
+loop10      squashfs                                                  0   100% /snap/gnome-3-38-2004/119
+loop11      squashfs                                                  0   100% /snap/core20/2434
+loop12      squashfs                                                  0   100% /snap/snapd/23545
+loop13      squashfs                                                  0   100% /snap/snapd/23771
+sda                                                                            
+├─sda1      vfat           8BC3-AF3D                               1.9G     0% /boot/efi
+├─sda2      swap           a7510130-5064-42a3-abd0-787e8a4f131e                [SWAP]
+└─sda3      ext4           1f234375-7152-4e77-a210-b7573423c600  689.7G    19% /
+sdb                                                                            
+└─sdb1      ext4           691e6f03-2d31-4de8-ba6a-0754f2924dd6    2.4T    29% /home
+sdc                                                                            
+└─sdc1      ext4           2eb7de08-5701-4657-b69a-f0deab8803af    1.3T    60% /data
+sdd         ext4           dd08c204-9596-44f3-b9be-35ef81650d2e      7T    30% /data1
+sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /data2
+...
+这表明分区/dev/sda1挂了/boot/efi，/dev/sd2挂了交换分区，/dev/sda3挂的/。
+此外/home和/data、/data1和/data2挂在其他磁盘上，等会复制根分区的时候，应该排除。">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/linux/move-system-to-new-disk/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/linux/move-system-to-new-disk/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      旧磁盘数据迁移到新磁盘
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="旧磁盘数据迁移到新磁盘">旧磁盘数据迁移到新磁盘<a hidden class="anchor" aria-hidden="true" href="#旧磁盘数据迁移到新磁盘">#</a></h1>
+<h2 id="安装硬盘">安装硬盘<a hidden class="anchor" aria-hidden="true" href="#安装硬盘">#</a></h2>
+<p>关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。</p>
+<h2 id="查看旧磁盘上挂载了哪些文件系统">查看旧磁盘上挂载了哪些文件系统<a hidden class="anchor" aria-hidden="true" href="#查看旧磁盘上挂载了哪些文件系统">#</a></h2>
+<p>我们假设旧磁盘设备是/dev/sda，然后可以使用<code>lsblk -f</code>查看，输出样例如下：</p>
+<pre tabindex="0"><code>loop0       squashfs                                                  0   100% /snap/bare/5
+loop1       squashfs                                                  0   100% /snap/core20/2496
+loop2       squashfs                                                  0   100% /snap/gnome-42-2204/202
+loop3       squashfs                                                  0   100% /snap/snap-store/1113
+loop4       squashfs                                                  0   100% /snap/gnome-42-2204/176
+loop5       squashfs                                                  0   100% /snap/core22/1748
+loop6       squashfs                                                  0   100% /snap/gtk-common-themes/1535
+loop7       squashfs                                                  0   100% /snap/core22/1802
+loop8       squashfs                                                  0   100% /snap/snap-store/1216
+loop9       squashfs                                                  0   100% /snap/gnome-3-38-2004/143
+loop10      squashfs                                                  0   100% /snap/gnome-3-38-2004/119
+loop11      squashfs                                                  0   100% /snap/core20/2434
+loop12      squashfs                                                  0   100% /snap/snapd/23545
+loop13      squashfs                                                  0   100% /snap/snapd/23771
+sda                                                                            
+├─sda1      vfat           8BC3-AF3D                               1.9G     0% /boot/efi
+├─sda2      swap           a7510130-5064-42a3-abd0-787e8a4f131e                [SWAP]
+└─sda3      ext4           1f234375-7152-4e77-a210-b7573423c600  689.7G    19% /
+sdb                                                                            
+└─sdb1      ext4           691e6f03-2d31-4de8-ba6a-0754f2924dd6    2.4T    29% /home
+sdc                                                                            
+└─sdc1      ext4           2eb7de08-5701-4657-b69a-f0deab8803af    1.3T    60% /data
+sdd         ext4           dd08c204-9596-44f3-b9be-35ef81650d2e      7T    30% /data1
+sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /data2
+...
+</code></pre><p>这表明分区<code>/dev/sda1</code>挂了<code>/boot/efi</code>，<code>/dev/sd2</code>挂了交换分区，/dev/sda3挂的<code>/</code>。
+此外<code>/home</code>和<code>/data</code>、<code>/data1</code>和<code>/data2</code>挂在其他磁盘上，等会复制根分区的时候，应该排除。</p>
+<p>根据旧磁盘文件分区的大小比例分配新的分区大小。</p>
+<ul>
+<li><code>/boot/efi</code>应该分500M ~ 1G</li>
+<li><code>swap</code>分区分32G ~ 125G。如果没开休眠32G旧够了，开休眠应和内存大小一致，这里是125G。我们这里不开休眠，分32G</li>
+<li><code>/</code>分区占剩下所有的空间</li>
+</ul>
+<p>根据分区需求，使用 <code>parted</code> 对磁盘进行分区的步骤如下：</p>
+<h2 id="假设">假设：<a hidden class="anchor" aria-hidden="true" href="#假设">#</a></h2>
+<ul>
+<li>你的<strong>新磁盘</strong>是 <code>/dev/nvme0n1</code>，如果是其它磁盘请根据实际情况替换。</li>
+<li>你已经知道分区需求：<strong>1GB 的 EFI 分区</strong>，<strong>32GB 的 Swap 分区</strong>，剩余空间作为根分区（<code>/</code>）。</li>
+</ul>
+<hr>
+<h2 id="一使用-parted-创建分区">一、使用 <code>parted</code> 创建分区<a hidden class="anchor" aria-hidden="true" href="#一使用-parted-创建分区">#</a></h2>
+<ol>
+<li>
+<p><strong>启动 <code>parted</code></strong>：
+先启动 <code>parted</code> 并指定要操作的磁盘 <code>/dev/nvme0n1</code>（如果是其他磁盘，请替换为实际的设备名）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo parted /dev/nvme0n1
+</span></span></code></pre></div></li>
+<li>
+<p><strong>设置磁盘分区表类型（GPT）</strong>：
+如果是新磁盘，建议使用 GPT（适用于大于 2TB 的磁盘或 UEFI 系统）。设置分区表为 GPT：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> mklabel gpt
+</span></span></code></pre></div></li>
+<li>
+<p><strong>创建 EFI 分区（1GB）</strong>：
+创建一个 1GB 的 EFI 分区，类型为 FAT32，挂载点为 <code>/boot/efi</code>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> mkpart primary fat32 1MiB 1GiB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> set <span style="color:#ae81ff">1</span> boot on  <span style="color:#75715e"># 标记为启动分区</span>
+</span></span></code></pre></div><ul>
+<li><code>1MiB</code> 是为了保证 GPT 的开头没有问题。</li>
+<li><code>1GiB</code> 是结束位置，表示分区大小为 1GB。</li>
+</ul>
+</li>
+<li>
+<p><strong>创建 Swap 分区（32GB）</strong>：
+创建一个 32GB 的 Swap 分区：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> mkpart primary linux-swap 1GiB 33GiB
+</span></span></code></pre></div><ul>
+<li>从 1GB 开始，到 33GB 结束，创建 32GB 的交换分区。</li>
+</ul>
+</li>
+<li>
+<p><strong>创建根分区 <code>/</code>（剩余空间）</strong>：
+使用剩余的空间来创建根分区 <code>/</code>，并选择一个合适的文件系统（如 ext4）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> mkpart primary ext4 33GiB 100%
+</span></span></code></pre></div></li>
+<li>
+<p><strong>查看分区情况</strong>：
+查看当前分区表，确保分区创建无误：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> print
+</span></span></code></pre></div></li>
+<li>
+<p><strong>退出 <code>parted</code></strong>：
+完成分区后，输入 <code>quit</code> 退出 <code>parted</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>parted<span style="color:#f92672">)</span> quit
+</span></span></code></pre></div></li>
+</ol>
+<hr>
+<h2 id="二格式化分区">二、格式化分区<a hidden class="anchor" aria-hidden="true" href="#二格式化分区">#</a></h2>
+<p>分区完成后，需要对每个分区进行格式化：</p>
+<ol>
+<li>
+<p><strong>格式化 EFI 分区（FAT32）</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.fat -F32 /dev/nvme0n1p1
+</span></span></code></pre></div></li>
+<li>
+<p><strong>格式化 Swap 分区</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkswap /dev/nvme0n1p2
+</span></span><span style="display:flex;"><span>sudo swapon /dev/nvme0n1p2
+</span></span></code></pre></div></li>
+<li>
+<p><strong>格式化根分区 <code>/</code>（ext4）</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkfs.ext4 /dev/nvme0n1p3
+</span></span></code></pre></div></li>
+</ol>
+<hr>
+<h2 id="三挂载分区">三、挂载分区<a hidden class="anchor" aria-hidden="true" href="#三挂载分区">#</a></h2>
+<ol>
+<li>
+<p><strong>挂载根分区</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount /dev/nvme0n1p3 /mnt
+</span></span></code></pre></div></li>
+<li>
+<p><strong>挂载 EFI 分区</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir /mnt/boot
+</span></span><span style="display:flex;"><span>sudo mkdir /mnt/boot/efi
+</span></span><span style="display:flex;"><span>sudo mount /dev/nvme0n1p1 /mnt/boot/efi
+</span></span></code></pre></div></li>
+<li>
+<p><strong>启用 Swap 分区</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo swapon /dev/nvme0n1p2
+</span></span></code></pre></div></li>
+</ol>
+<hr>
+<h2 id="四复制根分区数据">四、复制根分区（<code>/</code>）数据<a hidden class="anchor" aria-hidden="true" href="#四复制根分区数据">#</a></h2>
+<p>将原根分区的数据复制到新硬盘的根分区。假设原根分区是 /dev/sda3，使用 rsync 来复制数据。不过根目录的下的所有目录不是都要复制的，我们要排除一些目录，比如home之类的，我们使用rsync完成复制，&ndash;exclude选项排除目录：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo rsync -aAXHv <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/dev/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/proc/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/sys/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/tmp/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/run/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/mnt/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/media/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/swapfile <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/boot/efi <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/data* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/home/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           --exclude<span style="color:#f92672">=</span>/media/* <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>           / /mnt
+</span></span></code></pre></div><hr>
+<h2 id="五复制-efi-分区内容">五、复制 EFI 分区内容<a hidden class="anchor" aria-hidden="true" href="#五复制-efi-分区内容">#</a></h2>
+<p>将原 EFI 分区的内容复制到新 EFI 分区。假设原 EFI 分区是 /dev/sda1：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount /dev/sda1 /mnt/old_efi
+</span></span><span style="display:flex;"><span>sudo rsync -av /mnt/old_efi/ /mnt/boot/efi/
+</span></span></code></pre></div><hr>
+<h2 id="六更新-etcfstab">六、更新 <code>/etc/fstab</code><a hidden class="anchor" aria-hidden="true" href="#六更新-etcfstab">#</a></h2>
+<p>为了确保系统启动时自动挂载这些分区，需要编辑 <code>/etc/fstab</code> 文件。首先获取每个分区的 UUID：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo blkid
+</span></span></code></pre></div><p>找到相应的分区 UUID，例如：</p>
+<pre tabindex="0"><code>/dev/nvme0n1p3: UUID=&#34;cbe03289-0caf-40eb-965d-03c10ca7bf1b&#34; TYPE=&#34;ext4&#34; PARTLABEL=&#34;primary&#34; PARTUUID=&#34;53b551f1-e4d6-4832-9c8d-7491c095e523&#34;
+/dev/nvme0n1p1: UUID=&#34;94BA-6041&#34; TYPE=&#34;vfat&#34; PARTLABEL=&#34;primary&#34; PARTUUID=&#34;f71de349-8ffa-4d5c-ba47-f9597fecb777&#34;
+/dev/nvme0n1p2: UUID=&#34;9ef999f2-7a17-48dd-85d0-bd7b58975327&#34; TYPE=&#34;swap&#34; PARTLABEL=&#34;primary&#34; PARTUUID=&#34;f8a1397f-1ea0-404b-88ff-42fc0b00557d&#34;
+/dev/sda1: UUID=&#34;8BC3-AF3D&#34; TYPE=&#34;vfat&#34; PARTUUID=&#34;4517423a-3cd1-4cd4-abb5-f36ebb37701d&#34;
+/dev/sda3: UUID=&#34;1f234375-7152-4e77-a210-b7573423c600&#34; TYPE=&#34;ext4&#34; PARTUUID=&#34;f1671f3b-34c1-48f5-9cd0-58d8e3f6c382&#34;
+/dev/sdb1: UUID=&#34;691e6f03-2d31-4de8-ba6a-0754f2924dd6&#34; TYPE=&#34;ext4&#34; PARTUUID=&#34;ba8af566-9f5d-415b-83de-6f7c428e8ceb&#34;
+/dev/sdc1: UUID=&#34;2eb7de08-5701-4657-b69a-f0deab8803af&#34; TYPE=&#34;ext4&#34; PARTUUID=&#34;df23adf3-3e53-41dc-9e89-289bf861a8ab&#34;
+/dev/sdd: UUID=&#34;dd08c204-9596-44f3-b9be-35ef81650d2e&#34; TYPE=&#34;ext4&#34;
+/dev/sde: UUID=&#34;086d0c1f-5842-410e-b7d2-90af4b647f96&#34; TYPE=&#34;ext4&#34;
+</code></pre><p>然后编辑 <code>/etc/fstab</code>，添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># / was on /dev/nvme0n1p3 during installation</span>
+</span></span><span style="display:flex;"><span>UUID<span style="color:#f92672">=</span>cbe03289-0caf-40eb-965d-03c10ca7bf1b /               ext4  errors<span style="color:#f92672">=</span>remount-ro <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># swap was on /dev/nvme0n1p2 during installation</span>
+</span></span><span style="display:flex;"><span>UUID<span style="color:#f92672">=</span>9ef999f2-7a17-48dd-85d0-bd7b58975327 none            swap    sw              <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># /boot/efi was on /dev/nvme0n1p1 during installation</span>
+</span></span><span style="display:flex;"><span>UUID<span style="color:#f92672">=</span>94BA-6041                            /boot/efi       vfat    umask<span style="color:#f92672">=</span><span style="color:#ae81ff">0077</span>      <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>确保根分区 <code>/</code> 的挂载顺序为 1，因为它是根分区。</p>
+<hr>
+<h2 id="七更新引导加载器grub">七、更新引导加载器（GRUB）<a hidden class="anchor" aria-hidden="true" href="#七更新引导加载器grub">#</a></h2>
+<p>由于你更换了硬盘，你需要重新安装 GRUB 引导加载器，以确保系统能够正确引导。</p>
+<ol>
+<li>绑定系统目录以便操作：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount --bind /dev /mnt/dev
+</span></span><span style="display:flex;"><span>sudo mount --bind /proc /mnt/proc
+</span></span><span style="display:flex;"><span>sudo mount --bind /sys /mnt/sys
+</span></span><span style="display:flex;"><span>sudo mount --bind /run /mnt/run
+</span></span></code></pre></div><ol start="2">
+<li>安装和更新 GRUB：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chroot /mnt
+</span></span><span style="display:flex;"><span>grub-install /dev/nvme0n1
+</span></span><span style="display:flex;"><span>update-grub
+</span></span></code></pre></div><ol start="3">
+<li>退出 chroot 环境：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exit
+</span></span></code></pre></div><hr>
+<h2 id="八卸载分区并重启">八、卸载分区并重启<a hidden class="anchor" aria-hidden="true" href="#八卸载分区并重启">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /mnt/boot/efi
+</span></span><span style="display:flex;"><span>sudo umount /mnt
+</span></span><span style="display:flex;"><span>sudo swapoff /dev/nvme0n1p2
+</span></span></code></pre></div><h2 id="九检查启动">九、检查启动<a hidden class="anchor" aria-hidden="true" href="#九检查启动">#</a></h2>
+<p>在重新启动时，确保系统从新的 NVMe 硬盘启动，检查是否能够正常进入系统。如果一切顺利，系统将从新的硬盘启动，使用新的 EFI 分区、Swap 分区和根分区。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

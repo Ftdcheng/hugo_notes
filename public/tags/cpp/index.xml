@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cpp on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/cpp/</link>
+    <description>Recent content in Cpp on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; range for</title>
+      <link>http://localhost:1313/posts/cpp/range-for/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/range-for/</guid>
+      <description>&lt;h1 id=&#34;c-range-for&#34;&gt;C++ range for&lt;/h1&gt;
+&lt;p&gt;要让一个对象能被用于 C++ 的 &lt;strong&gt;range-based for loop&lt;/strong&gt;（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议&lt;strong&gt;不是形式化的接口&lt;/strong&gt;（不像 Java 那样有 &lt;code&gt;Iterable&lt;/code&gt; 接口），但你可以把它看作一个“概念”（concept）或“约定”。&lt;/p&gt;
+&lt;p&gt;我们来拆一下细节：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-c-range-for-的底层语义&#34;&gt;✅ &lt;strong&gt;C++ range for 的底层语义&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; x : container) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;等价于：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; __range &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; container;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; __begin &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; begin(__range);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; __end &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; end(__range);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; __begin &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; __end; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;__begin) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;__begin;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// ...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-你的类需要满足以下要求&#34;&gt;🔑 你的类需要满足以下要求：&lt;/h3&gt;
+&lt;h4 id=&#34;1-beginobj-和-endobj-必须能被调用&#34;&gt;1. &lt;code&gt;begin(obj)&lt;/code&gt; 和 &lt;code&gt;end(obj)&lt;/code&gt; 必须能被调用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;这通常意味着：
+&lt;ul&gt;
+&lt;li&gt;你的类有成员函数 &lt;code&gt;begin()&lt;/code&gt; 和 &lt;code&gt;end()&lt;/code&gt;，&lt;strong&gt;或者&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;对你的类定义了适配的 &lt;code&gt;begin()&lt;/code&gt; 和 &lt;code&gt;end()&lt;/code&gt; 非成员函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C++标准库的 &lt;code&gt;std::begin()&lt;/code&gt; 和 &lt;code&gt;std::end()&lt;/code&gt; 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 &lt;code&gt;.begin()&lt;/code&gt;、&lt;code&gt;.end()&lt;/code&gt;）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; 内部类</title>
+      <link>http://localhost:1313/posts/cpp/internal-class/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/internal-class/</guid>
+      <description>&lt;h1 id=&#34;c-内部类&#34;&gt;C++ 内部类&lt;/h1&gt;
+&lt;p&gt;兄弟你问到一个&lt;strong&gt;C++黑魔法级的结构设计点&lt;/strong&gt;了，内部类（nested class）虽然看起来是“类中套类”，但其实背后藏着一套很有意思的权限与封装逻辑。下面我给你展开讲，保你之后写库、写设计模式的时候用得上。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-什么是内部类nested-class&#34;&gt;🧱 什么是内部类（Nested Class）？&lt;/h2&gt;
+&lt;p&gt;在 C++ 中，一个类可以定义在另一个类的作用域中，比如这样：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Outer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Inner&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; sayHi();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你可以这样用它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Outer&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Inner obj;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;obj.sayHi();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它是一种&lt;strong&gt;作用域上的嵌套&lt;/strong&gt;，但不是 Java/Python 那种“绑定外部对象”的嵌套！&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-权限和访问特权说明&#34;&gt;🧙‍♂️ 权限和访问特权说明：&lt;/h2&gt;
+&lt;h3 id=&#34;-内部类的权限&#34;&gt;✅ 内部类的权限：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;内部类 &lt;strong&gt;被当作是外部类的一个成员类型&lt;/strong&gt;（和 typedef、enum 类似）&lt;/li&gt;
+&lt;li&gt;它&lt;strong&gt;可以访问外部类的 &lt;code&gt;private&lt;/code&gt; / &lt;code&gt;protected&lt;/code&gt; 成员&lt;/strong&gt;吗？👉 &lt;strong&gt;不能直接访问！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Outer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; secret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;42&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Inner&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; access(Outer&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; o) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// int x = o.secret; ❌ 编译错误，不能访问 private
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;除非你加上 &lt;code&gt;friend&lt;/code&gt;：&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; 程序执行计时器的写法</title>
+      <link>http://localhost:1313/posts/cpp/timer/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/timer/</guid>
+      <description>&lt;h1 id=&#34;c-程序执行计时器的写法&#34;&gt;C++ 程序执行计时器的写法&lt;/h1&gt;
+&lt;p&gt;提到 &lt;strong&gt;“优雅地”测量程序性能并输出到文件&lt;/strong&gt;，我们就不是简简单单扔个 &lt;code&gt;std::chrono&lt;/code&gt; 然后 &lt;code&gt;cout&lt;/code&gt; 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。&lt;/p&gt;
+&lt;p&gt;下面我分两种层次跟你说：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-快速整洁版适合小段代码测试&#34;&gt;✅ 快速整洁版：适合小段代码测试&lt;/h2&gt;
+&lt;h3 id=&#34;封装一个-timer-类&#34;&gt;封装一个 &lt;code&gt;Timer&lt;/code&gt; 类&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;chrono&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Timer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Timer(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; label &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; log_file &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;timing_log.txt&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; label_(label), log_file_(log_file), start_time_(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;now()) {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;Timer() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; end_time &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;now();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; duration_ms &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;duration_cast&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;milliseconds&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;(end_time &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; start_time_).count();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;ofstream ofs(log_file_, std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;ios&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;app); &lt;span style=&#34;color:#75715e&#34;&gt;// 追加写
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        ofs &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; label_ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;] took &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; duration_ms &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; ms&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string label_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string log_file_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;time_point start_time_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;用法非常-zen&#34;&gt;用法非常 Zen：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Timer &lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tracking Update&amp;#34;&lt;/span&gt;);  &lt;span style=&#34;color:#75715e&#34;&gt;// 离开作用域自动写入时间
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    run_tracking_update();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出会自动写到 &lt;code&gt;timing_log.txt&lt;/code&gt;，像这样：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>万能引用</title>
+      <link>http://localhost:1313/posts/cpp/universe-ref/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/universe-ref/</guid>
+      <description>&lt;h1 id=&#34;万能引用&#34;&gt;万能引用&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;👉 &lt;strong&gt;这不是移动对象，而是声明了一个“按值类别完美转发”的引用（即万能引用）。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;它不等于 &lt;code&gt;std::move(...)&lt;/code&gt;，也不会触发移动构造或移动赋值。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-来拆解下发生了什么&#34;&gt;🔍 来拆解下发生了什么：&lt;/h2&gt;
+&lt;h3 id=&#34;-auto-的含义取决于推导的上下文&#34;&gt;🌟 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 的含义取决于“推导的上下文”：&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;场景&lt;/th&gt;
+          &lt;th&gt;推导结果&lt;/th&gt;
+          &lt;th&gt;实际类型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;右值初始化&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt;（右值引用）&lt;/td&gt;
+          &lt;td&gt;真·右值引用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;左值初始化&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;T&amp;amp; &amp;amp;&amp;amp;&lt;/code&gt; → &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;被折叠成&lt;strong&gt;左值引用&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;完美转发函数模板&lt;/td&gt;
+          &lt;td&gt;可左可右&lt;/td&gt;
+          &lt;td&gt;万能引用（Universal Reference）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;p&gt;在你的例子中：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;假设 &lt;code&gt;*(it_imu)&lt;/code&gt; 是个左值（比如容器里的引用），那么：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; 推导为 &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;所以 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 实际上变成 &lt;code&gt;T&amp;amp; &amp;amp;&amp;amp;&lt;/code&gt;，会&lt;strong&gt;引用折叠&lt;/strong&gt;成 &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;🔥 所以 &lt;code&gt;head&lt;/code&gt; 只是个普通的左值引用，和移动语义八竿子打不着。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-真正触发移动的方式是&#34;&gt;💥 真正触发移动的方式是：&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tmp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;move(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu));  &lt;span style=&#34;color:#75715e&#34;&gt;// 明确地告诉编译器：我要移！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;所以你的写法更像是&#34;&gt;🚩所以你的写法更像是：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为了&lt;strong&gt;通用性/语法糖&lt;/strong&gt;（比如在模板函数中），用了 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 来&lt;strong&gt;接收任何值类型&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;但在当前场景，它接住的是容器迭代器解引用出来的&lt;strong&gt;左值&lt;/strong&gt;，所以变成了左值引用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;结尾顺口溜一首&#34;&gt;🧂结尾顺口溜一首：&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 看着像移动，&lt;br&gt;
+实际只是引用秀。&lt;br&gt;
+真想挪走请 &lt;code&gt;std::move&lt;/code&gt;，&lt;br&gt;
+否则只是原地蹲守 🐢。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>初始化列表</title>
+      <link>http://localhost:1313/posts/cpp/initializer-list/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/initializer-list/</guid>
+      <description>&lt;h1 id=&#34;初始化列表&#34;&gt;初始化列表&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;初始化列表&lt;/strong&gt;（&lt;code&gt;initializer_list&lt;/code&gt;）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-1-基本用法&#34;&gt;🧱 1. &lt;strong&gt;基本用法&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;initializer_list&lt;/code&gt; 允许你在构造对象时，直接用 &lt;code&gt;{}&lt;/code&gt; 花括号传递一个列表。&lt;/p&gt;
+&lt;h3 id=&#34;示例基础使用&#34;&gt;示例：基础使用&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;initializer_list&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MyClass&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, b, c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 使用初始化列表来初始化成员变量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    MyClass(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;initializer_list&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; init) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; it &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; init.begin();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;  &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 a
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;  &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 b
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        c &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it;    &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;print&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;, b: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;, c: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    MyClass obj{&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;};  &lt;span style=&#34;color:#75715e&#34;&gt;// 使用初始化列表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    obj.print();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;输出&#34;&gt;输出：&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a: 1, b: 2, c: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;-2-什么时候用初始化列表&#34;&gt;🧩 2. &lt;strong&gt;什么时候用初始化列表？&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;1-类的构造函数初始化成员变量&#34;&gt;1. &lt;strong&gt;类的构造函数初始化成员变量&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;在类的构造函数中，&lt;strong&gt;使用初始化列表&lt;/strong&gt;是初始化成员变量的最有效方式，特别是对于常量成员（&lt;code&gt;const&lt;/code&gt;）和引用成员，因为它们在构造时必须被初始化。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

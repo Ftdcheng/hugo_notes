@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Papers on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/papers/</link>
+    <description>Recent content in Papers on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/papers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Livox LOAM</title>
+      <link>http://localhost:1313/posts/slam/papers/livox-loam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/livox-loam/</guid>
+      <description>&lt;h1 id=&#34;livox-loam&#34;&gt;Livox LOAM&lt;/h1&gt;
+&lt;p&gt;使用Livox固态雷达实现的LOAM。&lt;/p&gt;
+&lt;h2 id=&#34;数据处理&#34;&gt;数据处理&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用了强度来区分不同的材质，比如可以检测到一面墙中墙到门窗的变化&lt;/li&gt;
+&lt;li&gt;对接收到的点云进行了分片处理，将不同的片放到不同的CPU上处理，使得处理明显变快。将一个帧分成三个子帧。每个子帧分别进行运动补偿。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>LOAM</title>
+      <link>http://localhost:1313/posts/slam/papers/loam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/loam/</guid>
+      <description>&lt;h1 id=&#34;loam&#34;&gt;LOAM&lt;/h1&gt;
+&lt;h2 id=&#34;点云获取&#34;&gt;点云获取&lt;/h2&gt;
+&lt;p&gt;LOAM使用的LiDAR是&lt;code&gt;VLP-16&lt;/code&gt;，这是一种16线的激光雷达。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线数：16&lt;/li&gt;
+&lt;li&gt;水平分辨率：0.1° ~ 0.4°（这是因为旋转的速度可调，导致水平分辨率的变化）&lt;/li&gt;
+&lt;li&gt;旋转频率：5 ~ 20Hz&lt;/li&gt;
+&lt;li&gt;水平FoV：360°&lt;/li&gt;
+&lt;li&gt;垂直分辨率：2°&lt;/li&gt;
+&lt;li&gt;垂直FoV：-15° ~ +15° (30°的范围)&lt;/li&gt;
+&lt;li&gt;最大测量距离：100m&lt;/li&gt;
+&lt;li&gt;距离测量精度：±3cm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;值得注意的是这个雷达的激光垂直角度与线数的对应并不是数字0-15从下往上依次对应，而是采用一种交错的方式，比如-15°对应线0，1°对应线1，-13°对应线2，&amp;hellip;，15°对应线15。&lt;/p&gt;
+&lt;p&gt;这样安排的原因是为了防止两束激光挨得太近会产生干涉。&lt;/p&gt;
+&lt;h2 id=&#34;imu工作分析&#34;&gt;IMU工作分析&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;IMU消息收到 -&amp;gt; IMUHandler&lt;/li&gt;
+&lt;li&gt;更新角度差，去除重力加速度的xyz线速度，imu接收时间&lt;/li&gt;
+&lt;li&gt;将线速度旋转角度差这么多到世界坐标系，这说明角度差是现在IMU的姿态相对于世界坐标系的&lt;/li&gt;
+&lt;li&gt;得到世界坐标系内的加速度后计算新的位移，位移从0开始累加，使用的是$s_t = s_{t-1} + v_{t-1} * \Delta t + \frac{1}{2} * \mathbb{a} (\Delta t)^2$&lt;/li&gt;
+&lt;li&gt;计算新的速度：$v_t = v_{t-1} + a * \Delta t $&lt;/li&gt;
+&lt;li&gt;激光雷达接收到点时使用IMU的数据，计算当前点对应的IMU数据（估计）&lt;/li&gt;
+&lt;li&gt;使用当前点的IMU数据计算加速运动产生的位移&lt;/li&gt;
+&lt;li&gt;使用当前点的IMU数据计算加速运动产生的速度&lt;/li&gt;
+&lt;li&gt;当前点使用角度进行旋转再加上无畸变的位移得到点的真正位置&lt;/li&gt;
+&lt;li&gt;发布当前点云第一个点的IMU信息，发布当前点的IMU信息，包括畸变的位移和速度。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验&lt;/h2&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU: 2.5GHz 4核&lt;/li&gt;
+&lt;li&gt;内存: 6G&lt;/li&gt;
+&lt;li&gt;传感器: VLP-16 (&lt;a href=&#34;https://wiki.ros.org/loam_velodyne&#34;&gt;loam_velodyne&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;实验方法&#34;&gt;实验方法&lt;/h3&gt;
+&lt;p&gt;为了验证局部地图的准确性，LOAM在一些固定的点安装雷达进行感知，这时雷达是静止的，利用这些在静止状态采集的点云进行ICP配准，得到环境的准确地图。
+利用准确的地图点云和LOAM得到的点云之间的平面特征之间的距离作差得到误差。结果是误差是均值为0的正态分布，误差范围大概在20cm内。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>高效时空信息融合的动态SLAM框架</title>
+      <link>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
+      <description>&lt;h1 id=&#34;高效时空信息融合的动态slam框架&#34;&gt;高效时空信息融合的动态SLAM框架&lt;/h1&gt;
+&lt;h2 id=&#34;idea&#34;&gt;idea&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息&lt;/li&gt;
+&lt;li&gt;测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。&lt;/li&gt;
+&lt;li&gt;文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率&lt;/li&gt;
+&lt;li&gt;单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。&lt;/li&gt;
+&lt;li&gt;要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力&lt;/li&gt;
+&lt;li&gt;LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高&lt;/li&gt;
+&lt;li&gt;文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。&lt;/li&gt;
+&lt;li&gt;这篇文章声称自己是一种在线的方案。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;历史上的方法&#34;&gt;历史上的方法&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。&lt;/li&gt;
+&lt;li&gt;在线MOS(运动物体分割):
+&lt;ul&gt;
+&lt;li&gt;端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。&lt;/li&gt;
+&lt;li&gt;从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;h3 id=&#34;测距图像的表示&#34;&gt;测距图像的表示&lt;/h3&gt;
+&lt;p&gt;$$
+\binom{u}{v}=\binom{\frac{1}{2}\left[1-\arctan (y, x) \pi^{-1}\right] \quad w}{\left[1-\left(\arcsin \left(z r^{-1}\right)+\mathrm{f}_{\mathrm{up}}\right) \mathrm{f}^{-1}\right] h}
+$$&lt;/p&gt;
+&lt;p&gt;这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。&lt;/p&gt;
+&lt;h3 id=&#34;残差图&#34;&gt;残差图&lt;/h3&gt;
+&lt;p&gt;使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。&lt;/p&gt;
+&lt;h3 id=&#34;元核卷积meta-kernel-convolution&#34;&gt;元核卷积（Meta-Kernel Convolution）&lt;/h3&gt;
+&lt;p&gt;对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。&lt;/p&gt;
+&lt;p&gt;这么做的目的是编码3D空间信息。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

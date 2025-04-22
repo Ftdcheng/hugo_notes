@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Misc on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/misc/</link>
+    <description>Recent content in Misc on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/misc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>alacritty ayu 配置</title>
+      <link>http://localhost:1313/posts/misc/alacritty-ayu-config/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/misc/alacritty-ayu-config/</guid>
+      <description>&lt;h1 id=&#34;alacritty-ayu-配置&#34;&gt;alacritty ayu 配置&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;size&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;14.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;normal&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Regular&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bold&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bold&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;italic&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Italic&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;primary&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;background&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;foreground&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#cbccc6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;cursor&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cursor&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#5ccfe6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;selection&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;background&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#73d0ff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;normal&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;black&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#191e2a&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;red&lt;/span&gt;     = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ff3333&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;green&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#bae67e&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;yellow&lt;/span&gt;  = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffe080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;blue&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#73d0ff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;magenta&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#d4bfff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cyan&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#95e6cb&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;white&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#c7c7c7&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bright&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;black&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#686868&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;red&lt;/span&gt;     = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#f27983&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;green&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#a6cc70&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;yellow&lt;/span&gt;  = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffcc66&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;blue&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#5ccfe6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;magenta&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#cb9eff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cyan&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#95e6cb&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;white&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffffff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ibus rime 安装踩坑</title>
+      <link>http://localhost:1313/posts/misc/rime-install/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/misc/rime-install/</guid>
+      <description>&lt;h1 id=&#34;ibus-rime-安装踩坑&#34;&gt;ibus rime 安装踩坑&lt;/h1&gt;
+&lt;h2 id=&#34;日志在哪&#34;&gt;日志在哪&lt;/h2&gt;
+&lt;p&gt;linux端在&lt;code&gt;/tmp/rime*&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;没有部署按钮怎么办&#34;&gt;没有部署按钮怎么办&lt;/h2&gt;
+&lt;p&gt;ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了&lt;/p&gt;
+&lt;h2 id=&#34;雾凇拼音挂了怎么办&#34;&gt;雾凇拼音挂了怎么办&lt;/h2&gt;
+&lt;p&gt;把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/&lt;/p&gt;
+&lt;h2 id=&#34;怎么在命令行部署&#34;&gt;怎么在命令行部署&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ibus restart&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;奇怪的错误&#34;&gt;奇怪的错误&lt;/h2&gt;
+&lt;p&gt;(process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached
+设定全局引擎失败。&lt;/p&gt;
+&lt;p&gt;这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 &lt;code&gt;ibus-daemon&lt;/code&gt; 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：&lt;/p&gt;
+&lt;h3 id=&#34;1-确保&#34;&gt;1. &lt;strong&gt;确保 &lt;code&gt;ibus-daemon&lt;/code&gt; 正常启动&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;有时 &lt;code&gt;ibus-daemon&lt;/code&gt; 可能没有正确启动或响应。可以尝试手动重新启动它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ibus-daemon -drx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会重启 IBUS 服务，并确保它在后台运行。&lt;/p&gt;
+&lt;h3 id=&#34;2-重启系统&#34;&gt;2. &lt;strong&gt;重启系统&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;如果 &lt;code&gt;ibus-daemon&lt;/code&gt; 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。&lt;/p&gt;
+&lt;h3 id=&#34;3-查看-ibus-日志&#34;&gt;3. &lt;strong&gt;查看 IBUS 日志&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;通过查看 IBUS 日志可以获取更多的错误信息。可以查看 &lt;code&gt;/var/log/syslog&lt;/code&gt; 或直接在终端中查看 IBUS 输出：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tail -f /var/log/syslog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者直接在终端中查看 IBUS 的调试信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ibus-daemon -drx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果有更多的错误信息，可能有助于诊断问题。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

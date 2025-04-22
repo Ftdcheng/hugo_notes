@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ROS | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/ros/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/ros/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/ros/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    ROS
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PointCloud2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>PointCloud2 参考链接：
+sensor_msgs.point_cloud2 sensor_msgs/PointField std_msgs/Header 作用 PointCloud2存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用PointField表示 sensor_msgs.point_cloud2不是数据结构，而是存放了许多操作PointCloud2的方法的命名空间，可以使用其中的方法来创建PointCloud2
+结构 # 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header # 点云的2D结构，如果点云无序，那么height为1，width为点数 uint32 height uint32 width # 描述data部分字段，即每个点的每个维度 PointField[] fields bool is_bigendian # 数据是否为大端 uint32 point_step # 一个点的字节数 uint32 row_step # 一行的字节数 uint8[] data # 存储点的字节数组，大小为(row_step*height) bool is_dense # 如果没有无效点，那么这个字段为True 创建点云 from sensor_msgs.msg import PointCloud2, PointField from sensor_msgs.point_cloud2 import create_cloud # Tips, 对于这些使用ROS消息生成系统生成的消息， # 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数， # 从而创建一个消息对象，这里的Header，PointField皆是如此。 # 此外这些字段亦可以通过对象的对应属性访问 def create_pointscloud_xyzi(points, timestamp, frame_id): header = Header(stamp=timestamp, frame_id=frame_id) dtype = PointField.FLOAT32 fields = [PointField(name=&#39;x&#39;, offset=0, datatype=dtype, count=1), PointField(name=&#39;y&#39;, offset=4, datatype=dtype, count=1), PointField(name=&#39;z&#39;, offset=8, datatype=dtype, count=1), PointField(name=&#39;intensity&#39;, offset=12, datatype=dtype, count=1),] # create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构 return pc2.create_cloud(header, fields, points) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to PointCloud2" href="http://localhost:1313/posts/ros/pointcloud2/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS 基本概念 节点 ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。
+查看当前正在运行的节点
+rosnode list 查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务
+rosnode info &lt;节点名&gt; 运行节点
+rosrun &lt;包名&gt; &lt;节点名&gt; 测试节点连通性和延迟
+rosnode ping &lt;节点名&gt; 客户端库 ROS客户端库允许节点使用不同的语言来进行交流：
+rospy = python客户端库 roscpp = c&#43;&#43; 客户端库 roscore 你要使用ROS，就得先运行roscore。
+就是主节点(Master) &#43; rosout &#43; 参数服务器
+话题 查看话题已经发布的消息：
+rostopic echo &lt;话题&gt; 查看发布特定话题的节点和接收的节点
+rostopic list &lt;话题&gt; 查看话题消息的类型
+rostopic type &lt;话题&gt; 查看话题消息的结构
+rostopic show &lt;话题&gt; 发布消息
+rostopic pub &lt;话题&gt; &lt;类型&gt; &lt;参数&gt; 查看话题发布的频率
+rostopic hz &lt;话题&gt; 话题的时间坐标图像
+rqt_plot 服务 列出活跃的服务
+rosservice list 查看服务响应的类型
+rosservice type &lt;服务&gt; 查看服务的结构
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS" href="http://localhost:1313/posts/ros/ros-quick-start/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ros Time
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ros Time 参考链接 rospy.rostime
+作用 rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。
+有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。
+rospy.Time v.s. datetime rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。 而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：
+# 匹配date精度的日期部分和超出微秒精度的部分 nanosec_pattern = re.compile(&#34;(\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&#34;) def date2rostime(time: str): sec_match = nanosec_pattern.match(time) if sec_match is None: raise ValueError micro_part = sec_match.group(1) nano_part = sec_match.group(2) micro_date = datetime.strptime(micro_part, &#34;%Y-%m-%d %H:%M:%S.%f&#34;) secs = int(micro_date.timestamp()) nano_secs = micro_date.microsecond * 1000 if nano_part is not None and nano_part != &#39;&#39;: nano_secs &#43;= int(nano_part) return rospy.Time(secs, nano_secs) 运算 rospy.Time支持减法，减出来的结果是ros.Duration对象
+rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ros Time" href="http://localhost:1313/posts/ros/time/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS 名称
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS 名称 名称 名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等
+为了让名称减少冲突，引入了名称空间（namespace）的概念。名称存在于命名空间中，命名空间可以存在于命名空间中，命名空间中可以有多个名称。这样的话，我们知道名称空间肯定是一层套一层的，是有层次的。这就引出了不同类别的名称：
+基名称(base)，没有带名称空间修饰的名称，事实上是相对名称的一种，和相对名称有相同的解析规则，常用来初始化节点 相对名称(relative)，相对于名称空间的名称，在解析的时候会添加上前面的名称空间修饰 全局名称(global)，以/开头的都是全局名称，在代码中尽量不要用这种名称，这会限制代码的通用性 私有名称(private)，把名称转换成一个命名空间，从参数服务器上传递参数到特定节点的时候很有用。 名称的解析与命名空间相关，比如你在一个命名空间aicv下创建了一个节点turtle_control那么它的完整的名称就是/aicv/turtle_control
+你在launch文件中启动node的时候有规定name属性，这个name就是我们的名称，比如
+&lt;?xml version=&#34;1.0&#34;?&gt; &lt;launch&gt; &lt;group ns=&#34;aicv&#34;&gt; &lt;node pkg=&#34;rosplayground&#34; type=&#34;time_service&#34; name=&#34;operation&#34;/&gt; &lt;/group&gt; &lt;/launch&gt; 这个launch文件规定了名称为operation的节点会启动。启动之后，节点完整的名称就是/aicv/operation
+如果你没有使用launch文件，你直接执行了rosrun，并没有规定命名空间。那么默认你在全局的命名空间中操作。比如
+rosrun rosplayground time_service 这样启动完之后你的节点名称就变成了/time_service_node（我们在ros::init中规定的名称，launch文件中的name会覆盖这个设置）
+你在发布/订阅话题或者服务的时候也会规定话题或者服务的名称，这个名称就是这里的名称
+此外消息类型和服务类型也有名称，他们的名称通常是包名/类型名，比如std_msgs/String
+重映射 为什么要重映射 有这么一种情况，一个话题被一系列节点订阅，这个时候你有一个新的节点，这个新的节点也想订阅这个话题，但我们的话题固然有个名字，而新的节点订阅的话题不是这个话题的名字，但是它们的话题类型是一样的，这个时候我们就可以重映射，这就像在没有修改我们新节点代码的情况下，更改了新节点订阅话题的名字。
+重映射的方法 &lt;remap&gt;标签 在launch文件中，你启动节点时可以在节点标签&lt;node&gt;中添加&lt;remap&gt;标签，让节点订阅的话题/服务的名称换成新的。
+&lt;?xml version=&#34;1.0&#34;?&gt; &lt;launch&gt; &lt;group ns=&#34;aicv&#34;&gt; &lt;node pkg=&#34;rosplayground&#34; type=&#34;time_client&#34; name=&#34;time_client&#34;&gt; &lt;remap from=&#34;time_service&#34; to=&#34;operation&#34;/&gt; &lt;/node&gt; &lt;/group&gt; &lt;/launch&gt; 这里我们的time_client节点原先请求的服务是time_service，重映射之后就请求operation服务了。
+rosrun参数 rosrun rosplayground time_client time_service:=operation </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS 名称" href="http://localhost:1313/posts/ros/name-and-remapping/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">rosbag
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>rosbag rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是.bag，通过命令rosbag进行播放或者检查。
+参考链接:
+rosbag - ros docs rosbag.Bag rosbag包 安装 sudo apt install ros-{ROS_DISTRO}-rosbag 然后你可以导入使用
+import rosbag 值得注意的是在系统默认python环境中无需额外的配置即可导入rosbag，然而你如果使用venv或者anaconda需要安装一些额外的包。
+这些包有：pyyaml, pycryptodomex, gnupg, rospkg，激活环境后安装：
+pip install pycryptodome pyyaml gnupg rospkg 在你使用venv的时候你需要修改虚拟环境目录下的bin/activate在它的最后一行加上source /opt/ros/${ROS-DISTRO}/setup.bash。完成这些配置后你的rosbag才能成功导入。
+写入 with rosbag.Bag(&#39;test.bag&#39;, &#39;w&#39;) as bag: bag.write(topic_name, msg) 读取 with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag: for topic, msg, t in bag.read_messages(topics=[&#34;chater&#34;, &#34;numbers&#34;]): print(msg) 使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()
+命令行工具 参考链接: rosbag commandline
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to rosbag" href="http://localhost:1313/posts/ros/rosbag/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS回调处理
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS回调处理 概述 你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。
+回调函数队列 你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。
+spin()和spinOnce() 然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()
+spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。
+spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。
+全局队列与局部队列 一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。
+当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-&gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-&gt;callOne()
+#include &lt;ros/callback_queue.h&gt; ros::CallbackQueue my_queue; ros::NodeHandle nh; nh.setCallbackQueue(&amp;my_callback_queue); 甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。
+什么时候使用节点特有的回调函数队列 长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了 有计算时间长的回调函数，和长时间允许服务类似。 参考文档 Callbacks and Spinning
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS回调处理" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS节点怎么使用GDB调试
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS节点怎么使用GDB调试 [roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](https://wiki.ros.org/roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB)
+看上面的教程。在node标签里加launch_prefix就好了
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS节点怎么使用GDB调试" href="http://localhost:1313/posts/ros/debugging/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

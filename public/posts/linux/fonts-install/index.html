@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Linux字体安装 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="Linux">
+<meta name="description" content="Linux字体安装
+在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：
+
+1. 手动安装字体（适用于用户或系统全局）
+用户级安装（仅当前用户可用）
+
+将字体文件（如 .ttf、.otf 等）复制到用户字体目录：
+mkdir -p ~/.local/share/fonts
+cp /path/to/your/font.ttf ~/.local/share/fonts/
+
+更新字体缓存：
+fc-cache -fv
+
+
+系统级安装（所有用户可用）
+
+需要 root 权限，将字体复制到系统字体目录：
+sudo cp /path/to/your/font.ttf /usr/share/fonts/
+
+更新字体缓存：
+sudo fc-cache -fv
+
+
+
+2. 使用包管理器安装（推荐）
+
+Debian/Ubuntu（APT）：
+sudo apt install fonts-&lt;name&gt;  # 例如：fonts-noto, fonts-roboto
+
+Fedora/RHEL（DNF）：
+sudo dnf install &lt;name&gt;-fonts    # 例如：google-roboto-fonts
+
+Arch Linux（Pacman）：
+sudo pacman -S &lt;name&gt;-fonts      # 例如：ttf-roboto
+
+
+
+3. 通过字体管理器工具
+
+GNOME 用户：使用 gnome-font-viewer（双击字体文件后点击 &ldquo;Install&rdquo;）。
+KDE 用户：使用 kfontview 或系统设置中的字体管理模块。
+
+
+4. 创建字体子目录（组织多字体）
+
+在 /usr/share/fonts/ 或 ~/.local/share/fonts/ 下创建子目录（如 custom），放入字体后更新缓存：
+sudo mkdir /usr/share/fonts/custom
+sudo cp *.ttf /usr/share/fonts/custom/
+sudo fc-cache -fv
+
+
+
+5. 临时测试字体
+
+直接运行应用程序时指定字体路径（不永久安装）：
+LIBGL_FREETYPE_FONT_PATH=/path/to/fonts/ your_app
+
+
+
+注意事项
+
+字体格式支持：Linux 常用 TrueType (.ttf)、OpenType (.otf) 和 WOFF/WOFF2（部分支持）。
+权限问题：系统级安装需 sudo，用户级安装无需。
+查找已安装字体：使用 fc-list 查看字体列表。
+
+
+验证安装
+fc-match &lt;fontname&gt;  # 检查字体是否生效
+或通过图形软件（如 LibreOffice）查看字体列表。">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/linux/fonts-install/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/linux/fonts-install/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Linux字体安装
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="linux字体安装">Linux字体安装<a hidden class="anchor" aria-hidden="true" href="#linux字体安装">#</a></h1>
+<p>在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：</p>
+<hr>
+<h3 id="1-手动安装字体适用于用户或系统全局"><strong>1. 手动安装字体（适用于用户或系统全局）</strong><a hidden class="anchor" aria-hidden="true" href="#1-手动安装字体适用于用户或系统全局">#</a></h3>
+<h4 id="用户级安装仅当前用户可用"><strong>用户级安装（仅当前用户可用）</strong><a hidden class="anchor" aria-hidden="true" href="#用户级安装仅当前用户可用">#</a></h4>
+<ul>
+<li>将字体文件（如 <code>.ttf</code>、<code>.otf</code> 等）复制到用户字体目录：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/.local/share/fonts
+</span></span><span style="display:flex;"><span>cp /path/to/your/font.ttf ~/.local/share/fonts/
+</span></span></code></pre></div></li>
+<li>更新字体缓存：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fc-cache -fv
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="系统级安装所有用户可用"><strong>系统级安装（所有用户可用）</strong><a hidden class="anchor" aria-hidden="true" href="#系统级安装所有用户可用">#</a></h4>
+<ul>
+<li>需要 root 权限，将字体复制到系统字体目录：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /path/to/your/font.ttf /usr/share/fonts/
+</span></span></code></pre></div></li>
+<li>更新字体缓存：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo fc-cache -fv
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+<h3 id="2-使用包管理器安装推荐"><strong>2. 使用包管理器安装（推荐）</strong><a hidden class="anchor" aria-hidden="true" href="#2-使用包管理器安装推荐">#</a></h3>
+<ul>
+<li><strong>Debian/Ubuntu</strong>（APT）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install fonts-&lt;name&gt;  <span style="color:#75715e"># 例如：fonts-noto, fonts-roboto</span>
+</span></span></code></pre></div></li>
+<li><strong>Fedora/RHEL</strong>（DNF）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dnf install &lt;name&gt;-fonts    <span style="color:#75715e"># 例如：google-roboto-fonts</span>
+</span></span></code></pre></div></li>
+<li><strong>Arch Linux</strong>（Pacman）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pacman -S &lt;name&gt;-fonts      <span style="color:#75715e"># 例如：ttf-roboto</span>
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+<h3 id="3-通过字体管理器工具"><strong>3. 通过字体管理器工具</strong><a hidden class="anchor" aria-hidden="true" href="#3-通过字体管理器工具">#</a></h3>
+<ul>
+<li><strong>GNOME 用户</strong>：使用 <code>gnome-font-viewer</code>（双击字体文件后点击 &ldquo;Install&rdquo;）。</li>
+<li><strong>KDE 用户</strong>：使用 <code>kfontview</code> 或系统设置中的字体管理模块。</li>
+</ul>
+<hr>
+<h3 id="4-创建字体子目录组织多字体"><strong>4. 创建字体子目录（组织多字体）</strong><a hidden class="anchor" aria-hidden="true" href="#4-创建字体子目录组织多字体">#</a></h3>
+<ul>
+<li>在 <code>/usr/share/fonts/</code> 或 <code>~/.local/share/fonts/</code> 下创建子目录（如 <code>custom</code>），放入字体后更新缓存：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir /usr/share/fonts/custom
+</span></span><span style="display:flex;"><span>sudo cp *.ttf /usr/share/fonts/custom/
+</span></span><span style="display:flex;"><span>sudo fc-cache -fv
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+<h3 id="5-临时测试字体"><strong>5. 临时测试字体</strong><a hidden class="anchor" aria-hidden="true" href="#5-临时测试字体">#</a></h3>
+<ul>
+<li>直接运行应用程序时指定字体路径（不永久安装）：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>LIBGL_FREETYPE_FONT_PATH<span style="color:#f92672">=</span>/path/to/fonts/ your_app
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+<h3 id="注意事项"><strong>注意事项</strong><a hidden class="anchor" aria-hidden="true" href="#注意事项">#</a></h3>
+<ol>
+<li><strong>字体格式支持</strong>：Linux 常用 <code>TrueType (.ttf)</code>、<code>OpenType (.otf)</code> 和 <code>WOFF/WOFF2</code>（部分支持）。</li>
+<li><strong>权限问题</strong>：系统级安装需 <code>sudo</code>，用户级安装无需。</li>
+<li><strong>查找已安装字体</strong>：使用 <code>fc-list</code> 查看字体列表。</li>
+</ol>
+<hr>
+<h3 id="验证安装"><strong>验证安装</strong><a hidden class="anchor" aria-hidden="true" href="#验证安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>fc-match &lt;fontname&gt;  <span style="color:#75715e"># 检查字体是否生效</span>
+</span></span></code></pre></div><p>或通过图形软件（如 LibreOffice）查看字体列表。</p>
+<p>根据你的需求选择合适的方法，用户级安装更安全，系统级安装需谨慎操作。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

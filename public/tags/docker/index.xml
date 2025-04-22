@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/docker/</link>
+    <description>Recent content in Docker on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker Compose</title>
+      <link>http://localhost:1313/posts/docker/compose/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/compose/</guid>
+      <description>&lt;h1 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h1&gt;
+&lt;h2 id=&#34;compose-文件&#34;&gt;Compose 文件&lt;/h2&gt;
+&lt;p&gt;默认的Compose文件是&lt;code&gt;compose.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;service&#34;&gt;Service&lt;/h2&gt;
+&lt;h3 id=&#34;build属性&#34;&gt;build属性&lt;/h3&gt;
+&lt;p&gt;build属性可以在启动服务时构建镜像作为service。如果有image属性的话，build出来的镜像会推送到registry。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：image和build同时存在的话默认使用image，也就是说如果你的主机上有image规定的镜像那么就用它，如果没有就拉取image，你的build不会触发。要想触发你的build，你得修改&lt;code&gt;pull_policy&lt;/code&gt;属性，可以设置为build。&lt;/p&gt;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Dockerfile Entrypoint</title>
+      <link>http://localhost:1313/posts/docker/entry-point/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/entry-point/</guid>
+      <description>&lt;h1 id=&#34;dockerfile-entrypoint&#34;&gt;Dockerfile Entrypoint&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/reference/dockerfile/#entrypoint&#34;&gt;Docker Entry Point 官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ENTRYPOINT最主要的功能是将容器变成一个“命令”, 容器在启动的时候会执行ENTRYPOINT规定的命令。&lt;/p&gt;
+&lt;p&gt;ENTRYPOINT和CMD可以配合使用，CMD给容器提供默认参数。&lt;/p&gt;
+&lt;p&gt;不过如果用户在docker run的时候在最后给出了参数，那么给出的参数会覆盖默认参数。&lt;/p&gt;
+&lt;p&gt;CMD在单独使用的时候是容器启动时执行的默认命令，和ENTRYPOINT配合使用的时候是默认选项。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>how to do something in Docker</title>
+      <link>http://localhost:1313/posts/docker/how-tos/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/how-tos/</guid>
+      <description>&lt;h1 id=&#34;how-to-do-something-in-docker&#34;&gt;how to do something in Docker&lt;/h1&gt;
+&lt;h2 id=&#34;如何让容器能够借用宿主机显示gui&#34;&gt;如何让容器能够借用宿主机显示GUI&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;启动容器时挂载/tmp/.X11-unix&lt;/li&gt;
+&lt;li&gt;设置环境变量DISPLAY&lt;/li&gt;
+&lt;li&gt;宿主机上允许docker访问X11&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xhost +local:docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;没有X11服务器得自己装。&lt;/p&gt;
+&lt;h2 id=&#34;如何让你的容器默认使用清华源&#34;&gt;如何让你的容器默认使用清华源&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RUN sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g&amp;#39;&lt;/span&gt; /etc/apt/sources.list &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g&amp;#39;&lt;/span&gt; /etc/apt/sources.list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;怎么在构建镜像的时候开代理&#34;&gt;怎么在构建镜像的时候开代理&lt;/h2&gt;
+&lt;p&gt;通过&amp;ndash;buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker build --build-arg http_proxy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://172.17.0.1:7897 --build-arg https_proxy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://172.17.0.1:7897 --build-arg -t name:image .
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你使用docker compose，你的compose.yaml可以这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;context&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;args&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                - &lt;span style=&#34;color:#ae81ff&#34;&gt;http_proxy=http://172.17.0.1:7897&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                - &lt;span style=&#34;color:#ae81ff&#34;&gt;https_proxy=http://172.17.0.1:7897&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;怎么在构建docker时就执行source-develsetupbash&#34;&gt;怎么在构建docker时就执行source devel/setup.bash&lt;/h2&gt;
+&lt;p&gt;你需要ENTRYPOINT，这个命令可以提前帮你source&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /root/hku_ws
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;catkin_make
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;source devel/setup.bash
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;exec &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你的Dockerfile这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; ./entrypoint.sh /entrypoint.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; chmod +x /entrypoint.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/entrypoint.sh&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; [ &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bash&amp;#34;&lt;/span&gt; ]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;如何避免烦人的键盘布局选择&#34;&gt;如何避免烦人的键盘布局选择&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DEBIAN_FRONTEND&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;noninteractive apt-get install -y --no-install-recommends &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;ros-noetic-pcl-ros ros-noetic-eigen-conversions
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>网络</title>
+      <link>http://localhost:1313/posts/docker/networking/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/networking/</guid>
+      <description>&lt;h1 id=&#34;网络&#34;&gt;网络&lt;/h1&gt;
+&lt;p&gt;docker网络可以让容器访问外网或者互相访问。&lt;/p&gt;
+&lt;p&gt;默认开启了docker网络，不过容器不知道自己连接的什么对象，只知道自己的IP，网关，DNS这些网络参数。&lt;/p&gt;
+&lt;p&gt;当你启动docker时，会默认将容器挂在default这个bridge驱动上。&lt;/p&gt;
+&lt;p&gt;默认桥接网络只能通过IP地址进行互相访问。比如你在默认桥接网络下有两个容器，那么你只要知道了两个容器的IP地址你才能进行两个容器之间的通信。在用户定义桥接网络下，你可以使用容器名或者别名进行互相访问。&lt;/p&gt;
+&lt;h2 id=&#34;用户自定义网络&#34;&gt;用户自定义网络&lt;/h2&gt;
+&lt;p&gt;你可以创建用户自定义网络把多个容器放到同一个网络下，互相进行通信。默认使用&lt;code&gt;bridge&lt;/code&gt;，也就是桥接的方式创建网络。这是一个创建并连接到自定义网络的例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker network create -d bridge my-net
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run --network&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;my-net -itd --name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;container3 busybox
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;驱动&#34;&gt;驱动&lt;/h2&gt;
+&lt;p&gt;除了&lt;code&gt;bridge&lt;/code&gt;外，容器可以使用很多网络驱动。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;bridge: 同一主机上的容器进行通信使用，默认选项&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;连接到网络&#34;&gt;连接到网络&lt;/h2&gt;
+&lt;p&gt;容器可以连接到多个网络&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

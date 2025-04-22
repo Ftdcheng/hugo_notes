@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in Linux on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux字体安装</title>
+      <link>http://localhost:1313/posts/linux/fonts-install/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux/fonts-install/</guid>
+      <description>&lt;h1 id=&#34;linux字体安装&#34;&gt;Linux字体安装&lt;/h1&gt;
+&lt;p&gt;在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-手动安装字体适用于用户或系统全局&#34;&gt;&lt;strong&gt;1. 手动安装字体（适用于用户或系统全局）&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;用户级安装仅当前用户可用&#34;&gt;&lt;strong&gt;用户级安装（仅当前用户可用）&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;将字体文件（如 &lt;code&gt;.ttf&lt;/code&gt;、&lt;code&gt;.otf&lt;/code&gt; 等）复制到用户字体目录：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir -p ~/.local/share/fonts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp /path/to/your/font.ttf ~/.local/share/fonts/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;更新字体缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;系统级安装所有用户可用&#34;&gt;&lt;strong&gt;系统级安装（所有用户可用）&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;需要 root 权限，将字体复制到系统字体目录：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo cp /path/to/your/font.ttf /usr/share/fonts/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;更新字体缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-使用包管理器安装推荐&#34;&gt;&lt;strong&gt;2. 使用包管理器安装（推荐）&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu&lt;/strong&gt;（APT）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install fonts-&amp;lt;name&amp;gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：fonts-noto, fonts-roboto&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fedora/RHEL&lt;/strong&gt;（DNF）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo dnf install &amp;lt;name&amp;gt;-fonts    &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：google-roboto-fonts&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Arch Linux&lt;/strong&gt;（Pacman）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo pacman -S &amp;lt;name&amp;gt;-fonts      &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：ttf-roboto&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-通过字体管理器工具&#34;&gt;&lt;strong&gt;3. 通过字体管理器工具&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GNOME 用户&lt;/strong&gt;：使用 &lt;code&gt;gnome-font-viewer&lt;/code&gt;（双击字体文件后点击 &amp;ldquo;Install&amp;rdquo;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;KDE 用户&lt;/strong&gt;：使用 &lt;code&gt;kfontview&lt;/code&gt; 或系统设置中的字体管理模块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-创建字体子目录组织多字体&#34;&gt;&lt;strong&gt;4. 创建字体子目录（组织多字体）&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在 &lt;code&gt;/usr/share/fonts/&lt;/code&gt; 或 &lt;code&gt;~/.local/share/fonts/&lt;/code&gt; 下创建子目录（如 &lt;code&gt;custom&lt;/code&gt;），放入字体后更新缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mkdir /usr/share/fonts/custom
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo cp *.ttf /usr/share/fonts/custom/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-临时测试字体&#34;&gt;&lt;strong&gt;5. 临时测试字体&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;直接运行应用程序时指定字体路径（不永久安装）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;LIBGL_FREETYPE_FONT_PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/path/to/fonts/ your_app
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;注意事项&#34;&gt;&lt;strong&gt;注意事项&lt;/strong&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;字体格式支持&lt;/strong&gt;：Linux 常用 &lt;code&gt;TrueType (.ttf)&lt;/code&gt;、&lt;code&gt;OpenType (.otf)&lt;/code&gt; 和 &lt;code&gt;WOFF/WOFF2&lt;/code&gt;（部分支持）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权限问题&lt;/strong&gt;：系统级安装需 &lt;code&gt;sudo&lt;/code&gt;，用户级安装无需。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查找已安装字体&lt;/strong&gt;：使用 &lt;code&gt;fc-list&lt;/code&gt; 查看字体列表。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;验证安装&#34;&gt;&lt;strong&gt;验证安装&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fc-match &amp;lt;fontname&amp;gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 检查字体是否生效&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或通过图形软件（如 LibreOffice）查看字体列表。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>旧磁盘数据迁移到新磁盘</title>
+      <link>http://localhost:1313/posts/linux/move-system-to-new-disk/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux/move-system-to-new-disk/</guid>
+      <description>&lt;h1 id=&#34;旧磁盘数据迁移到新磁盘&#34;&gt;旧磁盘数据迁移到新磁盘&lt;/h1&gt;
+&lt;h2 id=&#34;安装硬盘&#34;&gt;安装硬盘&lt;/h2&gt;
+&lt;p&gt;关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。&lt;/p&gt;
+&lt;h2 id=&#34;查看旧磁盘上挂载了哪些文件系统&#34;&gt;查看旧磁盘上挂载了哪些文件系统&lt;/h2&gt;
+&lt;p&gt;我们假设旧磁盘设备是/dev/sda，然后可以使用&lt;code&gt;lsblk -f&lt;/code&gt;查看，输出样例如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;loop0       squashfs                                                  0   100% /snap/bare/5
+loop1       squashfs                                                  0   100% /snap/core20/2496
+loop2       squashfs                                                  0   100% /snap/gnome-42-2204/202
+loop3       squashfs                                                  0   100% /snap/snap-store/1113
+loop4       squashfs                                                  0   100% /snap/gnome-42-2204/176
+loop5       squashfs                                                  0   100% /snap/core22/1748
+loop6       squashfs                                                  0   100% /snap/gtk-common-themes/1535
+loop7       squashfs                                                  0   100% /snap/core22/1802
+loop8       squashfs                                                  0   100% /snap/snap-store/1216
+loop9       squashfs                                                  0   100% /snap/gnome-3-38-2004/143
+loop10      squashfs                                                  0   100% /snap/gnome-3-38-2004/119
+loop11      squashfs                                                  0   100% /snap/core20/2434
+loop12      squashfs                                                  0   100% /snap/snapd/23545
+loop13      squashfs                                                  0   100% /snap/snapd/23771
+sda                                                                            
+├─sda1      vfat           8BC3-AF3D                               1.9G     0% /boot/efi
+├─sda2      swap           a7510130-5064-42a3-abd0-787e8a4f131e                [SWAP]
+└─sda3      ext4           1f234375-7152-4e77-a210-b7573423c600  689.7G    19% /
+sdb                                                                            
+└─sdb1      ext4           691e6f03-2d31-4de8-ba6a-0754f2924dd6    2.4T    29% /home
+sdc                                                                            
+└─sdc1      ext4           2eb7de08-5701-4657-b69a-f0deab8803af    1.3T    60% /data
+sdd         ext4           dd08c204-9596-44f3-b9be-35ef81650d2e      7T    30% /data1
+sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /data2
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这表明分区&lt;code&gt;/dev/sda1&lt;/code&gt;挂了&lt;code&gt;/boot/efi&lt;/code&gt;，&lt;code&gt;/dev/sd2&lt;/code&gt;挂了交换分区，/dev/sda3挂的&lt;code&gt;/&lt;/code&gt;。
+此外&lt;code&gt;/home&lt;/code&gt;和&lt;code&gt;/data&lt;/code&gt;、&lt;code&gt;/data1&lt;/code&gt;和&lt;code&gt;/data2&lt;/code&gt;挂在其他磁盘上，等会复制根分区的时候，应该排除。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

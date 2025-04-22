@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - Citrus Cheng&#39;s wiki">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS回调处理
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS回调处理 概述 你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。
+回调函数队列 你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。
+spin()和spinOnce() 然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()
+spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。
+spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。
+全局队列与局部队列 一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。
+当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-&gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-&gt;callOne()
+#include &lt;ros/callback_queue.h&gt; ros::CallbackQueue my_queue; ros::NodeHandle nh; nh.setCallbackQueue(&amp;my_callback_queue); 甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。
+什么时候使用节点特有的回调函数队列 长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了 有计算时间长的回调函数，和长时间允许服务类似。 参考文档 Callbacks and Spinning
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS回调处理" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ROS节点怎么使用GDB调试
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>ROS节点怎么使用GDB调试 [roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](https://wiki.ros.org/roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB)
+看上面的教程。在node标签里加launch_prefix就好了
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to ROS节点怎么使用GDB调试" href="http://localhost:1313/posts/ros/debugging/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">RTK
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>RTK</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to RTK" href="http://localhost:1313/posts/slam/sensors/rtk/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SLAM Ideas
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>SLAM Ideas 动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。 数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道 使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强 和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？ FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？ Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图 其它传感器的信息是否可以助力目标检测剔除动态 地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力 残差图 两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。
+基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了
+如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。
+如果是scan2map的残差图，能判断分割相对场景是否运动。
+一致性约束 如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？
+1. Scan-to-Scan 配准：利用运动模型检测动态点干扰 (a) 车辆运动模型的约束
+车载激光雷达的运动是受约束的，例如： 车辆通常不会瞬间大幅度转向或漂移 速度、加速度、角速度等参数通常平滑变化 车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移） 如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明： 可能有较多动态物体（如行人、车辆）干扰了配准 可能发生了错误匹配，导致错误的变换估计 (b) 运动一致性检测
+预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围 配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差 异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响 2. Scan-to-Map 配准：利用全局位姿约束检测配准错误 (a) 全局位姿的运动一致性
+Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿 通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型 例如： 如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化 (b) 误配准检测和修正
+如果Scan-to-Map配准的结果与车辆运动模型不符，可以： 重新优化Scan-to-Map的匹配权重，降低动态点的影响 结合IMU、轮速计、GPS等其他信息进行数据融合校正 引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响 3. 可能的改进与应用 基于运动模型的动态点剔除 在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除 结合IMU进行位姿约束 通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响 异常位姿回溯修正 如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积 在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to SLAM Ideas" href="http://localhost:1313/posts/slam/brainstorm/ideas/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SLAM代码库
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>SLAM代码库 这里是一些开源的SLAM相关的代码库，提供内容描述和资源链接
+RoadLib 作者： ​	武汉大学GREAT实验室，leader是李星星。他们是做卫星和导航的
+简介： ​	一个开源的基于道路标识的增量式建图与定位系统
+​	算法部分主要包括道路标识提取与建模、局部增量式建图、地图管理与地图匹配定位等模块。
+​	好像是单目的。
+相关链接： ​	RoadLib 代码库
+​	预览视频1
+​	预览视频2
+​	武汉大学开源RoadLib：基于道路标识的增量式SLAM！
+MonoLaneMapping 简介 ​	实时单目摄像机车道建图。IROS23（IEEE的一个会议，智能机器人系统国际会议） 已经接受了这篇论文
+这个框架接受图片和里程计（比如VIO）信息，估计位姿和车道地图。
+作者： ​	香港科技大学航空机器人实验室，leader是沈邵劼，香港科技大学-大疆联合创新实验室主任。
+相关链接 ​	HKUST-Aerial-Robotics/MonoLaneMapping: Online Monocular Lane Mapping Using Catmull-Rom Spline (IROS 2023)
+A-LOAM 简介
+LOAM的一个高级的实现，没有复杂的数学推导，没有冗余的计算，代码更好看，适合新手。
+代码库里使用的传感器有VLP-16，Velodyne HDL-64
+作者
+香港科技大学航空机器人实验室
+相关链接
+HKUST-Aerial-Robotics/A-LOAM: Advanced implementation of LOAM
+图示
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to SLAM代码库" href="http://localhost:1313/posts/slam/brainstorm/repos/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SLAM数据集
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>SLAM数据集 这里是一些SLAM相关的数据集，提供描述和链接
+CoVLA
+简介
+包含视觉、语言和动作的大规模标注数据集。这是一种基于CoVLA数据集的新型VLA模型，用于可解释的端到端自动驾驶。
+相关链接
+turing-motors/CoVLA-Dataset-Mini · Datasets at Hugging Face
+Semantic KITTI
+简介
+SemanticKITTI 对 KITTI 360° 激光雷达扫描点云（Velodyne 数据）进行了逐点标注。
+类别数量：分为 28个语义类别（其中有19个主要类别用于评估，其他为未标注或忽略类别）。
+语义类别示例：
+静态物体：道路、建筑物、树木、草地、路标等。
+动态物体：行人、车辆、骑行者、动物等。
+其他：天空、未标注区域等。
+在 SemanticKITTI 中，动态物体（如行人、骑行者、车辆等）与静态物体（如道路、建筑物、树木等）被明确区分，方便研究动态环境下的语义分割和物体检测任务。
+这对于开发能适应 动态环境的 SLAM 或感知系统非常有帮助。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to SLAM数据集" href="http://localhost:1313/posts/slam/brainstorm/datasets/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">万能引用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>万能引用 auto&amp;&amp; head = *(it_imu); auto&amp;&amp; tail = *(it_imu &#43; 1); 👉 这不是移动对象，而是声明了一个“按值类别完美转发”的引用（即万能引用）。
+它不等于 std::move(...)，也不会触发移动构造或移动赋值。
+🔍 来拆解下发生了什么： 🌟 auto&amp;&amp; 的含义取决于“推导的上下文”： 场景 推导结果 实际类型 右值初始化 T&amp;&amp;（右值引用） 真·右值引用 左值初始化 T&amp; &amp;&amp; → T&amp; 被折叠成左值引用 完美转发函数模板 可左可右 万能引用（Universal Reference） 在你的例子中：
+auto&amp;&amp; head = *(it_imu); 假设 *(it_imu) 是个左值（比如容器里的引用），那么：
+auto 推导为 T&amp; 所以 auto&amp;&amp; 实际上变成 T&amp; &amp;&amp;，会引用折叠成 T&amp; 🔥 所以 head 只是个普通的左值引用，和移动语义八竿子打不着。
+💥 真正触发移动的方式是： auto&amp;&amp; tmp = std::move(*(it_imu)); // 明确地告诉编译器：我要移！ 🚩所以你的写法更像是： 为了通用性/语法糖（比如在模板函数中），用了 auto&amp;&amp; 来接收任何值类型。 但在当前场景，它接住的是容器迭代器解引用出来的左值，所以变成了左值引用。 🧂结尾顺口溜一首： auto&amp;&amp; 看着像移动，
+实际只是引用秀。
+真想挪走请 std::move，
+否则只是原地蹲守 🐢。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 万能引用" href="http://localhost:1313/posts/cpp/universe-ref/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">代码调试问题
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>代码调试问题 livox ros driver找不到 关掉所有的vscode终端，开一个新终端，在你的项目目录自己新建build，然后cmake。 因为vscode终端的环境和cmake插件使用的环境是一样的，所以你source之后，那么cmake config就可以找到livox ros driver。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 代码调试问题" href="http://localhost:1313/posts/slam/brainstorm/debugging/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">初始化列表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>初始化列表 初始化列表（initializer_list）是 C&#43;&#43;11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。
+🧱 1. 基本用法 initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。
+示例：基础使用 #include &lt;iostream&gt; #include &lt;initializer_list&gt; class MyClass { private: int a, b, c; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list&lt;int&gt; init) { auto it = init.begin(); a = *it&#43;&#43;; // 初始化 a b = *it&#43;&#43;; // 初始化 b c = *it; // 初始化 c } void print() { std::cout &lt;&lt; &#34;a: &#34; &lt;&lt; a &lt;&lt; &#34;, b: &#34; &lt;&lt; b &lt;&lt; &#34;, c: &#34; &lt;&lt; c &lt;&lt; std::endl; } }; int main() { MyClass obj{1, 2, 3}; // 使用初始化列表 obj.print(); return 0; } 输出： a: 1, b: 2, c: 3 🧩 2. 什么时候用初始化列表？ 1. 类的构造函数初始化成员变量 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 初始化列表" href="http://localhost:1313/posts/cpp/initializer-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">动态SLAM的一些信息
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>动态SLAM的一些信息 静态假设
+SLAM的正常工作依赖于动态假设，如果忽视环境中的动态物体，会给配准、地图带来影响。
+动态SLAM的方法
+基于去除的方法：一种是手工设计的特征算法对动态点进行去除，另外一种是通过机器学习的方式找到动态点。有使用预先建立的地图和当前scan进行比对找到动态点的。还有一些人是直接等建图完了，直接对鬼影下手清除的。基于地图的方法离线的居多。
+基于追踪的方法：对动态物体进行追踪，对动态点进行去除。有先生成BBOX的，然后再追踪BBOX的变化
+benchmark
+KTH-RPL/DynamicMap_Benchmark: The First Dynamic Map Removal Benchmark | Included 8 SOTA methods | Continous updating
+关注作者
+Qingwen Zhang
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 动态SLAM的一些信息" href="http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/posts/page/2/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/posts/page/4/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Cpp | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/cpp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/cpp/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/cpp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Cpp
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C&#43;&#43; range for
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>C&#43;&#43; range for 要让一个对象能被用于 C&#43;&#43; 的 range-based for loop（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议不是形式化的接口（不像 Java 那样有 Iterable 接口），但你可以把它看作一个“概念”（concept）或“约定”。
+我们来拆一下细节：
+✅ C&#43;&#43; range for 的底层语义 for (auto x : container) { // ... } 等价于：
+{ auto&amp;&amp; __range = container; auto __begin = begin(__range); auto __end = end(__range); for (; __begin != __end; &#43;&#43;__begin) { auto x = *__begin; // ... } } 也就是说：
+🔑 你的类需要满足以下要求： 1. begin(obj) 和 end(obj) 必须能被调用 这通常意味着： 你的类有成员函数 begin() 和 end()，或者 对你的类定义了适配的 begin() 和 end() 非成员函数。 C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to C&#43;&#43; range for" href="http://localhost:1313/posts/cpp/range-for/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C&#43;&#43; 内部类
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>C&#43;&#43; 内部类 兄弟你问到一个C&#43;&#43;黑魔法级的结构设计点了，内部类（nested class）虽然看起来是“类中套类”，但其实背后藏着一套很有意思的权限与封装逻辑。下面我给你展开讲，保你之后写库、写设计模式的时候用得上。
+🧱 什么是内部类（Nested Class）？ 在 C&#43;&#43; 中，一个类可以定义在另一个类的作用域中，比如这样：
+class Outer { public: class Inner { public: void sayHi(); }; }; 你可以这样用它：
+Outer::Inner obj; obj.sayHi(); 它是一种作用域上的嵌套，但不是 Java/Python 那种“绑定外部对象”的嵌套！
+🧙‍♂️ 权限和访问特权说明： ✅ 内部类的权限： 内部类 被当作是外部类的一个成员类型（和 typedef、enum 类似） 它可以访问外部类的 private / protected 成员吗？👉 不能直接访问！ class Outer { private: int secret = 42; public: class Inner { public: void access(Outer&amp; o) { // int x = o.secret; ❌ 编译错误，不能访问 private } }; }; 除非你加上 friend：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to C&#43;&#43; 内部类" href="http://localhost:1313/posts/cpp/internal-class/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">C&#43;&#43; 程序执行计时器的写法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>C&#43;&#43; 程序执行计时器的写法 提到 “优雅地”测量程序性能并输出到文件，我们就不是简简单单扔个 std::chrono 然后 cout 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。
+下面我分两种层次跟你说：
+✅ 快速整洁版：适合小段代码测试 封装一个 Timer 类 #include &lt;chrono&gt; #include &lt;fstream&gt; #include &lt;string&gt; class Timer { public: Timer(const std::string&amp; label = &#34;&#34;, const std::string&amp; log_file = &#34;timing_log.txt&#34;) : label_(label), log_file_(log_file), start_time_(std::chrono::high_resolution_clock::now()) {} ~Timer() { auto end_time = std::chrono::high_resolution_clock::now(); auto duration_ms = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end_time - start_time_).count(); std::ofstream ofs(log_file_, std::ios::app); // 追加写 ofs &lt;&lt; &#34;[&#34; &lt;&lt; label_ &lt;&lt; &#34;] took &#34; &lt;&lt; duration_ms &lt;&lt; &#34; ms\n&#34;; } private: std::string label_; std::string log_file_; std::chrono::high_resolution_clock::time_point start_time_; }; 用法非常 Zen： { Timer t(&#34;Tracking Update&#34;); // 离开作用域自动写入时间 run_tracking_update(); } 输出会自动写到 timing_log.txt，像这样：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to C&#43;&#43; 程序执行计时器的写法" href="http://localhost:1313/posts/cpp/timer/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">万能引用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>万能引用 auto&amp;&amp; head = *(it_imu); auto&amp;&amp; tail = *(it_imu &#43; 1); 👉 这不是移动对象，而是声明了一个“按值类别完美转发”的引用（即万能引用）。
+它不等于 std::move(...)，也不会触发移动构造或移动赋值。
+🔍 来拆解下发生了什么： 🌟 auto&amp;&amp; 的含义取决于“推导的上下文”： 场景 推导结果 实际类型 右值初始化 T&amp;&amp;（右值引用） 真·右值引用 左值初始化 T&amp; &amp;&amp; → T&amp; 被折叠成左值引用 完美转发函数模板 可左可右 万能引用（Universal Reference） 在你的例子中：
+auto&amp;&amp; head = *(it_imu); 假设 *(it_imu) 是个左值（比如容器里的引用），那么：
+auto 推导为 T&amp; 所以 auto&amp;&amp; 实际上变成 T&amp; &amp;&amp;，会引用折叠成 T&amp; 🔥 所以 head 只是个普通的左值引用，和移动语义八竿子打不着。
+💥 真正触发移动的方式是： auto&amp;&amp; tmp = std::move(*(it_imu)); // 明确地告诉编译器：我要移！ 🚩所以你的写法更像是： 为了通用性/语法糖（比如在模板函数中），用了 auto&amp;&amp; 来接收任何值类型。 但在当前场景，它接住的是容器迭代器解引用出来的左值，所以变成了左值引用。 🧂结尾顺口溜一首： auto&amp;&amp; 看着像移动，
+实际只是引用秀。
+真想挪走请 std::move，
+否则只是原地蹲守 🐢。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 万能引用" href="http://localhost:1313/posts/cpp/universe-ref/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">初始化列表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>初始化列表 初始化列表（initializer_list）是 C&#43;&#43;11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。
+🧱 1. 基本用法 initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。
+示例：基础使用 #include &lt;iostream&gt; #include &lt;initializer_list&gt; class MyClass { private: int a, b, c; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list&lt;int&gt; init) { auto it = init.begin(); a = *it&#43;&#43;; // 初始化 a b = *it&#43;&#43;; // 初始化 b c = *it; // 初始化 c } void print() { std::cout &lt;&lt; &#34;a: &#34; &lt;&lt; a &lt;&lt; &#34;, b: &#34; &lt;&lt; b &lt;&lt; &#34;, c: &#34; &lt;&lt; c &lt;&lt; std::endl; } }; int main() { MyClass obj{1, 2, 3}; // 使用初始化列表 obj.print(); return 0; } 输出： a: 1, b: 2, c: 3 🧩 2. 什么时候用初始化列表？ 1. 类的构造函数初始化成员变量 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 初始化列表" href="http://localhost:1313/posts/cpp/initializer-list/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

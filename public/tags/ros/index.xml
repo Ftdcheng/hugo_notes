@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ROS on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/ros/</link>
+    <description>Recent content in ROS on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ros/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PointCloud2</title>
+      <link>http://localhost:1313/posts/ros/pointcloud2/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/pointcloud2/</guid>
+      <description>&lt;h1 id=&#34;pointcloud2&#34;&gt;PointCloud2&lt;/h1&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/sensor_msgs/html/namespacesensor__msgs_1_1point__cloud2.html&#34;&gt;sensor_msgs.point_cloud2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/PointField.html&#34;&gt;sensor_msgs/PointField&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/std_msgs/html/msg/Header.html&#34;&gt;std_msgs/Header&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;PointCloud2&lt;/code&gt;存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用&lt;code&gt;PointField&lt;/code&gt;表示
+&lt;code&gt;sensor_msgs.point_cloud2&lt;/code&gt;不是数据结构，而是存放了许多操作&lt;code&gt;PointCloud2&lt;/code&gt;的方法的命名空间，可以使用其中的方法来创建&lt;code&gt;PointCloud2&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结构&#34;&gt;结构&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header
+
+# 点云的2D结构，如果点云无序，那么height为1，width为点数
+uint32 height
+uint32 width
+
+# 描述data部分字段，即每个点的每个维度
+PointField[] fields
+
+bool    is_bigendian # 数据是否为大端
+uint32  point_step   # 一个点的字节数
+uint32  row_step     # 一行的字节数
+uint8[] data         # 存储点的字节数组，大小为(row_step*height)
+
+bool is_dense        # 如果没有无效点，那么这个字段为True
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;创建点云&#34;&gt;创建点云&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; sensor_msgs.msg &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; PointCloud2, PointField
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; sensor_msgs.point_cloud2 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; create_cloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Tips, 对于这些使用ROS消息生成系统生成的消息，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 从而创建一个消息对象，这里的Header，PointField皆是如此。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 此外这些字段亦可以通过对象的对应属性访问&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;create_pointscloud_xyzi&lt;/span&gt;(points, timestamp, frame_id):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    header &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Header(stamp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;timestamp, frame_id&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frame_id)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    dtype &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PointField&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;FLOAT32
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    fields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;x&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;y&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;z&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;intensity&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pc2&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;create_cloud(header, fields, points)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ROS</title>
+      <link>http://localhost:1313/posts/ros/ros-quick-start/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/ros-quick-start/</guid>
+      <description>&lt;h1 id=&#34;ros&#34;&gt;ROS&lt;/h1&gt;
+&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
+&lt;h3 id=&#34;节点&#34;&gt;节点&lt;/h3&gt;
+&lt;p&gt;ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。&lt;/p&gt;
+&lt;p&gt;查看当前正在运行的节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode info &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun &amp;lt;包名&amp;gt; &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;测试节点连通性和延迟&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode ping &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;客户端库&#34;&gt;客户端库&lt;/h3&gt;
+&lt;p&gt;ROS客户端库允许节点使用不同的语言来进行交流：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rospy = python客户端库&lt;/li&gt;
+&lt;li&gt;roscpp = c++ 客户端库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;roscore&#34;&gt;roscore&lt;/h3&gt;
+&lt;p&gt;你要使用ROS，就得先运行roscore。&lt;/p&gt;
+&lt;p&gt;就是主节点(Master) + rosout + 参数服务器&lt;/p&gt;
+&lt;h2 id=&#34;话题&#34;&gt;话题&lt;/h2&gt;
+&lt;p&gt;查看话题已经发布的消息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic echo &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看发布特定话题的节点和接收的节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic list &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题消息的类型&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic type &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题消息的结构&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic show &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;发布消息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic pub &amp;lt;话题&amp;gt; &amp;lt;类型&amp;gt; &amp;lt;参数&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题发布的频率&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic hz &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;话题的时间坐标图像&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rqt_plot
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;服务&#34;&gt;服务&lt;/h2&gt;
+&lt;p&gt;列出活跃的服务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosservice list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看服务响应的类型&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosservice type &amp;lt;服务&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看服务的结构&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ros Time</title>
+      <link>http://localhost:1313/posts/ros/time/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/time/</guid>
+      <description>&lt;h1 id=&#34;ros-time&#34;&gt;ros Time&lt;/h1&gt;
+&lt;h2 id=&#34;参考链接&#34;&gt;参考链接&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.ros.org/en/jade/api/rospy/html/rospy.rostime.Time-class.html&#34;&gt;rospy.rostime&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;p&gt;rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。&lt;/p&gt;
+&lt;p&gt;有的人会使用&lt;code&gt;rospy.Time.now()&lt;/code&gt;这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。&lt;/p&gt;
+&lt;h2 id=&#34;rospytime-vs-datetime&#34;&gt;rospy.Time v.s. datetime&lt;/h2&gt;
+&lt;p&gt;rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。
+而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 匹配date精度的日期部分和超出微秒精度的部分&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nanosec_pattern &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; re&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;compile(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;(\d&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{4}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;date2rostime&lt;/span&gt;(time: str):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    sec_match &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nanosec_pattern&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;match&lt;/span&gt;(time)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; sec_match &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;raise&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ValueError&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    micro_part &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sec_match&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;group(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    nano_part &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sec_match&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;group(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    micro_date &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; datetime&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;strptime(micro_part, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%Y-%m-&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%d&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; %H:%M:%S.&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(micro_date&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;timestamp())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    nano_secs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; micro_date&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;microsecond &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nano_part &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; nano_part &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        nano_secs &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; int(nano_part)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; rospy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Time(secs, nano_secs)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
+&lt;p&gt;rospy.Time支持减法，减出来的结果是&lt;code&gt;ros.Duration&lt;/code&gt;对象&lt;/p&gt;
+&lt;p&gt;rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS 名称</title>
+      <link>http://localhost:1313/posts/ros/name-and-remapping/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/name-and-remapping/</guid>
+      <description>&lt;h1 id=&#34;ros-名称&#34;&gt;ROS 名称&lt;/h1&gt;
+&lt;h2 id=&#34;名称&#34;&gt;名称&lt;/h2&gt;
+&lt;p&gt;名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等&lt;/p&gt;
+&lt;p&gt;为了让名称减少冲突，引入了名称空间（namespace）的概念。名称存在于命名空间中，命名空间可以存在于命名空间中，命名空间中可以有多个名称。这样的话，我们知道名称空间肯定是一层套一层的，是有层次的。这就引出了不同类别的名称：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基名称(base)，没有带名称空间修饰的名称，事实上是相对名称的一种，和相对名称有相同的解析规则，常用来初始化节点&lt;/li&gt;
+&lt;li&gt;相对名称(relative)，相对于名称空间的名称，在解析的时候会添加上前面的名称空间修饰&lt;/li&gt;
+&lt;li&gt;全局名称(global)，以&lt;code&gt;/&lt;/code&gt;开头的都是全局名称，在代码中尽量不要用这种名称，这会限制代码的通用性&lt;/li&gt;
+&lt;li&gt;私有名称(private)，把名称转换成一个命名空间，从参数服务器上传递参数到特定节点的时候很有用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;名称的解析与命名空间相关，比如你在一个命名空间&lt;code&gt;aicv&lt;/code&gt;下创建了一个节点&lt;code&gt;turtle_control&lt;/code&gt;那么它的完整的名称就是&lt;code&gt;/aicv/turtle_control&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;你在launch文件中启动node的时候有规定name属性，这个name就是我们的名称，比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;group&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aicv&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;node&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;rosplayground&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_service&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;operation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/group&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个launch文件规定了名称为operation的节点会启动。启动之后，节点完整的名称就是&lt;code&gt;/aicv/operation&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果你没有使用launch文件，你直接执行了rosrun，并没有规定命名空间。那么默认你在全局的命名空间中操作。比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun rosplayground time_service 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样启动完之后你的节点名称就变成了&lt;code&gt;/time_service_node&lt;/code&gt;（我们在ros::init中规定的名称，launch文件中的name会覆盖这个设置）&lt;/p&gt;
+&lt;p&gt;你在发布/订阅话题或者服务的时候也会规定话题或者服务的名称，这个名称就是这里的名称&lt;/p&gt;
+&lt;p&gt;此外消息类型和服务类型也有名称，他们的名称通常是包名/类型名，比如std_msgs/String&lt;/p&gt;
+&lt;h2 id=&#34;重映射&#34;&gt;重映射&lt;/h2&gt;
+&lt;h3 id=&#34;为什么要重映射&#34;&gt;为什么要重映射&lt;/h3&gt;
+&lt;p&gt;有这么一种情况，一个话题被一系列节点订阅，这个时候你有一个新的节点，这个新的节点也想订阅这个话题，但我们的话题固然有个名字，而新的节点订阅的话题不是这个话题的名字，但是它们的话题类型是一样的，这个时候我们就可以重映射，这就像在没有修改我们新节点代码的情况下，更改了新节点订阅话题的名字。&lt;/p&gt;
+&lt;h3 id=&#34;重映射的方法&#34;&gt;重映射的方法&lt;/h3&gt;
+&lt;h4 id=&#34;remap标签&#34;&gt;&amp;lt;remap&amp;gt;标签&lt;/h4&gt;
+&lt;p&gt;在launch文件中，你启动节点时可以在节点标签&amp;lt;node&amp;gt;中添加&amp;lt;remap&amp;gt;标签，让节点订阅的话题/服务的名称换成新的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;group&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aicv&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;node&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;rosplayground&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_client&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_client&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;remap&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_service&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;to=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;operation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/node&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/group&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里我们的time_client节点原先请求的服务是time_service，重映射之后就请求operation服务了。&lt;/p&gt;
+&lt;h4 id=&#34;rosrun参数&#34;&gt;rosrun参数&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun rosplayground time_client time_service:&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;operation
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>rosbag</title>
+      <link>http://localhost:1313/posts/ros/rosbag/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/rosbag/</guid>
+      <description>&lt;h1 id=&#34;rosbag&#34;&gt;rosbag&lt;/h1&gt;
+&lt;p&gt;rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是&lt;code&gt;.bag&lt;/code&gt;，通过命令&lt;code&gt;rosbag&lt;/code&gt;进行播放或者检查。&lt;/p&gt;
+&lt;p&gt;参考链接:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.ros.org/rosbag&#34;&gt;rosbag - ros docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/kinetic/api/rosbag/html/python/rosbag.bag.Bag-class.html&#34;&gt;rosbag.Bag&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rosbag包&#34;&gt;rosbag包&lt;/h2&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install ros-&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;ROS_DISTRO&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;-rosbag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你可以导入使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; rosbag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是在系统默认python环境中无需额外的配置即可导入&lt;code&gt;rosbag&lt;/code&gt;，然而你如果使用&lt;code&gt;venv&lt;/code&gt;或者&lt;code&gt;anaconda&lt;/code&gt;需要安装一些额外的包。&lt;/p&gt;
+&lt;p&gt;这些包有：&lt;code&gt;pyyaml&lt;/code&gt;, &lt;code&gt;pycryptodomex&lt;/code&gt;, &lt;code&gt;gnupg&lt;/code&gt;, &lt;code&gt;rospkg&lt;/code&gt;，激活环境后安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip install pycryptodome pyyaml gnupg rospkg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在你使用&lt;code&gt;venv&lt;/code&gt;的时候你需要修改虚拟环境目录下的&lt;code&gt;bin/activate&lt;/code&gt;在它的最后一行加上&lt;code&gt;source /opt/ros/${ROS-DISTRO}/setup.bash&lt;/code&gt;。完成这些配置后你的rosbag才能成功导入。&lt;/p&gt;
+&lt;h3 id=&#34;写入&#34;&gt;写入&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; rosbag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Bag(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test.bag&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; bag:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    bag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(topic_name, msg)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;读取&#34;&gt;读取&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; rosbag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Bag(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test.bag&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; bag:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; topic, msg, t &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; bag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read_messages(topics&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;chater&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;numbers&amp;#34;&lt;/span&gt;]):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(msg)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()&lt;/p&gt;
+&lt;h2 id=&#34;命令行工具&#34;&gt;命令行工具&lt;/h2&gt;
+&lt;p&gt;参考链接: &lt;a href=&#34;https://wiki.ros.org/rosbag/Commandline&#34;&gt;rosbag commandline&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS回调处理</title>
+      <link>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</guid>
+      <description>&lt;h1 id=&#34;ros回调处理&#34;&gt;ROS回调处理&lt;/h1&gt;
+&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。&lt;/p&gt;
+&lt;h2 id=&#34;回调函数队列&#34;&gt;回调函数队列&lt;/h2&gt;
+&lt;p&gt;你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。&lt;/p&gt;
+&lt;h2 id=&#34;spin和spinonce&#34;&gt;spin()和spinOnce()&lt;/h2&gt;
+&lt;p&gt;然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是&lt;code&gt;spin()&lt;/code&gt;和&lt;code&gt;spinOnce()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。&lt;/p&gt;
+&lt;p&gt;spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。&lt;/p&gt;
+&lt;h2 id=&#34;全局队列与局部队列&#34;&gt;全局队列与局部队列&lt;/h2&gt;
+&lt;p&gt;一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。&lt;/p&gt;
+&lt;p&gt;当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用&lt;code&gt;ros::getGlobalCallbackQueue()&lt;/code&gt;获取全局回调函数队列，spin()实际上是&lt;code&gt;ros::getGlobalCallbackQueue()-&amp;gt;callAvailable()&lt;/code&gt;，spinOnce实际上是&lt;code&gt;ros::getGlobalCallbackQueue()-&amp;gt;callOne()&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;ros/callback_queue.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ros&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;CallbackQueue my_queue;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ros&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;NodeHandle nh;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nh.setCallbackQueue(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;my_callback_queue);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。&lt;/p&gt;
+&lt;h2 id=&#34;什么时候使用节点特有的回调函数队列&#34;&gt;什么时候使用节点特有的回调函数队列&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了&lt;/li&gt;
+&lt;li&gt;有计算时间长的回调函数，和长时间允许服务类似。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;参考文档&#34;&gt;参考文档&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning&#34;&gt;Callbacks and Spinning&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS节点怎么使用GDB调试</title>
+      <link>http://localhost:1313/posts/ros/debugging/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/debugging/</guid>
+      <description>&lt;h1 id=&#34;ros节点怎么使用gdb调试&#34;&gt;ROS节点怎么使用GDB调试&lt;/h1&gt;
+&lt;p&gt;[roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](&lt;a href=&#34;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&#34;&gt;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&lt;/a&gt; Nodes in Valgrind or GDB)&lt;/p&gt;
+&lt;p&gt;看上面的教程。在node标签里加launch_prefix就好了&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Sensors on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/sensors/</link>
+    <description>Recent content in Sensors on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sensors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GNSS</title>
+      <link>http://localhost:1313/posts/slam/sensors/gps/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/gps/</guid>
+      <description>&lt;h1 id=&#34;gnss&#34;&gt;GNSS&lt;/h1&gt;
+&lt;p&gt;GNSS(Global Navigation Satellite System)是用来定位的一种卫星系统，为用户提供全球范围内的3D位置、速度和时间信息。&lt;/p&gt;
+&lt;p&gt;GPS(Global Positioning System)是一种GNSS，是美国开发的全球第一款GNSS。除了美国，中国、欧盟、俄罗斯都有自己的GNSS。
+GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过卫星向被定位物体发射携带时间、卫星信息的电磁波信号，测算被定位物体接收到信号的时间从而测算被定位物体和卫星的距离。有三颗卫星到物体的距离即可得出物体的坐标。不过GPS多使用了一颗，第四颗卫星的作用是校准时间，让定位更准确。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IMU</title>
+      <link>http://localhost:1313/posts/slam/sensors/imu/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/imu/</guid>
+      <description>&lt;h1 id=&#34;imu&#34;&gt;IMU&lt;/h1&gt;
+&lt;h2 id=&#34;测量数据&#34;&gt;测量数据&lt;/h2&gt;
+&lt;h3 id=&#34;姿态&#34;&gt;姿态&lt;/h3&gt;
+&lt;p&gt;IMU测得的姿态是相对于世界坐标系的，而不是上一测量时刻的坐标系。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RTK</title>
+      <link>http://localhost:1313/posts/slam/sensors/rtk/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/rtk/</guid>
+      <description>&lt;h1 id=&#34;rtk&#34;&gt;RTK&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>激光雷达</title>
+      <link>http://localhost:1313/posts/slam/sensors/lidar/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/lidar/</guid>
+      <description>&lt;h1 id=&#34;激光雷达&#34;&gt;激光雷达&lt;/h1&gt;
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+&lt;h3 id=&#34;物体反射率object-reflectivity&#34;&gt;物体反射率（Object Reflectivity）&lt;/h3&gt;
+&lt;p&gt;激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。&lt;/li&gt;
+&lt;li&gt;1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;反射率与物体的以下特性密切相关：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。&lt;/li&gt;
+&lt;li&gt;表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。&lt;/li&gt;
+&lt;li&gt;颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。&lt;/li&gt;
+&lt;li&gt;角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;激光雷达反射率的应用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。&lt;/li&gt;
+&lt;li&gt;环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。&lt;/li&gt;
+&lt;li&gt;地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;深度depth&#34;&gt;深度（Depth）&lt;/h3&gt;
+&lt;p&gt;激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离：
+$$
+D(P) = \sqrt{x^2 + y^2 + z^2}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;偏转角deflection-angle&#34;&gt;偏转角（Deflection Angle）&lt;/h3&gt;
+&lt;p&gt;激光和 $X$ 轴的夹角：
+$$
+\phi (P) = tan^{-1}(\sqrt{(y^2 + z ^ 2) / x ^ 2})
+$$&lt;/p&gt;
+&lt;h3 id=&#34;强度intensity&#34;&gt;强度（Intensity）&lt;/h3&gt;
+&lt;p&gt;$$
+I(P) = R / D(P^2)
+$$&lt;/p&gt;
+&lt;p&gt;其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。&lt;/p&gt;
+&lt;h3 id=&#34;入射角incident-angle&#34;&gt;入射角（Incident Angle）&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;入射角&#34; loading=&#34;lazy&#34; src=&#34;imgs/incident_angle.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;激光打到平面上的入射角。如图中的 $\theta$
+$$
+\theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right)
+$$&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

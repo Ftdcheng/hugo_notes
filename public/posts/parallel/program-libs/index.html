@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>并行编程库那些事 | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="Parallel">
+<meta name="description" content="并行编程库那些事
+OpenMP
+✅ 简明定义（先来个“正经”版）：
+
+OpenMP（Open Multi-Processing）是一个支持多平台共享内存并行编程的API规范，主要用于C、C&#43;&#43; 和 Fortran，通过编译器指令（pragma）、运行时库函数和环境变量来实现并行化程序设计。
+
+🧠 谁提的？
+OpenMP 不是某一个公司单独提出的，虽然 Intel 是早期重要成员之一，但实际上它是由一个叫做 OpenMP Architecture Review Board (ARB) 的组织定义和维护的。
+这个 ARB 联盟大佬云集，比如：
+
+Intel
+AMD
+IBM
+HP
+Microsoft
+NVIDIA（最近也进来了）
+等等等…
+
+所以你可以把 OpenMP 看作是编译器厂商联盟的「和平共处」协议，让大家都能写出 portable（可移植）又 efficient（高效）的多线程代码。
+
+🔧 它干啥的？
+OpenMP 最常见的用途是——你说对了：
+
+✨ “并行 for 循环”！
+#pragma omp parallel for
+for (int i = 0; i &lt; N; &#43;&#43;i) {
+    work(i);
+}
+但不止这些，还有：
+
+并行 sections
+任务 (task)
+原子操作、互斥锁 (omp critical, omp atomic)
+动态线程数控制
+并行 region 嵌套
+GPU 加速（OpenMP 5.0&#43; 支持 target offloading！）
+
+
+🌀 简单 vs 灵活
+OpenMP 的设计哲学就是：">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/parallel/program-libs/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/parallel/program-libs/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      并行编程库那些事
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="并行编程库那些事">并行编程库那些事<a hidden class="anchor" aria-hidden="true" href="#并行编程库那些事">#</a></h1>
+<h2 id="openmp">OpenMP<a hidden class="anchor" aria-hidden="true" href="#openmp">#</a></h2>
+<h3 id="-简明定义先来个正经版">✅ 简明定义（先来个“正经”版）：<a hidden class="anchor" aria-hidden="true" href="#-简明定义先来个正经版">#</a></h3>
+<blockquote>
+<p><strong>OpenMP</strong>（Open Multi-Processing）是一个<strong>支持多平台共享内存并行编程</strong>的<strong>API规范</strong>，主要用于<strong>C、C++ 和 Fortran</strong>，通过<strong>编译器指令（pragma）、运行时库函数和环境变量</strong>来实现<strong>并行化程序设计</strong>。</p></blockquote>
+<hr>
+<h3 id="-谁提的">🧠 谁提的？<a hidden class="anchor" aria-hidden="true" href="#-谁提的">#</a></h3>
+<p>OpenMP <strong>不是某一个公司单独提出的</strong>，虽然 <strong>Intel 是早期重要成员之一</strong>，但实际上它是由一个叫做 <strong>OpenMP Architecture Review Board (ARB)</strong> 的组织定义和维护的。</p>
+<p>这个 ARB 联盟大佬云集，比如：</p>
+<ul>
+<li>Intel</li>
+<li>AMD</li>
+<li>IBM</li>
+<li>HP</li>
+<li>Microsoft</li>
+<li>NVIDIA（最近也进来了）</li>
+<li>等等等…</li>
+</ul>
+<p>所以你可以把 OpenMP 看作是<strong>编译器厂商联盟的「和平共处」协议</strong>，让大家都能写出 portable（可移植）又 efficient（高效）的多线程代码。</p>
+<hr>
+<h3 id="-它干啥的">🔧 它干啥的？<a hidden class="anchor" aria-hidden="true" href="#-它干啥的">#</a></h3>
+<p>OpenMP 最常见的用途是——你说对了：</p>
+<blockquote>
+<p>✨ “并行 for 循环”！</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma omp parallel for
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    work(i);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>但不止这些，还有：</p>
+<ul>
+<li>并行 <code>sections</code></li>
+<li>任务 (<code>task</code>)</li>
+<li>原子操作、互斥锁 (<code>omp critical</code>, <code>omp atomic</code>)</li>
+<li>动态线程数控制</li>
+<li>并行 region 嵌套</li>
+<li>GPU 加速（OpenMP 5.0+ 支持 target offloading！）</li>
+</ul>
+<hr>
+<h3 id="-简单-vs-灵活">🌀 简单 vs 灵活<a hidden class="anchor" aria-hidden="true" href="#-简单-vs-灵活">#</a></h3>
+<p>OpenMP 的设计哲学就是：</p>
+<blockquote>
+<p>“别逼我用 pthread，快给我点 pragma。”</p></blockquote>
+<p>它不像 CUDA 需要自己写内核，不像 TBB 一开始就花里胡哨数据流图。它主打一个「<strong>增量式并行</strong>」：</p>
+<ul>
+<li>你写好的串行代码，</li>
+<li>加个 <code>#pragma omp parallel for</code>，</li>
+<li>编译开了 <code>-fopenmp</code>，</li>
+<li>并行魔法出现了。</li>
+</ul>
+<hr>
+<h3 id="-总结一下你那句话改成更精确的版本">🗨️ 总结一下你那句话改成更精确的版本：<a hidden class="anchor" aria-hidden="true" href="#-总结一下你那句话改成更精确的版本">#</a></h3>
+<blockquote>
+<p>OpenMP 是由多个厂商组成的开放组织提出的，并行编程 API 规范，主要用于在共享内存平台上简洁地实现如并行循环等并行计算操作。</p></blockquote>
+<h3 id="三道并行小菜用-openmp-快速加速图像处理点云计算和矩阵乘法">三道并行小菜：用 OpenMP 快速加速图像处理、点云计算和矩阵乘法<a hidden class="anchor" aria-hidden="true" href="#三道并行小菜用-openmp-快速加速图像处理点云计算和矩阵乘法">#</a></h3>
+<blockquote>
+<p>“并行不只是加速，更是让代码学会分身术。”<br>
+——《Perf Book》没这么说，但我说了。</p></blockquote>
+<hr>
+<h4 id="-前菜图像-2d-卷积的并行加速">🍱 前菜：图像 2D 卷积的并行加速<a hidden class="anchor" aria-hidden="true" href="#-前菜图像-2d-卷积的并行加速">#</a></h4>
+<p>在图像处理中，二维卷积是个老朋友。但对大图像+大核时，性能就成了烦恼。来，OpenMP 帮我们并行解忧：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma omp parallel for collapse(2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> k; y <span style="color:#f92672">&lt;</span> height <span style="color:#f92672">-</span> k; <span style="color:#f92672">++</span>y) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> k; x <span style="color:#f92672">&lt;</span> width <span style="color:#f92672">-</span> k; <span style="color:#f92672">++</span>x) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0f</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> dy <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>k; dy <span style="color:#f92672">&lt;=</span> k; <span style="color:#f92672">++</span>dy)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> dx <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>k; dx <span style="color:#f92672">&lt;=</span> k; <span style="color:#f92672">++</span>dx)
+</span></span><span style="display:flex;"><span>                sum <span style="color:#f92672">+=</span> input[y <span style="color:#f92672">+</span> dy][x <span style="color:#f92672">+</span> dx] <span style="color:#f92672">*</span> kernel[k <span style="color:#f92672">+</span> dy][k <span style="color:#f92672">+</span> dx];
+</span></span><span style="display:flex;"><span>        output[y][x] <span style="color:#f92672">=</span> sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="-说明">🧂 说明：<a hidden class="anchor" aria-hidden="true" href="#-说明">#</a></h5>
+<ul>
+<li><code>collapse(2)</code>：把 <code>y-x</code> 两层合并成一个大任务块，提升线程利用率。</li>
+<li>无需线程间通信，天然适合并行。</li>
+</ul>
+<hr>
+<h4 id="-主菜点云遍历找最大高度">🧭 主菜：点云遍历找最大高度<a hidden class="anchor" aria-hidden="true" href="#-主菜点云遍历找最大高度">#</a></h4>
+<p>在点云算法中，遍历全场找最大值是家常便饭，用 <code>reduction</code> 优雅收尾：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma omp parallel for reduction(max:max_val)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cloud.size(); <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (cloud[i].z <span style="color:#f92672">&gt;</span> max_val)
+</span></span><span style="display:flex;"><span>        max_val <span style="color:#f92672">=</span> cloud[i].z;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="-说明-1">🧂 说明：<a hidden class="anchor" aria-hidden="true" href="#-说明-1">#</a></h5>
+<ul>
+<li><code>reduction(max:...)</code>：OpenMP 自动帮你做线程间最大值合并。</li>
+<li>比起手动加锁，快不止一点点。</li>
+</ul>
+<hr>
+<h4 id="-甜点经典矩阵乘法并行">🧮 甜点：经典矩阵乘法并行<a hidden class="anchor" aria-hidden="true" href="#-甜点经典矩阵乘法并行">#</a></h4>
+<p>矩阵乘法是数学计算里的跑分大佬，三重循环结构，拿下它性能就起飞：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#pragma omp parallel for
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> M; <span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> N; <span style="color:#f92672">++</span>j) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0f</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> K; <span style="color:#f92672">++</span>k)
+</span></span><span style="display:flex;"><span>            sum <span style="color:#f92672">+=</span> A[i][k] <span style="color:#f92672">*</span> B[k][j];
+</span></span><span style="display:flex;"><span>        C[i][j] <span style="color:#f92672">=</span> sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h5 id="-说明-2">🧂 说明：<a hidden class="anchor" aria-hidden="true" href="#-说明-2">#</a></h5>
+<ul>
+<li>我们只并行最外层 <code>i</code>，简单稳定。</li>
+<li>想再升级？可以尝试缓存优化 + SIMD 指令。</li>
+</ul>
+<hr>
+<h4 id="-编译方法gcc-or-clang">🔨 编译方法（GCC or Clang）<a hidden class="anchor" aria-hidden="true" href="#-编译方法gcc-or-clang">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ your_code.cpp -fopenmp -O3 -o run
+</span></span></code></pre></div><p>✅ 注意 <code>-fopenmp</code> 是打开并行世界大门的钥匙。</p>
+<hr>
+<h4 id="-性能测试建议">📈 性能测试建议<a hidden class="anchor" aria-hidden="true" href="#-性能测试建议">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th>模块</th>
+          <th>测试方式</th>
+          <th>观测指标</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>图像卷积</td>
+          <td>大尺寸图+高斯核</td>
+          <td>速度提升倍数</td>
+      </tr>
+      <tr>
+          <td>点云遍历</td>
+          <td>上百万点</td>
+          <td>最大值提取时间</td>
+      </tr>
+      <tr>
+          <td>矩阵乘法</td>
+          <td>方阵乘法（如1024×1024）</td>
+          <td>GFLOPS 或耗时对比</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h4 id="-总结一句话">🧠 总结一句话<a hidden class="anchor" aria-hidden="true" href="#-总结一句话">#</a></h4>
+<blockquote>
+<p>OpenMP 就像一道魔法指令菜谱：加点 <code>#pragma</code>，让你的程序从单核小板凳，一跃上多核擂台。</p></blockquote>
+<h2 id="tbb">TBB<a hidden class="anchor" aria-hidden="true" href="#tbb">#</a></h2>
+<h3 id="-tbb-是什么">🎩 TBB 是什么？<a hidden class="anchor" aria-hidden="true" href="#-tbb-是什么">#</a></h3>
+<p>Intel Threading Building Blocks（TBB）是 Intel 开发的一个 <strong>任务调度 + 数据并行 + 流水线并行 + 通用算法库</strong>，旨在让你在 C++ 代码中轻松写出多线程程序，<strong>不用关心线程创建、销毁、调度等低层琐事</strong>。</p>
+<p>一句话总结：</p>
+<blockquote>
+<p><strong>“我不关心线程，我只关心我手上的工作（task）。”</strong></p></blockquote>
+<hr>
+<h3 id="-tbb-有什么厉害的">🔧 TBB 有什么厉害的？<a hidden class="anchor" aria-hidden="true" href="#-tbb-有什么厉害的">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>能力</th>
+          <th>说明</th>
+          <th>对标</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>parallel_for</code></td>
+          <td>并行循环，自动任务划分</td>
+          <td>OpenMP for</td>
+      </tr>
+      <tr>
+          <td><code>parallel_reduce</code></td>
+          <td>并行归约（加和、最大等）</td>
+          <td>OpenMP reduction</td>
+      </tr>
+      <tr>
+          <td><code>flow::graph</code></td>
+          <td>并行图调度（超强）</td>
+          <td>类似于 task DAG</td>
+      </tr>
+      <tr>
+          <td><code>concurrent_*</code></td>
+          <td>并发容器（哈希表、队列等）</td>
+          <td>无需加锁</td>
+      </tr>
+      <tr>
+          <td><code>task_group</code></td>
+          <td>类似 <code>std::async</code> + <code>future</code></td>
+          <td><code>std::thread</code> 升级版</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-小菜上桌tbb-并行示例三道">🍱 小菜上桌：TBB 并行示例三道<a hidden class="anchor" aria-hidden="true" href="#-小菜上桌tbb-并行示例三道">#</a></h3>
+<hr>
+<h4 id="-示例-1并行-for-处理数组">🥗 示例 1：并行 <code>for</code> 处理数组<a hidden class="anchor" aria-hidden="true" href="#-示例-1并行-for-处理数组">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;tbb/parallel_for.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> arr(<span style="color:#ae81ff">1e6</span>, <span style="color:#ae81ff">1.0f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    tbb<span style="color:#f92672">::</span>parallel_for(<span style="color:#ae81ff">0</span>, (<span style="color:#66d9ef">int</span>)arr.size(), [<span style="color:#f92672">&amp;</span>](<span style="color:#66d9ef">int</span> i) {
+</span></span><span style="display:flex;"><span>        arr[i] <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2.0f</span>; <span style="color:#75715e">// 每个元素乘2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;arr[42] = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> arr[<span style="color:#ae81ff">42</span>] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🧠 TBB 自动把循环拆成 task，调度到各核上，<strong>你只写 for 体就行</strong>，线程数自己调节。</p>
+<hr>
+<h4 id="-示例-2并行矩阵加法">🧮 示例 2：并行矩阵加法<a hidden class="anchor" aria-hidden="true" href="#-示例-2并行矩阵加法">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;tbb/parallel_for.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mat_add</span>(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;&gt;&amp;</span> A,
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;&gt;&amp;</span> B,
+</span></span><span style="display:flex;"><span>             std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;&gt;&amp;</span> C) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> A.size(), N <span style="color:#f92672">=</span> A[<span style="color:#ae81ff">0</span>].size();
+</span></span><span style="display:flex;"><span>    tbb<span style="color:#f92672">::</span>parallel_for(<span style="color:#ae81ff">0</span>, M, [<span style="color:#f92672">&amp;</span>](<span style="color:#66d9ef">int</span> i) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> N; <span style="color:#f92672">++</span>j)
+</span></span><span style="display:flex;"><span>            C[i][j] <span style="color:#f92672">=</span> A[i][j] <span style="color:#f92672">+</span> B[i][j];
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🔥 适合大规模矩阵操作，不用手动拆任务。</p>
+<hr>
+<h4 id="-示例-3parallel_reduce-并行加和">🧠 示例 3：<code>parallel_reduce</code> 并行加和<a hidden class="anchor" aria-hidden="true" href="#-示例-3parallel_reduce-并行加和">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;tbb/parallel_reduce.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;tbb/blocked_range.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> vec(<span style="color:#ae81ff">1e6</span>, <span style="color:#ae81ff">1.0f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> sum <span style="color:#f92672">=</span> tbb<span style="color:#f92672">::</span>parallel_reduce(
+</span></span><span style="display:flex;"><span>        tbb<span style="color:#f92672">::</span>blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">0</span>, vec.size()),
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0.0f</span>,
+</span></span><span style="display:flex;"><span>        [<span style="color:#f92672">&amp;</span>](tbb<span style="color:#f92672">::</span>blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span> r, <span style="color:#66d9ef">float</span> local_sum) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> r.begin(); i <span style="color:#f92672">&lt;</span> r.end(); <span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>                local_sum <span style="color:#f92672">+=</span> vec[i];
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> local_sum;
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>plus<span style="color:#f92672">&lt;&gt;</span>()
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Sum = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> sum <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>☕ <code>parallel_reduce</code> 是并行加总的优雅范式，<strong>局部和 → 合并器（如 std::plus）</strong>。</p>
+<hr>
+<h3 id="-编译方式gcc--intel-oneapi-或系统tbb">🧰 编译方式（GCC + Intel OneAPI 或系统TBB）<a hidden class="anchor" aria-hidden="true" href="#-编译方式gcc--intel-oneapi-或系统tbb">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ your_code.cpp -ltbb -O3 -o run
+</span></span></code></pre></div><hr>
+<h3 id="-tbb-优势在哪">🚀 TBB 优势在哪？<a hidden class="anchor" aria-hidden="true" href="#-tbb-优势在哪">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>OpenMP</th>
+          <th>TBB</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>任务调度</td>
+          <td>静态、编译期</td>
+          <td>动态、运行时</td>
+      </tr>
+      <tr>
+          <td>灵活性</td>
+          <td>高（但偏结构化）</td>
+          <td><strong>极高</strong>，适合复杂依赖</td>
+      </tr>
+      <tr>
+          <td>可组合性</td>
+          <td>差</td>
+          <td><strong>强</strong>，支持嵌套调度</td>
+      </tr>
+      <tr>
+          <td>泛用性</td>
+          <td>中等</td>
+          <td><strong>高</strong>，支持任务图等复杂模型</td>
+      </tr>
+      <tr>
+          <td>支持容器</td>
+          <td>无</td>
+          <td><code>concurrent_vector</code> 等原生并发容器</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-应用场景典型用法">💡 应用场景典型用法<a hidden class="anchor" aria-hidden="true" href="#-应用场景典型用法">#</a></h3>
+<ul>
+<li>图神经网络多阶段调度（TBB Flow Graph）</li>
+<li>视觉 SLAM 中帧并行或地图任务调度</li>
+<li>点云块级处理（比如 voxel grid）</li>
+<li>大型矩阵/张量/稀疏图处理</li>
+<li>CPU 端轻量任务流水线</li>
+</ul>
+<hr>
+<h3 id="-want-more">🧪 Want More?<a hidden class="anchor" aria-hidden="true" href="#-want-more">#</a></h3>
+<p>如果你想深入 TBB，可以从这些开始：</p>
+<ul>
+<li><code>tbb::flow::graph</code>：构建并行任务图，像写神经网络那样调度任务</li>
+<li><code>tbb::task_arena</code>：任务隔离与绑定线程</li>
+<li><code>tbb::concurrent_hash_map</code>：线程安全容器，媲美 Java ConcurrentHashMap</li>
+<li>自定义任务调度器策略（比如 affinity）</li>
+</ul>
+<h2 id="c-thread">C++ thread<a hidden class="anchor" aria-hidden="true" href="#c-thread">#</a></h2>
+<p>那就把老三请上台：<strong>C++ Standard Thread Library</strong>，也就是 <code>std::thread</code> —— <strong>线程界的原教旨主义者</strong>，不像 OpenMP 和 TBB 那样有花里胡哨的宏或调度器，它就是：</p>
+<blockquote>
+<p>“你要几根线程，我给你开几根。”</p></blockquote>
+<p>🌪️ 简单粗暴、硬核直白，适合你想亲手操刀多线程调度的场景，<strong>同时也容易写出线程地狱（thread hell）</strong>。</p>
+<hr>
+<h3 id="-stdthread-是什么">🛠️ <code>std::thread</code> 是什么？<a hidden class="anchor" aria-hidden="true" href="#-stdthread-是什么">#</a></h3>
+<p>是 C++11 引入的标准库组件，用于直接创建和控制线程。你可以：</p>
+<ul>
+<li>启动新线程跑函数</li>
+<li>传参</li>
+<li>等待线程（<code>join</code>）</li>
+<li>分离线程（<code>detach</code>）</li>
+<li>配合 <code>mutex</code>, <code>condition_variable</code>, <code>future</code> 等写更复杂的同步</li>
+</ul>
+<hr>
+<h3 id="-基本用法示例一览">🧪 基本用法示例一览<a hidden class="anchor" aria-hidden="true" href="#-基本用法示例一览">#</a></h3>
+<h4 id="-示例-1启动一个线程">🌱 示例 1：启动一个线程<a hidden class="anchor" aria-hidden="true" href="#-示例-1启动一个线程">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;thread&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">hello</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Hello from thread!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span> t(hello);
+</span></span><span style="display:flex;"><span>    t.join(); <span style="color:#75715e">// 等待线程结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><hr>
+<h4 id="-示例-2多线程加速循环处理">🍝 示例 2：多线程加速循环处理<a hidden class="anchor" aria-hidden="true" href="#-示例-2多线程加速循环处理">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;thread&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">double_range</span>(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;&amp;</span> arr, <span style="color:#66d9ef">int</span> start, <span style="color:#66d9ef">int</span> end) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> start; i <span style="color:#f92672">&lt;</span> end; <span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>        arr[i] <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2.0f</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> arr(<span style="color:#ae81ff">1e6</span>, <span style="color:#ae81ff">1.0f</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> arr.size() <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span> t1(double_range, std<span style="color:#f92672">::</span>ref(arr), <span style="color:#ae81ff">0</span>, mid);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span> t2(double_range, std<span style="color:#f92672">::</span>ref(arr), mid, arr.size());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    t1.join();
+</span></span><span style="display:flex;"><span>    t2.join();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;arr[42] = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> arr[<span style="color:#ae81ff">42</span>] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🧠 <code>std::ref(arr)</code> 是重点 —— 你得显式告诉线程传的是引用，不然就复制过去了！</p>
+<hr>
+<h4 id="-示例-3future--async-自动线程池">🌟 示例 3：future + async 自动线程池<a hidden class="anchor" aria-hidden="true" href="#-示例-3future--async-自动线程池">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;future&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compute</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">6</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>future<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> result <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>async(std<span style="color:#f92672">::</span>launch<span style="color:#f92672">::</span>async, compute);
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Result: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> result.get() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>🔮 用 <code>std::async</code> 可以自动启线程，管理生命周期，还能得到结果，<strong>轻量又高端</strong>。</p>
+<hr>
+<h3 id="-优势与局限">💬 优势与局限？<a hidden class="anchor" aria-hidden="true" href="#-优势与局限">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th><code>std::thread</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>控制力</td>
+          <td>✅ 绝对自由，你掌握一切</td>
+      </tr>
+      <tr>
+          <td>学习曲线</td>
+          <td>🚨 有点陡，要手动管理生命周期、同步</td>
+      </tr>
+      <tr>
+          <td>适合场景</td>
+          <td>✅ 小规模线程、系统级别任务、教学</td>
+      </tr>
+      <tr>
+          <td>不适合</td>
+          <td>🚫 大规模并行处理（你不想自己写线程池）</td>
+      </tr>
+      <tr>
+          <td>推荐用法</td>
+          <td>✅ <code>std::async</code> + <code>future</code> 组合用</td>
+      </tr>
+      <tr>
+          <td>线程池？</td>
+          <td>❌ 原生没有，得用第三方库或自己写</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-什么场景适合-stdthread">🧠 什么场景适合 <code>std::thread</code>？<a hidden class="anchor" aria-hidden="true" href="#-什么场景适合-stdthread">#</a></h3>
+<ul>
+<li>写一个线程监听键盘/网络事件</li>
+<li>简单双线程加速（比如 SLAM 双线程优化+跟踪）</li>
+<li>控制粒度很细的多线程系统</li>
+<li>实现自己的任务调度器或线程池</li>
+</ul>
+<hr>
+<h3 id="-c-线程生态补全选项">🔩 C++ 线程生态补全选项<a hidden class="anchor" aria-hidden="true" href="#-c-线程生态补全选项">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>用途</th>
+          <th>推荐库</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>线程池</td>
+          <td><code>BS::thread_pool</code>, <code>ctpl</code>, <code>asio::thread_pool</code></td>
+      </tr>
+      <tr>
+          <td>并发队列</td>
+          <td><code>moodycamel::ConcurrentQueue</code></td>
+      </tr>
+      <tr>
+          <td>协程风格</td>
+          <td><code>C++20 coroutine</code>, <code>libgo</code>, <code>cppcoro</code></td>
+      </tr>
+      <tr>
+          <td>Actor 模型</td>
+          <td><code>CAF</code>, <code>SObjectizer</code></td>
+      </tr>
+      <tr>
+          <td>分布式线程池</td>
+          <td><code>Ray</code>, <code>HPX</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-编译方法">📦 编译方法<a hidden class="anchor" aria-hidden="true" href="#-编译方法">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ my_thread.cpp -std<span style="color:#f92672">=</span>c++11 -pthread -O2 -o run
+</span></span></code></pre></div><p>一定记得 <code>-pthread</code>，不然你会收到“线程不存在”的温柔问候 🧨</p>
+<hr>
+<h3 id="-总结金句警告">🚀 总结（金句警告）<a hidden class="anchor" aria-hidden="true" href="#-总结金句警告">#</a></h3>
+<blockquote>
+<p><code>std::thread</code> 是一把开山刀，适合你从零搭建并发系统。<br>
+但如果你只想炒菜，<strong>OpenMP 是电磁炉，TBB 是料理机，Thread 是劈柴刀</strong>。</p></blockquote>
+<h2 id="cuda">CUDA<a hidden class="anchor" aria-hidden="true" href="#cuda">#</a></h2>
+<p>CUDA（Compute Unified Device Architecture）——这名字听起来就像是“显卡界的黑魔法”，实则是 <strong>NVIDIA 开发的一种并行计算平台与编程模型</strong>，让我们可以用 C/C++ 写出跑在 GPU 上的代码。</p>
+<p>用大白话说：</p>
+<blockquote>
+<p><strong>CUDA 是你掏出显卡里几千个核心来跑并行任务的钥匙。</strong></p></blockquote>
+<hr>
+<h3 id="-cuda-是干啥的">🔩 CUDA 是干啥的？<a hidden class="anchor" aria-hidden="true" href="#-cuda-是干啥的">#</a></h3>
+<ul>
+<li>把数据扔到 GPU</li>
+<li>干一堆并行运算（比如图像处理、深度学习、矩阵乘法、粒子模拟）</li>
+<li>把结果拽回来</li>
+</ul>
+<p>你写个 kernel 函数，显卡上几千个线程就能同时执行它，<strong>堪称科学计算界的风火轮🌀</strong></p>
+<hr>
+<h3 id="-cuda-编程模型快览">⚙️ CUDA 编程模型快览<a hidden class="anchor" aria-hidden="true" href="#-cuda-编程模型快览">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>__global__ <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>b, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> threadIdx.x;
+</span></span><span style="display:flex;"><span>    c[idx] <span style="color:#f92672">=</span> a[idx] <span style="color:#f92672">+</span> b[idx];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>};
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> c[<span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>d_a, <span style="color:#f92672">*</span>d_b, <span style="color:#f92672">*</span>d_c;
+</span></span><span style="display:flex;"><span>    cudaMalloc(<span style="color:#f92672">&amp;</span>d_a, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));
+</span></span><span style="display:flex;"><span>    cudaMalloc(<span style="color:#f92672">&amp;</span>d_b, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));
+</span></span><span style="display:flex;"><span>    cudaMalloc(<span style="color:#f92672">&amp;</span>d_c, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cudaMemcpy(d_a, a, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>), cudaMemcpyHostToDevice);
+</span></span><span style="display:flex;"><span>    cudaMemcpy(d_b, b, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>), cudaMemcpyHostToDevice);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    add<span style="color:#f92672">&lt;&lt;&lt;</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span><span style="color:#f92672">&gt;&gt;&gt;</span>(d_a, d_b, d_c);  <span style="color:#75715e">// &lt;&lt;&lt;blocks, threads&gt;&gt;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    cudaMemcpy(c, d_c, <span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>), cudaMemcpyDeviceToHost);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> c[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h3 id="-解释一下里面的黑话">✨ 解释一下里面的黑话：<a hidden class="anchor" aria-hidden="true" href="#-解释一下里面的黑话">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>东西</th>
+          <th>是啥意思</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>__global__</code></td>
+          <td>声明函数是 GPU 上跑的 kernel</td>
+      </tr>
+      <tr>
+          <td><code>cudaMalloc</code></td>
+          <td>在 GPU 上分配内存</td>
+      </tr>
+      <tr>
+          <td><code>cudaMemcpy</code></td>
+          <td>主机 ↔ 设备 复制数据</td>
+      </tr>
+      <tr>
+          <td><code>add&lt;&lt;&lt;1, 5&gt;&gt;&gt;</code></td>
+          <td>启动 1 个 block，每 block 含 5 个线程</td>
+      </tr>
+      <tr>
+          <td><code>threadIdx.x</code></td>
+          <td>当前线程在线程块内的索引</td>
+      </tr>
+      <tr>
+          <td><code>cudaFree</code></td>
+          <td>显卡上释放内存资源</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-你能用-cuda-做啥">🚀 你能用 CUDA 做啥？<a hidden class="anchor" aria-hidden="true" href="#-你能用-cuda-做啥">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>用法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>图像处理</td>
+          <td>灰度化、滤波、卷积</td>
+      </tr>
+      <tr>
+          <td>3D 点云</td>
+          <td>大规模点邻域查找、Voxel Grid</td>
+      </tr>
+      <tr>
+          <td>数值计算</td>
+          <td>稀疏矩阵运算、FFT、求导</td>
+      </tr>
+      <tr>
+          <td>深度学习</td>
+          <td>Tensor 操作、反向传播（PyTorch 背后就是 CUDA）</td>
+      </tr>
+      <tr>
+          <td>SLAM</td>
+          <td>Dense Mapping、Scan Matching</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-cuda-开发者的-daily-life">💡 CUDA 开发者的 daily life<a hidden class="anchor" aria-hidden="true" href="#-cuda-开发者的-daily-life">#</a></h3>
+<p>你得关心：</p>
+<ul>
+<li>内存访问是否 coalesced（合并访问快）</li>
+<li>每个 thread 做什么，block 的划分怎么分</li>
+<li>显存 copy 成本是否值得</li>
+<li>bank conflict、warp divergence（线程跑得不整齐就浪费）</li>
+<li>是否用 shared memory 做缓存（和 L1 类似）</li>
+</ul>
+<p>这是“数据并行”和“硬件友好”的艺术 ✨</p>
+<hr>
+<h3 id="-编译方式">🔧 编译方式：<a hidden class="anchor" aria-hidden="true" href="#-编译方式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvcc my_cuda_program.cu -o my_prog
+</span></span></code></pre></div><p>你就能得到一个 GPU 加速的可执行文件啦！</p>
+<hr>
+<h3 id="-学-cuda-需要准备点啥">🧠 学 CUDA 需要准备点啥？<a hidden class="anchor" aria-hidden="true" href="#-学-cuda-需要准备点啥">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>项目</th>
+          <th>推荐</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>编程语言</td>
+          <td>熟悉 C/C++</td>
+      </tr>
+      <tr>
+          <td>基础知识</td>
+          <td>并行计算模型、内存布局、线程</td>
+      </tr>
+      <tr>
+          <td>工具链</td>
+          <td>NVIDIA 显卡、驱动、CUDA Toolkit</td>
+      </tr>
+      <tr>
+          <td>IDE 插件</td>
+          <td>VSCode + Nsight / CLion + CMake</td>
+      </tr>
+      <tr>
+          <td>教程推荐</td>
+          <td><a href="https://developer.nvidia.com/cuda-example">CUDA by Example</a> + NVIDIA 官方文档</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-小结彩蛋">🧊 小结（彩蛋）<a hidden class="anchor" aria-hidden="true" href="#-小结彩蛋">#</a></h3>
+<blockquote>
+<p>CUDA 就是「让你的显卡不仅玩游戏，还能卷数学」。</p></blockquote>
+<p>你要是研究计算机视觉 / SLAM / 深度学习方向，<strong>早晚都得和它称兄道弟</strong>。</p>
+<h2 id="opencl">OpenCL<a hidden class="anchor" aria-hidden="true" href="#opencl">#</a></h2>
+<p>来了来了！现在上场的是真正的“全平台硬核异构计算黑魔法”——</p>
+<blockquote>
+<p>🧬 <strong>OpenCL（Open Computing Language）</strong></p></blockquote>
+<hr>
+<h3 id="-opencl-是什么">🧠 OpenCL 是什么？<a hidden class="anchor" aria-hidden="true" href="#-opencl-是什么">#</a></h3>
+<p>OpenCL 是一种 <strong>跨平台的并行计算框架</strong>，由 Khronos Group（也就是 OpenGL 那帮人）主导开发，目标是：</p>
+<blockquote>
+<p><strong>在任何平台上，让 CPU、GPU、FPGA、DSP 都能一起打工。</strong></p></blockquote>
+<p>它不像 CUDA 只能用 NVIDIA 显卡，OpenCL 可以跑在：</p>
+<ul>
+<li>AMD GPU</li>
+<li>Intel GPU &amp; CPU</li>
+<li>NVIDIA（支持但不热情）</li>
+<li>ARM 芯片</li>
+<li>Apple M 系列芯片（macOS 上是亲儿子）</li>
+</ul>
+<p>🌍 OpenCL = 真·写一份代码，跑全世界。</p>
+<hr>
+<h3 id="-来个简单的例子矢量加法">🧪 来个简单的例子：矢量加法<a hidden class="anchor" aria-hidden="true" href="#-来个简单的例子矢量加法">#</a></h3>
+<h4 id="-c-主机端代码">🧾 C++ 主机端代码<a hidden class="anchor" aria-hidden="true" href="#-c-主机端代码">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;CL/cl.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fstream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>kernelSrc <span style="color:#f92672">=</span> R<span style="color:#e6db74">&#34;(</span>
+</span></span><span style="display:flex;"><span>__kernel <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add_vec</span>(__global <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span><span style="color:#f92672">*</span> A,
+</span></span><span style="display:flex;"><span>                      __global <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span><span style="color:#f92672">*</span> B,
+</span></span><span style="display:flex;"><span>                      __global <span style="color:#66d9ef">float</span><span style="color:#f92672">*</span> C) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id <span style="color:#f92672">=</span> get_global_id(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    C[id] <span style="color:#f92672">=</span> A[id] <span style="color:#f92672">+</span> B[id];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>)<span style="color:#e6db74">&#34;;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span>;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">float</span><span style="color:#f92672">&gt;</span> A(N, <span style="color:#ae81ff">1.0f</span>), B(N, <span style="color:#ae81ff">2.0f</span>), C(N);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cl_platform_id platform;
+</span></span><span style="display:flex;"><span>    cl_device_id device;
+</span></span><span style="display:flex;"><span>    cl_context context;
+</span></span><span style="display:flex;"><span>    cl_command_queue queue;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    clGetPlatformIDs(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>platform, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    clGetDeviceIDs(platform, CL_DEVICE_TYPE_DEFAULT, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>device, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    context <span style="color:#f92672">=</span> clCreateContext(<span style="color:#66d9ef">nullptr</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>device, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    queue <span style="color:#f92672">=</span> clCreateCommandQueueWithProperties(context, device, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cl_program program <span style="color:#f92672">=</span> clCreateProgramWithSource(context, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&amp;</span>kernelSrc, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    clBuildProgram(program, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cl_kernel kernel <span style="color:#f92672">=</span> clCreateKernel(program, <span style="color:#e6db74">&#34;add_vec&#34;</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cl_mem d_A <span style="color:#f92672">=</span> clCreateBuffer(context, CL_MEM_READ_ONLY <span style="color:#f92672">|</span> CL_MEM_COPY_HOST_PTR, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">float</span>)<span style="color:#f92672">*</span>N, A.data(), <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    cl_mem d_B <span style="color:#f92672">=</span> clCreateBuffer(context, CL_MEM_READ_ONLY <span style="color:#f92672">|</span> CL_MEM_COPY_HOST_PTR, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">float</span>)<span style="color:#f92672">*</span>N, B.data(), <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>    cl_mem d_C <span style="color:#f92672">=</span> clCreateBuffer(context, CL_MEM_WRITE_ONLY, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">float</span>)<span style="color:#f92672">*</span>N, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    clSetKernelArg(kernel, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(cl_mem), <span style="color:#f92672">&amp;</span>d_A);
+</span></span><span style="display:flex;"><span>    clSetKernelArg(kernel, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">sizeof</span>(cl_mem), <span style="color:#f92672">&amp;</span>d_B);
+</span></span><span style="display:flex;"><span>    clSetKernelArg(kernel, <span style="color:#ae81ff">2</span>, <span style="color:#66d9ef">sizeof</span>(cl_mem), <span style="color:#f92672">&amp;</span>d_C);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    size_t global_work_size <span style="color:#f92672">=</span> N;
+</span></span><span style="display:flex;"><span>    clEnqueueNDRangeKernel(queue, kernel, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#f92672">&amp;</span>global_work_size, <span style="color:#66d9ef">nullptr</span>, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    clEnqueueReadBuffer(queue, d_C, CL_TRUE, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">float</span>)<span style="color:#f92672">*</span>N, C.data(), <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">nullptr</span>, <span style="color:#66d9ef">nullptr</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;C[42] = &#34;</span> <span style="color:#f92672">&lt;&lt;</span> C[<span style="color:#ae81ff">42</span>] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    clReleaseMemObject(d_A); clReleaseMemObject(d_B); clReleaseMemObject(d_C);
+</span></span><span style="display:flex;"><span>    clReleaseKernel(kernel); clReleaseProgram(program);
+</span></span><span style="display:flex;"><span>    clReleaseCommandQueue(queue); clReleaseContext(context);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>💡 输出应该是：<code>C[42] = 3</code></p>
+<hr>
+<h3 id="-一些术语解释和-cuda-对比">🔬 一些术语解释（和 CUDA 对比）<a hidden class="anchor" aria-hidden="true" href="#-一些术语解释和-cuda-对比">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>CUDA</th>
+          <th>OpenCL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>GPU 函数名修饰</td>
+          <td><code>__global__</code></td>
+          <td><code>__kernel</code></td>
+      </tr>
+      <tr>
+          <td>线程索引</td>
+          <td><code>threadIdx.x</code></td>
+          <td><code>get_global_id(0)</code></td>
+      </tr>
+      <tr>
+          <td>内核调用</td>
+          <td><code>&lt;&lt;&lt;blocks, threads&gt;&gt;&gt;</code></td>
+          <td><code>clEnqueueNDRangeKernel</code></td>
+      </tr>
+      <tr>
+          <td>内存分配</td>
+          <td><code>cudaMalloc</code></td>
+          <td><code>clCreateBuffer</code></td>
+      </tr>
+      <tr>
+          <td>主机↔设备传输</td>
+          <td><code>cudaMemcpy</code></td>
+          <td><code>clEnqueueReadBuffer</code></td>
+      </tr>
+      <tr>
+          <td>编译内核</td>
+          <td>预编译 <code>.cu</code></td>
+          <td>运行时编译源码字符串</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-opencl-的优缺点">💥 OpenCL 的优缺点<a hidden class="anchor" aria-hidden="true" href="#-opencl-的优缺点">#</a></h3>
+<h4 id="-优点">✅ 优点<a hidden class="anchor" aria-hidden="true" href="#-优点">#</a></h4>
+<ul>
+<li>🧬 真·跨平台（Windows、Linux、macOS、嵌入式）</li>
+<li>🦾 跨设备（CPU、GPU、FPGA）</li>
+<li>💡 完全标准，没人能把你锁死</li>
+</ul>
+<h4 id="-缺点">❌ 缺点<a hidden class="anchor" aria-hidden="true" href="#-缺点">#</a></h4>
+<ul>
+<li>🧱 写起来更啰嗦（如你所见）</li>
+<li>🧩 驱动适配坑多（尤其 AMD/NVIDIA 的不同行为）</li>
+<li>🧠 手动管理太多资源，容易写出“C 式灾难”</li>
+</ul>
+<hr>
+<h3 id="-用-opencl-的典型场景">🧠 用 OpenCL 的典型场景<a hidden class="anchor" aria-hidden="true" href="#-用-opencl-的典型场景">#</a></h3>
+<ul>
+<li>异构计算任务（CPU+GPU 协同）</li>
+<li>嵌入式平台，如树莓派、Jetson、手机芯片</li>
+<li>学术研究平台，想用不同硬件测性能</li>
+<li>深度学习部署（部分框架如 TensorFlow 支持 OpenCL backend）</li>
+</ul>
+<hr>
+<h3 id="-编译和运行">🔧 编译和运行<a hidden class="anchor" aria-hidden="true" href="#-编译和运行">#</a></h3>
+<p>需要安装 OpenCL SDK，例如：</p>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/developer/tools/opencl-sdk/overview.html">Intel OpenCL SDK</a></li>
+<li><a href="https://developer.nvidia.com/opencl">NVIDIA CUDA Toolkit（含 OpenCL 1.2 支持）</a></li>
+<li><a href="https://portablecl.org/">POCL（CPU Only OpenCL 实现）</a></li>
+</ul>
+<p>编译命令示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ my_opencl.cpp -o run -lOpenCL
+</span></span></code></pre></div><hr>
+<h3 id="-总结一句话-1">💎 总结一句话：<a hidden class="anchor" aria-hidden="true" href="#-总结一句话-1">#</a></h3>
+<blockquote>
+<p>CUDA 是效率至上，OpenCL 是自由万岁。</p></blockquote>
+<p>如果你偏平台无关、设备通吃、兼容 ARM 和嵌入式，那 OpenCL 是你的好兄弟。</p>
+<h2 id="并行库对比">并行库对比<a hidden class="anchor" aria-hidden="true" href="#并行库对比">#</a></h2>
+<p>我们用这三板斧——<strong>性能（Performance）</strong>、<strong>生产效率（Productivity）</strong>、<strong>泛用性（Generality）</strong>，来给这些主流并行编程库打个分并分析它们背后的<strong>trade-off 策略</strong>：</p>
+<hr>
+<h3 id="-评分维度说明010">🧾 评分维度说明（0~10）：<a hidden class="anchor" aria-hidden="true" href="#-评分维度说明010">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>🎯 性能</td>
+          <td>低开销、高吞吐、调度效率、cache友好、负载均衡</td>
+      </tr>
+      <tr>
+          <td>💻 生产效率</td>
+          <td>学习曲线、易用性、改动量、工具链支持</td>
+      </tr>
+      <tr>
+          <td>🌍 泛用性</td>
+          <td>适应不同平台、不同架构、支持场景广度</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-并行编程库全明星评分对比主观主流共识经验">⚔️ 并行编程库全明星评分对比（主观+主流共识+经验）：<a hidden class="anchor" aria-hidden="true" href="#-并行编程库全明星评分对比主观主流共识经验">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>库</th>
+          <th>性能 🎯</th>
+          <th>生产效率 💻</th>
+          <th>泛用性 🌍</th>
+          <th>trade-off 简述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>OpenMP</strong></td>
+          <td>7</td>
+          <td>🔥<strong>9</strong></td>
+          <td>7</td>
+          <td>性能不是最极致，但胜在“几行起飞”。牺牲调度自由换来极高的生产效率。</td>
+      </tr>
+      <tr>
+          <td><strong>TBB</strong></td>
+          <td>🔥<strong>9</strong></td>
+          <td>7</td>
+          <td>8</td>
+          <td>牺牲上手速度和代码简洁度，换来了极强的调度能力与组合能力。</td>
+      </tr>
+      <tr>
+          <td><strong>std::thread / async</strong></td>
+          <td>6</td>
+          <td>6</td>
+          <td>🔥<strong>9</strong></td>
+          <td>万金油式泛用，粒度太细，写起来痛苦，调度全靠自己。易错且不 scale。</td>
+      </tr>
+      <tr>
+          <td><strong>Pthreads</strong></td>
+          <td>🔥<strong>10</strong></td>
+          <td>3</td>
+          <td>8</td>
+          <td>性能天花板级，但开发体验堪比炼狱。调度和同步全手撸。</td>
+      </tr>
+      <tr>
+          <td><strong>CUDA / OpenCL</strong></td>
+          <td>🔥<strong>10</strong></td>
+          <td>4</td>
+          <td>5</td>
+          <td>GPU下的性能暴龙，但开发成本高，泛用性差（平台依赖大）。</td>
+      </tr>
+      <tr>
+          <td><strong>HPX</strong></td>
+          <td>8</td>
+          <td>5</td>
+          <td>🔥<strong>10</strong></td>
+          <td>泛用性顶级，甚至支持分布式和C++协程，但学习门槛高、生态还在成长。</td>
+      </tr>
+      <tr>
+          <td><strong>Kokkos / RAJA</strong></td>
+          <td>8</td>
+          <td>6</td>
+          <td>9</td>
+          <td>在性能和可移植性之间打平衡，适合大科研项目，轻量工程中偏重。</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-它们都做了什么-trade-off">📉 它们都做了什么 trade-off？<a hidden class="anchor" aria-hidden="true" href="#-它们都做了什么-trade-off">#</a></h3>
+<h4 id="-openmp-的哲学让你5分钟能跑起来别纠结调度">🧩 OpenMP 的哲学：<strong>“让你5分钟能跑起来，别纠结调度”</strong><a hidden class="anchor" aria-hidden="true" href="#-openmp-的哲学让你5分钟能跑起来别纠结调度">#</a></h4>
+<ul>
+<li>🌟 优先级：生产效率 ＞ 泛用性 ＞ 性能</li>
+<li>🌌 它希望你一开始就能看到提速（尤其在科研圈、工业小项目）</li>
+<li>🧨 缺点是你无法 fine-grain 控制任务调度，写复杂结构就不行了</li>
+</ul>
+<hr>
+<h4 id="-tbb-的哲学我要给你一个现代可组合的并发范式">🧩 TBB 的哲学：<strong>“我要给你一个现代、可组合的并发范式”</strong><a hidden class="anchor" aria-hidden="true" href="#-tbb-的哲学我要给你一个现代可组合的并发范式">#</a></h4>
+<ul>
+<li>🌟 优先级：性能 ≈ 泛用性 ＞ 生产效率</li>
+<li>🧠 强调“结构化并发”、<code>task_arena</code>, <code>flow::graph</code>，任务间依赖、异步管控样样能整</li>
+<li>😓 但代价是：你得会一点现代 C++，理解任务流和资源调度模型</li>
+</ul>
+<hr>
+<h4 id="-pthreads--stdthread-的哲学我就是线程本体你自由发挥">🧩 Pthreads / std::thread 的哲学：<strong>“我就是线程本体，你自由发挥”</strong><a hidden class="anchor" aria-hidden="true" href="#-pthreads--stdthread-的哲学我就是线程本体你自由发挥">#</a></h4>
+<ul>
+<li>🌟 优先级：泛用性 ＞ 性能 ＞ 生产效率</li>
+<li>🛠️ 对极客自由，但极度繁琐、容易踩坑、很难扩展成可维护项目结构</li>
+</ul>
+<hr>
+<h4 id="-cuda--opencl-的哲学牺牲可读性换取吞吐率">🧩 CUDA / OpenCL 的哲学：<strong>“牺牲可读性，换取吞吐率”</strong><a hidden class="anchor" aria-hidden="true" href="#-cuda--opencl-的哲学牺牲可读性换取吞吐率">#</a></h4>
+<ul>
+<li>🌟 优先级：性能 &raquo;&gt; 其他</li>
+<li>⚙️ 开发慢，但计算密集型任务上无敌</li>
+<li>💀 抽象层低、调度模型复杂，不适合频繁变换需求的项目</li>
+</ul>
+<hr>
+<h4 id="-hpx--kokkos-的哲学未来编程的雏形">🧩 HPX / Kokkos 的哲学：<strong>“未来编程的雏形”</strong><a hidden class="anchor" aria-hidden="true" href="#-hpx--kokkos-的哲学未来编程的雏形">#</a></h4>
+<ul>
+<li>🌟 优先级：泛用性 &gt; 性能 &gt; 生产效率</li>
+<li>🔮 为异构+异步+多节点系统服务，学术潜力股</li>
+<li>📚 学习成本很高，但未来随着 C++20/23 的普及，可能会更友好</li>
+</ul>
+<hr>
+<h3 id="-总结图像记忆帮你记住">👑 总结图像记忆（帮你记住）<a hidden class="anchor" aria-hidden="true" href="#-总结图像记忆帮你记住">#</a></h3>
+<pre tabindex="0"><code>        性能
+          ▲
+          |
+       🧠 TBB       🔧 CUDA
+        | \         /
+        |   \     /
+   OpenMP  std::thread
+        \     /
+        简洁性
+           |
+      💻 生产效率
+</code></pre><p>OpenMP 是那种“工程里提速不求人”的老铁；<br>
+TBB 是“愿意多写几行，换你稳定扩展”；<br>
+CUDA 是“老子就是要跑得快”；<br>
+HPX 是“我为并行宇宙布道”。</p>
+<h2 id="大家怎么选">大家怎么选<a hidden class="anchor" aria-hidden="true" href="#大家怎么选">#</a></h2>
+<p>哎嘿，这问题问得像极了“神仙打架谁主沉浮”，这就带你逛一圈<strong>并行编程江湖</strong>，看看 TBB 和 OpenMP 的对手们都是什么段位，谁又在开发者中占了主角戏。</p>
+<hr>
+<h3 id="-顶流选手天梯榜主打-cc-共享内存并行">🏆 顶流选手天梯榜（主打 C/C++ 共享内存并行）：<a hidden class="anchor" aria-hidden="true" href="#-顶流选手天梯榜主打-cc-共享内存并行">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>名字</th>
+          <th>类型</th>
+          <th>背景</th>
+          <th>特点</th>
+          <th>适合人群</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>OpenMP</strong></td>
+          <td>编译器扩展 API</td>
+          <td>多厂商联盟</td>
+          <td>pragma 上手快，主打快速并行化</td>
+          <td>想轻量提速的工程师、科研人</td>
+      </tr>
+      <tr>
+          <td><strong>TBB</strong></td>
+          <td>C++ 库</td>
+          <td>Intel 亲儿子</td>
+          <td>现代C++风格、灵活性高、任务调度牛</td>
+          <td>喜欢结构清晰、高级封装的开发者</td>
+      </tr>
+      <tr>
+          <td><strong>C++ std::thread / std::async / std::future</strong></td>
+          <td>C++标准库</td>
+          <td>ISO C++官方</td>
+          <td>原生无依赖，写法底层偏硬核</td>
+          <td>想玩原教旨C++线程的老哥</td>
+      </tr>
+      <tr>
+          <td><strong>Pthreads（POSIX threads）</strong></td>
+          <td>系统级库</td>
+          <td>POSIX标准</td>
+          <td>底层控制最细，但写起来最烦</td>
+          <td>系统工程师 / 想吃苦的勇士</td>
+      </tr>
+      <tr>
+          <td><strong>CUDA / OpenCL</strong></td>
+          <td>异构并行计算</td>
+          <td>NVIDIA / Khronos Group</td>
+          <td>GPU加速神器，线程上万起步</td>
+          <td>做高性能计算、图形、AI的同学</td>
+      </tr>
+      <tr>
+          <td><strong>HPX</strong></td>
+          <td>C++ 异步并行框架</td>
+          <td>高性能计算圈</td>
+          <td>全异步、分布式友好，C++20 协程协作好</td>
+          <td>HPC极客、未来并行架构实验党</td>
+      </tr>
+      <tr>
+          <td><strong>Kokkos / RAJA</strong></td>
+          <td>C++并行抽象库</td>
+          <td>Sandia / LLNL</td>
+          <td>屏蔽平台差异，一套代码跑CPU/GPU</td>
+          <td>科研 &amp; 超算领域开发者</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-开发者更喜欢谁">🧭 开发者更喜欢谁？<a hidden class="anchor" aria-hidden="true" href="#-开发者更喜欢谁">#</a></h3>
+<p>这个问题说到底要看三个字——<strong>场景党</strong>。</p>
+<h4 id="1-openmp中小规模并行的第一选择">1. <strong>OpenMP：中小规模并行的第一选择</strong><a hidden class="anchor" aria-hidden="true" href="#1-openmp中小规模并行的第一选择">#</a></h4>
+<ul>
+<li>如果你写的是科研、图像处理、点云遍历、矩阵运算、图像卷积、SLAM模块这些需要<strong>局部加速</strong>的东西；</li>
+<li>并且你想 <strong>用最小代价提速</strong> ——<br>
+✅ 大多数人首选 OpenMP。</li>
+</ul>
+<p>为什么？因为它：</p>
+<ul>
+<li>上手快（加个 <code>#pragma</code> 就行）</li>
+<li>支持大部分编译器（GCC、Clang、MSVC 都懂）</li>
+<li>对老代码兼容好，改动少</li>
+</ul>
+<h4 id="2-tbb现代c党和框架派的菜">2. <strong>TBB：现代C++党和框架派的菜</strong><a hidden class="anchor" aria-hidden="true" href="#2-tbb现代c党和框架派的菜">#</a></h4>
+<ul>
+<li>你要写个现代框架，或者你追求 <strong>任务调度优化、嵌套并行、组合表达能力</strong>；</li>
+<li>又或者你写的是比如图形管线、AI中间件、编译器工具链……</li>
+</ul>
+<p>✅ 那你会爱上 TBB。</p>
+<p>它比 OpenMP 灵活，代码更优雅，而且配合 <code>task_arena</code>, <code>concurrent_vector</code>, <code>flow::graph</code> 这些组件能造出一整个并行帝国。</p>
+<h4 id="3-gpu党走的是-cuda--opencl-路线">3. <strong>GPU党走的是 CUDA / OpenCL 路线</strong><a hidden class="anchor" aria-hidden="true" href="#3-gpu党走的是-cuda--opencl-路线">#</a></h4>
+<p>如果你目标是大规模并行（比如跑 AI、物理仿真、渲染），那：</p>
+<blockquote>
+<p>OpenMP 和 TBB 都是小打小闹，得上 CUDA / ROCm / oneAPI 这种核爆级别的东西。</p></blockquote>
+<hr>
+<h3 id="-大众使用率概略感知">🥇 大众使用率（概略感知）：<a hidden class="anchor" aria-hidden="true" href="#-大众使用率概略感知">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>并行库</th>
+          <th>使用率（科研 &amp; 工程圈）</th>
+          <th>主流程度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OpenMP</td>
+          <td>⭐⭐⭐⭐⭐</td>
+          <td>超主流，教材级库</td>
+      </tr>
+      <tr>
+          <td>TBB</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>工程用得多，科研稍少</td>
+      </tr>
+      <tr>
+          <td>std::thread</td>
+          <td>⭐⭐⭐</td>
+          <td>可移植但偏底层</td>
+      </tr>
+      <tr>
+          <td>Pthreads</td>
+          <td>⭐⭐</td>
+          <td>系统开发用</td>
+      </tr>
+      <tr>
+          <td>CUDA/OpenCL</td>
+          <td>⭐⭐⭐⭐</td>
+          <td>GPU圈主流</td>
+      </tr>
+      <tr>
+          <td>HPX/Kokkos</td>
+          <td>⭐⭐</td>
+          <td>超算科研圈才懂</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-未来趋势怎么看">💡 未来趋势怎么看？<a hidden class="anchor" aria-hidden="true" href="#-未来趋势怎么看">#</a></h3>
+<ul>
+<li><strong>OpenMP</strong> 会继续当「快速并行化」的第一库，特别是在 AI 加速预处理、边缘计算、图像、SLAM 等方向。</li>
+<li><strong>TBB</strong> 在 oneAPI、异构调度上的定位越来越强 —— 以后你想在 CPU + GPU + FPGA 上统一调度，它会是个重要齿轮。</li>
+<li><strong>std::execution（C++23）</strong> 开始搞统一并发框架，未来会逐渐挑战 TBB 的地位。</li>
+</ul>
+<hr>
+<h3 id="-所以总结">🔮 所以总结：<a hidden class="anchor" aria-hidden="true" href="#-所以总结">#</a></h3>
+<blockquote>
+<p>想提速就上 OpenMP，<br>
+想做结构精巧的并行系统上 TBB，<br>
+想冲 AI/图形就直奔 CUDA，<br>
+想做先锋实验可以试试 HPX、Kokkos。</p></blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/parallel/">Parallel</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

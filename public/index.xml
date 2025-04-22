@@ -1,0 +1,1575 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>alacritty ayu 配置</title>
+      <link>http://localhost:1313/posts/misc/alacritty-ayu-config/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/misc/alacritty-ayu-config/</guid>
+      <description>&lt;h1 id=&#34;alacritty-ayu-配置&#34;&gt;alacritty ayu 配置&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;size&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;14.5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;normal&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Regular&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bold&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Bold&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;italic&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;family&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FiraCode Nerd Font&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Italic&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;primary&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;background&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;foreground&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#cbccc6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;cursor&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cursor&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#5ccfe6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;selection&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;text&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#1f2430&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;background&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#73d0ff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;normal&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;black&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#191e2a&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;red&lt;/span&gt;     = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ff3333&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;green&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#bae67e&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;yellow&lt;/span&gt;  = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffe080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;blue&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#73d0ff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;magenta&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#d4bfff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cyan&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#95e6cb&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;white&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#c7c7c7&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;colors&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;bright&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;black&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#686868&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;red&lt;/span&gt;     = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#f27983&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;green&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#a6cc70&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;yellow&lt;/span&gt;  = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffcc66&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;blue&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#5ccfe6&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;magenta&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#cb9eff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cyan&lt;/span&gt;    = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#95e6cb&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;white&lt;/span&gt;   = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ffffff&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; range for</title>
+      <link>http://localhost:1313/posts/cpp/range-for/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/range-for/</guid>
+      <description>&lt;h1 id=&#34;c-range-for&#34;&gt;C++ range for&lt;/h1&gt;
+&lt;p&gt;要让一个对象能被用于 C++ 的 &lt;strong&gt;range-based for loop&lt;/strong&gt;（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议&lt;strong&gt;不是形式化的接口&lt;/strong&gt;（不像 Java 那样有 &lt;code&gt;Iterable&lt;/code&gt; 接口），但你可以把它看作一个“概念”（concept）或“约定”。&lt;/p&gt;
+&lt;p&gt;我们来拆一下细节：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-c-range-for-的底层语义&#34;&gt;✅ &lt;strong&gt;C++ range for 的底层语义&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; x : container) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;等价于：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; __range &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; container;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; __begin &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; begin(__range);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; __end &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; end(__range);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; __begin &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; __end; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;__begin) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;__begin;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// ...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-你的类需要满足以下要求&#34;&gt;🔑 你的类需要满足以下要求：&lt;/h3&gt;
+&lt;h4 id=&#34;1-beginobj-和-endobj-必须能被调用&#34;&gt;1. &lt;code&gt;begin(obj)&lt;/code&gt; 和 &lt;code&gt;end(obj)&lt;/code&gt; 必须能被调用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;这通常意味着：
+&lt;ul&gt;
+&lt;li&gt;你的类有成员函数 &lt;code&gt;begin()&lt;/code&gt; 和 &lt;code&gt;end()&lt;/code&gt;，&lt;strong&gt;或者&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;对你的类定义了适配的 &lt;code&gt;begin()&lt;/code&gt; 和 &lt;code&gt;end()&lt;/code&gt; 非成员函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;C++标准库的 &lt;code&gt;std::begin()&lt;/code&gt; 和 &lt;code&gt;std::end()&lt;/code&gt; 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 &lt;code&gt;.begin()&lt;/code&gt;、&lt;code&gt;.end()&lt;/code&gt;）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; 内部类</title>
+      <link>http://localhost:1313/posts/cpp/internal-class/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/internal-class/</guid>
+      <description>&lt;h1 id=&#34;c-内部类&#34;&gt;C++ 内部类&lt;/h1&gt;
+&lt;p&gt;兄弟你问到一个&lt;strong&gt;C++黑魔法级的结构设计点&lt;/strong&gt;了，内部类（nested class）虽然看起来是“类中套类”，但其实背后藏着一套很有意思的权限与封装逻辑。下面我给你展开讲，保你之后写库、写设计模式的时候用得上。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-什么是内部类nested-class&#34;&gt;🧱 什么是内部类（Nested Class）？&lt;/h2&gt;
+&lt;p&gt;在 C++ 中，一个类可以定义在另一个类的作用域中，比如这样：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Outer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Inner&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; sayHi();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你可以这样用它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Outer&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;Inner obj;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;obj.sayHi();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它是一种&lt;strong&gt;作用域上的嵌套&lt;/strong&gt;，但不是 Java/Python 那种“绑定外部对象”的嵌套！&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-权限和访问特权说明&#34;&gt;🧙‍♂️ 权限和访问特权说明：&lt;/h2&gt;
+&lt;h3 id=&#34;-内部类的权限&#34;&gt;✅ 内部类的权限：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;内部类 &lt;strong&gt;被当作是外部类的一个成员类型&lt;/strong&gt;（和 typedef、enum 类似）&lt;/li&gt;
+&lt;li&gt;它&lt;strong&gt;可以访问外部类的 &lt;code&gt;private&lt;/code&gt; / &lt;code&gt;protected&lt;/code&gt; 成员&lt;/strong&gt;吗？👉 &lt;strong&gt;不能直接访问！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Outer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; secret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;42&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Inner&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; access(Outer&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; o) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;// int x = o.secret; ❌ 编译错误，不能访问 private
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;除非你加上 &lt;code&gt;friend&lt;/code&gt;：&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; 程序执行计时器的写法</title>
+      <link>http://localhost:1313/posts/cpp/timer/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/timer/</guid>
+      <description>&lt;h1 id=&#34;c-程序执行计时器的写法&#34;&gt;C++ 程序执行计时器的写法&lt;/h1&gt;
+&lt;p&gt;提到 &lt;strong&gt;“优雅地”测量程序性能并输出到文件&lt;/strong&gt;，我们就不是简简单单扔个 &lt;code&gt;std::chrono&lt;/code&gt; 然后 &lt;code&gt;cout&lt;/code&gt; 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。&lt;/p&gt;
+&lt;p&gt;下面我分两种层次跟你说：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-快速整洁版适合小段代码测试&#34;&gt;✅ 快速整洁版：适合小段代码测试&lt;/h2&gt;
+&lt;h3 id=&#34;封装一个-timer-类&#34;&gt;封装一个 &lt;code&gt;Timer&lt;/code&gt; 类&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;chrono&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Timer&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Timer(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; label &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; log_file &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;timing_log.txt&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; label_(label), log_file_(log_file), start_time_(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;now()) {}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;Timer() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; end_time &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;now();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; duration_ms &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;duration_cast&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;milliseconds&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;(end_time &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; start_time_).count();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;ofstream ofs(log_file_, std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;ios&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;app); &lt;span style=&#34;color:#75715e&#34;&gt;// 追加写
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        ofs &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; label_ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;] took &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; duration_ms &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; ms&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string label_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;string log_file_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;chrono&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;high_resolution_clock&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;time_point start_time_;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;用法非常-zen&#34;&gt;用法非常 Zen：&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Timer &lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tracking Update&amp;#34;&lt;/span&gt;);  &lt;span style=&#34;color:#75715e&#34;&gt;// 离开作用域自动写入时间
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    run_tracking_update();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出会自动写到 &lt;code&gt;timing_log.txt&lt;/code&gt;，像这样：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Docker Compose</title>
+      <link>http://localhost:1313/posts/docker/compose/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/compose/</guid>
+      <description>&lt;h1 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h1&gt;
+&lt;h2 id=&#34;compose-文件&#34;&gt;Compose 文件&lt;/h2&gt;
+&lt;p&gt;默认的Compose文件是&lt;code&gt;compose.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;service&#34;&gt;Service&lt;/h2&gt;
+&lt;h3 id=&#34;build属性&#34;&gt;build属性&lt;/h3&gt;
+&lt;p&gt;build属性可以在启动服务时构建镜像作为service。如果有image属性的话，build出来的镜像会推送到registry。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：image和build同时存在的话默认使用image，也就是说如果你的主机上有image规定的镜像那么就用它，如果没有就拉取image，你的build不会触发。要想触发你的build，你得修改&lt;code&gt;pull_policy&lt;/code&gt;属性，可以设置为build。&lt;/p&gt;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Dockerfile Entrypoint</title>
+      <link>http://localhost:1313/posts/docker/entry-point/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/entry-point/</guid>
+      <description>&lt;h1 id=&#34;dockerfile-entrypoint&#34;&gt;Dockerfile Entrypoint&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.docker.com/reference/dockerfile/#entrypoint&#34;&gt;Docker Entry Point 官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ENTRYPOINT最主要的功能是将容器变成一个“命令”, 容器在启动的时候会执行ENTRYPOINT规定的命令。&lt;/p&gt;
+&lt;p&gt;ENTRYPOINT和CMD可以配合使用，CMD给容器提供默认参数。&lt;/p&gt;
+&lt;p&gt;不过如果用户在docker run的时候在最后给出了参数，那么给出的参数会覆盖默认参数。&lt;/p&gt;
+&lt;p&gt;CMD在单独使用的时候是容器启动时执行的默认命令，和ENTRYPOINT配合使用的时候是默认选项。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GNSS</title>
+      <link>http://localhost:1313/posts/slam/sensors/gps/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/gps/</guid>
+      <description>&lt;h1 id=&#34;gnss&#34;&gt;GNSS&lt;/h1&gt;
+&lt;p&gt;GNSS(Global Navigation Satellite System)是用来定位的一种卫星系统，为用户提供全球范围内的3D位置、速度和时间信息。&lt;/p&gt;
+&lt;p&gt;GPS(Global Positioning System)是一种GNSS，是美国开发的全球第一款GNSS。除了美国，中国、欧盟、俄罗斯都有自己的GNSS。
+GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过卫星向被定位物体发射携带时间、卫星信息的电磁波信号，测算被定位物体接收到信号的时间从而测算被定位物体和卫星的距离。有三颗卫星到物体的距离即可得出物体的坐标。不过GPS多使用了一颗，第四颗卫星的作用是校准时间，让定位更准确。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>how to do something in Docker</title>
+      <link>http://localhost:1313/posts/docker/how-tos/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/how-tos/</guid>
+      <description>&lt;h1 id=&#34;how-to-do-something-in-docker&#34;&gt;how to do something in Docker&lt;/h1&gt;
+&lt;h2 id=&#34;如何让容器能够借用宿主机显示gui&#34;&gt;如何让容器能够借用宿主机显示GUI&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;启动容器时挂载/tmp/.X11-unix&lt;/li&gt;
+&lt;li&gt;设置环境变量DISPLAY&lt;/li&gt;
+&lt;li&gt;宿主机上允许docker访问X11&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xhost +local:docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;没有X11服务器得自己装。&lt;/p&gt;
+&lt;h2 id=&#34;如何让你的容器默认使用清华源&#34;&gt;如何让你的容器默认使用清华源&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RUN sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g&amp;#39;&lt;/span&gt; /etc/apt/sources.list &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;    sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g&amp;#39;&lt;/span&gt; /etc/apt/sources.list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;怎么在构建镜像的时候开代理&#34;&gt;怎么在构建镜像的时候开代理&lt;/h2&gt;
+&lt;p&gt;通过&amp;ndash;buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker build --build-arg http_proxy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://172.17.0.1:7897 --build-arg https_proxy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://172.17.0.1:7897 --build-arg -t name:image .
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你使用docker compose，你的compose.yaml可以这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;services&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;app&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;build&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;context&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;args&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                - &lt;span style=&#34;color:#ae81ff&#34;&gt;http_proxy=http://172.17.0.1:7897&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                - &lt;span style=&#34;color:#ae81ff&#34;&gt;https_proxy=http://172.17.0.1:7897&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;怎么在构建docker时就执行source-develsetupbash&#34;&gt;怎么在构建docker时就执行source devel/setup.bash&lt;/h2&gt;
+&lt;p&gt;你需要ENTRYPOINT，这个命令可以提前帮你source&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /root/hku_ws
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;catkin_make
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;source devel/setup.bash
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;exec &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你的Dockerfile这样写：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; ./entrypoint.sh /entrypoint.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; chmod +x /entrypoint.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/entrypoint.sh&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; [ &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bash&amp;#34;&lt;/span&gt; ]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;如何避免烦人的键盘布局选择&#34;&gt;如何避免烦人的键盘布局选择&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DEBIAN_FRONTEND&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;noninteractive apt-get install -y --no-install-recommends &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;ros-noetic-pcl-ros ros-noetic-eigen-conversions
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ibus rime 安装踩坑</title>
+      <link>http://localhost:1313/posts/misc/rime-install/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/misc/rime-install/</guid>
+      <description>&lt;h1 id=&#34;ibus-rime-安装踩坑&#34;&gt;ibus rime 安装踩坑&lt;/h1&gt;
+&lt;h2 id=&#34;日志在哪&#34;&gt;日志在哪&lt;/h2&gt;
+&lt;p&gt;linux端在&lt;code&gt;/tmp/rime*&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;没有部署按钮怎么办&#34;&gt;没有部署按钮怎么办&lt;/h2&gt;
+&lt;p&gt;ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了&lt;/p&gt;
+&lt;h2 id=&#34;雾凇拼音挂了怎么办&#34;&gt;雾凇拼音挂了怎么办&lt;/h2&gt;
+&lt;p&gt;把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/&lt;/p&gt;
+&lt;h2 id=&#34;怎么在命令行部署&#34;&gt;怎么在命令行部署&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ibus restart&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;奇怪的错误&#34;&gt;奇怪的错误&lt;/h2&gt;
+&lt;p&gt;(process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached
+设定全局引擎失败。&lt;/p&gt;
+&lt;p&gt;这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 &lt;code&gt;ibus-daemon&lt;/code&gt; 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：&lt;/p&gt;
+&lt;h3 id=&#34;1-确保&#34;&gt;1. &lt;strong&gt;确保 &lt;code&gt;ibus-daemon&lt;/code&gt; 正常启动&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;有时 &lt;code&gt;ibus-daemon&lt;/code&gt; 可能没有正确启动或响应。可以尝试手动重新启动它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ibus-daemon -drx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会重启 IBUS 服务，并确保它在后台运行。&lt;/p&gt;
+&lt;h3 id=&#34;2-重启系统&#34;&gt;2. &lt;strong&gt;重启系统&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;如果 &lt;code&gt;ibus-daemon&lt;/code&gt; 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。&lt;/p&gt;
+&lt;h3 id=&#34;3-查看-ibus-日志&#34;&gt;3. &lt;strong&gt;查看 IBUS 日志&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;通过查看 IBUS 日志可以获取更多的错误信息。可以查看 &lt;code&gt;/var/log/syslog&lt;/code&gt; 或直接在终端中查看 IBUS 输出：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tail -f /var/log/syslog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者直接在终端中查看 IBUS 的调试信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ibus-daemon -drx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果有更多的错误信息，可能有助于诊断问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IMU</title>
+      <link>http://localhost:1313/posts/slam/sensors/imu/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/imu/</guid>
+      <description>&lt;h1 id=&#34;imu&#34;&gt;IMU&lt;/h1&gt;
+&lt;h2 id=&#34;测量数据&#34;&gt;测量数据&lt;/h2&gt;
+&lt;h3 id=&#34;姿态&#34;&gt;姿态&lt;/h3&gt;
+&lt;p&gt;IMU测得的姿态是相对于世界坐标系的，而不是上一测量时刻的坐标系。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>KITTI</title>
+      <link>http://localhost:1313/posts/data-process/kitti/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/data-process/kitti/</guid>
+      <description>&lt;h1 id=&#34;kitti&#34;&gt;KITTI&lt;/h1&gt;
+&lt;h2 id=&#34;点云数据&#34;&gt;点云数据&lt;/h2&gt;
+&lt;h3 id=&#34;文件结构&#34;&gt;文件结构&lt;/h3&gt;
+&lt;p&gt;放在&lt;code&gt;velodyne_points&lt;/code&gt;下，
+&lt;code&gt;velodyne_points/data&lt;/code&gt;放置的是所有点云扫描文件，
+&lt;code&gt;velodyne_points/timestamps.txt&lt;/code&gt;放置的是每个扫描的时间戳，
+&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;是扫描开始的时间戳，
+&lt;code&gt;velodyne_points/timestamps_end.txt&lt;/code&gt;是扫描结束的时间戳。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/data&lt;/code&gt;下的文件数量和&lt;code&gt;velodyne_points/timestamps*&lt;/code&gt;文件的行数是对应的，
+也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/timestamps.txt&lt;/code&gt;的每一行是&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;的每一行和&lt;code&gt;velodyne_points/timestamps_start.txt&lt;/code&gt;的每一行表示的时间段的中点。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;velodyne_points/data&lt;/code&gt;中的单个文件表示一个扫描，一个扫描大概有10w+的点。文件一行代表一个点，一个点有三个字段： &lt;code&gt;(x, y, z, intensity)&lt;/code&gt;。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。&lt;/p&gt;
+&lt;h3 id=&#34;激光雷达信息&#34;&gt;激光雷达信息&lt;/h3&gt;
+&lt;p&gt;KITTI采集点云使用的激光雷达是&lt;code&gt;Velodyne&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线数: 16&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Linux字体安装</title>
+      <link>http://localhost:1313/posts/linux/fonts-install/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux/fonts-install/</guid>
+      <description>&lt;h1 id=&#34;linux字体安装&#34;&gt;Linux字体安装&lt;/h1&gt;
+&lt;p&gt;在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-手动安装字体适用于用户或系统全局&#34;&gt;&lt;strong&gt;1. 手动安装字体（适用于用户或系统全局）&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;用户级安装仅当前用户可用&#34;&gt;&lt;strong&gt;用户级安装（仅当前用户可用）&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;将字体文件（如 &lt;code&gt;.ttf&lt;/code&gt;、&lt;code&gt;.otf&lt;/code&gt; 等）复制到用户字体目录：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir -p ~/.local/share/fonts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp /path/to/your/font.ttf ~/.local/share/fonts/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;更新字体缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;系统级安装所有用户可用&#34;&gt;&lt;strong&gt;系统级安装（所有用户可用）&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;需要 root 权限，将字体复制到系统字体目录：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo cp /path/to/your/font.ttf /usr/share/fonts/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;更新字体缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;2-使用包管理器安装推荐&#34;&gt;&lt;strong&gt;2. 使用包管理器安装（推荐）&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Debian/Ubuntu&lt;/strong&gt;（APT）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install fonts-&amp;lt;name&amp;gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：fonts-noto, fonts-roboto&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fedora/RHEL&lt;/strong&gt;（DNF）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo dnf install &amp;lt;name&amp;gt;-fonts    &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：google-roboto-fonts&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Arch Linux&lt;/strong&gt;（Pacman）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo pacman -S &amp;lt;name&amp;gt;-fonts      &lt;span style=&#34;color:#75715e&#34;&gt;# 例如：ttf-roboto&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;3-通过字体管理器工具&#34;&gt;&lt;strong&gt;3. 通过字体管理器工具&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GNOME 用户&lt;/strong&gt;：使用 &lt;code&gt;gnome-font-viewer&lt;/code&gt;（双击字体文件后点击 &amp;ldquo;Install&amp;rdquo;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;KDE 用户&lt;/strong&gt;：使用 &lt;code&gt;kfontview&lt;/code&gt; 或系统设置中的字体管理模块。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;4-创建字体子目录组织多字体&#34;&gt;&lt;strong&gt;4. 创建字体子目录（组织多字体）&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在 &lt;code&gt;/usr/share/fonts/&lt;/code&gt; 或 &lt;code&gt;~/.local/share/fonts/&lt;/code&gt; 下创建子目录（如 &lt;code&gt;custom&lt;/code&gt;），放入字体后更新缓存：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mkdir /usr/share/fonts/custom
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo cp *.ttf /usr/share/fonts/custom/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo fc-cache -fv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;5-临时测试字体&#34;&gt;&lt;strong&gt;5. 临时测试字体&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;直接运行应用程序时指定字体路径（不永久安装）：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;LIBGL_FREETYPE_FONT_PATH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;/path/to/fonts/ your_app
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;注意事项&#34;&gt;&lt;strong&gt;注意事项&lt;/strong&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;字体格式支持&lt;/strong&gt;：Linux 常用 &lt;code&gt;TrueType (.ttf)&lt;/code&gt;、&lt;code&gt;OpenType (.otf)&lt;/code&gt; 和 &lt;code&gt;WOFF/WOFF2&lt;/code&gt;（部分支持）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权限问题&lt;/strong&gt;：系统级安装需 &lt;code&gt;sudo&lt;/code&gt;，用户级安装无需。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查找已安装字体&lt;/strong&gt;：使用 &lt;code&gt;fc-list&lt;/code&gt; 查看字体列表。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;验证安装&#34;&gt;&lt;strong&gt;验证安装&lt;/strong&gt;&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;fc-match &amp;lt;fontname&amp;gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 检查字体是否生效&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或通过图形软件（如 LibreOffice）查看字体列表。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Livox LOAM</title>
+      <link>http://localhost:1313/posts/slam/papers/livox-loam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/livox-loam/</guid>
+      <description>&lt;h1 id=&#34;livox-loam&#34;&gt;Livox LOAM&lt;/h1&gt;
+&lt;p&gt;使用Livox固态雷达实现的LOAM。&lt;/p&gt;
+&lt;h2 id=&#34;数据处理&#34;&gt;数据处理&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用了强度来区分不同的材质，比如可以检测到一面墙中墙到门窗的变化&lt;/li&gt;
+&lt;li&gt;对接收到的点云进行了分片处理，将不同的片放到不同的CPU上处理，使得处理明显变快。将一个帧分成三个子帧。每个子帧分别进行运动补偿。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>LOAM</title>
+      <link>http://localhost:1313/posts/slam/papers/loam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/loam/</guid>
+      <description>&lt;h1 id=&#34;loam&#34;&gt;LOAM&lt;/h1&gt;
+&lt;h2 id=&#34;点云获取&#34;&gt;点云获取&lt;/h2&gt;
+&lt;p&gt;LOAM使用的LiDAR是&lt;code&gt;VLP-16&lt;/code&gt;，这是一种16线的激光雷达。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线数：16&lt;/li&gt;
+&lt;li&gt;水平分辨率：0.1° ~ 0.4°（这是因为旋转的速度可调，导致水平分辨率的变化）&lt;/li&gt;
+&lt;li&gt;旋转频率：5 ~ 20Hz&lt;/li&gt;
+&lt;li&gt;水平FoV：360°&lt;/li&gt;
+&lt;li&gt;垂直分辨率：2°&lt;/li&gt;
+&lt;li&gt;垂直FoV：-15° ~ +15° (30°的范围)&lt;/li&gt;
+&lt;li&gt;最大测量距离：100m&lt;/li&gt;
+&lt;li&gt;距离测量精度：±3cm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;值得注意的是这个雷达的激光垂直角度与线数的对应并不是数字0-15从下往上依次对应，而是采用一种交错的方式，比如-15°对应线0，1°对应线1，-13°对应线2，&amp;hellip;，15°对应线15。&lt;/p&gt;
+&lt;p&gt;这样安排的原因是为了防止两束激光挨得太近会产生干涉。&lt;/p&gt;
+&lt;h2 id=&#34;imu工作分析&#34;&gt;IMU工作分析&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;IMU消息收到 -&amp;gt; IMUHandler&lt;/li&gt;
+&lt;li&gt;更新角度差，去除重力加速度的xyz线速度，imu接收时间&lt;/li&gt;
+&lt;li&gt;将线速度旋转角度差这么多到世界坐标系，这说明角度差是现在IMU的姿态相对于世界坐标系的&lt;/li&gt;
+&lt;li&gt;得到世界坐标系内的加速度后计算新的位移，位移从0开始累加，使用的是$s_t = s_{t-1} + v_{t-1} * \Delta t + \frac{1}{2} * \mathbb{a} (\Delta t)^2$&lt;/li&gt;
+&lt;li&gt;计算新的速度：$v_t = v_{t-1} + a * \Delta t $&lt;/li&gt;
+&lt;li&gt;激光雷达接收到点时使用IMU的数据，计算当前点对应的IMU数据（估计）&lt;/li&gt;
+&lt;li&gt;使用当前点的IMU数据计算加速运动产生的位移&lt;/li&gt;
+&lt;li&gt;使用当前点的IMU数据计算加速运动产生的速度&lt;/li&gt;
+&lt;li&gt;当前点使用角度进行旋转再加上无畸变的位移得到点的真正位置&lt;/li&gt;
+&lt;li&gt;发布当前点云第一个点的IMU信息，发布当前点的IMU信息，包括畸变的位移和速度。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验&lt;/h2&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU: 2.5GHz 4核&lt;/li&gt;
+&lt;li&gt;内存: 6G&lt;/li&gt;
+&lt;li&gt;传感器: VLP-16 (&lt;a href=&#34;https://wiki.ros.org/loam_velodyne&#34;&gt;loam_velodyne&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;实验方法&#34;&gt;实验方法&lt;/h3&gt;
+&lt;p&gt;为了验证局部地图的准确性，LOAM在一些固定的点安装雷达进行感知，这时雷达是静止的，利用这些在静止状态采集的点云进行ICP配准，得到环境的准确地图。
+利用准确的地图点云和LOAM得到的点云之间的平面特征之间的距离作差得到误差。结果是误差是均值为0的正态分布，误差范围大概在20cm内。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>pandas</title>
+      <link>http://localhost:1313/posts/data-process/pandas/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/data-process/pandas/</guid>
+      <description>&lt;h1 id=&#34;pandas&#34;&gt;pandas&lt;/h1&gt;
+&lt;h2 id=&#34;基本属性&#34;&gt;基本属性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.columns&lt;/code&gt;: 表头，一个列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据访问&#34;&gt;数据访问&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.loc[row_idx, col_idx]&lt;/code&gt;: 访问&lt;code&gt;row_idx&lt;/code&gt;行&lt;code&gt;col_idx&lt;/code&gt;列的元素&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Series[idx]&lt;/code&gt;: 访问&lt;code&gt;idx&lt;/code&gt;处的元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;合并&#34;&gt;合并&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pandas.concat([df1, df2, ..., dfn], axis=a)&lt;/code&gt; 沿着轴&lt;code&gt;a&lt;/code&gt;合并df1, df2, &amp;hellip;, dfn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;批量操作&#34;&gt;批量操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame.apply(f)&lt;/code&gt;，对DataFrame的每一行应用f，f的参数是一行数据，一行数据使用&lt;code&gt;Series&lt;/code&gt;封装&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>PointCloud2</title>
+      <link>http://localhost:1313/posts/ros/pointcloud2/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/pointcloud2/</guid>
+      <description>&lt;h1 id=&#34;pointcloud2&#34;&gt;PointCloud2&lt;/h1&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/sensor_msgs/html/namespacesensor__msgs_1_1point__cloud2.html&#34;&gt;sensor_msgs.point_cloud2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/PointField.html&#34;&gt;sensor_msgs/PointField&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/noetic/api/std_msgs/html/msg/Header.html&#34;&gt;std_msgs/Header&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;PointCloud2&lt;/code&gt;存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用&lt;code&gt;PointField&lt;/code&gt;表示
+&lt;code&gt;sensor_msgs.point_cloud2&lt;/code&gt;不是数据结构，而是存放了许多操作&lt;code&gt;PointCloud2&lt;/code&gt;的方法的命名空间，可以使用其中的方法来创建&lt;code&gt;PointCloud2&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;结构&#34;&gt;结构&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header
+
+# 点云的2D结构，如果点云无序，那么height为1，width为点数
+uint32 height
+uint32 width
+
+# 描述data部分字段，即每个点的每个维度
+PointField[] fields
+
+bool    is_bigendian # 数据是否为大端
+uint32  point_step   # 一个点的字节数
+uint32  row_step     # 一行的字节数
+uint8[] data         # 存储点的字节数组，大小为(row_step*height)
+
+bool is_dense        # 如果没有无效点，那么这个字段为True
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;创建点云&#34;&gt;创建点云&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; sensor_msgs.msg &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; PointCloud2, PointField
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; sensor_msgs.point_cloud2 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; create_cloud
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Tips, 对于这些使用ROS消息生成系统生成的消息，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 从而创建一个消息对象，这里的Header，PointField皆是如此。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 此外这些字段亦可以通过对象的对应属性访问&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;create_pointscloud_xyzi&lt;/span&gt;(points, timestamp, frame_id):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    header &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Header(stamp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;timestamp, frame_id&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;frame_id)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    dtype &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; PointField&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;FLOAT32
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    fields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;x&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;y&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;z&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                PointField(name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;intensity&amp;#39;&lt;/span&gt;, offset&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;, datatype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dtype, count&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;),]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;# create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pc2&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;create_cloud(header, fields, points)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ROS</title>
+      <link>http://localhost:1313/posts/ros/ros-quick-start/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/ros-quick-start/</guid>
+      <description>&lt;h1 id=&#34;ros&#34;&gt;ROS&lt;/h1&gt;
+&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
+&lt;h3 id=&#34;节点&#34;&gt;节点&lt;/h3&gt;
+&lt;p&gt;ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。&lt;/p&gt;
+&lt;p&gt;查看当前正在运行的节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode info &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun &amp;lt;包名&amp;gt; &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;测试节点连通性和延迟&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosnode ping &amp;lt;节点名&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;客户端库&#34;&gt;客户端库&lt;/h3&gt;
+&lt;p&gt;ROS客户端库允许节点使用不同的语言来进行交流：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rospy = python客户端库&lt;/li&gt;
+&lt;li&gt;roscpp = c++ 客户端库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;roscore&#34;&gt;roscore&lt;/h3&gt;
+&lt;p&gt;你要使用ROS，就得先运行roscore。&lt;/p&gt;
+&lt;p&gt;就是主节点(Master) + rosout + 参数服务器&lt;/p&gt;
+&lt;h2 id=&#34;话题&#34;&gt;话题&lt;/h2&gt;
+&lt;p&gt;查看话题已经发布的消息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic echo &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看发布特定话题的节点和接收的节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic list &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题消息的类型&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic type &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题消息的结构&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic show &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;发布消息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic pub &amp;lt;话题&amp;gt; &amp;lt;类型&amp;gt; &amp;lt;参数&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看话题发布的频率&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rostopic hz &amp;lt;话题&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;话题的时间坐标图像&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rqt_plot
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;服务&#34;&gt;服务&lt;/h2&gt;
+&lt;p&gt;列出活跃的服务&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosservice list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看服务响应的类型&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosservice type &amp;lt;服务&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看服务的结构&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ros Time</title>
+      <link>http://localhost:1313/posts/ros/time/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/time/</guid>
+      <description>&lt;h1 id=&#34;ros-time&#34;&gt;ros Time&lt;/h1&gt;
+&lt;h2 id=&#34;参考链接&#34;&gt;参考链接&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.ros.org/en/jade/api/rospy/html/rospy.rostime.Time-class.html&#34;&gt;rospy.rostime&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;p&gt;rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。&lt;/p&gt;
+&lt;p&gt;有的人会使用&lt;code&gt;rospy.Time.now()&lt;/code&gt;这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。&lt;/p&gt;
+&lt;h2 id=&#34;rospytime-vs-datetime&#34;&gt;rospy.Time v.s. datetime&lt;/h2&gt;
+&lt;p&gt;rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。
+而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 匹配date精度的日期部分和超出微秒精度的部分&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nanosec_pattern &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; re&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;compile(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;(\d&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{4}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;date2rostime&lt;/span&gt;(time: str):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    sec_match &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nanosec_pattern&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;match&lt;/span&gt;(time)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; sec_match &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;raise&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ValueError&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    micro_part &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sec_match&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;group(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    nano_part &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sec_match&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;group(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    micro_date &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; datetime&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;strptime(micro_part, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%Y-%m-&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%d&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; %H:%M:%S.&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    secs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(micro_date&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;timestamp())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    nano_secs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; micro_date&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;microsecond &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; nano_part &lt;span style=&#34;color:#f92672&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;and&lt;/span&gt; nano_part &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        nano_secs &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; int(nano_part)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; rospy&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Time(secs, nano_secs)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
+&lt;p&gt;rospy.Time支持减法，减出来的结果是&lt;code&gt;ros.Duration&lt;/code&gt;对象&lt;/p&gt;
+&lt;p&gt;rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS 名称</title>
+      <link>http://localhost:1313/posts/ros/name-and-remapping/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/name-and-remapping/</guid>
+      <description>&lt;h1 id=&#34;ros-名称&#34;&gt;ROS 名称&lt;/h1&gt;
+&lt;h2 id=&#34;名称&#34;&gt;名称&lt;/h2&gt;
+&lt;p&gt;名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等&lt;/p&gt;
+&lt;p&gt;为了让名称减少冲突，引入了名称空间（namespace）的概念。名称存在于命名空间中，命名空间可以存在于命名空间中，命名空间中可以有多个名称。这样的话，我们知道名称空间肯定是一层套一层的，是有层次的。这就引出了不同类别的名称：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基名称(base)，没有带名称空间修饰的名称，事实上是相对名称的一种，和相对名称有相同的解析规则，常用来初始化节点&lt;/li&gt;
+&lt;li&gt;相对名称(relative)，相对于名称空间的名称，在解析的时候会添加上前面的名称空间修饰&lt;/li&gt;
+&lt;li&gt;全局名称(global)，以&lt;code&gt;/&lt;/code&gt;开头的都是全局名称，在代码中尽量不要用这种名称，这会限制代码的通用性&lt;/li&gt;
+&lt;li&gt;私有名称(private)，把名称转换成一个命名空间，从参数服务器上传递参数到特定节点的时候很有用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;名称的解析与命名空间相关，比如你在一个命名空间&lt;code&gt;aicv&lt;/code&gt;下创建了一个节点&lt;code&gt;turtle_control&lt;/code&gt;那么它的完整的名称就是&lt;code&gt;/aicv/turtle_control&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;你在launch文件中启动node的时候有规定name属性，这个name就是我们的名称，比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;group&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aicv&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;node&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;rosplayground&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_service&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;operation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/group&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个launch文件规定了名称为operation的节点会启动。启动之后，节点完整的名称就是&lt;code&gt;/aicv/operation&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果你没有使用launch文件，你直接执行了rosrun，并没有规定命名空间。那么默认你在全局的命名空间中操作。比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun rosplayground time_service 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样启动完之后你的节点名称就变成了&lt;code&gt;/time_service_node&lt;/code&gt;（我们在ros::init中规定的名称，launch文件中的name会覆盖这个设置）&lt;/p&gt;
+&lt;p&gt;你在发布/订阅话题或者服务的时候也会规定话题或者服务的名称，这个名称就是这里的名称&lt;/p&gt;
+&lt;p&gt;此外消息类型和服务类型也有名称，他们的名称通常是包名/类型名，比如std_msgs/String&lt;/p&gt;
+&lt;h2 id=&#34;重映射&#34;&gt;重映射&lt;/h2&gt;
+&lt;h3 id=&#34;为什么要重映射&#34;&gt;为什么要重映射&lt;/h3&gt;
+&lt;p&gt;有这么一种情况，一个话题被一系列节点订阅，这个时候你有一个新的节点，这个新的节点也想订阅这个话题，但我们的话题固然有个名字，而新的节点订阅的话题不是这个话题的名字，但是它们的话题类型是一样的，这个时候我们就可以重映射，这就像在没有修改我们新节点代码的情况下，更改了新节点订阅话题的名字。&lt;/p&gt;
+&lt;h3 id=&#34;重映射的方法&#34;&gt;重映射的方法&lt;/h3&gt;
+&lt;h4 id=&#34;remap标签&#34;&gt;&amp;lt;remap&amp;gt;标签&lt;/h4&gt;
+&lt;p&gt;在launch文件中，你启动节点时可以在节点标签&amp;lt;node&amp;gt;中添加&amp;lt;remap&amp;gt;标签，让节点订阅的话题/服务的名称换成新的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;group&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;aicv&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;node&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;rosplayground&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_client&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;name=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_client&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;remap&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time_service&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;to=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;operation&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/node&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/group&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里我们的time_client节点原先请求的服务是time_service，重映射之后就请求operation服务了。&lt;/p&gt;
+&lt;h4 id=&#34;rosrun参数&#34;&gt;rosrun参数&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rosrun rosplayground time_client time_service:&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;operation
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>rosbag</title>
+      <link>http://localhost:1313/posts/ros/rosbag/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/rosbag/</guid>
+      <description>&lt;h1 id=&#34;rosbag&#34;&gt;rosbag&lt;/h1&gt;
+&lt;p&gt;rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是&lt;code&gt;.bag&lt;/code&gt;，通过命令&lt;code&gt;rosbag&lt;/code&gt;进行播放或者检查。&lt;/p&gt;
+&lt;p&gt;参考链接:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.ros.org/rosbag&#34;&gt;rosbag - ros docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ros.org/en/kinetic/api/rosbag/html/python/rosbag.bag.Bag-class.html&#34;&gt;rosbag.Bag&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rosbag包&#34;&gt;rosbag包&lt;/h2&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install ros-&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;ROS_DISTRO&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;-rosbag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你可以导入使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; rosbag
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;值得注意的是在系统默认python环境中无需额外的配置即可导入&lt;code&gt;rosbag&lt;/code&gt;，然而你如果使用&lt;code&gt;venv&lt;/code&gt;或者&lt;code&gt;anaconda&lt;/code&gt;需要安装一些额外的包。&lt;/p&gt;
+&lt;p&gt;这些包有：&lt;code&gt;pyyaml&lt;/code&gt;, &lt;code&gt;pycryptodomex&lt;/code&gt;, &lt;code&gt;gnupg&lt;/code&gt;, &lt;code&gt;rospkg&lt;/code&gt;，激活环境后安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip install pycryptodome pyyaml gnupg rospkg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在你使用&lt;code&gt;venv&lt;/code&gt;的时候你需要修改虚拟环境目录下的&lt;code&gt;bin/activate&lt;/code&gt;在它的最后一行加上&lt;code&gt;source /opt/ros/${ROS-DISTRO}/setup.bash&lt;/code&gt;。完成这些配置后你的rosbag才能成功导入。&lt;/p&gt;
+&lt;h3 id=&#34;写入&#34;&gt;写入&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; rosbag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Bag(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test.bag&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;w&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; bag:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    bag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(topic_name, msg)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;读取&#34;&gt;读取&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; rosbag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Bag(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;test.bag&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; bag:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; topic, msg, t &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; bag&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read_messages(topics&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;chater&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;numbers&amp;#34;&lt;/span&gt;]):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(msg)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()&lt;/p&gt;
+&lt;h2 id=&#34;命令行工具&#34;&gt;命令行工具&lt;/h2&gt;
+&lt;p&gt;参考链接: &lt;a href=&#34;https://wiki.ros.org/rosbag/Commandline&#34;&gt;rosbag commandline&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS回调处理</title>
+      <link>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</guid>
+      <description>&lt;h1 id=&#34;ros回调处理&#34;&gt;ROS回调处理&lt;/h1&gt;
+&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。&lt;/p&gt;
+&lt;h2 id=&#34;回调函数队列&#34;&gt;回调函数队列&lt;/h2&gt;
+&lt;p&gt;你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。&lt;/p&gt;
+&lt;h2 id=&#34;spin和spinonce&#34;&gt;spin()和spinOnce()&lt;/h2&gt;
+&lt;p&gt;然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是&lt;code&gt;spin()&lt;/code&gt;和&lt;code&gt;spinOnce()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。&lt;/p&gt;
+&lt;p&gt;spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。&lt;/p&gt;
+&lt;h2 id=&#34;全局队列与局部队列&#34;&gt;全局队列与局部队列&lt;/h2&gt;
+&lt;p&gt;一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。&lt;/p&gt;
+&lt;p&gt;当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用&lt;code&gt;ros::getGlobalCallbackQueue()&lt;/code&gt;获取全局回调函数队列，spin()实际上是&lt;code&gt;ros::getGlobalCallbackQueue()-&amp;gt;callAvailable()&lt;/code&gt;，spinOnce实际上是&lt;code&gt;ros::getGlobalCallbackQueue()-&amp;gt;callOne()&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;ros/callback_queue.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ros&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;CallbackQueue my_queue;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ros&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;NodeHandle nh;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nh.setCallbackQueue(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;my_callback_queue);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。&lt;/p&gt;
+&lt;h2 id=&#34;什么时候使用节点特有的回调函数队列&#34;&gt;什么时候使用节点特有的回调函数队列&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了&lt;/li&gt;
+&lt;li&gt;有计算时间长的回调函数，和长时间允许服务类似。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;参考文档&#34;&gt;参考文档&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning&#34;&gt;Callbacks and Spinning&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ROS节点怎么使用GDB调试</title>
+      <link>http://localhost:1313/posts/ros/debugging/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ros/debugging/</guid>
+      <description>&lt;h1 id=&#34;ros节点怎么使用gdb调试&#34;&gt;ROS节点怎么使用GDB调试&lt;/h1&gt;
+&lt;p&gt;[roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](&lt;a href=&#34;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&#34;&gt;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&lt;/a&gt; Nodes in Valgrind or GDB)&lt;/p&gt;
+&lt;p&gt;看上面的教程。在node标签里加launch_prefix就好了&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RTK</title>
+      <link>http://localhost:1313/posts/slam/sensors/rtk/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/rtk/</guid>
+      <description>&lt;h1 id=&#34;rtk&#34;&gt;RTK&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>SLAM Ideas</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/ideas/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/ideas/</guid>
+      <description>&lt;h1 id=&#34;slam-ideas&#34;&gt;SLAM Ideas&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。&lt;/li&gt;
+&lt;li&gt;数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道&lt;/li&gt;
+&lt;li&gt;使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强&lt;/li&gt;
+&lt;li&gt;和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？&lt;/li&gt;
+&lt;li&gt;FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？&lt;/li&gt;
+&lt;li&gt;Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图&lt;/li&gt;
+&lt;li&gt;其它传感器的信息是否可以助力目标检测剔除动态&lt;/li&gt;
+&lt;li&gt;地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;残差图&#34;&gt;残差图&lt;/h2&gt;
+&lt;p&gt;两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。&lt;/p&gt;
+&lt;p&gt;基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了&lt;/p&gt;
+&lt;p&gt;如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。&lt;/p&gt;
+&lt;p&gt;如果是scan2map的残差图，能判断分割相对场景是否运动。&lt;/p&gt;
+&lt;h2 id=&#34;一致性约束&#34;&gt;一致性约束&lt;/h2&gt;
+&lt;p&gt;如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？&lt;/p&gt;
+&lt;h3 id=&#34;1-scan-to-scan-配准利用运动模型检测动态点干扰&#34;&gt;&lt;strong&gt;1. Scan-to-Scan 配准：利用运动模型检测动态点干扰&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;(a) 车辆运动模型的约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;车载激光雷达的运动是受约束的，例如：
+&lt;ul&gt;
+&lt;li&gt;车辆通常不会瞬间大幅度转向或漂移&lt;/li&gt;
+&lt;li&gt;速度、加速度、角速度等参数通常平滑变化&lt;/li&gt;
+&lt;li&gt;车辆的运动基本符合&lt;strong&gt;非完整约束（Non-holonomic Constraint）&lt;/strong&gt;，即不会随意横向滑移（除非漂移）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果ICP或其他配准方法的结果与&lt;strong&gt;车辆的合理运动模型不匹配&lt;/strong&gt;，则说明：
+&lt;ul&gt;
+&lt;li&gt;可能有较多动态物体（如行人、车辆）干扰了配准&lt;/li&gt;
+&lt;li&gt;可能发生了错误匹配，导致错误的变换估计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(b) 运动一致性检测&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;预测位姿&lt;/strong&gt;：使用&lt;strong&gt;上一帧位姿&lt;/strong&gt;和&lt;strong&gt;运动模型&lt;/strong&gt;（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配准后的位姿对比&lt;/strong&gt;：将Scan-to-Scan配准的结果与预测位姿进行对比，计算&lt;strong&gt;位姿残差&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异常检测&lt;/strong&gt;：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-scan-to-map-配准利用全局位姿约束检测配准错误&#34;&gt;&lt;strong&gt;2. Scan-to-Map 配准：利用全局位姿约束检测配准错误&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;(a) 全局位姿的运动一致性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿&lt;/li&gt;
+&lt;li&gt;通过比较&lt;strong&gt;当前帧的全局位姿 (T_{t})&lt;/strong&gt; 和 &lt;strong&gt;上一帧全局位姿 (T_{t-1})&lt;/strong&gt;，可以检查位姿变化是否符合车辆的运动模型&lt;/li&gt;
+&lt;li&gt;例如：
+&lt;ul&gt;
+&lt;li&gt;如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;(b) 误配准检测和修正&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果Scan-to-Map配准的结果&lt;strong&gt;与车辆运动模型不符&lt;/strong&gt;，可以：
+&lt;ul&gt;
+&lt;li&gt;重新优化Scan-to-Map的匹配权重，降低动态点的影响&lt;/li&gt;
+&lt;li&gt;结合IMU、轮速计、GPS等其他信息进行&lt;strong&gt;数据融合校正&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-可能的改进与应用&#34;&gt;&lt;strong&gt;3. 可能的改进与应用&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基于运动模型的动态点剔除&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;在Scan-to-Scan过程中，如果某些点的&lt;strong&gt;残差过大且不符合车辆运动模型&lt;/strong&gt;，则可以认为它们是&lt;strong&gt;动态点&lt;/strong&gt;，进行剔除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结合IMU进行位姿约束&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;通过IMU提供的&lt;strong&gt;角速度、加速度&lt;/strong&gt;信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异常位姿回溯修正&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SLAM代码库</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/repos/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/repos/</guid>
+      <description>&lt;h1 id=&#34;slam代码库&#34;&gt;SLAM代码库&lt;/h1&gt;
+&lt;p&gt;这里是一些开源的SLAM相关的代码库，提供内容描述和资源链接&lt;/p&gt;
+&lt;h2 id=&#34;roadlib&#34;&gt;RoadLib&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;作者：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	武汉大学GREAT实验室，leader是李星星。他们是做卫星和导航的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简介：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;strong&gt;一个开源的基于道路标识的增量式建图与定位系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	算法部分主要包括&lt;strong&gt;道路标识提取与建模&lt;/strong&gt;、&lt;strong&gt;局部增量式建图&lt;/strong&gt;、&lt;strong&gt;地图管理&lt;/strong&gt;与&lt;strong&gt;地图匹配定位&lt;/strong&gt;等模块。&lt;/p&gt;
+&lt;p&gt;​	好像是单目的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相关链接：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://github.com/GREAT-WHU/RoadLib&#34;&gt;RoadLib 代码库&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://www.bilibili.com/video/BV1bp42117N1&#34;&gt;预览视频1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://www.bilibili.com/video/BV1dS421d71n&#34;&gt;预览视频2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://mp.weixin.qq.com/s/_tT5t0kh3_oiwWlbdEPLlg&#34;&gt;武汉大学开源RoadLib：基于道路标识的增量式SLAM！&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;monolanemapping&#34;&gt;MonoLaneMapping&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;简介&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	实时单目摄像机车道建图。IROS23（IEEE的一个会议，智能机器人系统国际会议） 已经接受了这篇论文&lt;/p&gt;
+&lt;p&gt;这个框架接受图片和里程计（比如VIO）信息，估计位姿和车道地图。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作者：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	香港科技大学航空机器人实验室，leader是沈邵劼，香港科技大学-大疆联合创新实验室主任。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相关链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;a href=&#34;https://github.com/HKUST-Aerial-Robotics/MonoLaneMapping&#34;&gt;HKUST-Aerial-Robotics/MonoLaneMapping: Online Monocular Lane Mapping Using Catmull-Rom Spline (IROS 2023)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;a-loam&#34;&gt;A-LOAM&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;LOAM的一个高级的实现，没有复杂的数学推导，没有冗余的计算，代码更好看，适合新手。&lt;/p&gt;
+&lt;p&gt;代码库里使用的传感器有&lt;code&gt;VLP-16&lt;/code&gt;，&lt;code&gt;Velodyne HDL-64&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作者&lt;/p&gt;
+&lt;p&gt;香港科技大学航空机器人实验室&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;相关链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/HKUST-Aerial-Robotics/A-LOAM&#34;&gt;HKUST-Aerial-Robotics/A-LOAM: Advanced implementation of LOAM&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图示&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;kitti_gif&#34; loading=&#34;lazy&#34; src=&#34;d:\\ftdcheng\\Desktop\\文档\\笔记\\imgs\\slam-repo\\a-loam_kitti_gif.gif&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>SLAM数据集</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/datasets/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/datasets/</guid>
+      <description>&lt;h1 id=&#34;slam数据集&#34;&gt;SLAM数据集&lt;/h1&gt;
+&lt;p&gt;这里是一些SLAM相关的数据集，提供描述和链接&lt;/p&gt;
+&lt;p&gt;CoVLA&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;包含视觉、语言和动作的大规模标注数据集。这是一种基于CoVLA数据集的新型VLA模型，用于可解释的端到端自动驾驶。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;相关链接&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://huggingface.co/datasets/turing-motors/CoVLA-Dataset-Mini&#34;&gt;turing-motors/CoVLA-Dataset-Mini · Datasets at Hugging Face&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Semantic KITTI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;简介&lt;/p&gt;
+&lt;p&gt;SemanticKITTI 对 KITTI &lt;strong&gt;360° 激光雷达扫描点云&lt;/strong&gt;（Velodyne 数据）进行了逐点标注。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;类别数量&lt;/strong&gt;：分为 &lt;strong&gt;28个语义类别&lt;/strong&gt;（其中有19个主要类别用于评估，其他为未标注或忽略类别）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;语义类别示例&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;静态物体&lt;/strong&gt;：道路、建筑物、树木、草地、路标等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;动态物体&lt;/strong&gt;：行人、车辆、骑行者、动物等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;其他&lt;/strong&gt;：天空、未标注区域等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 SemanticKITTI 中，动态物体（如行人、骑行者、车辆等）与静态物体（如道路、建筑物、树木等）被明确区分，方便研究动态环境下的语义分割和物体检测任务。&lt;/p&gt;
+&lt;p&gt;这对于开发能适应 &lt;strong&gt;动态环境的 SLAM&lt;/strong&gt; 或感知系统非常有帮助。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>万能引用</title>
+      <link>http://localhost:1313/posts/cpp/universe-ref/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/universe-ref/</guid>
+      <description>&lt;h1 id=&#34;万能引用&#34;&gt;万能引用&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;👉 &lt;strong&gt;这不是移动对象，而是声明了一个“按值类别完美转发”的引用（即万能引用）。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;它不等于 &lt;code&gt;std::move(...)&lt;/code&gt;，也不会触发移动构造或移动赋值。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-来拆解下发生了什么&#34;&gt;🔍 来拆解下发生了什么：&lt;/h2&gt;
+&lt;h3 id=&#34;-auto-的含义取决于推导的上下文&#34;&gt;🌟 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 的含义取决于“推导的上下文”：&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;场景&lt;/th&gt;
+          &lt;th&gt;推导结果&lt;/th&gt;
+          &lt;th&gt;实际类型&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;右值初始化&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt;（右值引用）&lt;/td&gt;
+          &lt;td&gt;真·右值引用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;左值初始化&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;T&amp;amp; &amp;amp;&amp;amp;&lt;/code&gt; → &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;被折叠成&lt;strong&gt;左值引用&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;完美转发函数模板&lt;/td&gt;
+          &lt;td&gt;可左可右&lt;/td&gt;
+          &lt;td&gt;万能引用（Universal Reference）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;p&gt;在你的例子中：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;假设 &lt;code&gt;*(it_imu)&lt;/code&gt; 是个左值（比如容器里的引用），那么：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;auto&lt;/code&gt; 推导为 &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;所以 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 实际上变成 &lt;code&gt;T&amp;amp; &amp;amp;&amp;amp;&lt;/code&gt;，会&lt;strong&gt;引用折叠&lt;/strong&gt;成 &lt;code&gt;T&amp;amp;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;🔥 所以 &lt;code&gt;head&lt;/code&gt; 只是个普通的左值引用，和移动语义八竿子打不着。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-真正触发移动的方式是&#34;&gt;💥 真正触发移动的方式是：&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tmp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;move(&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu));  &lt;span style=&#34;color:#75715e&#34;&gt;// 明确地告诉编译器：我要移！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;所以你的写法更像是&#34;&gt;🚩所以你的写法更像是：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为了&lt;strong&gt;通用性/语法糖&lt;/strong&gt;（比如在模板函数中），用了 &lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 来&lt;strong&gt;接收任何值类型&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;但在当前场景，它接住的是容器迭代器解引用出来的&lt;strong&gt;左值&lt;/strong&gt;，所以变成了左值引用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;结尾顺口溜一首&#34;&gt;🧂结尾顺口溜一首：&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; 看着像移动，&lt;br&gt;
+实际只是引用秀。&lt;br&gt;
+真想挪走请 &lt;code&gt;std::move&lt;/code&gt;，&lt;br&gt;
+否则只是原地蹲守 🐢。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>代码调试问题</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/debugging/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/debugging/</guid>
+      <description>&lt;h1 id=&#34;代码调试问题&#34;&gt;代码调试问题&lt;/h1&gt;
+&lt;h2 id=&#34;livox-ros-driver找不到&#34;&gt;livox ros driver找不到&lt;/h2&gt;
+&lt;p&gt;关掉所有的vscode终端，开一个新终端，在你的项目目录自己新建build，然后cmake。
+因为vscode终端的环境和cmake插件使用的环境是一样的，所以你source之后，那么cmake config就可以找到livox ros driver。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>初始化列表</title>
+      <link>http://localhost:1313/posts/cpp/initializer-list/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cpp/initializer-list/</guid>
+      <description>&lt;h1 id=&#34;初始化列表&#34;&gt;初始化列表&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;初始化列表&lt;/strong&gt;（&lt;code&gt;initializer_list&lt;/code&gt;）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-1-基本用法&#34;&gt;🧱 1. &lt;strong&gt;基本用法&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;initializer_list&lt;/code&gt; 允许你在构造对象时，直接用 &lt;code&gt;{}&lt;/code&gt; 花括号传递一个列表。&lt;/p&gt;
+&lt;h3 id=&#34;示例基础使用&#34;&gt;示例：基础使用&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;initializer_list&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;MyClass&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; a, b, c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 使用初始化列表来初始化成员变量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    MyClass(std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;initializer_list&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; init) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt; it &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; init.begin();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;  &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 a
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;  &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 b
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        c &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;it;    &lt;span style=&#34;color:#75715e&#34;&gt;// 初始化 c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;print&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;cout &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;, b: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;, c: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; std&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;endl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    MyClass obj{&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;};  &lt;span style=&#34;color:#75715e&#34;&gt;// 使用初始化列表
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    obj.print();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;输出&#34;&gt;输出：&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a: 1, b: 2, c: 3
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;-2-什么时候用初始化列表&#34;&gt;🧩 2. &lt;strong&gt;什么时候用初始化列表？&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;1-类的构造函数初始化成员变量&#34;&gt;1. &lt;strong&gt;类的构造函数初始化成员变量&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;在类的构造函数中，&lt;strong&gt;使用初始化列表&lt;/strong&gt;是初始化成员变量的最有效方式，特别是对于常量成员（&lt;code&gt;const&lt;/code&gt;）和引用成员，因为它们在构造时必须被初始化。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>动态SLAM的一些信息</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</guid>
+      <description>&lt;h1 id=&#34;动态slam的一些信息&#34;&gt;动态SLAM的一些信息&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;静态假设&lt;/p&gt;
+&lt;p&gt;SLAM的正常工作依赖于动态假设，如果忽视环境中的动态物体，会给配准、地图带来影响。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态SLAM的方法&lt;/p&gt;
+&lt;p&gt;基于去除的方法：一种是手工设计的特征算法对动态点进行去除，另外一种是通过机器学习的方式找到动态点。有使用预先建立的地图和当前scan进行比对找到动态点的。还有一些人是直接等建图完了，直接对鬼影下手清除的。基于地图的方法离线的居多。&lt;/p&gt;
+&lt;p&gt;基于追踪的方法：对动态物体进行追踪，对动态点进行去除。有先生成BBOX的，然后再追踪BBOX的变化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;benchmark&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/KTH-RPL/DynamicMap_Benchmark&#34;&gt;KTH-RPL/DynamicMap_Benchmark: The First Dynamic Map Removal Benchmark | Included 8 SOTA methods | Continous updating&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关注作者&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kin-zhang.github.io/&#34;&gt;Qingwen Zhang&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>并行编程库那些事</title>
+      <link>http://localhost:1313/posts/parallel/program-libs/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/parallel/program-libs/</guid>
+      <description>&lt;h1 id=&#34;并行编程库那些事&#34;&gt;并行编程库那些事&lt;/h1&gt;
+&lt;h2 id=&#34;openmp&#34;&gt;OpenMP&lt;/h2&gt;
+&lt;h3 id=&#34;-简明定义先来个正经版&#34;&gt;✅ 简明定义（先来个“正经”版）：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;OpenMP&lt;/strong&gt;（Open Multi-Processing）是一个&lt;strong&gt;支持多平台共享内存并行编程&lt;/strong&gt;的&lt;strong&gt;API规范&lt;/strong&gt;，主要用于&lt;strong&gt;C、C++ 和 Fortran&lt;/strong&gt;，通过&lt;strong&gt;编译器指令（pragma）、运行时库函数和环境变量&lt;/strong&gt;来实现&lt;strong&gt;并行化程序设计&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-谁提的&#34;&gt;🧠 谁提的？&lt;/h3&gt;
+&lt;p&gt;OpenMP &lt;strong&gt;不是某一个公司单独提出的&lt;/strong&gt;，虽然 &lt;strong&gt;Intel 是早期重要成员之一&lt;/strong&gt;，但实际上它是由一个叫做 &lt;strong&gt;OpenMP Architecture Review Board (ARB)&lt;/strong&gt; 的组织定义和维护的。&lt;/p&gt;
+&lt;p&gt;这个 ARB 联盟大佬云集，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel&lt;/li&gt;
+&lt;li&gt;AMD&lt;/li&gt;
+&lt;li&gt;IBM&lt;/li&gt;
+&lt;li&gt;HP&lt;/li&gt;
+&lt;li&gt;Microsoft&lt;/li&gt;
+&lt;li&gt;NVIDIA（最近也进来了）&lt;/li&gt;
+&lt;li&gt;等等等…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以你可以把 OpenMP 看作是&lt;strong&gt;编译器厂商联盟的「和平共处」协议&lt;/strong&gt;，让大家都能写出 portable（可移植）又 efficient（高效）的多线程代码。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-它干啥的&#34;&gt;🔧 它干啥的？&lt;/h3&gt;
+&lt;p&gt;OpenMP 最常见的用途是——你说对了：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✨ “并行 for 循环”！&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#pragma omp parallel for
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; N; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    work(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但不止这些，还有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;并行 &lt;code&gt;sections&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;任务 (&lt;code&gt;task&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;原子操作、互斥锁 (&lt;code&gt;omp critical&lt;/code&gt;, &lt;code&gt;omp atomic&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;动态线程数控制&lt;/li&gt;
+&lt;li&gt;并行 region 嵌套&lt;/li&gt;
+&lt;li&gt;GPU 加速（OpenMP 5.0+ 支持 target offloading！）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-简单-vs-灵活&#34;&gt;🌀 简单 vs 灵活&lt;/h3&gt;
+&lt;p&gt;OpenMP 的设计哲学就是：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>旧磁盘数据迁移到新磁盘</title>
+      <link>http://localhost:1313/posts/linux/move-system-to-new-disk/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/linux/move-system-to-new-disk/</guid>
+      <description>&lt;h1 id=&#34;旧磁盘数据迁移到新磁盘&#34;&gt;旧磁盘数据迁移到新磁盘&lt;/h1&gt;
+&lt;h2 id=&#34;安装硬盘&#34;&gt;安装硬盘&lt;/h2&gt;
+&lt;p&gt;关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。&lt;/p&gt;
+&lt;h2 id=&#34;查看旧磁盘上挂载了哪些文件系统&#34;&gt;查看旧磁盘上挂载了哪些文件系统&lt;/h2&gt;
+&lt;p&gt;我们假设旧磁盘设备是/dev/sda，然后可以使用&lt;code&gt;lsblk -f&lt;/code&gt;查看，输出样例如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;loop0       squashfs                                                  0   100% /snap/bare/5
+loop1       squashfs                                                  0   100% /snap/core20/2496
+loop2       squashfs                                                  0   100% /snap/gnome-42-2204/202
+loop3       squashfs                                                  0   100% /snap/snap-store/1113
+loop4       squashfs                                                  0   100% /snap/gnome-42-2204/176
+loop5       squashfs                                                  0   100% /snap/core22/1748
+loop6       squashfs                                                  0   100% /snap/gtk-common-themes/1535
+loop7       squashfs                                                  0   100% /snap/core22/1802
+loop8       squashfs                                                  0   100% /snap/snap-store/1216
+loop9       squashfs                                                  0   100% /snap/gnome-3-38-2004/143
+loop10      squashfs                                                  0   100% /snap/gnome-3-38-2004/119
+loop11      squashfs                                                  0   100% /snap/core20/2434
+loop12      squashfs                                                  0   100% /snap/snapd/23545
+loop13      squashfs                                                  0   100% /snap/snapd/23771
+sda                                                                            
+├─sda1      vfat           8BC3-AF3D                               1.9G     0% /boot/efi
+├─sda2      swap           a7510130-5064-42a3-abd0-787e8a4f131e                [SWAP]
+└─sda3      ext4           1f234375-7152-4e77-a210-b7573423c600  689.7G    19% /
+sdb                                                                            
+└─sdb1      ext4           691e6f03-2d31-4de8-ba6a-0754f2924dd6    2.4T    29% /home
+sdc                                                                            
+└─sdc1      ext4           2eb7de08-5701-4657-b69a-f0deab8803af    1.3T    60% /data
+sdd         ext4           dd08c204-9596-44f3-b9be-35ef81650d2e      7T    30% /data1
+sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /data2
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这表明分区&lt;code&gt;/dev/sda1&lt;/code&gt;挂了&lt;code&gt;/boot/efi&lt;/code&gt;，&lt;code&gt;/dev/sd2&lt;/code&gt;挂了交换分区，/dev/sda3挂的&lt;code&gt;/&lt;/code&gt;。
+此外&lt;code&gt;/home&lt;/code&gt;和&lt;code&gt;/data&lt;/code&gt;、&lt;code&gt;/data1&lt;/code&gt;和&lt;code&gt;/data2&lt;/code&gt;挂在其他磁盘上，等会复制根分区的时候，应该排除。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>杂项信息</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/misc/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/misc/</guid>
+      <description>&lt;h1 id=&#34;杂项信息&#34;&gt;杂项信息&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;相机的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有RGB信息&lt;/li&gt;
+&lt;li&gt;成本低&lt;/li&gt;
+&lt;li&gt;重量轻&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺少直接的深度信息，后期会消耗算力去估计&lt;/li&gt;
+&lt;li&gt;对光照敏感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;激光雷达的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;能直接读出点的深度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;成本高，固态雷达稍微便宜一点&lt;/li&gt;
+&lt;li&gt;特征点可能很多，如果算法不当，计算成本很高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配准、运动估计算法的发展&lt;/p&gt;
+&lt;p&gt;最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错&lt;/p&gt;
+&lt;p&gt;后面有泛化的ICP方法，基于点到面距离。&lt;/p&gt;
+&lt;p&gt;LOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;松耦合激光雷达惯性里程计(Loosely-coupled LIO)&lt;/p&gt;
+&lt;p&gt;IMU可以缓解激光雷达在缺乏特征的环境下的退化。&lt;/p&gt;
+&lt;p&gt;松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。&lt;/p&gt;
+&lt;p&gt;松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;紧耦合LIO&lt;/p&gt;
+&lt;p&gt;紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。&lt;/p&gt;
+&lt;p&gt;紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;粒子滤波器的优缺点&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;精度可控&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在特征点数量多、系统状态多的时候计算复杂度高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;迭代扩展卡尔曼滤波器（IEKF）&lt;/p&gt;
+&lt;p&gt;KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>激光雷达</title>
+      <link>http://localhost:1313/posts/slam/sensors/lidar/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/sensors/lidar/</guid>
+      <description>&lt;h1 id=&#34;激光雷达&#34;&gt;激光雷达&lt;/h1&gt;
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+&lt;h3 id=&#34;物体反射率object-reflectivity&#34;&gt;物体反射率（Object Reflectivity）&lt;/h3&gt;
+&lt;p&gt;激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。&lt;/li&gt;
+&lt;li&gt;1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;反射率与物体的以下特性密切相关：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。&lt;/li&gt;
+&lt;li&gt;表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。&lt;/li&gt;
+&lt;li&gt;颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。&lt;/li&gt;
+&lt;li&gt;角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;激光雷达反射率的应用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。&lt;/li&gt;
+&lt;li&gt;环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。&lt;/li&gt;
+&lt;li&gt;地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;深度depth&#34;&gt;深度（Depth）&lt;/h3&gt;
+&lt;p&gt;激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离：
+$$
+D(P) = \sqrt{x^2 + y^2 + z^2}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;偏转角deflection-angle&#34;&gt;偏转角（Deflection Angle）&lt;/h3&gt;
+&lt;p&gt;激光和 $X$ 轴的夹角：
+$$
+\phi (P) = tan^{-1}(\sqrt{(y^2 + z ^ 2) / x ^ 2})
+$$&lt;/p&gt;
+&lt;h3 id=&#34;强度intensity&#34;&gt;强度（Intensity）&lt;/h3&gt;
+&lt;p&gt;$$
+I(P) = R / D(P^2)
+$$&lt;/p&gt;
+&lt;p&gt;其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。&lt;/p&gt;
+&lt;h3 id=&#34;入射角incident-angle&#34;&gt;入射角（Incident Angle）&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;入射角&#34; loading=&#34;lazy&#34; src=&#34;imgs/incident_angle.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;激光打到平面上的入射角。如图中的 $\theta$
+$$
+\theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right)
+$$&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>激光雷达SLAM</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</guid>
+      <description>&lt;h1 id=&#34;激光雷达slam&#34;&gt;激光雷达SLAM&lt;/h1&gt;
+&lt;h2 id=&#34;loam&#34;&gt;LOAM&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
+为了减少运动模糊，LOAM采用了雷达姿态线性插值，也有用后端优化的方法减少运动模糊的方法（In2laama: Inertial lidar localisation autocalibration and mapping）。后端优化的方法相对准确一点，但是不能实时运行。&lt;/p&gt;
+&lt;h2 id=&#34;lego-loam&#34;&gt;LeGO-LOAM&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/8594299&#34;&gt;Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;loam-livox&#34;&gt;LOAM livox&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/9197440&#34;&gt;Loam livox: A fast, robust, high-precision lidar odometry and mapping package for lidars of small fov&lt;/a&gt;
+提出了新的减少运动模糊的方法，并且并行化了。提出的方法比LOAM的线性插值更精确，运行效率更高。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>程序员读代码的禅与修炼</title>
+      <link>http://localhost:1313/posts/design/how-to-read-code/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design/how-to-read-code/</guid>
+      <description>&lt;h1 id=&#34;程序员读代码的禅与修炼&#34;&gt;程序员读代码的禅与修炼&lt;/h1&gt;
+&lt;h2 id=&#34;-前言&#34;&gt;🧭 前言&lt;/h2&gt;
+&lt;p&gt;代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-1-先读文档再读代码&#34;&gt;📌 1. 先读文档，再读代码&lt;/h2&gt;
+&lt;h3 id=&#34;推荐优先阅读材料&#34;&gt;推荐优先阅读材料：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;README / Wiki / 项目介绍页&lt;/li&gt;
+&lt;li&gt;CONTRIBUTING.md（可见贡献规范）&lt;/li&gt;
+&lt;li&gt;Issues 与 Pull Requests（可见设计动因与变更历史）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;理由&#34;&gt;理由：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-2-能跑才好读&#34;&gt;🧪 2. 能跑，才好读&lt;/h2&gt;
+&lt;h3 id=&#34;做到以下几点&#34;&gt;做到以下几点：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;能顺利构建并运行项目（甚至部署）&lt;/li&gt;
+&lt;li&gt;能使用调试工具或 log 打印控制信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;理由-1&#34;&gt;理由：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-3-明确阅读目标&#34;&gt;🎯 3. 明确阅读目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;是为了修 bug，还是加功能？&lt;/li&gt;
+&lt;li&gt;是为了学习架构，还是了解具体模块？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-4-bfs--dfs-的阅读策略&#34;&gt;🧠 4. BFS &amp;gt; DFS 的阅读策略&lt;/h2&gt;
+&lt;h3 id=&#34;不要陷入深度优先&#34;&gt;不要陷入深度优先：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;沿着一条调用链不断深入容易迷路。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;要采用广度优先&#34;&gt;要采用广度优先：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-5-分块阅读构建模块地图&#34;&gt;🧱 5. 分块阅读：构建“模块地图”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;观察文件结构、类和函数边界&lt;/li&gt;
+&lt;li&gt;分析模块的职责划分（谁负责输入、谁负责输出）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;熟悉块的边界感，就像会认字就能阅读文章。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-6-管理你的大脑记忆资源&#34;&gt;🧵 6. 管理你的大脑记忆资源&lt;/h2&gt;
+&lt;p&gt;类比：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;工作记忆 = 寄存器&lt;/li&gt;
+&lt;li&gt;短期记忆 = RAM&lt;/li&gt;
+&lt;li&gt;长期记忆 = 硬盘&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;技巧&#34;&gt;技巧：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;精简当前需要记住的信息（只记主逻辑）&lt;/li&gt;
+&lt;li&gt;将常用 API、框架结构固化为长期记忆&lt;/li&gt;
+&lt;li&gt;用笔记或注释辅助记忆缓存&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-7-把代码当成自然语言来读&#34;&gt;🧩 7. 把代码当成自然语言来读&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;命名风格是“句法”&lt;/li&gt;
+&lt;li&gt;缩进结构是“语调”&lt;/li&gt;
+&lt;li&gt;注释内容是“修辞”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;文献阅读技巧可迁移&#34;&gt;文献阅读技巧可迁移：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;找主语（谁调用谁）&lt;/li&gt;
+&lt;li&gt;找动词（干了啥）&lt;/li&gt;
+&lt;li&gt;找逻辑连接词（if, while, for 等控制结构）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-8-进阶技巧-bonus&#34;&gt;✨ 8. 进阶技巧 Bonus&lt;/h2&gt;
+&lt;h3 id=&#34;-制作项目地图&#34;&gt;📐 制作项目“地图”&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用 markdown / 画图记录模块间的关系图&lt;/li&gt;
+&lt;li&gt;使用 PlantUML / Mermaid 绘制调用图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;-卡片式阅读笔记&#34;&gt;🗃️ 卡片式阅读笔记&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;每个模块/函数做成一张卡片，写用途 + 结构 + 接口&lt;/li&gt;
+&lt;li&gt;下次切换项目时秒级上手&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;-预测-vs-验证&#34;&gt;🔁 预测 vs 验证&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;猜代码逻辑，调试验证对错，训练直觉与分析力&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-总结&#34;&gt;🧘 总结&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>网络</title>
+      <link>http://localhost:1313/posts/docker/networking/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/docker/networking/</guid>
+      <description>&lt;h1 id=&#34;网络&#34;&gt;网络&lt;/h1&gt;
+&lt;p&gt;docker网络可以让容器访问外网或者互相访问。&lt;/p&gt;
+&lt;p&gt;默认开启了docker网络，不过容器不知道自己连接的什么对象，只知道自己的IP，网关，DNS这些网络参数。&lt;/p&gt;
+&lt;p&gt;当你启动docker时，会默认将容器挂在default这个bridge驱动上。&lt;/p&gt;
+&lt;p&gt;默认桥接网络只能通过IP地址进行互相访问。比如你在默认桥接网络下有两个容器，那么你只要知道了两个容器的IP地址你才能进行两个容器之间的通信。在用户定义桥接网络下，你可以使用容器名或者别名进行互相访问。&lt;/p&gt;
+&lt;h2 id=&#34;用户自定义网络&#34;&gt;用户自定义网络&lt;/h2&gt;
+&lt;p&gt;你可以创建用户自定义网络把多个容器放到同一个网络下，互相进行通信。默认使用&lt;code&gt;bridge&lt;/code&gt;，也就是桥接的方式创建网络。这是一个创建并连接到自定义网络的例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker network create -d bridge my-net
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run --network&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;my-net -itd --name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;container3 busybox
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;驱动&#34;&gt;驱动&lt;/h2&gt;
+&lt;p&gt;除了&lt;code&gt;bridge&lt;/code&gt;外，容器可以使用很多网络驱动。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;bridge: 同一主机上的容器进行通信使用，默认选项&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;连接到网络&#34;&gt;连接到网络&lt;/h2&gt;
+&lt;p&gt;容器可以连接到多个网络&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>论文备忘</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</guid>
+      <description>&lt;h1 id=&#34;论文备忘&#34;&gt;论文备忘&lt;/h1&gt;
+&lt;p&gt;这里放一些想看的论文，以及想看的理由&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;LeGO-Loam&lt;/p&gt;
+&lt;p&gt;Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain,” in 2018 IEEE/RSJ&lt;/p&gt;
+&lt;p&gt;这个方法好像扣掉了小物体提高了精度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MULLS&lt;/p&gt;
+&lt;p&gt;Mulls: Versatile lidar slam via multi-metric linear least square, 2021 ICRA&lt;/p&gt;
+&lt;p&gt;这个方法使用了PCA提取了充足稳定的特征，这个方法独立于扫描线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;KISS-ICP&lt;/p&gt;
+&lt;p&gt;Kiss-icp: In defense of point-to-point icp – simple, accurate, and robust registration if done the right way,” IEEE Robotics and Automation Letters, vol. 8, no. 2, pp. 1029–1036, 2023.&lt;/p&gt;
+&lt;p&gt;一个比较新的点云配准方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;什么是因子图优化
+看gtsam或者g2o&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>配准方法</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/register-method/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/register-method/</guid>
+      <description>&lt;h1 id=&#34;配准方法&#34;&gt;配准方法&lt;/h1&gt;
+&lt;h2 id=&#34;icp&#34;&gt;ICP&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/121791&#34;&gt;A method for registration of 3-D shapes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;generialized-icp-泛化icp&#34;&gt;generialized-ICP （泛化ICP）&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.roboticsproceedings.org/rss05/p21.pdf&#34;&gt;Generalized-icp&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP&lt;/p&gt;
+&lt;h2 id=&#34;loam-改进的generialzed-icp&#34;&gt;LOAM 改进的generialzed-ICP&lt;/h2&gt;
+&lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
+在泛化ICP的基础上添加了点到边的距离&lt;/p&gt;
+&lt;h2 id=&#34;基于3d关键点的方法&#34;&gt;基于3D关键点的方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning informative point classes for the acquisition of object model maps&lt;/li&gt;
+&lt;li&gt;Fast point feature histograms (fpfh) for 3d registration&lt;/li&gt;
+&lt;li&gt;Fast 3d recognition and pose using the viewpoint feature histogram&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这类方法从稠密的点云中提取特征，减少计算资源的占用。
+诸多方法已经使用并行化来提高效率&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>银弹是什么梗</title>
+      <link>http://localhost:1313/posts/design/silver-bullet/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/design/silver-bullet/</guid>
+      <description>&lt;h1 id=&#34;银弹是什么梗&#34;&gt;银弹是什么梗&lt;/h1&gt;
+&lt;p&gt;哈哈哈，银弹（&lt;strong&gt;silver bullet&lt;/strong&gt;）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;银弹原梗出自哪&#34;&gt;🌕【银弹】原梗出自哪？&lt;/h2&gt;
+&lt;p&gt;银弹最早是&lt;strong&gt;西方传说&lt;/strong&gt;里专门用来对付狼人（werewolf）的武器——&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“普通的武器对狼人无效，只有银子铸的子弹才能一枪爆头。”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;🌙 所以，“银弹”就成了 &lt;strong&gt;“唯一能解决棘手问题的终极武器”&lt;/strong&gt; 的代名词。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-那跟程序员有什么关系&#34;&gt;💻 那跟程序员有什么关系？&lt;/h2&gt;
+&lt;p&gt;来自软件工程界不朽经典文章：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;No Silver Bullet&amp;rdquo;（1986）&lt;/strong&gt;&lt;br&gt;
+作者：Fred Brooks（布鲁克斯，写过《人月神话》）&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;文章核心观点是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“软件工程中&lt;strong&gt;没有银弹&lt;/strong&gt;，没有哪个技术、语言、工具能&lt;strong&gt;一次性解决所有复杂性问题&lt;/strong&gt;。”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;☠️ 换句话说：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;没有神级框架能帮你永远不踩坑&lt;/li&gt;
+&lt;li&gt;没有完美语言能兼顾性能、抽象、易学&lt;/li&gt;
+&lt;li&gt;没有任何库能让并行编程像写 for 循环那么轻松&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这句话打碎了很多人对“万能工具”的幻想，所以后来：&lt;/p&gt;
+&lt;p&gt;🧠 “银弹”就变成了程序员之间用来调侃那种“看起来能解决一切问题的技术”的 &lt;strong&gt;反讽梗&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-使用场景举几个例子梗味上头&#34;&gt;🐶 使用场景举几个例子（梗味上头）：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A：“我们是不是可以用 Rust 重构所有 C++ 模块？”&lt;/li&gt;
+&lt;li&gt;B：“你是觉得 Rust 是银弹吗？”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;A：“有了这个 AutoGPT，我们啥都不用写了！”&lt;/li&gt;
+&lt;li&gt;B：“又一颗银弹飞来了🐴”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;A：“把这个动态点检测改成 Transformer，准确率、泛用性、实时性全解决。”&lt;/li&gt;
+&lt;li&gt;B：“老哥你这颗银弹……别真把系统打穿了。”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-结尾小诗&#34;&gt;🧩 结尾小诗：&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;银弹一发解千愁，&lt;br&gt;
+实际一堆 bug 在后头。&lt;br&gt;
+工程之道无神兵，&lt;br&gt;
+拔剑还得靠双手。🗡️&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;有没有哪个你以为是银弹的技术，结果啪啪打脸？可以一起来吐槽一波 😎&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>问题集</title>
+      <link>http://localhost:1313/posts/slam/brainstorm/issues/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/brainstorm/issues/</guid>
+      <description>&lt;h1 id=&#34;问题集&#34;&gt;问题集&lt;/h1&gt;
+&lt;p&gt;这个文档会给出一些研究中遇到的问题，如果找到了答案会写在问题下面&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;什么是ICP算法，原理如何&lt;/li&gt;
+&lt;li&gt;什么是catmull-rom样条插值，什么是参数化&lt;/li&gt;
+&lt;li&gt;什么是Levenberg-Marquardt算法&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>高效时空信息融合的动态SLAM框架</title>
+      <link>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
+      <description>&lt;h1 id=&#34;高效时空信息融合的动态slam框架&#34;&gt;高效时空信息融合的动态SLAM框架&lt;/h1&gt;
+&lt;h2 id=&#34;idea&#34;&gt;idea&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息&lt;/li&gt;
+&lt;li&gt;测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。&lt;/li&gt;
+&lt;li&gt;文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率&lt;/li&gt;
+&lt;li&gt;单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。&lt;/li&gt;
+&lt;li&gt;要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力&lt;/li&gt;
+&lt;li&gt;LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高&lt;/li&gt;
+&lt;li&gt;文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。&lt;/li&gt;
+&lt;li&gt;这篇文章声称自己是一种在线的方案。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;历史上的方法&#34;&gt;历史上的方法&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。&lt;/li&gt;
+&lt;li&gt;在线MOS(运动物体分割):
+&lt;ul&gt;
+&lt;li&gt;端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。&lt;/li&gt;
+&lt;li&gt;从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;h3 id=&#34;测距图像的表示&#34;&gt;测距图像的表示&lt;/h3&gt;
+&lt;p&gt;$$
+\binom{u}{v}=\binom{\frac{1}{2}\left[1-\arctan (y, x) \pi^{-1}\right] \quad w}{\left[1-\left(\arcsin \left(z r^{-1}\right)+\mathrm{f}_{\mathrm{up}}\right) \mathrm{f}^{-1}\right] h}
+$$&lt;/p&gt;
+&lt;p&gt;这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。&lt;/p&gt;
+&lt;h3 id=&#34;残差图&#34;&gt;残差图&lt;/h3&gt;
+&lt;p&gt;使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。&lt;/p&gt;
+&lt;h3 id=&#34;元核卷积meta-kernel-convolution&#34;&gt;元核卷积（Meta-Kernel Convolution）&lt;/h3&gt;
+&lt;p&gt;对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。&lt;/p&gt;
+&lt;p&gt;这么做的目的是编码3D空间信息。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

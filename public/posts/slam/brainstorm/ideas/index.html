@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>SLAM Ideas | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="brainstorm">
+<meta name="description" content="SLAM Ideas
+
+动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。
+数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道
+使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强
+和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？
+FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？
+Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图
+其它传感器的信息是否可以助力目标检测剔除动态
+地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力
+
+残差图
+两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。
+基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了
+如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。
+如果是scan2map的残差图，能判断分割相对场景是否运动。
+一致性约束
+如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？
+1. Scan-to-Scan 配准：利用运动模型检测动态点干扰
+(a) 车辆运动模型的约束
+
+车载激光雷达的运动是受约束的，例如：
+
+车辆通常不会瞬间大幅度转向或漂移
+速度、加速度、角速度等参数通常平滑变化
+车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移）
+
+
+如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明：
+
+可能有较多动态物体（如行人、车辆）干扰了配准
+可能发生了错误匹配，导致错误的变换估计
+
+
+
+(b) 运动一致性检测
+
+预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围
+配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差
+异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响
+
+2. Scan-to-Map 配准：利用全局位姿约束检测配准错误
+(a) 全局位姿的运动一致性
+
+Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿
+通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型
+例如：
+
+如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化
+
+
+
+(b) 误配准检测和修正
+
+如果Scan-to-Map配准的结果与车辆运动模型不符，可以：
+
+重新优化Scan-to-Map的匹配权重，降低动态点的影响
+结合IMU、轮速计、GPS等其他信息进行数据融合校正
+引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响
+
+
+
+3. 可能的改进与应用
+
+基于运动模型的动态点剔除
+
+在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除
+
+
+结合IMU进行位姿约束
+
+通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响
+
+
+异常位姿回溯修正
+
+如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积
+
+
+
+在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/slam/brainstorm/ideas/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/brainstorm/ideas/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      SLAM Ideas
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="slam-ideas">SLAM Ideas<a hidden class="anchor" aria-hidden="true" href="#slam-ideas">#</a></h1>
+<ol>
+<li>动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。</li>
+<li>数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道</li>
+<li>使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强</li>
+<li>和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？</li>
+<li>FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？</li>
+<li>Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图</li>
+<li>其它传感器的信息是否可以助力目标检测剔除动态</li>
+<li>地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力</li>
+</ol>
+<h2 id="残差图">残差图<a hidden class="anchor" aria-hidden="true" href="#残差图">#</a></h2>
+<p>两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。</p>
+<p>基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了</p>
+<p>如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。</p>
+<p>如果是scan2map的残差图，能判断分割相对场景是否运动。</p>
+<h2 id="一致性约束">一致性约束<a hidden class="anchor" aria-hidden="true" href="#一致性约束">#</a></h2>
+<p>如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？</p>
+<h3 id="1-scan-to-scan-配准利用运动模型检测动态点干扰"><strong>1. Scan-to-Scan 配准：利用运动模型检测动态点干扰</strong><a hidden class="anchor" aria-hidden="true" href="#1-scan-to-scan-配准利用运动模型检测动态点干扰">#</a></h3>
+<p><strong>(a) 车辆运动模型的约束</strong></p>
+<ul>
+<li>车载激光雷达的运动是受约束的，例如：
+<ul>
+<li>车辆通常不会瞬间大幅度转向或漂移</li>
+<li>速度、加速度、角速度等参数通常平滑变化</li>
+<li>车辆的运动基本符合<strong>非完整约束（Non-holonomic Constraint）</strong>，即不会随意横向滑移（除非漂移）</li>
+</ul>
+</li>
+<li>如果ICP或其他配准方法的结果与<strong>车辆的合理运动模型不匹配</strong>，则说明：
+<ul>
+<li>可能有较多动态物体（如行人、车辆）干扰了配准</li>
+<li>可能发生了错误匹配，导致错误的变换估计</li>
+</ul>
+</li>
+</ul>
+<p><strong>(b) 运动一致性检测</strong></p>
+<ul>
+<li><strong>预测位姿</strong>：使用<strong>上一帧位姿</strong>和<strong>运动模型</strong>（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围</li>
+<li><strong>配准后的位姿对比</strong>：将Scan-to-Scan配准的结果与预测位姿进行对比，计算<strong>位姿残差</strong></li>
+<li><strong>异常检测</strong>：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响</li>
+</ul>
+<h3 id="2-scan-to-map-配准利用全局位姿约束检测配准错误"><strong>2. Scan-to-Map 配准：利用全局位姿约束检测配准错误</strong><a hidden class="anchor" aria-hidden="true" href="#2-scan-to-map-配准利用全局位姿约束检测配准错误">#</a></h3>
+<p><strong>(a) 全局位姿的运动一致性</strong></p>
+<ul>
+<li>Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿</li>
+<li>通过比较<strong>当前帧的全局位姿 (T_{t})</strong> 和 <strong>上一帧全局位姿 (T_{t-1})</strong>，可以检查位姿变化是否符合车辆的运动模型</li>
+<li>例如：
+<ul>
+<li>如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化</li>
+</ul>
+</li>
+</ul>
+<p><strong>(b) 误配准检测和修正</strong></p>
+<ul>
+<li>如果Scan-to-Map配准的结果<strong>与车辆运动模型不符</strong>，可以：
+<ul>
+<li>重新优化Scan-to-Map的匹配权重，降低动态点的影响</li>
+<li>结合IMU、轮速计、GPS等其他信息进行<strong>数据融合校正</strong></li>
+<li>引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-可能的改进与应用"><strong>3. 可能的改进与应用</strong><a hidden class="anchor" aria-hidden="true" href="#3-可能的改进与应用">#</a></h3>
+<ul>
+<li><strong>基于运动模型的动态点剔除</strong>
+<ul>
+<li>在Scan-to-Scan过程中，如果某些点的<strong>残差过大且不符合车辆运动模型</strong>，则可以认为它们是<strong>动态点</strong>，进行剔除</li>
+</ul>
+</li>
+<li><strong>结合IMU进行位姿约束</strong>
+<ul>
+<li>通过IMU提供的<strong>角速度、加速度</strong>信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响</li>
+</ul>
+</li>
+<li><strong>异常位姿回溯修正</strong>
+<ul>
+<li>如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积</li>
+</ul>
+</li>
+</ul>
+<p>在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/brainstorm/">Brainstorm</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

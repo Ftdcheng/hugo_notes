@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Parallel on Citrus Cheng&#39;s wiki</title>
+    <link>http://localhost:1313/tags/parallel/</link>
+    <description>Recent content in Parallel on Citrus Cheng&#39;s wiki</description>
+    <generator>Hugo -- 0.146.6</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>并行编程库那些事</title>
+      <link>http://localhost:1313/posts/parallel/program-libs/</link>
+      <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/parallel/program-libs/</guid>
+      <description>&lt;h1 id=&#34;并行编程库那些事&#34;&gt;并行编程库那些事&lt;/h1&gt;
+&lt;h2 id=&#34;openmp&#34;&gt;OpenMP&lt;/h2&gt;
+&lt;h3 id=&#34;-简明定义先来个正经版&#34;&gt;✅ 简明定义（先来个“正经”版）：&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;OpenMP&lt;/strong&gt;（Open Multi-Processing）是一个&lt;strong&gt;支持多平台共享内存并行编程&lt;/strong&gt;的&lt;strong&gt;API规范&lt;/strong&gt;，主要用于&lt;strong&gt;C、C++ 和 Fortran&lt;/strong&gt;，通过&lt;strong&gt;编译器指令（pragma）、运行时库函数和环境变量&lt;/strong&gt;来实现&lt;strong&gt;并行化程序设计&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-谁提的&#34;&gt;🧠 谁提的？&lt;/h3&gt;
+&lt;p&gt;OpenMP &lt;strong&gt;不是某一个公司单独提出的&lt;/strong&gt;，虽然 &lt;strong&gt;Intel 是早期重要成员之一&lt;/strong&gt;，但实际上它是由一个叫做 &lt;strong&gt;OpenMP Architecture Review Board (ARB)&lt;/strong&gt; 的组织定义和维护的。&lt;/p&gt;
+&lt;p&gt;这个 ARB 联盟大佬云集，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel&lt;/li&gt;
+&lt;li&gt;AMD&lt;/li&gt;
+&lt;li&gt;IBM&lt;/li&gt;
+&lt;li&gt;HP&lt;/li&gt;
+&lt;li&gt;Microsoft&lt;/li&gt;
+&lt;li&gt;NVIDIA（最近也进来了）&lt;/li&gt;
+&lt;li&gt;等等等…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以你可以把 OpenMP 看作是&lt;strong&gt;编译器厂商联盟的「和平共处」协议&lt;/strong&gt;，让大家都能写出 portable（可移植）又 efficient（高效）的多线程代码。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-它干啥的&#34;&gt;🔧 它干啥的？&lt;/h3&gt;
+&lt;p&gt;OpenMP 最常见的用途是——你说对了：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✨ “并行 for 循环”！&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#pragma omp parallel for
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; N; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    work(i);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但不止这些，还有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;并行 &lt;code&gt;sections&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;任务 (&lt;code&gt;task&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;原子操作、互斥锁 (&lt;code&gt;omp critical&lt;/code&gt;, &lt;code&gt;omp atomic&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;动态线程数控制&lt;/li&gt;
+&lt;li&gt;并行 region 嵌套&lt;/li&gt;
+&lt;li&gt;GPU 加速（OpenMP 5.0+ 支持 target offloading！）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;-简单-vs-灵活&#34;&gt;🌀 简单 vs 灵活&lt;/h3&gt;
+&lt;p&gt;OpenMP 的设计哲学就是：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="">
+<meta name="description" content="Posts - Citrus Cheng&#39;s wiki">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Posts
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">并行编程库那些事
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>并行编程库那些事 OpenMP ✅ 简明定义（先来个“正经”版）： OpenMP（Open Multi-Processing）是一个支持多平台共享内存并行编程的API规范，主要用于C、C&#43;&#43; 和 Fortran，通过编译器指令（pragma）、运行时库函数和环境变量来实现并行化程序设计。
+🧠 谁提的？ OpenMP 不是某一个公司单独提出的，虽然 Intel 是早期重要成员之一，但实际上它是由一个叫做 OpenMP Architecture Review Board (ARB) 的组织定义和维护的。
+这个 ARB 联盟大佬云集，比如：
+Intel AMD IBM HP Microsoft NVIDIA（最近也进来了） 等等等… 所以你可以把 OpenMP 看作是编译器厂商联盟的「和平共处」协议，让大家都能写出 portable（可移植）又 efficient（高效）的多线程代码。
+🔧 它干啥的？ OpenMP 最常见的用途是——你说对了：
+✨ “并行 for 循环”！
+#pragma omp parallel for for (int i = 0; i &lt; N; &#43;&#43;i) { work(i); } 但不止这些，还有：
+并行 sections 任务 (task) 原子操作、互斥锁 (omp critical, omp atomic) 动态线程数控制 并行 region 嵌套 GPU 加速（OpenMP 5.0&#43; 支持 target offloading！） 🌀 简单 vs 灵活 OpenMP 的设计哲学就是：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 并行编程库那些事" href="http://localhost:1313/posts/parallel/program-libs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">旧磁盘数据迁移到新磁盘
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>旧磁盘数据迁移到新磁盘 安装硬盘 关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。
+查看旧磁盘上挂载了哪些文件系统 我们假设旧磁盘设备是/dev/sda，然后可以使用lsblk -f查看，输出样例如下：
+loop0 squashfs 0 100% /snap/bare/5 loop1 squashfs 0 100% /snap/core20/2496 loop2 squashfs 0 100% /snap/gnome-42-2204/202 loop3 squashfs 0 100% /snap/snap-store/1113 loop4 squashfs 0 100% /snap/gnome-42-2204/176 loop5 squashfs 0 100% /snap/core22/1748 loop6 squashfs 0 100% /snap/gtk-common-themes/1535 loop7 squashfs 0 100% /snap/core22/1802 loop8 squashfs 0 100% /snap/snap-store/1216 loop9 squashfs 0 100% /snap/gnome-3-38-2004/143 loop10 squashfs 0 100% /snap/gnome-3-38-2004/119 loop11 squashfs 0 100% /snap/core20/2434 loop12 squashfs 0 100% /snap/snapd/23545 loop13 squashfs 0 100% /snap/snapd/23771 sda ├─sda1 vfat 8BC3-AF3D 1.9G 0% /boot/efi ├─sda2 swap a7510130-5064-42a3-abd0-787e8a4f131e [SWAP] └─sda3 ext4 1f234375-7152-4e77-a210-b7573423c600 689.7G 19% / sdb └─sdb1 ext4 691e6f03-2d31-4de8-ba6a-0754f2924dd6 2.4T 29% /home sdc └─sdc1 ext4 2eb7de08-5701-4657-b69a-f0deab8803af 1.3T 60% /data sdd ext4 dd08c204-9596-44f3-b9be-35ef81650d2e 7T 30% /data1 sde ext4 086d0c1f-5842-410e-b7d2-90af4b647f96 8.5T 16% /data2 ... 这表明分区/dev/sda1挂了/boot/efi，/dev/sd2挂了交换分区，/dev/sda3挂的/。 此外/home和/data、/data1和/data2挂在其他磁盘上，等会复制根分区的时候，应该排除。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 旧磁盘数据迁移到新磁盘" href="http://localhost:1313/posts/linux/move-system-to-new-disk/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">杂项信息
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>杂项信息 相机的优缺点
+优点
+有RGB信息 成本低 重量轻 缺点
+缺少直接的深度信息，后期会消耗算力去估计 对光照敏感 激光雷达的优缺点
+优点
+能直接读出点的深度 缺点
+成本高，固态雷达稍微便宜一点 特征点可能很多，如果算法不当，计算成本很高 配准、运动估计算法的发展
+最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错
+后面有泛化的ICP方法，基于点到面距离。
+LOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。
+松耦合激光雷达惯性里程计(Loosely-coupled LIO)
+IMU可以缓解激光雷达在缺乏特征的环境下的退化。
+松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。
+松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。
+紧耦合LIO
+紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。
+紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。
+粒子滤波器的优缺点
+优点
+精度可控 缺点
+在特征点数量多、系统状态多的时候计算复杂度高。 迭代扩展卡尔曼滤波器（IEKF）
+KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 杂项信息" href="http://localhost:1313/posts/slam/brainstorm/misc/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">激光雷达
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>激光雷达 参数 物体反射率（Object Reflectivity） 激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。
+0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。 1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。 反射率与物体的以下特性密切相关：
+材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。 表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。 颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。 角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。 激光雷达反射率的应用
+物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。 环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。 地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。 深度（Depth） 激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离： $$ D(P) = \sqrt{x^2 &#43; y^2 &#43; z^2} $$
+偏转角（Deflection Angle） 激光和 $X$ 轴的夹角： $$ \phi (P) = tan^{-1}(\sqrt{(y^2 &#43; z ^ 2) / x ^ 2}) $$
+强度（Intensity） $$ I(P) = R / D(P^2) $$
+其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。
+入射角（Incident Angle） 激光打到平面上的入射角。如图中的 $\theta$ $$ \theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right) $$
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 激光雷达" href="http://localhost:1313/posts/slam/sensors/lidar/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">激光雷达SLAM
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>激光雷达SLAM LOAM 论文：Loam: Lidar odometry and mapping in real-time 为了减少运动模糊，LOAM采用了雷达姿态线性插值，也有用后端优化的方法减少运动模糊的方法（In2laama: Inertial lidar localisation autocalibration and mapping）。后端优化的方法相对准确一点，但是不能实时运行。
+LeGO-LOAM 论文：Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain
+LOAM livox 论文：Loam livox: A fast, robust, high-precision lidar odometry and mapping package for lidars of small fov 提出了新的减少运动模糊的方法，并且并行化了。提出的方法比LOAM的线性插值更精确，运行效率更高。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 激光雷达SLAM" href="http://localhost:1313/posts/slam/brainstorm/lidar-slam/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">程序员读代码的禅与修炼
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>程序员读代码的禅与修炼 🧭 前言 代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。
+📌 1. 先读文档，再读代码 推荐优先阅读材料： README / Wiki / 项目介绍页 CONTRIBUTING.md（可见贡献规范） Issues 与 Pull Requests（可见设计动因与变更历史） 理由： 这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。
+🧪 2. 能跑，才好读 做到以下几点： 能顺利构建并运行项目（甚至部署） 能使用调试工具或 log 打印控制信息 理由： 死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。
+🎯 3. 明确阅读目标 是为了修 bug，还是加功能？ 是为了学习架构，还是了解具体模块？ 有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。
+🧠 4. BFS &gt; DFS 的阅读策略 不要陷入深度优先： 沿着一条调用链不断深入容易迷路。
+要采用广度优先： 快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。
+🧱 5. 分块阅读：构建“模块地图” 观察文件结构、类和函数边界 分析模块的职责划分（谁负责输入、谁负责输出） 熟悉块的边界感，就像会认字就能阅读文章。
+🧵 6. 管理你的大脑记忆资源 类比：
+工作记忆 = 寄存器 短期记忆 = RAM 长期记忆 = 硬盘 技巧： 精简当前需要记住的信息（只记主逻辑） 将常用 API、框架结构固化为长期记忆 用笔记或注释辅助记忆缓存 🧩 7. 把代码当成自然语言来读 命名风格是“句法” 缩进结构是“语调” 注释内容是“修辞” 文献阅读技巧可迁移： 找主语（谁调用谁） 找动词（干了啥） 找逻辑连接词（if, while, for 等控制结构） ✨ 8. 进阶技巧 Bonus 📐 制作项目“地图” 用 markdown / 画图记录模块间的关系图 使用 PlantUML / Mermaid 绘制调用图 🗃️ 卡片式阅读笔记 每个模块/函数做成一张卡片，写用途 &#43; 结构 &#43; 接口 下次切换项目时秒级上手 🔁 预测 vs 验证 猜代码逻辑，调试验证对错，训练直觉与分析力 🧘 总结 读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 程序员读代码的禅与修炼" href="http://localhost:1313/posts/design/how-to-read-code/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">网络
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>网络 docker网络可以让容器访问外网或者互相访问。
+默认开启了docker网络，不过容器不知道自己连接的什么对象，只知道自己的IP，网关，DNS这些网络参数。
+当你启动docker时，会默认将容器挂在default这个bridge驱动上。
+默认桥接网络只能通过IP地址进行互相访问。比如你在默认桥接网络下有两个容器，那么你只要知道了两个容器的IP地址你才能进行两个容器之间的通信。在用户定义桥接网络下，你可以使用容器名或者别名进行互相访问。
+用户自定义网络 你可以创建用户自定义网络把多个容器放到同一个网络下，互相进行通信。默认使用bridge，也就是桥接的方式创建网络。这是一个创建并连接到自定义网络的例子：
+docker network create -d bridge my-net docker run --network=my-net -itd --name=container3 busybox 驱动 除了bridge外，容器可以使用很多网络驱动。
+bridge: 同一主机上的容器进行通信使用，默认选项 连接到网络 容器可以连接到多个网络
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 网络" href="http://localhost:1313/posts/docker/networking/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">论文备忘
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>论文备忘 这里放一些想看的论文，以及想看的理由
+LeGO-Loam
+Lego-loam: Lightweight and ground-optimized lidar odometry and mapping on variable terrain,” in 2018 IEEE/RSJ
+这个方法好像扣掉了小物体提高了精度
+MULLS
+Mulls: Versatile lidar slam via multi-metric linear least square, 2021 ICRA
+这个方法使用了PCA提取了充足稳定的特征，这个方法独立于扫描线
+KISS-ICP
+Kiss-icp: In defense of point-to-point icp – simple, accurate, and robust registration if done the right way,” IEEE Robotics and Automation Letters, vol. 8, no. 2, pp. 1029–1036, 2023.
+一个比较新的点云配准方法
+什么是因子图优化 看gtsam或者g2o
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 论文备忘" href="http://localhost:1313/posts/slam/brainstorm/paper-to-read/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">配准方法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>配准方法 ICP 论文：A method for registration of 3-D shapes
+generialized-ICP （泛化ICP） 论文：Generalized-icp
+如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP
+LOAM 改进的generialzed-ICP 论文：Loam: Lidar odometry and mapping in real-time 在泛化ICP的基础上添加了点到边的距离
+基于3D关键点的方法 Learning informative point classes for the acquisition of object model maps Fast point feature histograms (fpfh) for 3d registration Fast 3d recognition and pose using the viewpoint feature histogram 这类方法从稠密的点云中提取特征，减少计算资源的占用。 诸多方法已经使用并行化来提高效率
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 配准方法" href="http://localhost:1313/posts/slam/brainstorm/register-method/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">银弹是什么梗
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>银弹是什么梗 哈哈哈，银弹（silver bullet）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！
+🌕【银弹】原梗出自哪？ 银弹最早是西方传说里专门用来对付狼人（werewolf）的武器——
+“普通的武器对狼人无效，只有银子铸的子弹才能一枪爆头。”
+🌙 所以，“银弹”就成了 “唯一能解决棘手问题的终极武器” 的代名词。
+💻 那跟程序员有什么关系？ 来自软件工程界不朽经典文章：
+“No Silver Bullet”（1986）
+作者：Fred Brooks（布鲁克斯，写过《人月神话》）
+文章核心观点是：
+“软件工程中没有银弹，没有哪个技术、语言、工具能一次性解决所有复杂性问题。”
+☠️ 换句话说：
+没有神级框架能帮你永远不踩坑 没有完美语言能兼顾性能、抽象、易学 没有任何库能让并行编程像写 for 循环那么轻松 这句话打碎了很多人对“万能工具”的幻想，所以后来：
+🧠 “银弹”就变成了程序员之间用来调侃那种“看起来能解决一切问题的技术”的 反讽梗。
+🐶 使用场景举几个例子（梗味上头）： A：“我们是不是可以用 Rust 重构所有 C&#43;&#43; 模块？” B：“你是觉得 Rust 是银弹吗？” A：“有了这个 AutoGPT，我们啥都不用写了！” B：“又一颗银弹飞来了🐴” A：“把这个动态点检测改成 Transformer，准确率、泛用性、实时性全解决。” B：“老哥你这颗银弹……别真把系统打穿了。” 🧩 结尾小诗： 银弹一发解千愁，
+实际一堆 bug 在后头。
+工程之道无神兵，
+拔剑还得靠双手。🗡️
+有没有哪个你以为是银弹的技术，结果啪啪打脸？可以一起来吐槽一波 😎
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng</footer>
+  <a class="entry-link" aria-label="post link to 银弹是什么梗" href="http://localhost:1313/posts/design/silver-bullet/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/posts/page/3/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/posts/page/5/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

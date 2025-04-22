@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ros Time | Citrus Cheng&#39;s wiki</title>
+<meta name="keywords" content="ROS">
+<meta name="description" content="ros Time
+参考链接
+rospy.rostime
+作用
+rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。
+有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。
+rospy.Time v.s. datetime
+rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。
+而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：
+# 匹配date精度的日期部分和超出微秒精度的部分
+nanosec_pattern = re.compile(&#34;(\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&#34;)
+def date2rostime(time: str):
+    sec_match = nanosec_pattern.match(time)
+    if sec_match is None:
+        raise ValueError
+    micro_part = sec_match.group(1)
+    nano_part = sec_match.group(2)
+    micro_date = datetime.strptime(micro_part, &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    secs = int(micro_date.timestamp())
+    nano_secs = micro_date.microsecond * 1000
+    if nano_part is not None and nano_part != &#39;&#39;:
+        nano_secs &#43;= int(nano_part)
+    return rospy.Time(secs, nano_secs)
+运算
+rospy.Time支持减法，减出来的结果是ros.Duration对象
+rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time">
+<meta name="author" content="Citrus Cheng">
+<link rel="canonical" href="http://localhost:1313/posts/ros/time/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/time/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      ros Time
+    </h1>
+    <div class="post-meta"><span title='2025-04-22 00:00:00 +0000 UTC'>April 22, 2025</span>&nbsp;·&nbsp;Citrus Cheng
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="ros-time">ros Time<a hidden class="anchor" aria-hidden="true" href="#ros-time">#</a></h1>
+<h2 id="参考链接">参考链接<a hidden class="anchor" aria-hidden="true" href="#参考链接">#</a></h2>
+<p><a href="https://docs.ros.org/en/jade/api/rospy/html/rospy.rostime.Time-class.html">rospy.rostime</a></p>
+<h2 id="作用">作用<a hidden class="anchor" aria-hidden="true" href="#作用">#</a></h2>
+<p>rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。</p>
+<p>有的人会使用<code>rospy.Time.now()</code>这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。</p>
+<h2 id="rospytime-vs-datetime">rospy.Time v.s. datetime<a hidden class="anchor" aria-hidden="true" href="#rospytime-vs-datetime">#</a></h2>
+<p>rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。
+而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 匹配date精度的日期部分和超出微秒精度的部分</span>
+</span></span><span style="display:flex;"><span>nanosec_pattern <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>compile(<span style="color:#e6db74">&#34;(\d</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">date2rostime</span>(time: str):
+</span></span><span style="display:flex;"><span>    sec_match <span style="color:#f92672">=</span> nanosec_pattern<span style="color:#f92672">.</span><span style="color:#66d9ef">match</span>(time)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> sec_match <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>
+</span></span><span style="display:flex;"><span>    micro_part <span style="color:#f92672">=</span> sec_match<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    nano_part <span style="color:#f92672">=</span> sec_match<span style="color:#f92672">.</span>group(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    micro_date <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(micro_part, <span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M:%S.</span><span style="color:#e6db74">%f</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    secs <span style="color:#f92672">=</span> int(micro_date<span style="color:#f92672">.</span>timestamp())
+</span></span><span style="display:flex;"><span>    nano_secs <span style="color:#f92672">=</span> micro_date<span style="color:#f92672">.</span>microsecond <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> nano_part <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span> <span style="color:#f92672">and</span> nano_part <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;&#39;</span>:
+</span></span><span style="display:flex;"><span>        nano_secs <span style="color:#f92672">+=</span> int(nano_part)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rospy<span style="color:#f92672">.</span>Time(secs, nano_secs)
+</span></span></code></pre></div><h2 id="运算">运算<a hidden class="anchor" aria-hidden="true" href="#运算">#</a></h2>
+<p>rospy.Time支持减法，减出来的结果是<code>ros.Duration</code>对象</p>
+<p>rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
