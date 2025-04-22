@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Linux on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/linux/</link>
+    <link>https://example.org/tags/linux/</link>
     <description>Recent content in Linux on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux字体安装</title>
-      <link>http://localhost:1313/posts/linux/fonts-install/</link>
+      <link>https://example.org/posts/linux/fonts-install/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/linux/fonts-install/</guid>
+      <guid>https://example.org/posts/linux/fonts-install/</guid>
       <description>&lt;h1 id=&#34;linux字体安装&#34;&gt;Linux字体安装&lt;/h1&gt;
 &lt;p&gt;在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：&lt;/p&gt;
 &lt;hr&gt;
@@ -85,9 +85,9 @@
     </item>
     <item>
       <title>旧磁盘数据迁移到新磁盘</title>
-      <link>http://localhost:1313/posts/linux/move-system-to-new-disk/</link>
+      <link>https://example.org/posts/linux/move-system-to-new-disk/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/linux/move-system-to-new-disk/</guid>
+      <guid>https://example.org/posts/linux/move-system-to-new-disk/</guid>
       <description>&lt;h1 id=&#34;旧磁盘数据迁移到新磁盘&#34;&gt;旧磁盘数据迁移到新磁盘&lt;/h1&gt;
 &lt;h2 id=&#34;安装硬盘&#34;&gt;安装硬盘&lt;/h2&gt;
 &lt;p&gt;关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。&lt;/p&gt;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>激光雷达 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="sensors">
 <meta name="description" content="激光雷达
@@ -50,16 +50,16 @@ $$
 \theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right)
 $$">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/slam/sensors/lidar/">
+<link rel="canonical" href="https://example.org/posts/slam/sensors/lidar/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/sensors/lidar/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/slam/sensors/lidar/">
 <noscript>
     <style>
         #theme-toggle,
@@ -96,7 +96,122 @@ $$">
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/slam/sensors/lidar/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="激光雷达">
+  <meta property="og:description" content="激光雷达 参数 物体反射率（Object Reflectivity） 激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。
+0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。 1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。 反射率与物体的以下特性密切相关：
+材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。 表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。 颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。 角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。 激光雷达反射率的应用
+物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。 环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。 地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。 深度（Depth） 激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离： $$ D(P) = \sqrt{x^2 &#43; y^2 &#43; z^2} $$
+偏转角（Deflection Angle） 激光和 $X$ 轴的夹角： $$ \phi (P) = tan^{-1}(\sqrt{(y^2 &#43; z ^ 2) / x ^ 2}) $$
+强度（Intensity） $$ I(P) = R / D(P^2) $$
+其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。
+入射角（Incident Angle） 激光打到平面上的入射角。如图中的 $\theta$ $$ \theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right) $$">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Sensors">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="激光雷达">
+<meta name="twitter:description" content="激光雷达
+参数
+物体反射率（Object Reflectivity）
+激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。
+
+0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。
+1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。
+
+反射率与物体的以下特性密切相关：
+
+材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。
+表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。
+颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。
+角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。
+
+激光雷达反射率的应用
+
+物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。
+环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。
+地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。
+
+深度（Depth）
+激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离：
+$$
+D(P) = \sqrt{x^2 &#43; y^2 &#43; z^2}
+$$
+偏转角（Deflection Angle）
+激光和 $X$ 轴的夹角：
+$$
+\phi (P) = tan^{-1}(\sqrt{(y^2 &#43; z ^ 2) / x ^ 2})
+$$
+强度（Intensity）
+$$
+I(P) = R / D(P^2)
+$$
+其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。
+入射角（Incident Angle）
+
+激光打到平面上的入射角。如图中的 $\theta$
+$$
+\theta (P_b) = cos^{-1}\left(\frac{(P_a - P_c) \cdot P_b}{|P_a - P_c||P_b|}\right)
+$$">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "激光雷达",
+      "item": "https://example.org/posts/slam/sensors/lidar/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "激光雷达",
+  "name": "激光雷达",
+  "description": "激光雷达 参数 物体反射率（Object Reflectivity） 激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。\n0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。 1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。 反射率与物体的以下特性密切相关：\n材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。 表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。 颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。 角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。 激光雷达反射率的应用\n物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。 环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。 地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。 深度（Depth） 激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离： $$ D(P) = \\sqrt{x^2 + y^2 + z^2} $$\n偏转角（Deflection Angle） 激光和 $X$ 轴的夹角： $$ \\phi (P) = tan^{-1}(\\sqrt{(y^2 + z ^ 2) / x ^ 2}) $$\n强度（Intensity） $$ I(P) = R / D(P^2) $$\n其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。\n入射角（Incident Angle） 激光打到平面上的入射角。如图中的 $\\theta$ $$ \\theta (P_b) = cos^{-1}\\left(\\frac{(P_a - P_c) \\cdot P_b}{|P_a - P_c||P_b|}\\right) $$\n",
+  "keywords": [
+    "sensors"
+  ],
+  "articleBody": "激光雷达 参数 物体反射率（Object Reflectivity） 激光雷达（LiDAR）测得的 Object Reflectivity（物体反射率）是指激光雷达发射的激光脉冲被物体表面反射回来时，反射光的强度与激光原始信号强度的比值。具体来说，它代表了物体表面对激光光线的反射能力，通常用一个值来量化，反映了物体表面材料、颜色、纹理等特性的反射效果。\n0 表示完全不反射（即完全吸收激光），例如黑色、吸光性强的物体。 1 表示完全反射（即反射所有的激光），例如镜面光滑的金属表面。 反射率与物体的以下特性密切相关：\n材料类型：不同材料的表面有不同的反射能力。例如，金属表面通常会有较高的反射率，而木材或泥土表面的反射率则较低。 表面光滑度：光滑的表面（如镜面）会比粗糙的表面（如沙石或混凝土）反射更多的激光光线。 颜色和光吸收性：浅色物体（如白色或银色）通常具有更高的反射率，而深色物体（如黑色）则吸收更多光线，反射率较低。 角度依赖性：反射率也会受到激光入射角度的影响。表面越平整，反射越规律，而粗糙表面可能会发生散射，导致反射率在不同角度下有差异。 激光雷达反射率的应用\n物体分类：通过分析反射率，可以区分不同的物体类型。例如，金属表面与树木或建筑物之间的反射率差异可以帮助识别这些物体。 环境建模：反射率数据有助于更准确地构建环境模型，尤其在自动驾驶、机器人导航等应用中，可以结合反射率与其他数据（如距离、速度等）来提高识别精度。 地形分析：反射率可以用于分析地面类型和地形特征，例如判断是否为水域、森林、沙漠等。 深度（Depth） 激光雷达测得点 $P(x, y, z)$ 到激光雷达的距离： $$ D(P) = \\sqrt{x^2 + y^2 + z^2} $$\n偏转角（Deflection Angle） 激光和 $X$ 轴的夹角： $$ \\phi (P) = tan^{-1}(\\sqrt{(y^2 + z ^ 2) / x ^ 2}) $$\n强度（Intensity） $$ I(P) = R / D(P^2) $$\n其中 $R$ 代表物体反射率，这个数据可以通过激光雷达直接测得。有一些雷达直接返回强度而不是物体反射率。强度大以为者物体的反射率大或者物体离激光雷达近。\n入射角（Incident Angle） 激光打到平面上的入射角。如图中的 $\\theta$ $$ \\theta (P_b) = cos^{-1}\\left(\\frac{(P_a - P_c) \\cdot P_b}{|P_a - P_c||P_b|}\\right) $$\n机械旋转雷达 机械雷达把可以水平旋转的激光器在垂直方向层叠起来，可以测量水平和垂直方向的点。\n固态雷达 优点 便宜，轻巧\n缺点 FoV小，扫描的路径特殊，得到的点相对于旋转雷达少\n处理技巧 FoV边缘附近和超出Fov的点丢掉，在这些区域扫描轨迹有很大的曲率，让特征提取变得不可靠 强度过低或者过高的点丢掉（对于MID40, $I(P) \\le 7 \\times 10 ^ {-3}$ 或者 $I(P) \\ge 1 \\times 10 ^ {-1}$ 的点不要）。强度直接表示雷达接收到的信号。如果强度过大，会导致接收电路的饱和或者畸变。强度过小导致小的信噪比，会导致测距精度退化。 入射角接近0或者 $\\pi$ 的点不要（对于MID40，$\\theta(P) \\le 5 \\degree$ 或者 $\\theta(P) \\ge 175 \\degree$ ）。比如图(a)中的f点。这是因为激光束的非零发散角导致的激光斑点会显著拉长。因此，测量的距离是由大斑点覆盖区域的平均值，而不是一个特定的点。 藏在物体背后的点（比如图（a）中的e，藏在d的后面）。这种点会导致识别到错误的边缘特征。通过以下的判断标准判断是否是这种隐藏点： $$ |P_e - P_d| \\ge 0.1 |P_e| \\space and \\space |P_e| \\gt |P_d| $$\n其中，d点是按照扫描顺序离e最近的点。\n在特征提取时考虑反射率，反射率突然变化的点视为边缘特征。反射率突然发生变化意味着材质的变化。这种特征在墙上有个窗或者门的时候有用。 普遍的问题 运动畸变（Motion Distortion）或者运动模糊（Motion Blur） 如果激光雷达本身在旋转但是没有移动的话是不存在畸变的，如果激光雷达在旋转的同时本身发生了移动，这个时候激光雷达测得的点云就会产生运动畸变。不过当旋转的速度很快，激光雷达本身的移动不快，那么运动畸变就可以忽略不计。\n",
+  "wordCount" : "141",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/slam/sensors/lidar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -114,7 +229,7 @@ $$">
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -226,14 +341,14 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/sensors/">Sensors</a></li>
+      <li><a href="https://example.org/tags/sensors/">Sensors</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

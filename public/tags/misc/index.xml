@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Misc on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/misc/</link>
+    <link>https://example.org/tags/misc/</link>
     <description>Recent content in Misc on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/misc/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/misc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>alacritty ayu 配置</title>
-      <link>http://localhost:1313/posts/misc/alacritty-ayu-config/</link>
+      <link>https://example.org/posts/misc/alacritty-ayu-config/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/misc/alacritty-ayu-config/</guid>
+      <guid>https://example.org/posts/misc/alacritty-ayu-config/</guid>
       <description>&lt;h1 id=&#34;alacritty-ayu-配置&#34;&gt;alacritty ayu 配置&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;size&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;14.5&lt;/span&gt;
@@ -64,9 +64,9 @@
     </item>
     <item>
       <title>ibus rime 安装踩坑</title>
-      <link>http://localhost:1313/posts/misc/rime-install/</link>
+      <link>https://example.org/posts/misc/rime-install/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/misc/rime-install/</guid>
+      <guid>https://example.org/posts/misc/rime-install/</guid>
       <description>&lt;h1 id=&#34;ibus-rime-安装踩坑&#34;&gt;ibus rime 安装踩坑&lt;/h1&gt;
 &lt;h2 id=&#34;日志在哪&#34;&gt;日志在哪&lt;/h2&gt;
 &lt;p&gt;linux端在&lt;code&gt;/tmp/rime*&lt;/code&gt;&lt;/p&gt;

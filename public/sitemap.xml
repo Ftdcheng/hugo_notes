@@ -2,174 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/misc/alacritty-ayu-config/</loc>
+    <loc>https://example.org/posts/misc/alacritty-ayu-config/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/brainstorm/</loc>
+    <loc>https://example.org/tags/brainstorm/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cpp/range-for/</loc>
+    <loc>https://example.org/posts/cpp/range-for/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cpp/internal-class/</loc>
+    <loc>https://example.org/posts/cpp/internal-class/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cpp/timer/</loc>
+    <loc>https://example.org/posts/cpp/timer/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://example.org/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cpp/</loc>
+    <loc>https://example.org/tags/cpp/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/data-process/</loc>
+    <loc>https://example.org/tags/data-process/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/design/</loc>
+    <loc>https://example.org/tags/design/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://example.org/tags/docker/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/docker/compose/</loc>
+    <loc>https://example.org/posts/docker/compose/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/docker/entry-point/</loc>
+    <loc>https://example.org/posts/docker/entry-point/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/sensors/gps/</loc>
+    <loc>https://example.org/posts/slam/sensors/gps/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/docker/how-tos/</loc>
+    <loc>https://example.org/posts/docker/how-tos/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/misc/rime-install/</loc>
+    <loc>https://example.org/posts/misc/rime-install/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/sensors/imu/</loc>
+    <loc>https://example.org/posts/slam/sensors/imu/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/data-process/kitti/</loc>
+    <loc>https://example.org/posts/data-process/kitti/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
+    <loc>https://example.org/tags/linux/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/linux/fonts-install/</loc>
+    <loc>https://example.org/posts/linux/fonts-install/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/papers/livox-loam/</loc>
+    <loc>https://example.org/posts/slam/papers/livox-loam/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/papers/loam/</loc>
+    <loc>https://example.org/posts/slam/papers/loam/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/misc/</loc>
+    <loc>https://example.org/tags/misc/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/data-process/pandas/</loc>
+    <loc>https://example.org/posts/data-process/pandas/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/papers/</loc>
+    <loc>https://example.org/tags/papers/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/parallel/</loc>
+    <loc>https://example.org/tags/parallel/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/pointcloud2/</loc>
+    <loc>https://example.org/posts/ros/pointcloud2/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://example.org/posts/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/ros-quick-start/</loc>
+    <loc>https://example.org/posts/ros/ros-quick-start/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ros/</loc>
+    <loc>https://example.org/tags/ros/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/time/</loc>
+    <loc>https://example.org/posts/ros/time/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/name-and-remapping/</loc>
+    <loc>https://example.org/posts/ros/name-and-remapping/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/rosbag/</loc>
+    <loc>https://example.org/posts/ros/rosbag/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</loc>
+    <loc>https://example.org/posts/ros/callbacks-queue-and-spin/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/ros/debugging/</loc>
+    <loc>https://example.org/posts/ros/debugging/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/sensors/rtk/</loc>
+    <loc>https://example.org/posts/slam/sensors/rtk/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sensors/</loc>
+    <loc>https://example.org/tags/sensors/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/ideas/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/ideas/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/repos/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/repos/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/datasets/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/datasets/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://example.org/tags/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cpp/universe-ref/</loc>
+    <loc>https://example.org/posts/cpp/universe-ref/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/debugging/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/debugging/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cpp/initializer-list/</loc>
+    <loc>https://example.org/posts/cpp/initializer-list/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/dynamic-slam-info/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/parallel/program-libs/</loc>
+    <loc>https://example.org/posts/parallel/program-libs/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/linux/move-system-to-new-disk/</loc>
+    <loc>https://example.org/posts/linux/move-system-to-new-disk/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/misc/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/misc/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/sensors/lidar/</loc>
+    <loc>https://example.org/posts/slam/sensors/lidar/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/lidar-slam/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/design/how-to-read-code/</loc>
+    <loc>https://example.org/posts/design/how-to-read-code/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/docker/networking/</loc>
+    <loc>https://example.org/posts/docker/networking/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/paper-to-read/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/register-method/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/register-method/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/design/silver-bullet/</loc>
+    <loc>https://example.org/posts/design/silver-bullet/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/brainstorm/issues/</loc>
+    <loc>https://example.org/posts/slam/brainstorm/issues/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</loc>
+    <loc>https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/</loc>
     <lastmod>2025-04-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://example.org/categories/</loc>
   </url>
 </urlset>

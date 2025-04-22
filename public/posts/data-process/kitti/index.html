@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>KITTI | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="data-process">
 <meta name="description" content="KITTI
@@ -25,16 +25,16 @@ KITTI采集点云使用的激光雷达是Velodyne。
 线数: 16
 ">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/data-process/kitti/">
+<link rel="canonical" href="https://example.org/posts/data-process/kitti/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/data-process/kitti/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/data-process/kitti/">
 <noscript>
     <style>
         #theme-toggle,
@@ -71,7 +71,95 @@ KITTI采集点云使用的激光雷达是Velodyne。
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/data-process/kitti/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="KITTI">
+  <meta property="og:description" content="KITTI 点云数据 文件结构 放在velodyne_points下， velodyne_points/data放置的是所有点云扫描文件， velodyne_points/timestamps.txt放置的是每个扫描的时间戳， velodyne_points/timestamps_start.txt是扫描开始的时间戳， velodyne_points/timestamps_end.txt是扫描结束的时间戳。
+velodyne_points/data下的文件数量和velodyne_points/timestamps*文件的行数是对应的， 也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。
+velodyne_points/timestamps.txt的每一行是velodyne_points/timestamps_start.txt的每一行和velodyne_points/timestamps_start.txt的每一行表示的时间段的中点。
+velodyne_points/data中的单个文件表示一个扫描，一个扫描大概有10w&#43;的点。文件一行代表一个点，一个点有三个字段： (x, y, z, intensity)。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。
+激光雷达信息 KITTI采集点云使用的激光雷达是Velodyne。
+线数: 16 ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Data-Process">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KITTI">
+<meta name="twitter:description" content="KITTI
+点云数据
+文件结构
+放在velodyne_points下，
+velodyne_points/data放置的是所有点云扫描文件，
+velodyne_points/timestamps.txt放置的是每个扫描的时间戳，
+velodyne_points/timestamps_start.txt是扫描开始的时间戳，
+velodyne_points/timestamps_end.txt是扫描结束的时间戳。
+velodyne_points/data下的文件数量和velodyne_points/timestamps*文件的行数是对应的，
+也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。
+velodyne_points/timestamps.txt的每一行是velodyne_points/timestamps_start.txt的每一行和velodyne_points/timestamps_start.txt的每一行表示的时间段的中点。
+velodyne_points/data中的单个文件表示一个扫描，一个扫描大概有10w&#43;的点。文件一行代表一个点，一个点有三个字段： (x, y, z, intensity)。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。
+激光雷达信息
+KITTI采集点云使用的激光雷达是Velodyne。
+
+线数: 16
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "KITTI",
+      "item": "https://example.org/posts/data-process/kitti/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "KITTI",
+  "name": "KITTI",
+  "description": "KITTI 点云数据 文件结构 放在velodyne_points下， velodyne_points/data放置的是所有点云扫描文件， velodyne_points/timestamps.txt放置的是每个扫描的时间戳， velodyne_points/timestamps_start.txt是扫描开始的时间戳， velodyne_points/timestamps_end.txt是扫描结束的时间戳。\nvelodyne_points/data下的文件数量和velodyne_points/timestamps*文件的行数是对应的， 也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。\nvelodyne_points/timestamps.txt的每一行是velodyne_points/timestamps_start.txt的每一行和velodyne_points/timestamps_start.txt的每一行表示的时间段的中点。\nvelodyne_points/data中的单个文件表示一个扫描，一个扫描大概有10w+的点。文件一行代表一个点，一个点有三个字段： (x, y, z, intensity)。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。\n激光雷达信息 KITTI采集点云使用的激光雷达是Velodyne。\n线数: 16 ",
+  "keywords": [
+    "data-process"
+  ],
+  "articleBody": "KITTI 点云数据 文件结构 放在velodyne_points下， velodyne_points/data放置的是所有点云扫描文件， velodyne_points/timestamps.txt放置的是每个扫描的时间戳， velodyne_points/timestamps_start.txt是扫描开始的时间戳， velodyne_points/timestamps_end.txt是扫描结束的时间戳。\nvelodyne_points/data下的文件数量和velodyne_points/timestamps*文件的行数是对应的， 也就是说每个文件就是一个扫描，每个扫描按照文件名顺序排列，依次对应时间戳文件的每一行。\nvelodyne_points/timestamps.txt的每一行是velodyne_points/timestamps_start.txt的每一行和velodyne_points/timestamps_start.txt的每一行表示的时间段的中点。\nvelodyne_points/data中的单个文件表示一个扫描，一个扫描大概有10w+的点。文件一行代表一个点，一个点有三个字段： (x, y, z, intensity)。也就是说对于单个点实际上没有记录时间戳。不过文件中点的出现顺序是激光雷达扫描得到点的顺序。激光雷达扫描得到点的时间间隔是固定的，所以可以通过开始和结束时间戳线性插值估算每个点的时间戳。\n激光雷达信息 KITTI采集点云使用的激光雷达是Velodyne。\n线数: 16 ",
+  "wordCount" : "20",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/data-process/kitti/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -89,7 +177,7 @@ KITTI采集点云使用的激光雷达是Velodyne。
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -152,14 +240,14 @@ KITTI采集点云使用的激光雷达是Velodyne。
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/data-process/">Data-Process</a></li>
+      <li><a href="https://example.org/tags/data-process/">Data-Process</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

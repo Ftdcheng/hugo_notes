@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Design on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/design/</link>
+    <link>https://example.org/tags/design/</link>
     <description>Recent content in Design on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>程序员读代码的禅与修炼</title>
-      <link>http://localhost:1313/posts/design/how-to-read-code/</link>
+      <link>https://example.org/posts/design/how-to-read-code/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design/how-to-read-code/</guid>
+      <guid>https://example.org/posts/design/how-to-read-code/</guid>
       <description>&lt;h1 id=&#34;程序员读代码的禅与修炼&#34;&gt;程序员读代码的禅与修炼&lt;/h1&gt;
 &lt;h2 id=&#34;-前言&#34;&gt;🧭 前言&lt;/h2&gt;
 &lt;p&gt;代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。&lt;/p&gt;
@@ -111,9 +111,9 @@
     </item>
     <item>
       <title>银弹是什么梗</title>
-      <link>http://localhost:1313/posts/design/silver-bullet/</link>
+      <link>https://example.org/posts/design/silver-bullet/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design/silver-bullet/</guid>
+      <guid>https://example.org/posts/design/silver-bullet/</guid>
       <description>&lt;h1 id=&#34;银弹是什么梗&#34;&gt;银弹是什么梗&lt;/h1&gt;
 &lt;p&gt;哈哈哈，银弹（&lt;strong&gt;silver bullet&lt;/strong&gt;）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！&lt;/p&gt;
 &lt;hr&gt;

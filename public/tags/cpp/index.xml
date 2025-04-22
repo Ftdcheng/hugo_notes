@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Cpp on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/cpp/</link>
+    <link>https://example.org/tags/cpp/</link>
     <description>Recent content in Cpp on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; range for</title>
-      <link>http://localhost:1313/posts/cpp/range-for/</link>
+      <link>https://example.org/posts/cpp/range-for/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/range-for/</guid>
+      <guid>https://example.org/posts/cpp/range-for/</guid>
       <description>&lt;h1 id=&#34;c-range-for&#34;&gt;C++ range for&lt;/h1&gt;
 &lt;p&gt;要让一个对象能被用于 C++ 的 &lt;strong&gt;range-based for loop&lt;/strong&gt;（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议&lt;strong&gt;不是形式化的接口&lt;/strong&gt;（不像 Java 那样有 &lt;code&gt;Iterable&lt;/code&gt; 接口），但你可以把它看作一个“概念”（concept）或“约定”。&lt;/p&gt;
 &lt;p&gt;我们来拆一下细节：&lt;/p&gt;
@@ -47,9 +47,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 内部类</title>
-      <link>http://localhost:1313/posts/cpp/internal-class/</link>
+      <link>https://example.org/posts/cpp/internal-class/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/internal-class/</guid>
+      <guid>https://example.org/posts/cpp/internal-class/</guid>
       <description>&lt;h1 id=&#34;c-内部类&#34;&gt;C++ 内部类&lt;/h1&gt;
 &lt;p&gt;兄弟你问到一个&lt;strong&gt;C++黑魔法级的结构设计点&lt;/strong&gt;了，内部类（nested class）虽然看起来是“类中套类”，但其实背后藏着一套很有意思的权限与封装逻辑。下面我给你展开讲，保你之后写库、写设计模式的时候用得上。&lt;/p&gt;
 &lt;hr&gt;
@@ -89,9 +89,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 程序执行计时器的写法</title>
-      <link>http://localhost:1313/posts/cpp/timer/</link>
+      <link>https://example.org/posts/cpp/timer/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/timer/</guid>
+      <guid>https://example.org/posts/cpp/timer/</guid>
       <description>&lt;h1 id=&#34;c-程序执行计时器的写法&#34;&gt;C++ 程序执行计时器的写法&lt;/h1&gt;
 &lt;p&gt;提到 &lt;strong&gt;“优雅地”测量程序性能并输出到文件&lt;/strong&gt;，我们就不是简简单单扔个 &lt;code&gt;std::chrono&lt;/code&gt; 然后 &lt;code&gt;cout&lt;/code&gt; 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。&lt;/p&gt;
 &lt;p&gt;下面我分两种层次跟你说：&lt;/p&gt;
@@ -128,9 +128,9 @@
     </item>
     <item>
       <title>万能引用</title>
-      <link>http://localhost:1313/posts/cpp/universe-ref/</link>
+      <link>https://example.org/posts/cpp/universe-ref/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/universe-ref/</guid>
+      <guid>https://example.org/posts/cpp/universe-ref/</guid>
       <description>&lt;h1 id=&#34;万能引用&#34;&gt;万能引用&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
@@ -194,9 +194,9 @@
     </item>
     <item>
       <title>初始化列表</title>
-      <link>http://localhost:1313/posts/cpp/initializer-list/</link>
+      <link>https://example.org/posts/cpp/initializer-list/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/initializer-list/</guid>
+      <guid>https://example.org/posts/cpp/initializer-list/</guid>
       <description>&lt;h1 id=&#34;初始化列表&#34;&gt;初始化列表&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;初始化列表&lt;/strong&gt;（&lt;code&gt;initializer_list&lt;/code&gt;）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。&lt;/p&gt;
 &lt;hr&gt;

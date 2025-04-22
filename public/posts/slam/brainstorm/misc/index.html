@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>杂项信息 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="brainstorm">
 <meta name="description" content="杂项信息
@@ -69,16 +69,16 @@ KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点
 
 ">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/slam/brainstorm/misc/">
+<link rel="canonical" href="https://example.org/posts/slam/brainstorm/misc/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/brainstorm/misc/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/slam/brainstorm/misc/">
 <noscript>
     <style>
         #theme-toggle,
@@ -115,7 +115,155 @@ KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/slam/brainstorm/misc/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="杂项信息">
+  <meta property="og:description" content="杂项信息 相机的优缺点
+优点
+有RGB信息 成本低 重量轻 缺点
+缺少直接的深度信息，后期会消耗算力去估计 对光照敏感 激光雷达的优缺点
+优点
+能直接读出点的深度 缺点
+成本高，固态雷达稍微便宜一点 特征点可能很多，如果算法不当，计算成本很高 配准、运动估计算法的发展
+最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错
+后面有泛化的ICP方法，基于点到面距离。
+LOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。
+松耦合激光雷达惯性里程计(Loosely-coupled LIO)
+IMU可以缓解激光雷达在缺乏特征的环境下的退化。
+松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。
+松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。
+紧耦合LIO
+紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。
+紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。
+粒子滤波器的优缺点
+优点
+精度可控 缺点
+在特征点数量多、系统状态多的时候计算复杂度高。 迭代扩展卡尔曼滤波器（IEKF）
+KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Brainstorm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杂项信息">
+<meta name="twitter:description" content="杂项信息
+
+
+相机的优缺点
+优点
+
+有RGB信息
+成本低
+重量轻
+
+缺点
+
+缺少直接的深度信息，后期会消耗算力去估计
+对光照敏感
+
+
+
+激光雷达的优缺点
+优点
+
+能直接读出点的深度
+
+缺点
+
+成本高，固态雷达稍微便宜一点
+特征点可能很多，如果算法不当，计算成本很高
+
+
+
+配准、运动估计算法的发展
+最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错
+后面有泛化的ICP方法，基于点到面距离。
+LOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。
+
+
+松耦合激光雷达惯性里程计(Loosely-coupled LIO)
+IMU可以缓解激光雷达在缺乏特征的环境下的退化。
+松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。
+松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。
+
+
+紧耦合LIO
+紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。
+紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。
+
+
+粒子滤波器的优缺点
+优点
+
+精度可控
+
+缺点
+
+在特征点数量多、系统状态多的时候计算复杂度高。
+
+
+
+迭代扩展卡尔曼滤波器（IEKF）
+KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。
+
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "杂项信息",
+      "item": "https://example.org/posts/slam/brainstorm/misc/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "杂项信息",
+  "name": "杂项信息",
+  "description": "杂项信息 相机的优缺点\n优点\n有RGB信息 成本低 重量轻 缺点\n缺少直接的深度信息，后期会消耗算力去估计 对光照敏感 激光雷达的优缺点\n优点\n能直接读出点的深度 缺点\n成本高，固态雷达稍微便宜一点 特征点可能很多，如果算法不当，计算成本很高 配准、运动估计算法的发展\n最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错\n后面有泛化的ICP方法，基于点到面距离。\nLOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。\n松耦合激光雷达惯性里程计(Loosely-coupled LIO)\nIMU可以缓解激光雷达在缺乏特征的环境下的退化。\n松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。\n松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。\n紧耦合LIO\n紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。\n紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。\n粒子滤波器的优缺点\n优点\n精度可控 缺点\n在特征点数量多、系统状态多的时候计算复杂度高。 迭代扩展卡尔曼滤波器（IEKF）\nKF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。\n",
+  "keywords": [
+    "brainstorm"
+  ],
+  "articleBody": "杂项信息 相机的优缺点\n优点\n有RGB信息 成本低 重量轻 缺点\n缺少直接的深度信息，后期会消耗算力去估计 对光照敏感 激光雷达的优缺点\n优点\n能直接读出点的深度 缺点\n成本高，固态雷达稍微便宜一点 特征点可能很多，如果算法不当，计算成本很高 配准、运动估计算法的发展\n最初有ICP方法，可以将扫描配准，对于稠密的3D扫描表现不错\n后面有泛化的ICP方法，基于点到面距离。\nLOAM框架用的点到边的距离结合上面的基于点到面的ICP方法，提出了新的里程计。这种算法在特征丰富的环境，大FoV下表现不错。在缺乏特征、小FoV下表现不佳，非常脆弱。\n松耦合激光雷达惯性里程计(Loosely-coupled LIO)\nIMU可以缓解激光雷达在缺乏特征的环境下的退化。\n松耦合LIO是分开处理激光雷达和IMU的，后面再融合，所以说是松耦合方法。比如IMU辅助的LOAM就是使用IMU初始化激光雷达扫描配准。\n松耦合LIO的范式一般是配准的时候估计姿态，然后再把姿态和IMU测量融合。这种方法虽然降低了系统的负载，但是忽略了系统其它状态（例如速度）和新扫描之间的关联。在缺乏特征的环境中，配准会在某个方向上退化，在后续的融合中变得不可靠。\n紧耦合LIO\n紧耦合LIO直接把激光雷达的原始特征点和IMU数据融合，这回激光雷达的点云还没有配准。\n紧耦合LIO有两个技术分支，一个是基于滤波的，一个是基于优化的。\n粒子滤波器的优缺点\n优点\n精度可控 缺点\n在特征点数量多、系统状态多的时候计算复杂度高。 迭代扩展卡尔曼滤波器（IEKF）\nKF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点的时候会有相当大的开销。盲目对激光雷达的测量进行下采样会导致信息大量丢失。\n",
+  "wordCount" : "34",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/slam/brainstorm/misc/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -133,7 +281,7 @@ KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -240,14 +388,14 @@ KF的复杂度是$O(m^2)$，m是测量维度，这在处理大量激光雷达点
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/brainstorm/">Brainstorm</a></li>
+      <li><a href="https://example.org/tags/brainstorm/">Brainstorm</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

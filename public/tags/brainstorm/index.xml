@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Brainstorm on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/brainstorm/</link>
+    <link>https://example.org/tags/brainstorm/</link>
     <description>Recent content in Brainstorm on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/brainstorm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/brainstorm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SLAM Ideas</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/ideas/</link>
+      <link>https://example.org/posts/slam/brainstorm/ideas/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/ideas/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/ideas/</guid>
       <description>&lt;h1 id=&#34;slam-ideas&#34;&gt;SLAM Ideas&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。&lt;/li&gt;
@@ -97,9 +97,9 @@
     </item>
     <item>
       <title>SLAM代码库</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/repos/</link>
+      <link>https://example.org/posts/slam/brainstorm/repos/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/repos/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/repos/</guid>
       <description>&lt;h1 id=&#34;slam代码库&#34;&gt;SLAM代码库&lt;/h1&gt;
 &lt;p&gt;这里是一些开源的SLAM相关的代码库，提供内容描述和资源链接&lt;/p&gt;
 &lt;h2 id=&#34;roadlib&#34;&gt;RoadLib&lt;/h2&gt;
@@ -157,9 +157,9 @@
     </item>
     <item>
       <title>SLAM数据集</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/datasets/</link>
+      <link>https://example.org/posts/slam/brainstorm/datasets/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/datasets/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/datasets/</guid>
       <description>&lt;h1 id=&#34;slam数据集&#34;&gt;SLAM数据集&lt;/h1&gt;
 &lt;p&gt;这里是一些SLAM相关的数据集，提供描述和链接&lt;/p&gt;
 &lt;p&gt;CoVLA&lt;/p&gt;
@@ -200,9 +200,9 @@
     </item>
     <item>
       <title>代码调试问题</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/debugging/</link>
+      <link>https://example.org/posts/slam/brainstorm/debugging/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/debugging/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/debugging/</guid>
       <description>&lt;h1 id=&#34;代码调试问题&#34;&gt;代码调试问题&lt;/h1&gt;
 &lt;h2 id=&#34;livox-ros-driver找不到&#34;&gt;livox ros driver找不到&lt;/h2&gt;
 &lt;p&gt;关掉所有的vscode终端，开一个新终端，在你的项目目录自己新建build，然后cmake。
@@ -210,9 +210,9 @@
     </item>
     <item>
       <title>动态SLAM的一些信息</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</link>
+      <link>https://example.org/posts/slam/brainstorm/dynamic-slam-info/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/dynamic-slam-info/</guid>
       <description>&lt;h1 id=&#34;动态slam的一些信息&#34;&gt;动态SLAM的一些信息&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -236,9 +236,9 @@
     </item>
     <item>
       <title>杂项信息</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/misc/</link>
+      <link>https://example.org/posts/slam/brainstorm/misc/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/misc/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/misc/</guid>
       <description>&lt;h1 id=&#34;杂项信息&#34;&gt;杂项信息&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -303,9 +303,9 @@
     </item>
     <item>
       <title>激光雷达SLAM</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</link>
+      <link>https://example.org/posts/slam/brainstorm/lidar-slam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/lidar-slam/</guid>
       <description>&lt;h1 id=&#34;激光雷达slam&#34;&gt;激光雷达SLAM&lt;/h1&gt;
 &lt;h2 id=&#34;loam&#34;&gt;LOAM&lt;/h2&gt;
 &lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
@@ -318,9 +318,9 @@
     </item>
     <item>
       <title>论文备忘</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</link>
+      <link>https://example.org/posts/slam/brainstorm/paper-to-read/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/paper-to-read/</guid>
       <description>&lt;h1 id=&#34;论文备忘&#34;&gt;论文备忘&lt;/h1&gt;
 &lt;p&gt;这里放一些想看的论文，以及想看的理由&lt;/p&gt;
 &lt;ul&gt;
@@ -347,9 +347,9 @@
     </item>
     <item>
       <title>配准方法</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/register-method/</link>
+      <link>https://example.org/posts/slam/brainstorm/register-method/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/register-method/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/register-method/</guid>
       <description>&lt;h1 id=&#34;配准方法&#34;&gt;配准方法&lt;/h1&gt;
 &lt;h2 id=&#34;icp&#34;&gt;ICP&lt;/h2&gt;
 &lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/121791&#34;&gt;A method for registration of 3-D shapes&lt;/a&gt;&lt;/p&gt;
@@ -370,9 +370,9 @@
     </item>
     <item>
       <title>问题集</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/issues/</link>
+      <link>https://example.org/posts/slam/brainstorm/issues/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/issues/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/issues/</guid>
       <description>&lt;h1 id=&#34;问题集&#34;&gt;问题集&lt;/h1&gt;
 &lt;p&gt;这个文档会给出一些研究中遇到的问题，如果找到了答案会写在问题下面&lt;/p&gt;
 &lt;ol&gt;

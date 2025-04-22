@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ROS on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/ros/</link>
+    <link>https://example.org/tags/ros/</link>
     <description>Recent content in ROS on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ros/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/ros/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PointCloud2</title>
-      <link>http://localhost:1313/posts/ros/pointcloud2/</link>
+      <link>https://example.org/posts/ros/pointcloud2/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/pointcloud2/</guid>
+      <guid>https://example.org/posts/ros/pointcloud2/</guid>
       <description>&lt;h1 id=&#34;pointcloud2&#34;&gt;PointCloud2&lt;/h1&gt;
 &lt;p&gt;参考链接：&lt;/p&gt;
 &lt;ul&gt;
@@ -60,9 +60,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS</title>
-      <link>http://localhost:1313/posts/ros/ros-quick-start/</link>
+      <link>https://example.org/posts/ros/ros-quick-start/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/ros-quick-start/</guid>
+      <guid>https://example.org/posts/ros/ros-quick-start/</guid>
       <description>&lt;h1 id=&#34;ros&#34;&gt;ROS&lt;/h1&gt;
 &lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
 &lt;h3 id=&#34;节点&#34;&gt;节点&lt;/h3&gt;
@@ -108,9 +108,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ros Time</title>
-      <link>http://localhost:1313/posts/ros/time/</link>
+      <link>https://example.org/posts/ros/time/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/time/</guid>
+      <guid>https://example.org/posts/ros/time/</guid>
       <description>&lt;h1 id=&#34;ros-time&#34;&gt;ros Time&lt;/h1&gt;
 &lt;h2 id=&#34;参考链接&#34;&gt;参考链接&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.ros.org/en/jade/api/rospy/html/rospy.rostime.Time-class.html&#34;&gt;rospy.rostime&lt;/a&gt;&lt;/p&gt;
@@ -140,9 +140,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS 名称</title>
-      <link>http://localhost:1313/posts/ros/name-and-remapping/</link>
+      <link>https://example.org/posts/ros/name-and-remapping/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/name-and-remapping/</guid>
+      <guid>https://example.org/posts/ros/name-and-remapping/</guid>
       <description>&lt;h1 id=&#34;ros-名称&#34;&gt;ROS 名称&lt;/h1&gt;
 &lt;h2 id=&#34;名称&#34;&gt;名称&lt;/h2&gt;
 &lt;p&gt;名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等&lt;/p&gt;
@@ -188,9 +188,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>rosbag</title>
-      <link>http://localhost:1313/posts/ros/rosbag/</link>
+      <link>https://example.org/posts/ros/rosbag/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/rosbag/</guid>
+      <guid>https://example.org/posts/ros/rosbag/</guid>
       <description>&lt;h1 id=&#34;rosbag&#34;&gt;rosbag&lt;/h1&gt;
 &lt;p&gt;rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是&lt;code&gt;.bag&lt;/code&gt;，通过命令&lt;code&gt;rosbag&lt;/code&gt;进行播放或者检查。&lt;/p&gt;
 &lt;p&gt;参考链接:&lt;/p&gt;
@@ -220,9 +220,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS回调处理</title>
-      <link>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</link>
+      <link>https://example.org/posts/ros/callbacks-queue-and-spin/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</guid>
+      <guid>https://example.org/posts/ros/callbacks-queue-and-spin/</guid>
       <description>&lt;h1 id=&#34;ros回调处理&#34;&gt;ROS回调处理&lt;/h1&gt;
 &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;p&gt;你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。&lt;/p&gt;
@@ -251,9 +251,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS节点怎么使用GDB调试</title>
-      <link>http://localhost:1313/posts/ros/debugging/</link>
+      <link>https://example.org/posts/ros/debugging/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/debugging/</guid>
+      <guid>https://example.org/posts/ros/debugging/</guid>
       <description>&lt;h1 id=&#34;ros节点怎么使用gdb调试&#34;&gt;ROS节点怎么使用GDB调试&lt;/h1&gt;
 &lt;p&gt;[roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](&lt;a href=&#34;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&#34;&gt;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&lt;/a&gt; Nodes in Valgrind or GDB)&lt;/p&gt;
 &lt;p&gt;看上面的教程。在node标签里加launch_prefix就好了&lt;/p&gt;</description>

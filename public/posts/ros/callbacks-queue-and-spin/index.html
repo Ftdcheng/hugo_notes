@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>ROS回调处理 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="ROS">
 <meta name="description" content="ROS回调处理
@@ -33,16 +33,16 @@ nh.setCallbackQueue(&amp;my_callback_queue);
 参考文档
 Callbacks and Spinning">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/">
+<link rel="canonical" href="https://example.org/posts/ros/callbacks-queue-and-spin/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/callbacks-queue-and-spin/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ros/callbacks-queue-and-spin/">
 <noscript>
     <style>
         #theme-toggle,
@@ -79,7 +79,106 @@ Callbacks and Spinning">
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/ros/callbacks-queue-and-spin/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="ROS回调处理">
+  <meta property="og:description" content="ROS回调处理 概述 你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。
+回调函数队列 你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。
+spin()和spinOnce() 然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()
+spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。
+spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。
+全局队列与局部队列 一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。
+当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-&gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-&gt;callOne()
+#include &lt;ros/callback_queue.h&gt; ros::CallbackQueue my_queue; ros::NodeHandle nh; nh.setCallbackQueue(&amp;my_callback_queue); 甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。
+什么时候使用节点特有的回调函数队列 长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了 有计算时间长的回调函数，和长时间允许服务类似。 参考文档 Callbacks and Spinning">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS回调处理">
+<meta name="twitter:description" content="ROS回调处理
+概述
+你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。
+回调函数队列
+你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。
+spin()和spinOnce()
+然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()
+spin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。
+spinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。
+全局队列与局部队列
+一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。
+当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-&gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-&gt;callOne()
+#include &lt;ros/callback_queue.h&gt;
+
+ros::CallbackQueue my_queue;
+ros::NodeHandle nh;
+nh.setCallbackQueue(&amp;my_callback_queue);
+甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。
+什么时候使用节点特有的回调函数队列
+
+长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了
+有计算时间长的回调函数，和长时间允许服务类似。
+
+参考文档
+Callbacks and Spinning">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "ROS回调处理",
+      "item": "https://example.org/posts/ros/callbacks-queue-and-spin/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ROS回调处理",
+  "name": "ROS回调处理",
+  "description": "ROS回调处理 概述 你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。\n回调函数队列 你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。\nspin()和spinOnce() 然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()\nspin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。\nspinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。\n全局队列与局部队列 一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。\n当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-\u0026gt;callAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-\u0026gt;callOne()\n#include \u0026lt;ros/callback_queue.h\u0026gt; ros::CallbackQueue my_queue; ros::NodeHandle nh; nh.setCallbackQueue(\u0026amp;my_callback_queue); 甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。\n什么时候使用节点特有的回调函数队列 长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了 有计算时间长的回调函数，和长时间允许服务类似。 参考文档 Callbacks and Spinning\n",
+  "keywords": [
+    "ROS"
+  ],
+  "articleBody": "ROS回调处理 概述 你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。\n回调函数队列 你需要明白的是，当某个事件发生的时候，不会立马调用回调函数，而是会把回调函数和对应的参数推入回调函数队列（callback queue）。你在调用subscribe方法的时候规定了固定大小的队列长度，因为你的机器的响应能力是有限的，有的时候没有能力处理所有的事件，只处理最相对较新的事件，老事件有可能移出队列。\nspin()和spinOnce() 然后会有一个或者多个线程来依次调用队列里面的回调函数（如果队列里有的话）。这个线程对ROS用户是透明的，你没办法操控它。但是你可以规定它到底处不处理回调函数，你如果没有明确给它说要调用队列里面的回调函数的话，它是不会调用回调函数的。控制是否调用回调函数的函数是spin()和spinOnce()\nspin()的调用者会陷入阻塞，直到一些中断信号的发出。它会开启一个循环，处理所有队列里的回调函数，只有有就处理。\nspinOnce()只让线程处理一个回调函数，就是队首的那个。这个函数可以让你按照一定频率调用回调函数处理消息。\n全局队列与局部队列 一般情况下，对于你使用nodehandle创建的回调函数，容纳它的队列是ROS的全局队列，也就是说这个队列不仅容纳当前节点的回调函数，还有其它节点产生的回调函数，然后进行统一的调用。\n当然，你可以让你的节点有一个单独的回调函数队列，不用全局的那个。但是你如果要调用这种队列里的回调函数，你需要使用callAvailable()或者callOne(), 相当于全局队列的spin()和spinOnce()。实际上你可以使用ros::getGlobalCallbackQueue()获取全局回调函数队列，spin()实际上是ros::getGlobalCallbackQueue()-\u003ecallAvailable()，spinOnce实际上是ros::getGlobalCallbackQueue()-\u003ecallOne()\n#include ros::CallbackQueue my_queue; ros::NodeHandle nh; nh.setCallbackQueue(\u0026my_callback_queue); 甚至你可以让你的节点的部分回调函数进入一个专用的队列，给它们一个专用的包间。然后节点中的其它函数使用全局的回调函数队列，让它们吃大锅饭。你要实现这个功能的话可以使用带有Option对象的相应订阅或者处理请求的函数，在Option里规定使用哪个队列。具体怎么使用还是查文档吧。\n什么时候使用节点特有的回调函数队列 长时间运行服务。你给长期服务了一个队列，这样它就不会阻塞全局中其它回调函数了 有计算时间长的回调函数，和长时间允许服务类似。 参考文档 Callbacks and Spinning\n",
+  "wordCount" : "29",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ros/callbacks-queue-and-spin/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -97,7 +196,7 @@ Callbacks and Spinning">
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -168,14 +267,14 @@ Callbacks and Spinning">
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+      <li><a href="https://example.org/tags/ros/">ROS</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

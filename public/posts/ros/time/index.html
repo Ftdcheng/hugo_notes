@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>ros Time | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="ROS">
 <meta name="description" content="ros Time
@@ -34,16 +34,16 @@ def date2rostime(time: str):
 rospy.Time支持减法，减出来的结果是ros.Duration对象
 rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/ros/time/">
+<link rel="canonical" href="https://example.org/posts/ros/time/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/time/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ros/time/">
 <noscript>
     <style>
         #theme-toggle,
@@ -80,7 +80,104 @@ rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果�
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/ros/time/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="ros Time">
+  <meta property="og:description" content="ros Time 参考链接 rospy.rostime
+作用 rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。
+有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。
+rospy.Time v.s. datetime rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。 而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：
+# 匹配date精度的日期部分和超出微秒精度的部分 nanosec_pattern = re.compile(&#34;(\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&#34;) def date2rostime(time: str): sec_match = nanosec_pattern.match(time) if sec_match is None: raise ValueError micro_part = sec_match.group(1) nano_part = sec_match.group(2) micro_date = datetime.strptime(micro_part, &#34;%Y-%m-%d %H:%M:%S.%f&#34;) secs = int(micro_date.timestamp()) nano_secs = micro_date.microsecond * 1000 if nano_part is not None and nano_part != &#39;&#39;: nano_secs &#43;= int(nano_part) return rospy.Time(secs, nano_secs) 运算 rospy.Time支持减法，减出来的结果是ros.Duration对象
+rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ros Time">
+<meta name="twitter:description" content="ros Time
+参考链接
+rospy.rostime
+作用
+rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。
+有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。
+rospy.Time v.s. datetime
+rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。
+而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：
+# 匹配date精度的日期部分和超出微秒精度的部分
+nanosec_pattern = re.compile(&#34;(\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2}\.\d{1,6})(\d*)&#34;)
+def date2rostime(time: str):
+    sec_match = nanosec_pattern.match(time)
+    if sec_match is None:
+        raise ValueError
+    micro_part = sec_match.group(1)
+    nano_part = sec_match.group(2)
+    micro_date = datetime.strptime(micro_part, &#34;%Y-%m-%d %H:%M:%S.%f&#34;)
+    secs = int(micro_date.timestamp())
+    nano_secs = micro_date.microsecond * 1000
+    if nano_part is not None and nano_part != &#39;&#39;:
+        nano_secs &#43;= int(nano_part)
+    return rospy.Time(secs, nano_secs)
+运算
+rospy.Time支持减法，减出来的结果是ros.Duration对象
+rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "ros Time",
+      "item": "https://example.org/posts/ros/time/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ros Time",
+  "name": "ros Time",
+  "description": "ros Time 参考链接 rospy.rostime\n作用 rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。\n有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。\nrospy.Time v.s. datetime rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。 而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：\n# 匹配date精度的日期部分和超出微秒精度的部分 nanosec_pattern = re.compile(\u0026#34;(\\d{4}-\\d{1,2}-\\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2}\\.\\d{1,6})(\\d*)\u0026#34;) def date2rostime(time: str): sec_match = nanosec_pattern.match(time) if sec_match is None: raise ValueError micro_part = sec_match.group(1) nano_part = sec_match.group(2) micro_date = datetime.strptime(micro_part, \u0026#34;%Y-%m-%d %H:%M:%S.%f\u0026#34;) secs = int(micro_date.timestamp()) nano_secs = micro_date.microsecond * 1000 if nano_part is not None and nano_part != \u0026#39;\u0026#39;: nano_secs += int(nano_part) return rospy.Time(secs, nano_secs) 运算 rospy.Time支持减法，减出来的结果是ros.Duration对象\nrospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time\n",
+  "keywords": [
+    "ROS"
+  ],
+  "articleBody": "ros Time 参考链接 rospy.rostime\n作用 rospy.Time在一个消息的Header中的stamp字段中出现，表明这个消息的时间戳。\n有的人会使用rospy.Time.now()这个方法给stamp字段赋值，不过这个方法只有在有节点启动的时候用，也就是说你在编写一个rospy的节点的时候可以用。\nrospy.Time v.s. datetime rospy.Time对象主要有两个属性，secs(秒数)，nsecs(纳秒数)，所以这意味着它的精度是纳秒级的。 而python的datetime精度是微秒级的。转换的时候要注意到这个差别。转换例子：\n# 匹配date精度的日期部分和超出微秒精度的部分 nanosec_pattern = re.compile(\"(\\d{4}-\\d{1,2}-\\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2}\\.\\d{1,6})(\\d*)\") def date2rostime(time: str): sec_match = nanosec_pattern.match(time) if sec_match is None: raise ValueError micro_part = sec_match.group(1) nano_part = sec_match.group(2) micro_date = datetime.strptime(micro_part, \"%Y-%m-%d %H:%M:%S.%f\") secs = int(micro_date.timestamp()) nano_secs = micro_date.microsecond * 1000 if nano_part is not None and nano_part != '': nano_secs += int(nano_part) return rospy.Time(secs, nano_secs) 运算 rospy.Time支持减法，减出来的结果是ros.Duration对象\nrospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果是一个rospy.Time\n",
+  "wordCount" : "67",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ros/time/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -98,7 +195,7 @@ rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -170,14 +267,14 @@ rospy.Time之间没有加法，但rospy.Time可以和rospy.Duration加，结果�
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+      <li><a href="https://example.org/tags/ros/">ROS</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

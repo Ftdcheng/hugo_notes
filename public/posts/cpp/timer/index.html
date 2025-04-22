@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>C&#43;&#43; 程序执行计时器的写法 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="cpp">
 <meta name="description" content="C&#43;&#43; 程序执行计时器的写法
@@ -41,16 +41,16 @@ private:
 }
 输出会自动写到 timing_log.txt，像这样：">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/cpp/timer/">
+<link rel="canonical" href="https://example.org/posts/cpp/timer/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/cpp/timer/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/cpp/timer/">
 <noscript>
     <style>
         #theme-toggle,
@@ -87,7 +87,108 @@ private:
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/cpp/timer/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="C&#43;&#43; 程序执行计时器的写法">
+  <meta property="og:description" content="C&#43;&#43; 程序执行计时器的写法 提到 “优雅地”测量程序性能并输出到文件，我们就不是简简单单扔个 std::chrono 然后 cout 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。
+下面我分两种层次跟你说：
+✅ 快速整洁版：适合小段代码测试 封装一个 Timer 类 #include &lt;chrono&gt; #include &lt;fstream&gt; #include &lt;string&gt; class Timer { public: Timer(const std::string&amp; label = &#34;&#34;, const std::string&amp; log_file = &#34;timing_log.txt&#34;) : label_(label), log_file_(log_file), start_time_(std::chrono::high_resolution_clock::now()) {} ~Timer() { auto end_time = std::chrono::high_resolution_clock::now(); auto duration_ms = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end_time - start_time_).count(); std::ofstream ofs(log_file_, std::ios::app); // 追加写 ofs &lt;&lt; &#34;[&#34; &lt;&lt; label_ &lt;&lt; &#34;] took &#34; &lt;&lt; duration_ms &lt;&lt; &#34; ms\n&#34;; } private: std::string label_; std::string log_file_; std::chrono::high_resolution_clock::time_point start_time_; }; 用法非常 Zen： { Timer t(&#34;Tracking Update&#34;); // 离开作用域自动写入时间 run_tracking_update(); } 输出会自动写到 timing_log.txt，像这样：">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#43;&#43; 程序执行计时器的写法">
+<meta name="twitter:description" content="C&#43;&#43; 程序执行计时器的写法
+提到 “优雅地”测量程序性能并输出到文件，我们就不是简简单单扔个 std::chrono 然后 cout 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。
+下面我分两种层次跟你说：
+
+✅ 快速整洁版：适合小段代码测试
+封装一个 Timer 类
+#include &lt;chrono&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+class Timer {
+public:
+    Timer(const std::string&amp; label = &#34;&#34;, const std::string&amp; log_file = &#34;timing_log.txt&#34;)
+        : label_(label), log_file_(log_file), start_time_(std::chrono::high_resolution_clock::now()) {}
+
+    ~Timer() {
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration_ms = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end_time - start_time_).count();
+        std::ofstream ofs(log_file_, std::ios::app); // 追加写
+        ofs &lt;&lt; &#34;[&#34; &lt;&lt; label_ &lt;&lt; &#34;] took &#34; &lt;&lt; duration_ms &lt;&lt; &#34; ms\n&#34;;
+    }
+
+private:
+    std::string label_;
+    std::string log_file_;
+    std::chrono::high_resolution_clock::time_point start_time_;
+};
+用法非常 Zen：
+{
+    Timer t(&#34;Tracking Update&#34;);  // 离开作用域自动写入时间
+    run_tracking_update();
+}
+输出会自动写到 timing_log.txt，像这样：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "C++ 程序执行计时器的写法",
+      "item": "https://example.org/posts/cpp/timer/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "C++ 程序执行计时器的写法",
+  "name": "C\u002b\u002b 程序执行计时器的写法",
+  "description": "C++ 程序执行计时器的写法 提到 “优雅地”测量程序性能并输出到文件，我们就不是简简单单扔个 std::chrono 然后 cout 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。\n下面我分两种层次跟你说：\n✅ 快速整洁版：适合小段代码测试 封装一个 Timer 类 #include \u0026lt;chrono\u0026gt; #include \u0026lt;fstream\u0026gt; #include \u0026lt;string\u0026gt; class Timer { public: Timer(const std::string\u0026amp; label = \u0026#34;\u0026#34;, const std::string\u0026amp; log_file = \u0026#34;timing_log.txt\u0026#34;) : label_(label), log_file_(log_file), start_time_(std::chrono::high_resolution_clock::now()) {} ~Timer() { auto end_time = std::chrono::high_resolution_clock::now(); auto duration_ms = std::chrono::duration_cast\u0026lt;std::chrono::milliseconds\u0026gt;(end_time - start_time_).count(); std::ofstream ofs(log_file_, std::ios::app); // 追加写 ofs \u0026lt;\u0026lt; \u0026#34;[\u0026#34; \u0026lt;\u0026lt; label_ \u0026lt;\u0026lt; \u0026#34;] took \u0026#34; \u0026lt;\u0026lt; duration_ms \u0026lt;\u0026lt; \u0026#34; ms\\n\u0026#34;; } private: std::string label_; std::string log_file_; std::chrono::high_resolution_clock::time_point start_time_; }; 用法非常 Zen： { Timer t(\u0026#34;Tracking Update\u0026#34;); // 离开作用域自动写入时间 run_tracking_update(); } 输出会自动写到 timing_log.txt，像这样：\n",
+  "keywords": [
+    "cpp"
+  ],
+  "articleBody": "C++ 程序执行计时器的写法 提到 “优雅地”测量程序性能并输出到文件，我们就不是简简单单扔个 std::chrono 然后 cout 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。\n下面我分两种层次跟你说：\n✅ 快速整洁版：适合小段代码测试 封装一个 Timer 类 #include #include #include class Timer { public: Timer(const std::string\u0026 label = \"\", const std::string\u0026 log_file = \"timing_log.txt\") : label_(label), log_file_(log_file), start_time_(std::chrono::high_resolution_clock::now()) {} ~Timer() { auto end_time = std::chrono::high_resolution_clock::now(); auto duration_ms = std::chrono::duration_cast\u003cstd::chrono::milliseconds\u003e(end_time - start_time_).count(); std::ofstream ofs(log_file_, std::ios::app); // 追加写 ofs \u003c\u003c \"[\" \u003c\u003c label_ \u003c\u003c \"] took \" \u003c\u003c duration_ms \u003c\u003c \" ms\\n\"; } private: std::string label_; std::string log_file_; std::chrono::high_resolution_clock::time_point start_time_; }; 用法非常 Zen： { Timer t(\"Tracking Update\"); // 离开作用域自动写入时间 run_tracking_update(); } 输出会自动写到 timing_log.txt，像这样：\n[Tracking Update] took 32 ms 你甚至可以在 main 函数、模块级别用这个做 performance profiling，一目了然。\n🔥 高阶炫酷版：多点测量 + 分段统计 + 平均值分析 如果你需要对某个函数多次执行做性能统计（比如 1000 帧的处理时间分布），可以这样玩：\n写个 Benchmark 工具： #include #include #include #include #include class Benchmark { public: void start() { start_time_ = std::chrono::high_resolution_clock::now(); } void stop() { auto end_time = std::chrono::high_resolution_clock::now(); durations_.push_back(std::chrono::duration\u003cdouble, std::milli\u003e(end_time - start_time_).count()); } void report(const std::string\u0026 label, const std::string\u0026 filename = \"benchmark_report.txt\") { std::ofstream ofs(filename, std::ios::app); double avg = std::accumulate(durations_.begin(), durations_.end(), 0.0) / durations_.size(); ofs \u003c\u003c \"[\" \u003c\u003c label \u003c\u003c \"] Average Time: \" \u003c\u003c avg \u003c\u003c \" ms over \" \u003c\u003c durations_.size() \u003c\u003c \" runs\\n\"; } private: std::chrono::high_resolution_clock::time_point start_time_; std::vector\u003cdouble\u003e durations_; }; 使用示例： Benchmark bm; for (int i = 0; i \u003c 1000; ++i) { bm.start(); process_frame(i); bm.stop(); } bm.report(\"Frame Processing\"); 输出就会是：\n[Frame Processing] Average Time: 12.44 ms over 1000 runs 🌟 模板版： 用模板封装定时逻辑，在编译期根据“是否启用性能分析”决定是否启用计时器，做到零运行时开销，而且用法和 ScopedTimer 一样丝滑。\n🎯 Step 1：定义一个模板类 // 定时器启用的版本 template\u003cbool ENABLED = true\u003e class Timer { public: Timer(const std::string\u0026 name) : name_(name) { if constexpr (ENABLED) { start_ = std::chrono::steady_clock::now(); } } ~Timer() { if constexpr (ENABLED) { auto end = std::chrono::steady_clock::now(); auto duration = std::chrono::duration_cast\u003cstd::chrono::microseconds\u003e(end - start_).count(); std::cout \u003c\u003c \"[Timer] \" \u003c\u003c name_ \u003c\u003c \" took \" \u003c\u003c duration \u003c\u003c \" us\\n\"; } } private: std::string name_; std::chrono::steady_clock::time_point start_; }; 🧩 Step 2：定义宏开关 #define ENABLE_PROFILING true // 改成 false 就完全关闭计时 #define PROFILE_SCOPE(name) Timer timer_##__LINE__(name) 用法就像这样：\nvoid SomeFunction() { PROFILE_SCOPE(\"SomeFunction logic\"); // ... 代码逻辑 ... } ✅ 如果 ENABLE_PROFILING 为 false： Timer 的计时代码会在编译期被完全裁剪掉，0 运行时成本，不需要 if-else。 就像代码没写过一样轻盈。 💎 进阶功能（可选） 可以加上 __FILE__, __func__, __LINE__ 这些宏，让输出更详细：\n#define PROFILE_SCOPE_LOC() Timer timer_##__LINE__(std::string(__FILE__) + \":\" + std::to_string(__LINE__) + \" \" + __func__) 🧠 模板的优势总结： 零开销切换：开关一个宏，计时器全体启用/关闭。 支持嵌套：多处调用不会互相干扰。 模板裁剪优化：编译器优化到飞起，启用时详细，不启用时连对象都不构造。 要不要我再帮你封装个日志写入到文件版本的？支持你开多线程分析后批量看瓶颈。你这工作量一看就是要上点系统性方案的😎\n✅ 加分项：输出 CSV 图表数据 如果你想可视化这些性能数据，比如用 Python 画图分析，还可以：\nstd::ofstream csv(\"timing_data.csv\"); csv \u003c\u003c \"frame_id,time_ms\\n\"; for (size_t i = 0; i \u003c durations.size(); ++i) { csv \u003c\u003c i \u003c\u003c \",\" \u003c\u003c durations[i] \u003c\u003c \"\\n\"; } 🎁 总结 方法 场景 优点 Timer 类 局部定时 简单自动、代码整洁 Benchmark 类 多次统计 平均、分布、分析 CSV 输出 高级分析 配合 matplotlib/Excel 有！而且还真不少。模板 + RAII + 条件编译 是实现灵活、优雅、可插拔性能测量的绝配。\n咱们这就来盘一个高级 yet 实用的模板方案：\n",
+  "wordCount" : "417",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/cpp/timer/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -105,7 +206,7 @@ private:
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -321,14 +422,14 @@ private:
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/cpp/">Cpp</a></li>
+      <li><a href="https://example.org/tags/cpp/">Cpp</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

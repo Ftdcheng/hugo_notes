@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>配准方法 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="brainstorm">
 <meta name="description" content="配准方法
@@ -25,16 +25,16 @@ Fast 3d recognition and pose using the viewpoint feature histogram
 这类方法从稠密的点云中提取特征，减少计算资源的占用。
 诸多方法已经使用并行化来提高效率">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/slam/brainstorm/register-method/">
+<link rel="canonical" href="https://example.org/posts/slam/brainstorm/register-method/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/brainstorm/register-method/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/slam/brainstorm/register-method/">
 <noscript>
     <style>
         #theme-toggle,
@@ -71,7 +71,94 @@ Fast 3d recognition and pose using the viewpoint feature histogram
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/slam/brainstorm/register-method/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="配准方法">
+  <meta property="og:description" content="配准方法 ICP 论文：A method for registration of 3-D shapes
+generialized-ICP （泛化ICP） 论文：Generalized-icp
+如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP
+LOAM 改进的generialzed-ICP 论文：Loam: Lidar odometry and mapping in real-time 在泛化ICP的基础上添加了点到边的距离
+基于3D关键点的方法 Learning informative point classes for the acquisition of object model maps Fast point feature histograms (fpfh) for 3d registration Fast 3d recognition and pose using the viewpoint feature histogram 这类方法从稠密的点云中提取特征，减少计算资源的占用。 诸多方法已经使用并行化来提高效率">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Brainstorm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配准方法">
+<meta name="twitter:description" content="配准方法
+ICP
+论文：A method for registration of 3-D shapes
+generialized-ICP （泛化ICP）
+论文：Generalized-icp
+如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP
+LOAM 改进的generialzed-ICP
+论文：Loam: Lidar odometry and mapping in real-time
+在泛化ICP的基础上添加了点到边的距离
+基于3D关键点的方法
+
+Learning informative point classes for the acquisition of object model maps
+Fast point feature histograms (fpfh) for 3d registration
+Fast 3d recognition and pose using the viewpoint feature histogram
+
+这类方法从稠密的点云中提取特征，减少计算资源的占用。
+诸多方法已经使用并行化来提高效率">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "配准方法",
+      "item": "https://example.org/posts/slam/brainstorm/register-method/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "配准方法",
+  "name": "配准方法",
+  "description": "配准方法 ICP 论文：A method for registration of 3-D shapes\ngenerialized-ICP （泛化ICP） 论文：Generalized-icp\n如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP\nLOAM 改进的generialzed-ICP 论文：Loam: Lidar odometry and mapping in real-time 在泛化ICP的基础上添加了点到边的距离\n基于3D关键点的方法 Learning informative point classes for the acquisition of object model maps Fast point feature histograms (fpfh) for 3d registration Fast 3d recognition and pose using the viewpoint feature histogram 这类方法从稠密的点云中提取特征，减少计算资源的占用。 诸多方法已经使用并行化来提高效率\n",
+  "keywords": [
+    "brainstorm"
+  ],
+  "articleBody": "配准方法 ICP 论文：A method for registration of 3-D shapes\ngenerialized-ICP （泛化ICP） 论文：Generalized-icp\n如果两个扫描之间没有扫描到同一个物体，ICP将会很难配准，为了解决这个问题，除了点到点的距离，泛化ICP结合了点到面距离的ICP\nLOAM 改进的generialzed-ICP 论文：Loam: Lidar odometry and mapping in real-time 在泛化ICP的基础上添加了点到边的距离\n基于3D关键点的方法 Learning informative point classes for the acquisition of object model maps Fast point feature histograms (fpfh) for 3d registration Fast 3d recognition and pose using the viewpoint feature histogram 这类方法从稠密的点云中提取特征，减少计算资源的占用。 诸多方法已经使用并行化来提高效率\n",
+  "wordCount" : "55",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/slam/brainstorm/register-method/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -89,7 +176,7 @@ Fast 3d recognition and pose using the viewpoint feature histogram
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -152,14 +239,14 @@ Fast 3d recognition and pose using the viewpoint feature histogram
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/brainstorm/">Brainstorm</a></li>
+      <li><a href="https://example.org/tags/brainstorm/">Brainstorm</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

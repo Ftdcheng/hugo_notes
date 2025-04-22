@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>rosbag | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="ROS">
 <meta name="description" content="rosbag
@@ -34,16 +34,16 @@ with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag:
 命令行工具
 参考链接: rosbag commandline">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/ros/rosbag/">
+<link rel="canonical" href="https://example.org/posts/ros/rosbag/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/rosbag/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ros/rosbag/">
 <noscript>
     <style>
         #theme-toggle,
@@ -80,7 +80,106 @@ with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag:
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/ros/rosbag/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="rosbag">
+  <meta property="og:description" content="rosbag rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是.bag，通过命令rosbag进行播放或者检查。
+参考链接:
+rosbag - ros docs rosbag.Bag rosbag包 安装 sudo apt install ros-{ROS_DISTRO}-rosbag 然后你可以导入使用
+import rosbag 值得注意的是在系统默认python环境中无需额外的配置即可导入rosbag，然而你如果使用venv或者anaconda需要安装一些额外的包。
+这些包有：pyyaml, pycryptodomex, gnupg, rospkg，激活环境后安装：
+pip install pycryptodome pyyaml gnupg rospkg 在你使用venv的时候你需要修改虚拟环境目录下的bin/activate在它的最后一行加上source /opt/ros/${ROS-DISTRO}/setup.bash。完成这些配置后你的rosbag才能成功导入。
+写入 with rosbag.Bag(&#39;test.bag&#39;, &#39;w&#39;) as bag: bag.write(topic_name, msg) 读取 with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag: for topic, msg, t in bag.read_messages(topics=[&#34;chater&#34;, &#34;numbers&#34;]): print(msg) 使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()
+命令行工具 参考链接: rosbag commandline">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rosbag">
+<meta name="twitter:description" content="rosbag
+rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是.bag，通过命令rosbag进行播放或者检查。
+参考链接:
+
+rosbag - ros docs
+rosbag.Bag
+
+rosbag包
+安装
+sudo apt install ros-{ROS_DISTRO}-rosbag
+然后你可以导入使用
+import rosbag
+值得注意的是在系统默认python环境中无需额外的配置即可导入rosbag，然而你如果使用venv或者anaconda需要安装一些额外的包。
+这些包有：pyyaml, pycryptodomex, gnupg, rospkg，激活环境后安装：
+pip install pycryptodome pyyaml gnupg rospkg
+在你使用venv的时候你需要修改虚拟环境目录下的bin/activate在它的最后一行加上source /opt/ros/${ROS-DISTRO}/setup.bash。完成这些配置后你的rosbag才能成功导入。
+写入
+with rosbag.Bag(&#39;test.bag&#39;, &#39;w&#39;) as bag:
+    bag.write(topic_name, msg)
+读取
+with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag:
+    for topic, msg, t in bag.read_messages(topics=[&#34;chater&#34;, &#34;numbers&#34;]):
+        print(msg)
+使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()
+命令行工具
+参考链接: rosbag commandline">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "rosbag",
+      "item": "https://example.org/posts/ros/rosbag/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "rosbag",
+  "name": "rosbag",
+  "description": "rosbag rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是.bag，通过命令rosbag进行播放或者检查。\n参考链接:\nrosbag - ros docs rosbag.Bag rosbag包 安装 sudo apt install ros-{ROS_DISTRO}-rosbag 然后你可以导入使用\nimport rosbag 值得注意的是在系统默认python环境中无需额外的配置即可导入rosbag，然而你如果使用venv或者anaconda需要安装一些额外的包。\n这些包有：pyyaml, pycryptodomex, gnupg, rospkg，激活环境后安装：\npip install pycryptodome pyyaml gnupg rospkg 在你使用venv的时候你需要修改虚拟环境目录下的bin/activate在它的最后一行加上source /opt/ros/${ROS-DISTRO}/setup.bash。完成这些配置后你的rosbag才能成功导入。\n写入 with rosbag.Bag(\u0026#39;test.bag\u0026#39;, \u0026#39;w\u0026#39;) as bag: bag.write(topic_name, msg) 读取 with rosbag.Bag(\u0026#39;test.bag\u0026#39;, \u0026#39;r\u0026#39;) as bag: for topic, msg, t in bag.read_messages(topics=[\u0026#34;chater\u0026#34;, \u0026#34;numbers\u0026#34;]): print(msg) 使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()\n命令行工具 参考链接: rosbag commandline\n",
+  "keywords": [
+    "ROS"
+  ],
+  "articleBody": "rosbag rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是.bag，通过命令rosbag进行播放或者检查。\n参考链接:\nrosbag - ros docs rosbag.Bag rosbag包 安装 sudo apt install ros-{ROS_DISTRO}-rosbag 然后你可以导入使用\nimport rosbag 值得注意的是在系统默认python环境中无需额外的配置即可导入rosbag，然而你如果使用venv或者anaconda需要安装一些额外的包。\n这些包有：pyyaml, pycryptodomex, gnupg, rospkg，激活环境后安装：\npip install pycryptodome pyyaml gnupg rospkg 在你使用venv的时候你需要修改虚拟环境目录下的bin/activate在它的最后一行加上source /opt/ros/${ROS-DISTRO}/setup.bash。完成这些配置后你的rosbag才能成功导入。\n写入 with rosbag.Bag('test.bag', 'w') as bag: bag.write(topic_name, msg) 读取 with rosbag.Bag('test.bag', 'r') as bag: for topic, msg, t in bag.read_messages(topics=[\"chater\", \"numbers\"]): print(msg) 使用with进行读写是一个简便的方法，否则你需要手动对bag进行关闭，使用bag.close()\n命令行工具 参考链接: rosbag commandline\n",
+  "wordCount" : "57",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ros/rosbag/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -98,7 +197,7 @@ with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag:
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -170,14 +269,14 @@ with rosbag.Bag(&#39;test.bag&#39;, &#39;r&#39;) as bag:
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+      <li><a href="https://example.org/tags/ros/">ROS</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

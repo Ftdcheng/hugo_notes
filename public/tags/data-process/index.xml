@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Data-Process on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/data-process/</link>
+    <link>https://example.org/tags/data-process/</link>
     <description>Recent content in Data-Process on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/data-process/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/data-process/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>KITTI</title>
-      <link>http://localhost:1313/posts/data-process/kitti/</link>
+      <link>https://example.org/posts/data-process/kitti/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/data-process/kitti/</guid>
+      <guid>https://example.org/posts/data-process/kitti/</guid>
       <description>&lt;h1 id=&#34;kitti&#34;&gt;KITTI&lt;/h1&gt;
 &lt;h2 id=&#34;点云数据&#34;&gt;点云数据&lt;/h2&gt;
 &lt;h3 id=&#34;文件结构&#34;&gt;文件结构&lt;/h3&gt;
@@ -33,9 +33,9 @@
     </item>
     <item>
       <title>pandas</title>
-      <link>http://localhost:1313/posts/data-process/pandas/</link>
+      <link>https://example.org/posts/data-process/pandas/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/data-process/pandas/</guid>
+      <guid>https://example.org/posts/data-process/pandas/</guid>
       <description>&lt;h1 id=&#34;pandas&#34;&gt;pandas&lt;/h1&gt;
 &lt;h2 id=&#34;基本属性&#34;&gt;基本属性&lt;/h2&gt;
 &lt;ul&gt;

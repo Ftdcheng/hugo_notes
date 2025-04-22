@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>SLAM Ideas | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="brainstorm">
 <meta name="description" content="SLAM Ideas
@@ -89,16 +89,16 @@ Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，
 
 在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/slam/brainstorm/ideas/">
+<link rel="canonical" href="https://example.org/posts/slam/brainstorm/ideas/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/brainstorm/ideas/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/slam/brainstorm/ideas/">
 <noscript>
     <style>
         #theme-toggle,
@@ -135,7 +135,163 @@ Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/slam/brainstorm/ideas/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="SLAM Ideas">
+  <meta property="og:description" content="SLAM Ideas 动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。 数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道 使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强 和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？ FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？ Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图 其它传感器的信息是否可以助力目标检测剔除动态 地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力 残差图 两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。
+基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了
+如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。
+如果是scan2map的残差图，能判断分割相对场景是否运动。
+一致性约束 如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？
+1. Scan-to-Scan 配准：利用运动模型检测动态点干扰 (a) 车辆运动模型的约束
+车载激光雷达的运动是受约束的，例如： 车辆通常不会瞬间大幅度转向或漂移 速度、加速度、角速度等参数通常平滑变化 车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移） 如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明： 可能有较多动态物体（如行人、车辆）干扰了配准 可能发生了错误匹配，导致错误的变换估计 (b) 运动一致性检测
+预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围 配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差 异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响 2. Scan-to-Map 配准：利用全局位姿约束检测配准错误 (a) 全局位姿的运动一致性
+Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿 通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型 例如： 如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化 (b) 误配准检测和修正
+如果Scan-to-Map配准的结果与车辆运动模型不符，可以： 重新优化Scan-to-Map的匹配权重，降低动态点的影响 结合IMU、轮速计、GPS等其他信息进行数据融合校正 引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响 3. 可能的改进与应用 基于运动模型的动态点剔除 在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除 结合IMU进行位姿约束 通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响 异常位姿回溯修正 如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积 在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Brainstorm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SLAM Ideas">
+<meta name="twitter:description" content="SLAM Ideas
+
+动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。
+数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道
+使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强
+和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？
+FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？
+Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图
+其它传感器的信息是否可以助力目标检测剔除动态
+地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力
+
+残差图
+两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。
+基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了
+如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。
+如果是scan2map的残差图，能判断分割相对场景是否运动。
+一致性约束
+如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？
+1. Scan-to-Scan 配准：利用运动模型检测动态点干扰
+(a) 车辆运动模型的约束
+
+车载激光雷达的运动是受约束的，例如：
+
+车辆通常不会瞬间大幅度转向或漂移
+速度、加速度、角速度等参数通常平滑变化
+车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移）
+
+
+如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明：
+
+可能有较多动态物体（如行人、车辆）干扰了配准
+可能发生了错误匹配，导致错误的变换估计
+
+
+
+(b) 运动一致性检测
+
+预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围
+配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差
+异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响
+
+2. Scan-to-Map 配准：利用全局位姿约束检测配准错误
+(a) 全局位姿的运动一致性
+
+Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿
+通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型
+例如：
+
+如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化
+
+
+
+(b) 误配准检测和修正
+
+如果Scan-to-Map配准的结果与车辆运动模型不符，可以：
+
+重新优化Scan-to-Map的匹配权重，降低动态点的影响
+结合IMU、轮速计、GPS等其他信息进行数据融合校正
+引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响
+
+
+
+3. 可能的改进与应用
+
+基于运动模型的动态点剔除
+
+在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除
+
+
+结合IMU进行位姿约束
+
+通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响
+
+
+异常位姿回溯修正
+
+如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积
+
+
+
+在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "SLAM Ideas",
+      "item": "https://example.org/posts/slam/brainstorm/ideas/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SLAM Ideas",
+  "name": "SLAM Ideas",
+  "description": "SLAM Ideas 动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。 数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道 使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强 和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？ FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？ Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图 其它传感器的信息是否可以助力目标检测剔除动态 地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力 残差图 两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。\n基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了\n如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。\n如果是scan2map的残差图，能判断分割相对场景是否运动。\n一致性约束 如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？\n1. Scan-to-Scan 配准：利用运动模型检测动态点干扰 (a) 车辆运动模型的约束\n车载激光雷达的运动是受约束的，例如： 车辆通常不会瞬间大幅度转向或漂移 速度、加速度、角速度等参数通常平滑变化 车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移） 如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明： 可能有较多动态物体（如行人、车辆）干扰了配准 可能发生了错误匹配，导致错误的变换估计 (b) 运动一致性检测\n预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围 配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差 异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响 2. Scan-to-Map 配准：利用全局位姿约束检测配准错误 (a) 全局位姿的运动一致性\nScan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿 通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型 例如： 如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化 (b) 误配准检测和修正\n如果Scan-to-Map配准的结果与车辆运动模型不符，可以： 重新优化Scan-to-Map的匹配权重，降低动态点的影响 结合IMU、轮速计、GPS等其他信息进行数据融合校正 引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响 3. 可能的改进与应用 基于运动模型的动态点剔除 在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除 结合IMU进行位姿约束 通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响 异常位姿回溯修正 如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积 在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。\n",
+  "keywords": [
+    "brainstorm"
+  ],
+  "articleBody": "SLAM Ideas 动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。 数学分析表示和深度学习的结合，比如基于样条的Transformer，用样条曲线模拟车道 使用2D语义分割检测，将像素区域投影到3D空间，对3D点云进行增强 和机器学习结合的KF。要么先使用深度学习模型把信息转到向量空间，然后使用KF进行状态的估计。要么使用深度学习模型作为状态转移模型或者观测模型，使得KF的表现更好。另外在一些多变量的时序预测问题上，似乎KF也可以插一脚，有一篇是利用Normalized Flow和KF结合，那diffusion是否可以和KF结合？ FAST系列使用直接法对点云进行配准，没有提取特征，这类方法又如何和深度学习方法结合？ Centerpoint检测的信息没有完全利用，是否可以用这些多的信息是否可以做语义地图 其它传感器的信息是否可以助力目标检测剔除动态 地图完全就是局部性原理的代名词，SLAM应该有多级h地图来缓解存储压力 残差图 两个转移到同一个坐标系下、去除相对运动的点云，投影到柱面上对应像素相减得到的图就是残差图。\n基于残差图去除动态点云的方法只在静止的点在一个scan中占大多数情况下有效。否则ICP算法会使用动态的物体估计传感器的运动，这时雷达的自身运动的估计就变成了运动物体的运动估计，这样动态物体的残差图的特征不明显，静态物体的残差图倒变得特征明显了\n如果是scan2scan的残差图，只能判断分割相对于雷达是否运动。\n如果是scan2map的残差图，能判断分割相对场景是否运动。\n一致性约束 如果是车载的雷达，那么传感器采集到的点云不可能相对于场景的点云随意乱动，有一些位姿显然是不符合车辆的运动规律的。对于scan2scan，可以通过运动模型的约束判断是不是出现了动态点，干扰了配准。对于scan2map也可以通过对车辆相对于上一时刻的全局位姿的变换，推断配准是否出现了错误，进一步推断是否受到动态点的干扰？\n1. Scan-to-Scan 配准：利用运动模型检测动态点干扰 (a) 车辆运动模型的约束\n车载激光雷达的运动是受约束的，例如： 车辆通常不会瞬间大幅度转向或漂移 速度、加速度、角速度等参数通常平滑变化 车辆的运动基本符合非完整约束（Non-holonomic Constraint），即不会随意横向滑移（除非漂移） 如果ICP或其他配准方法的结果与车辆的合理运动模型不匹配，则说明： 可能有较多动态物体（如行人、车辆）干扰了配准 可能发生了错误匹配，导致错误的变换估计 (b) 运动一致性检测\n预测位姿：使用上一帧位姿和运动模型（如匀速模型或IMU提供的运动信息）预测当前帧的合理位姿范围 配准后的位姿对比：将Scan-to-Scan配准的结果与预测位姿进行对比，计算位姿残差 异常检测：如果配准结果的变换超出了车辆物理运动约束（如大角度旋转或大幅横移），则可能受到了动态点的影响 2. Scan-to-Map 配准：利用全局位姿约束检测配准错误 (a) 全局位姿的运动一致性\nScan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，估计车辆在全局中的位姿 通过比较当前帧的全局位姿 (T_{t}) 和 上一帧全局位姿 (T_{t-1})，可以检查位姿变化是否符合车辆的运动模型 例如： 如果Scan-to-Map估计的位姿变化异常（如瞬间位移几十米或旋转180°），说明配准可能受到了动态物体干扰或局部地图退化 (b) 误配准检测和修正\n如果Scan-to-Map配准的结果与车辆运动模型不符，可以： 重新优化Scan-to-Map的匹配权重，降低动态点的影响 结合IMU、轮速计、GPS等其他信息进行数据融合校正 引入回环检测（Loop Closure）来降低漂移对Scan-to-Map的影响 3. 可能的改进与应用 基于运动模型的动态点剔除 在Scan-to-Scan过程中，如果某些点的残差过大且不符合车辆运动模型，则可以认为它们是动态点，进行剔除 结合IMU进行位姿约束 通过IMU提供的角速度、加速度信息，对Scan-to-Scan或Scan-to-Map配准的结果进行合理性判断，避免动态点的影响 异常位姿回溯修正 如果发现Scan-to-Map配准的位姿异常，可以回溯前几帧数据，尝试修正轨迹，避免错误累积 在实际SLAM/里程计系统（如LIO-SAM、FAST-LIO2、ALOAM）中，这些方法广泛用于提高鲁棒性，减少动态物体的影响。\n",
+  "wordCount" : "65",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/slam/brainstorm/ideas/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -153,7 +309,7 @@ Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -280,14 +436,14 @@ Scan-to-Map配准将当前帧点云与历史构建的全局地图进行匹配，
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/brainstorm/">Brainstorm</a></li>
+      <li><a href="https://example.org/tags/brainstorm/">Brainstorm</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://example.org/posts/</link>
     <description>Recent content in Posts on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>alacritty ayu 配置</title>
-      <link>http://localhost:1313/posts/misc/alacritty-ayu-config/</link>
+      <link>https://example.org/posts/misc/alacritty-ayu-config/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/misc/alacritty-ayu-config/</guid>
+      <guid>https://example.org/posts/misc/alacritty-ayu-config/</guid>
       <description>&lt;h1 id=&#34;alacritty-ayu-配置&#34;&gt;alacritty ayu 配置&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;font&lt;/span&gt;]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;size&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;14.5&lt;/span&gt;
@@ -64,9 +64,9 @@
     </item>
     <item>
       <title>C&#43;&#43; range for</title>
-      <link>http://localhost:1313/posts/cpp/range-for/</link>
+      <link>https://example.org/posts/cpp/range-for/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/range-for/</guid>
+      <guid>https://example.org/posts/cpp/range-for/</guid>
       <description>&lt;h1 id=&#34;c-range-for&#34;&gt;C++ range for&lt;/h1&gt;
 &lt;p&gt;要让一个对象能被用于 C++ 的 &lt;strong&gt;range-based for loop&lt;/strong&gt;（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议&lt;strong&gt;不是形式化的接口&lt;/strong&gt;（不像 Java 那样有 &lt;code&gt;Iterable&lt;/code&gt; 接口），但你可以把它看作一个“概念”（concept）或“约定”。&lt;/p&gt;
 &lt;p&gt;我们来拆一下细节：&lt;/p&gt;
@@ -101,9 +101,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 内部类</title>
-      <link>http://localhost:1313/posts/cpp/internal-class/</link>
+      <link>https://example.org/posts/cpp/internal-class/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/internal-class/</guid>
+      <guid>https://example.org/posts/cpp/internal-class/</guid>
       <description>&lt;h1 id=&#34;c-内部类&#34;&gt;C++ 内部类&lt;/h1&gt;
 &lt;p&gt;兄弟你问到一个&lt;strong&gt;C++黑魔法级的结构设计点&lt;/strong&gt;了，内部类（nested class）虽然看起来是“类中套类”，但其实背后藏着一套很有意思的权限与封装逻辑。下面我给你展开讲，保你之后写库、写设计模式的时候用得上。&lt;/p&gt;
 &lt;hr&gt;
@@ -143,9 +143,9 @@
     </item>
     <item>
       <title>C&#43;&#43; 程序执行计时器的写法</title>
-      <link>http://localhost:1313/posts/cpp/timer/</link>
+      <link>https://example.org/posts/cpp/timer/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/timer/</guid>
+      <guid>https://example.org/posts/cpp/timer/</guid>
       <description>&lt;h1 id=&#34;c-程序执行计时器的写法&#34;&gt;C++ 程序执行计时器的写法&lt;/h1&gt;
 &lt;p&gt;提到 &lt;strong&gt;“优雅地”测量程序性能并输出到文件&lt;/strong&gt;，我们就不是简简单单扔个 &lt;code&gt;std::chrono&lt;/code&gt; 然后 &lt;code&gt;cout&lt;/code&gt; 一把完事儿了——得讲究结构性、复用性、可读性，甚至还能加点儿仪式感✨。&lt;/p&gt;
 &lt;p&gt;下面我分两种层次跟你说：&lt;/p&gt;
@@ -182,9 +182,9 @@
     </item>
     <item>
       <title>Docker Compose</title>
-      <link>http://localhost:1313/posts/docker/compose/</link>
+      <link>https://example.org/posts/docker/compose/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/compose/</guid>
+      <guid>https://example.org/posts/docker/compose/</guid>
       <description>&lt;h1 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h1&gt;
 &lt;h2 id=&#34;compose-文件&#34;&gt;Compose 文件&lt;/h2&gt;
 &lt;p&gt;默认的Compose文件是&lt;code&gt;compose.yaml&lt;/code&gt;&lt;/p&gt;
@@ -196,9 +196,9 @@
     </item>
     <item>
       <title>Dockerfile Entrypoint</title>
-      <link>http://localhost:1313/posts/docker/entry-point/</link>
+      <link>https://example.org/posts/docker/entry-point/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/entry-point/</guid>
+      <guid>https://example.org/posts/docker/entry-point/</guid>
       <description>&lt;h1 id=&#34;dockerfile-entrypoint&#34;&gt;Dockerfile Entrypoint&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.docker.com/reference/dockerfile/#entrypoint&#34;&gt;Docker Entry Point 官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;ENTRYPOINT最主要的功能是将容器变成一个“命令”, 容器在启动的时候会执行ENTRYPOINT规定的命令。&lt;/p&gt;
@@ -208,9 +208,9 @@
     </item>
     <item>
       <title>GNSS</title>
-      <link>http://localhost:1313/posts/slam/sensors/gps/</link>
+      <link>https://example.org/posts/slam/sensors/gps/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/gps/</guid>
+      <guid>https://example.org/posts/slam/sensors/gps/</guid>
       <description>&lt;h1 id=&#34;gnss&#34;&gt;GNSS&lt;/h1&gt;
 &lt;p&gt;GNSS(Global Navigation Satellite System)是用来定位的一种卫星系统，为用户提供全球范围内的3D位置、速度和时间信息。&lt;/p&gt;
 &lt;p&gt;GPS(Global Positioning System)是一种GNSS，是美国开发的全球第一款GNSS。除了美国，中国、欧盟、俄罗斯都有自己的GNSS。
@@ -218,9 +218,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>how to do something in Docker</title>
-      <link>http://localhost:1313/posts/docker/how-tos/</link>
+      <link>https://example.org/posts/docker/how-tos/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/how-tos/</guid>
+      <guid>https://example.org/posts/docker/how-tos/</guid>
       <description>&lt;h1 id=&#34;how-to-do-something-in-docker&#34;&gt;how to do something in Docker&lt;/h1&gt;
 &lt;h2 id=&#34;如何让容器能够借用宿主机显示gui&#34;&gt;如何让容器能够借用宿主机显示GUI&lt;/h2&gt;
 &lt;ol&gt;
@@ -263,9 +263,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>ibus rime 安装踩坑</title>
-      <link>http://localhost:1313/posts/misc/rime-install/</link>
+      <link>https://example.org/posts/misc/rime-install/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/misc/rime-install/</guid>
+      <guid>https://example.org/posts/misc/rime-install/</guid>
       <description>&lt;h1 id=&#34;ibus-rime-安装踩坑&#34;&gt;ibus rime 安装踩坑&lt;/h1&gt;
 &lt;h2 id=&#34;日志在哪&#34;&gt;日志在哪&lt;/h2&gt;
 &lt;p&gt;linux端在&lt;code&gt;/tmp/rime*&lt;/code&gt;&lt;/p&gt;
@@ -294,9 +294,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>IMU</title>
-      <link>http://localhost:1313/posts/slam/sensors/imu/</link>
+      <link>https://example.org/posts/slam/sensors/imu/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/imu/</guid>
+      <guid>https://example.org/posts/slam/sensors/imu/</guid>
       <description>&lt;h1 id=&#34;imu&#34;&gt;IMU&lt;/h1&gt;
 &lt;h2 id=&#34;测量数据&#34;&gt;测量数据&lt;/h2&gt;
 &lt;h3 id=&#34;姿态&#34;&gt;姿态&lt;/h3&gt;
@@ -304,9 +304,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>KITTI</title>
-      <link>http://localhost:1313/posts/data-process/kitti/</link>
+      <link>https://example.org/posts/data-process/kitti/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/data-process/kitti/</guid>
+      <guid>https://example.org/posts/data-process/kitti/</guid>
       <description>&lt;h1 id=&#34;kitti&#34;&gt;KITTI&lt;/h1&gt;
 &lt;h2 id=&#34;点云数据&#34;&gt;点云数据&lt;/h2&gt;
 &lt;h3 id=&#34;文件结构&#34;&gt;文件结构&lt;/h3&gt;
@@ -327,9 +327,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>Linux字体安装</title>
-      <link>http://localhost:1313/posts/linux/fonts-install/</link>
+      <link>https://example.org/posts/linux/fonts-install/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/linux/fonts-install/</guid>
+      <guid>https://example.org/posts/linux/fonts-install/</guid>
       <description>&lt;h1 id=&#34;linux字体安装&#34;&gt;Linux字体安装&lt;/h1&gt;
 &lt;p&gt;在 Linux 系统中安装字体有多种方法，以下是常见的几种方式：&lt;/p&gt;
 &lt;hr&gt;
@@ -402,9 +402,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>Livox LOAM</title>
-      <link>http://localhost:1313/posts/slam/papers/livox-loam/</link>
+      <link>https://example.org/posts/slam/papers/livox-loam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/livox-loam/</guid>
+      <guid>https://example.org/posts/slam/papers/livox-loam/</guid>
       <description>&lt;h1 id=&#34;livox-loam&#34;&gt;Livox LOAM&lt;/h1&gt;
 &lt;p&gt;使用Livox固态雷达实现的LOAM。&lt;/p&gt;
 &lt;h2 id=&#34;数据处理&#34;&gt;数据处理&lt;/h2&gt;
@@ -415,9 +415,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>LOAM</title>
-      <link>http://localhost:1313/posts/slam/papers/loam/</link>
+      <link>https://example.org/posts/slam/papers/loam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/loam/</guid>
+      <guid>https://example.org/posts/slam/papers/loam/</guid>
       <description>&lt;h1 id=&#34;loam&#34;&gt;LOAM&lt;/h1&gt;
 &lt;h2 id=&#34;点云获取&#34;&gt;点云获取&lt;/h2&gt;
 &lt;p&gt;LOAM使用的LiDAR是&lt;code&gt;VLP-16&lt;/code&gt;，这是一种16线的激光雷达。&lt;/p&gt;
@@ -459,9 +459,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>pandas</title>
-      <link>http://localhost:1313/posts/data-process/pandas/</link>
+      <link>https://example.org/posts/data-process/pandas/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/data-process/pandas/</guid>
+      <guid>https://example.org/posts/data-process/pandas/</guid>
       <description>&lt;h1 id=&#34;pandas&#34;&gt;pandas&lt;/h1&gt;
 &lt;h2 id=&#34;基本属性&#34;&gt;基本属性&lt;/h2&gt;
 &lt;ul&gt;
@@ -483,9 +483,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>PointCloud2</title>
-      <link>http://localhost:1313/posts/ros/pointcloud2/</link>
+      <link>https://example.org/posts/ros/pointcloud2/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/pointcloud2/</guid>
+      <guid>https://example.org/posts/ros/pointcloud2/</guid>
       <description>&lt;h1 id=&#34;pointcloud2&#34;&gt;PointCloud2&lt;/h1&gt;
 &lt;p&gt;参考链接：&lt;/p&gt;
 &lt;ul&gt;
@@ -533,9 +533,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS</title>
-      <link>http://localhost:1313/posts/ros/ros-quick-start/</link>
+      <link>https://example.org/posts/ros/ros-quick-start/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/ros-quick-start/</guid>
+      <guid>https://example.org/posts/ros/ros-quick-start/</guid>
       <description>&lt;h1 id=&#34;ros&#34;&gt;ROS&lt;/h1&gt;
 &lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
 &lt;h3 id=&#34;节点&#34;&gt;节点&lt;/h3&gt;
@@ -581,9 +581,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ros Time</title>
-      <link>http://localhost:1313/posts/ros/time/</link>
+      <link>https://example.org/posts/ros/time/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/time/</guid>
+      <guid>https://example.org/posts/ros/time/</guid>
       <description>&lt;h1 id=&#34;ros-time&#34;&gt;ros Time&lt;/h1&gt;
 &lt;h2 id=&#34;参考链接&#34;&gt;参考链接&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.ros.org/en/jade/api/rospy/html/rospy.rostime.Time-class.html&#34;&gt;rospy.rostime&lt;/a&gt;&lt;/p&gt;
@@ -613,9 +613,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS 名称</title>
-      <link>http://localhost:1313/posts/ros/name-and-remapping/</link>
+      <link>https://example.org/posts/ros/name-and-remapping/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/name-and-remapping/</guid>
+      <guid>https://example.org/posts/ros/name-and-remapping/</guid>
       <description>&lt;h1 id=&#34;ros-名称&#34;&gt;ROS 名称&lt;/h1&gt;
 &lt;h2 id=&#34;名称&#34;&gt;名称&lt;/h2&gt;
 &lt;p&gt;名称(name)全名是图资源名称(Graph Resource Names)，是用来标识ROS中一个资源的，比如节点、话题、服务、参数等&lt;/p&gt;
@@ -661,9 +661,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>rosbag</title>
-      <link>http://localhost:1313/posts/ros/rosbag/</link>
+      <link>https://example.org/posts/ros/rosbag/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/rosbag/</guid>
+      <guid>https://example.org/posts/ros/rosbag/</guid>
       <description>&lt;h1 id=&#34;rosbag&#34;&gt;rosbag&lt;/h1&gt;
 &lt;p&gt;rosbag是一种保存ROS系统内的历史消息的数据结构，扩展名一般是&lt;code&gt;.bag&lt;/code&gt;，通过命令&lt;code&gt;rosbag&lt;/code&gt;进行播放或者检查。&lt;/p&gt;
 &lt;p&gt;参考链接:&lt;/p&gt;
@@ -693,9 +693,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS回调处理</title>
-      <link>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</link>
+      <link>https://example.org/posts/ros/callbacks-queue-and-spin/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/callbacks-queue-and-spin/</guid>
+      <guid>https://example.org/posts/ros/callbacks-queue-and-spin/</guid>
       <description>&lt;h1 id=&#34;ros回调处理&#34;&gt;ROS回调处理&lt;/h1&gt;
 &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;p&gt;你订阅节点，或者发布服务进行响应的时候都会用到回调函数，它们会在正确的时刻被调用，比如消息到来时调用处理订阅消息的回调函数，请求到来时调用处理请求给出响应的回调函数。&lt;/p&gt;
@@ -724,25 +724,25 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>ROS节点怎么使用GDB调试</title>
-      <link>http://localhost:1313/posts/ros/debugging/</link>
+      <link>https://example.org/posts/ros/debugging/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/ros/debugging/</guid>
+      <guid>https://example.org/posts/ros/debugging/</guid>
       <description>&lt;h1 id=&#34;ros节点怎么使用gdb调试&#34;&gt;ROS节点怎么使用GDB调试&lt;/h1&gt;
 &lt;p&gt;[roslaunch/Tutorials/Roslaunch Nodes in Valgrind or GDB - ROS Wiki](&lt;a href=&#34;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&#34;&gt;https://wiki.ros.org/roslaunch/Tutorials/Roslaunch&lt;/a&gt; Nodes in Valgrind or GDB)&lt;/p&gt;
 &lt;p&gt;看上面的教程。在node标签里加launch_prefix就好了&lt;/p&gt;</description>
     </item>
     <item>
       <title>RTK</title>
-      <link>http://localhost:1313/posts/slam/sensors/rtk/</link>
+      <link>https://example.org/posts/slam/sensors/rtk/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/rtk/</guid>
+      <guid>https://example.org/posts/slam/sensors/rtk/</guid>
       <description>&lt;h1 id=&#34;rtk&#34;&gt;RTK&lt;/h1&gt;</description>
     </item>
     <item>
       <title>SLAM Ideas</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/ideas/</link>
+      <link>https://example.org/posts/slam/brainstorm/ideas/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/ideas/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/ideas/</guid>
       <description>&lt;h1 id=&#34;slam-ideas&#34;&gt;SLAM Ideas&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;动态SLAM，利用3D目标检测模型扣掉动态物体。同时使用了3D目标检测模型可以得到很多额外的信息，是否可以用特征信息加强前端表现，或者使用前端的信息加快3D目标检测的进程。&lt;/li&gt;
@@ -827,9 +827,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>SLAM代码库</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/repos/</link>
+      <link>https://example.org/posts/slam/brainstorm/repos/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/repos/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/repos/</guid>
       <description>&lt;h1 id=&#34;slam代码库&#34;&gt;SLAM代码库&lt;/h1&gt;
 &lt;p&gt;这里是一些开源的SLAM相关的代码库，提供内容描述和资源链接&lt;/p&gt;
 &lt;h2 id=&#34;roadlib&#34;&gt;RoadLib&lt;/h2&gt;
@@ -887,9 +887,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>SLAM数据集</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/datasets/</link>
+      <link>https://example.org/posts/slam/brainstorm/datasets/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/datasets/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/datasets/</guid>
       <description>&lt;h1 id=&#34;slam数据集&#34;&gt;SLAM数据集&lt;/h1&gt;
 &lt;p&gt;这里是一些SLAM相关的数据集，提供描述和链接&lt;/p&gt;
 &lt;p&gt;CoVLA&lt;/p&gt;
@@ -930,9 +930,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>万能引用</title>
-      <link>http://localhost:1313/posts/cpp/universe-ref/</link>
+      <link>https://example.org/posts/cpp/universe-ref/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/universe-ref/</guid>
+      <guid>https://example.org/posts/cpp/universe-ref/</guid>
       <description>&lt;h1 id=&#34;万能引用&#34;&gt;万能引用&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(it_imu &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
@@ -996,9 +996,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>代码调试问题</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/debugging/</link>
+      <link>https://example.org/posts/slam/brainstorm/debugging/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/debugging/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/debugging/</guid>
       <description>&lt;h1 id=&#34;代码调试问题&#34;&gt;代码调试问题&lt;/h1&gt;
 &lt;h2 id=&#34;livox-ros-driver找不到&#34;&gt;livox ros driver找不到&lt;/h2&gt;
 &lt;p&gt;关掉所有的vscode终端，开一个新终端，在你的项目目录自己新建build，然后cmake。
@@ -1006,9 +1006,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>初始化列表</title>
-      <link>http://localhost:1313/posts/cpp/initializer-list/</link>
+      <link>https://example.org/posts/cpp/initializer-list/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cpp/initializer-list/</guid>
+      <guid>https://example.org/posts/cpp/initializer-list/</guid>
       <description>&lt;h1 id=&#34;初始化列表&#34;&gt;初始化列表&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;初始化列表&lt;/strong&gt;（&lt;code&gt;initializer_list&lt;/code&gt;）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。&lt;/p&gt;
 &lt;hr&gt;
@@ -1049,9 +1049,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>动态SLAM的一些信息</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</link>
+      <link>https://example.org/posts/slam/brainstorm/dynamic-slam-info/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/dynamic-slam-info/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/dynamic-slam-info/</guid>
       <description>&lt;h1 id=&#34;动态slam的一些信息&#34;&gt;动态SLAM的一些信息&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1075,9 +1075,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>并行编程库那些事</title>
-      <link>http://localhost:1313/posts/parallel/program-libs/</link>
+      <link>https://example.org/posts/parallel/program-libs/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/parallel/program-libs/</guid>
+      <guid>https://example.org/posts/parallel/program-libs/</guid>
       <description>&lt;h1 id=&#34;并行编程库那些事&#34;&gt;并行编程库那些事&lt;/h1&gt;
 &lt;h2 id=&#34;openmp&#34;&gt;OpenMP&lt;/h2&gt;
 &lt;h3 id=&#34;-简明定义先来个正经版&#34;&gt;✅ 简明定义（先来个“正经”版）：&lt;/h3&gt;
@@ -1121,9 +1121,9 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
     </item>
     <item>
       <title>旧磁盘数据迁移到新磁盘</title>
-      <link>http://localhost:1313/posts/linux/move-system-to-new-disk/</link>
+      <link>https://example.org/posts/linux/move-system-to-new-disk/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/linux/move-system-to-new-disk/</guid>
+      <guid>https://example.org/posts/linux/move-system-to-new-disk/</guid>
       <description>&lt;h1 id=&#34;旧磁盘数据迁移到新磁盘&#34;&gt;旧磁盘数据迁移到新磁盘&lt;/h1&gt;
 &lt;h2 id=&#34;安装硬盘&#34;&gt;安装硬盘&lt;/h2&gt;
 &lt;p&gt;关闭主机，将新的磁盘安装到主机上，启动系统。数据的迁移需要借助操作系统，所以得确保磁盘在主机上。&lt;/p&gt;
@@ -1159,9 +1159,9 @@ sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /
     </item>
     <item>
       <title>杂项信息</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/misc/</link>
+      <link>https://example.org/posts/slam/brainstorm/misc/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/misc/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/misc/</guid>
       <description>&lt;h1 id=&#34;杂项信息&#34;&gt;杂项信息&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1226,9 +1226,9 @@ sde         ext4           086d0c1f-5842-410e-b7d2-90af4b647f96    8.5T    16% /
     </item>
     <item>
       <title>激光雷达</title>
-      <link>http://localhost:1313/posts/slam/sensors/lidar/</link>
+      <link>https://example.org/posts/slam/sensors/lidar/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/lidar/</guid>
+      <guid>https://example.org/posts/slam/sensors/lidar/</guid>
       <description>&lt;h1 id=&#34;激光雷达&#34;&gt;激光雷达&lt;/h1&gt;
 &lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
 &lt;h3 id=&#34;物体反射率object-reflectivity&#34;&gt;物体反射率（Object Reflectivity）&lt;/h3&gt;
@@ -1274,9 +1274,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>激光雷达SLAM</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</link>
+      <link>https://example.org/posts/slam/brainstorm/lidar-slam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/lidar-slam/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/lidar-slam/</guid>
       <description>&lt;h1 id=&#34;激光雷达slam&#34;&gt;激光雷达SLAM&lt;/h1&gt;
 &lt;h2 id=&#34;loam&#34;&gt;LOAM&lt;/h2&gt;
 &lt;p&gt;论文：&lt;a href=&#34;https://www.ri.cmu.edu/pub_files/2014/7/Ji_LidarMapping_RSS2014_v8.pdf&#34;&gt;Loam: Lidar odometry and mapping in real-time&lt;/a&gt;
@@ -1289,9 +1289,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>程序员读代码的禅与修炼</title>
-      <link>http://localhost:1313/posts/design/how-to-read-code/</link>
+      <link>https://example.org/posts/design/how-to-read-code/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design/how-to-read-code/</guid>
+      <guid>https://example.org/posts/design/how-to-read-code/</guid>
       <description>&lt;h1 id=&#34;程序员读代码的禅与修炼&#34;&gt;程序员读代码的禅与修炼&lt;/h1&gt;
 &lt;h2 id=&#34;-前言&#34;&gt;🧭 前言&lt;/h2&gt;
 &lt;p&gt;代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。&lt;/p&gt;
@@ -1390,9 +1390,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>网络</title>
-      <link>http://localhost:1313/posts/docker/networking/</link>
+      <link>https://example.org/posts/docker/networking/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/networking/</guid>
+      <guid>https://example.org/posts/docker/networking/</guid>
       <description>&lt;h1 id=&#34;网络&#34;&gt;网络&lt;/h1&gt;
 &lt;p&gt;docker网络可以让容器访问外网或者互相访问。&lt;/p&gt;
 &lt;p&gt;默认开启了docker网络，不过容器不知道自己连接的什么对象，只知道自己的IP，网关，DNS这些网络参数。&lt;/p&gt;
@@ -1413,9 +1413,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>论文备忘</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</link>
+      <link>https://example.org/posts/slam/brainstorm/paper-to-read/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/paper-to-read/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/paper-to-read/</guid>
       <description>&lt;h1 id=&#34;论文备忘&#34;&gt;论文备忘&lt;/h1&gt;
 &lt;p&gt;这里放一些想看的论文，以及想看的理由&lt;/p&gt;
 &lt;ul&gt;
@@ -1442,9 +1442,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>配准方法</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/register-method/</link>
+      <link>https://example.org/posts/slam/brainstorm/register-method/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/register-method/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/register-method/</guid>
       <description>&lt;h1 id=&#34;配准方法&#34;&gt;配准方法&lt;/h1&gt;
 &lt;h2 id=&#34;icp&#34;&gt;ICP&lt;/h2&gt;
 &lt;p&gt;论文：&lt;a href=&#34;https://ieeexplore.ieee.org/document/121791&#34;&gt;A method for registration of 3-D shapes&lt;/a&gt;&lt;/p&gt;
@@ -1465,9 +1465,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>银弹是什么梗</title>
-      <link>http://localhost:1313/posts/design/silver-bullet/</link>
+      <link>https://example.org/posts/design/silver-bullet/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/design/silver-bullet/</guid>
+      <guid>https://example.org/posts/design/silver-bullet/</guid>
       <description>&lt;h1 id=&#34;银弹是什么梗&#34;&gt;银弹是什么梗&lt;/h1&gt;
 &lt;p&gt;哈哈哈，银弹（&lt;strong&gt;silver bullet&lt;/strong&gt;）这个梗，程序员要是不知道，那就跟骑士不知道 Excalibur 一样离谱！&lt;/p&gt;
 &lt;hr&gt;
@@ -1521,9 +1521,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>问题集</title>
-      <link>http://localhost:1313/posts/slam/brainstorm/issues/</link>
+      <link>https://example.org/posts/slam/brainstorm/issues/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/brainstorm/issues/</guid>
+      <guid>https://example.org/posts/slam/brainstorm/issues/</guid>
       <description>&lt;h1 id=&#34;问题集&#34;&gt;问题集&lt;/h1&gt;
 &lt;p&gt;这个文档会给出一些研究中遇到的问题，如果找到了答案会写在问题下面&lt;/p&gt;
 &lt;ol&gt;
@@ -1534,9 +1534,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>高效时空信息融合的动态SLAM框架</title>
-      <link>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
+      <link>https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
+      <guid>https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
       <description>&lt;h1 id=&#34;高效时空信息融合的动态slam框架&#34;&gt;高效时空信息融合的动态SLAM框架&lt;/h1&gt;
 &lt;h2 id=&#34;idea&#34;&gt;idea&lt;/h2&gt;
 &lt;ol&gt;

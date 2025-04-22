@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>C&#43;&#43; range for | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="cpp">
 <meta name="description" content="C&#43;&#43; range for
@@ -39,16 +39,16 @@ for (auto x : container) {
 
 C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/cpp/range-for/">
+<link rel="canonical" href="https://example.org/posts/cpp/range-for/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/cpp/range-for/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/cpp/range-for/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +85,108 @@ C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情�
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/cpp/range-for/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="C&#43;&#43; range for">
+  <meta property="og:description" content="C&#43;&#43; range for 要让一个对象能被用于 C&#43;&#43; 的 range-based for loop（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议不是形式化的接口（不像 Java 那样有 Iterable 接口），但你可以把它看作一个“概念”（concept）或“约定”。
+我们来拆一下细节：
+✅ C&#43;&#43; range for 的底层语义 for (auto x : container) { // ... } 等价于：
+{ auto&amp;&amp; __range = container; auto __begin = begin(__range); auto __end = end(__range); for (; __begin != __end; &#43;&#43;__begin) { auto x = *__begin; // ... } } 也就是说：
+🔑 你的类需要满足以下要求： 1. begin(obj) 和 end(obj) 必须能被调用 这通常意味着： 你的类有成员函数 begin() 和 end()，或者 对你的类定义了适配的 begin() 和 end() 非成员函数。 C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#43;&#43; range for">
+<meta name="twitter:description" content="C&#43;&#43; range for
+要让一个对象能被用于 C&#43;&#43; 的 range-based for loop（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议不是形式化的接口（不像 Java 那样有 Iterable 接口），但你可以把它看作一个“概念”（concept）或“约定”。
+我们来拆一下细节：
+
+✅ C&#43;&#43; range for 的底层语义
+for (auto x : container) {
+    // ...
+}
+等价于：
+{
+    auto&amp;&amp; __range = container;
+    auto __begin = begin(__range);
+    auto __end = end(__range);
+    for (; __begin != __end; &#43;&#43;__begin) {
+        auto x = *__begin;
+        // ...
+    }
+}
+也就是说：
+
+🔑 你的类需要满足以下要求：
+1. begin(obj) 和 end(obj) 必须能被调用
+
+这通常意味着：
+
+你的类有成员函数 begin() 和 end()，或者
+对你的类定义了适配的 begin() 和 end() 非成员函数。
+
+
+
+C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "C++ range for",
+      "item": "https://example.org/posts/cpp/range-for/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "C++ range for",
+  "name": "C\u002b\u002b range for",
+  "description": "C++ range for 要让一个对象能被用于 C++ 的 range-based for loop（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议不是形式化的接口（不像 Java 那样有 Iterable 接口），但你可以把它看作一个“概念”（concept）或“约定”。\n我们来拆一下细节：\n✅ C++ range for 的底层语义 for (auto x : container) { // ... } 等价于：\n{ auto\u0026amp;\u0026amp; __range = container; auto __begin = begin(__range); auto __end = end(__range); for (; __begin != __end; ++__begin) { auto x = *__begin; // ... } } 也就是说：\n🔑 你的类需要满足以下要求： 1. begin(obj) 和 end(obj) 必须能被调用 这通常意味着： 你的类有成员函数 begin() 和 end()，或者 对你的类定义了适配的 begin() 和 end() 非成员函数。 C++标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。\n",
+  "keywords": [
+    "cpp"
+  ],
+  "articleBody": "C++ range for 要让一个对象能被用于 C++ 的 range-based for loop（范围 for 循环）中，它的类需要遵循一定的“协议”，即满足一组特定的要求。这个协议不是形式化的接口（不像 Java 那样有 Iterable 接口），但你可以把它看作一个“概念”（concept）或“约定”。\n我们来拆一下细节：\n✅ C++ range for 的底层语义 for (auto x : container) { // ... } 等价于：\n{ auto\u0026\u0026 __range = container; auto __begin = begin(__range); auto __end = end(__range); for (; __begin != __end; ++__begin) { auto x = *__begin; // ... } } 也就是说：\n🔑 你的类需要满足以下要求： 1. begin(obj) 和 end(obj) 必须能被调用 这通常意味着： 你的类有成员函数 begin() 和 end()，或者 对你的类定义了适配的 begin() 和 end() 非成员函数。 C++标准库的 std::begin() 和 std::end() 其实可以处理很多情况，包括数组、标准容器、自定义类（只要有 .begin()、.end()）。\n2. begin() 和 end() 返回一个“迭代器” 这个“迭代器”要支持：\n*it（解引用） ++it（前缀或后缀都行） it != end（可以比较） 你可以自定义一个类作为迭代器，只要它满足这些操作，就能工作。\n🛠️ 举个栗子：手写一个可迭代类 class MyContainer { public: struct Iterator { int current; int operator*() const { return current; } Iterator\u0026 operator++() { ++current; return *this; } bool operator!=(const Iterator\u0026 other) const { return current != other.current; } }; Iterator begin() const { return Iterator{0}; } Iterator end() const { return Iterator{5}; } }; 然后就能：\nfor (int x : MyContainer()) { std::cout \u003c\u003c x \u003c\u003c \" \"; } // 输出：0 1 2 3 4 ✨ C++20：可以更“正规”一点（但可选） 如果你用的是 C++20，还可以使用 std::ranges::range 概念，写成：\ntemplate \u003cstd::ranges::range R\u003e void do_something(R\u0026\u0026 r) { for (auto\u0026\u0026 x : r) { // ... } } 📌 总结：类要支持 range-for，满足以下几点就行 要求 说明 begin() 和 end() 成员函数或可被 std::begin()/std::end() 找到的非成员函数 返回迭代器 begin/end 返回的对象支持：*, ++, != 迭代器本身 可以是你自己定义的类或指针、标准迭代器 ",
+  "wordCount" : "208",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/cpp/range-for/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -103,7 +204,7 @@ C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -241,14 +342,14 @@ C&#43;&#43;标准库的 std::begin() 和 std::end() 其实可以处理很多情�
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/cpp/">Cpp</a></li>
+      <li><a href="https://example.org/tags/cpp/">Cpp</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

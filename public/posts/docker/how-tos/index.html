@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>how to do something in Docker | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="docker">
 <meta name="description" content="how to do something in Docker
@@ -47,16 +47,16 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends &amp;&
 ros-noetic-pcl-ros ros-noetic-eigen-conversions
 ">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/docker/how-tos/">
+<link rel="canonical" href="https://example.org/posts/docker/how-tos/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/docker/how-tos/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/docker/how-tos/">
 <noscript>
     <style>
         #theme-toggle,
@@ -93,7 +93,117 @@ ros-noetic-pcl-ros ros-noetic-eigen-conversions
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/docker/how-tos/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="how to do something in Docker">
+  <meta property="og:description" content="how to do something in Docker 如何让容器能够借用宿主机显示GUI 启动容器时挂载/tmp/.X11-unix 设置环境变量DISPLAY 宿主机上允许docker访问X11 xhost &#43;local:docker 没有X11服务器得自己装。
+如何让你的容器默认使用清华源 RUN sed -i &#39;s|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g&#39; /etc/apt/sources.list &amp;&amp; \ sed -i &#39;s|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g&#39; /etc/apt/sources.list 怎么在构建镜像的时候开代理 通过–buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写
+docker build --build-arg http_proxy=http://172.17.0.1:7897 --build-arg https_proxy=http://172.17.0.1:7897 --build-arg -t name:image . 如果你使用docker compose，你的compose.yaml可以这样写：
+services: app: build: context: . args: - http_proxy=http://172.17.0.1:7897 - https_proxy=http://172.17.0.1:7897 怎么在构建docker时就执行source devel/setup.bash 你需要ENTRYPOINT，这个命令可以提前帮你source
+cd /root/hku_ws catkin_make source devel/setup.bash exec &#34;$@&#34; 然后你的Dockerfile这样写：
+COPY ./entrypoint.sh /entrypoint.sh RUN chmod &#43;x /entrypoint.sh ENTRYPOINT [&#34;/entrypoint.sh&#34;] CMD [ &#34;bash&#34; ] 如何避免烦人的键盘布局选择 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends &amp;&amp; \ ros-noetic-pcl-ros ros-noetic-eigen-conversions ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="how to do something in Docker">
+<meta name="twitter:description" content="how to do something in Docker
+如何让容器能够借用宿主机显示GUI
+
+启动容器时挂载/tmp/.X11-unix
+设置环境变量DISPLAY
+宿主机上允许docker访问X11
+
+xhost &#43;local:docker
+没有X11服务器得自己装。
+如何让你的容器默认使用清华源
+RUN sed -i &#39;s|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g&#39; /etc/apt/sources.list &amp;&amp; \
+    sed -i &#39;s|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g&#39; /etc/apt/sources.list
+怎么在构建镜像的时候开代理
+通过&ndash;buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写
+docker build --build-arg http_proxy=http://172.17.0.1:7897 --build-arg https_proxy=http://172.17.0.1:7897 --build-arg -t name:image .
+如果你使用docker compose，你的compose.yaml可以这样写：
+services:
+    app:
+        build:
+            context: .
+            args:
+                - http_proxy=http://172.17.0.1:7897
+                - https_proxy=http://172.17.0.1:7897
+怎么在构建docker时就执行source devel/setup.bash
+你需要ENTRYPOINT，这个命令可以提前帮你source
+cd /root/hku_ws
+catkin_make
+source devel/setup.bash
+
+exec &#34;$@&#34;
+然后你的Dockerfile这样写：
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod &#43;x /entrypoint.sh
+ENTRYPOINT [&#34;/entrypoint.sh&#34;]
+CMD [ &#34;bash&#34; ]
+如何避免烦人的键盘布局选择
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends &amp;&amp; \
+ros-noetic-pcl-ros ros-noetic-eigen-conversions
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "how to do something in Docker",
+      "item": "https://example.org/posts/docker/how-tos/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "how to do something in Docker",
+  "name": "how to do something in Docker",
+  "description": "how to do something in Docker 如何让容器能够借用宿主机显示GUI 启动容器时挂载/tmp/.X11-unix 设置环境变量DISPLAY 宿主机上允许docker访问X11 xhost +local:docker 没有X11服务器得自己装。\n如何让你的容器默认使用清华源 RUN sed -i \u0026#39;s|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g\u0026#39; /etc/apt/sources.list \u0026amp;\u0026amp; \\ sed -i \u0026#39;s|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g\u0026#39; /etc/apt/sources.list 怎么在构建镜像的时候开代理 通过\u0026ndash;buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写\ndocker build --build-arg http_proxy=http://172.17.0.1:7897 --build-arg https_proxy=http://172.17.0.1:7897 --build-arg -t name:image . 如果你使用docker compose，你的compose.yaml可以这样写：\nservices: app: build: context: . args: - http_proxy=http://172.17.0.1:7897 - https_proxy=http://172.17.0.1:7897 怎么在构建docker时就执行source devel/setup.bash 你需要ENTRYPOINT，这个命令可以提前帮你source\ncd /root/hku_ws catkin_make source devel/setup.bash exec \u0026#34;$@\u0026#34; 然后你的Dockerfile这样写：\nCOPY ./entrypoint.sh /entrypoint.sh RUN chmod +x /entrypoint.sh ENTRYPOINT [\u0026#34;/entrypoint.sh\u0026#34;] CMD [ \u0026#34;bash\u0026#34; ] 如何避免烦人的键盘布局选择 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \u0026amp;\u0026amp; \\ ros-noetic-pcl-ros ros-noetic-eigen-conversions ",
+  "keywords": [
+    "docker"
+  ],
+  "articleBody": "how to do something in Docker 如何让容器能够借用宿主机显示GUI 启动容器时挂载/tmp/.X11-unix 设置环境变量DISPLAY 宿主机上允许docker访问X11 xhost +local:docker 没有X11服务器得自己装。\n如何让你的容器默认使用清华源 RUN sed -i 's|http://archive.ubuntu.com/ubuntu/|https://mirrors.tuna.tsinghua.edu.cn/ubuntu/|g' /etc/apt/sources.list \u0026\u0026 \\ sed -i 's|http://security.ubuntu.com/ubuntu|https://mirrors.tuna.tsinghua.edu.cn/ubuntu|g' /etc/apt/sources.list 怎么在构建镜像的时候开代理 通过–buil-arg传递环境变量，在linux下，你的主机的ip是172.17.0.1，如果你的主机在7897端口开启了代理服务，那么你的命令可以这样写\ndocker build --build-arg http_proxy=http://172.17.0.1:7897 --build-arg https_proxy=http://172.17.0.1:7897 --build-arg -t name:image . 如果你使用docker compose，你的compose.yaml可以这样写：\nservices: app: build: context: . args: - http_proxy=http://172.17.0.1:7897 - https_proxy=http://172.17.0.1:7897 怎么在构建docker时就执行source devel/setup.bash 你需要ENTRYPOINT，这个命令可以提前帮你source\ncd /root/hku_ws catkin_make source devel/setup.bash exec \"$@\" 然后你的Dockerfile这样写：\nCOPY ./entrypoint.sh /entrypoint.sh RUN chmod +x /entrypoint.sh ENTRYPOINT [\"/entrypoint.sh\"] CMD [ \"bash\" ] 如何避免烦人的键盘布局选择 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \u0026\u0026 \\ ros-noetic-pcl-ros ros-noetic-eigen-conversions ",
+  "wordCount" : "83",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/docker/how-tos/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -111,7 +221,7 @@ ros-noetic-pcl-ros ros-noetic-eigen-conversions
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -195,14 +305,14 @@ ros-noetic-pcl-ros ros-noetic-eigen-conversions
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/docker/">Docker</a></li>
+      <li><a href="https://example.org/tags/docker/">Docker</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

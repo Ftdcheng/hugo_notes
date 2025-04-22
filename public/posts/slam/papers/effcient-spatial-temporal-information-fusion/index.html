@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>高效时空信息融合的动态SLAM框架 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="papers">
 <meta name="description" content="高效时空信息融合的动态SLAM框架
@@ -41,16 +41,16 @@ $$
 对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。
 这么做的目的是编码3D空间信息。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/">
+<link rel="canonical" href="https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/">
 <noscript>
     <style>
         #theme-toggle,
@@ -87,7 +87,110 @@ $$
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="高效时空信息融合的动态SLAM框架">
+  <meta property="og:description" content="高效时空信息融合的动态SLAM框架 idea 稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息 测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。 文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率 单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。 要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力 LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高 文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。 这篇文章声称自己是一种在线的方案。 历史上的方法 基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。 在线MOS(运动物体分割): 端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。 从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。 方法 测距图像的表示 $$ \binom{u}{v}=\binom{\frac{1}{2}\left[1-\arctan (y, x) \pi^{-1}\right] \quad w}{\left[1-\left(\arcsin \left(z r^{-1}\right)&#43;\mathrm{f}_{\mathrm{up}}\right) \mathrm{f}^{-1}\right] h} $$
+这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。
+残差图 使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。
+元核卷积（Meta-Kernel Convolution） 对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。
+这么做的目的是编码3D空间信息。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Papers">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高效时空信息融合的动态SLAM框架">
+<meta name="twitter:description" content="高效时空信息融合的动态SLAM框架
+idea
+
+稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息
+测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。
+文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率
+单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。
+要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力
+LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高
+文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。
+这篇文章声称自己是一种在线的方案。
+
+历史上的方法
+
+基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。
+在线MOS(运动物体分割):
+
+端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。
+从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。
+
+
+
+方法
+测距图像的表示
+$$
+\binom{u}{v}=\binom{\frac{1}{2}\left[1-\arctan (y, x) \pi^{-1}\right] \quad w}{\left[1-\left(\arcsin \left(z r^{-1}\right)&#43;\mathrm{f}_{\mathrm{up}}\right) \mathrm{f}^{-1}\right] h}
+$$
+这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。
+残差图
+使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。
+元核卷积（Meta-Kernel Convolution）
+对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。
+这么做的目的是编码3D空间信息。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "高效时空信息融合的动态SLAM框架",
+      "item": "https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "高效时空信息融合的动态SLAM框架",
+  "name": "高效时空信息融合的动态SLAM框架",
+  "description": "高效时空信息融合的动态SLAM框架 idea 稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息 测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。 文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率 单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。 要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力 LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高 文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。 这篇文章声称自己是一种在线的方案。 历史上的方法 基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。 在线MOS(运动物体分割): 端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。 从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。 方法 测距图像的表示 $$ \\binom{u}{v}=\\binom{\\frac{1}{2}\\left[1-\\arctan (y, x) \\pi^{-1}\\right] \\quad w}{\\left[1-\\left(\\arcsin \\left(z r^{-1}\\right)+\\mathrm{f}_{\\mathrm{up}}\\right) \\mathrm{f}^{-1}\\right] h} $$\n这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。\n残差图 使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。\n元核卷积（Meta-Kernel Convolution） 对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。\n这么做的目的是编码3D空间信息。\n",
+  "keywords": [
+    "papers"
+  ],
+  "articleBody": "高效时空信息融合的动态SLAM框架 idea 稀疏体素卷积虽然可以缓解计算压力，不过体素化会损失信息 测距图像(Range Image)一种相对来说轻量级的表示，不过由于向后投影，会有边界模糊的问题。 文章先对测距图像进行粗分割，然后对粗分割再进行稀疏体素卷积去修正分割结果。一定程度上缓解了边界模糊，提高了效率 单帧的分割大多只能找出潜在移动的物体，少数针对单帧的工作可以找出实际运动的物体。 要准确找出运动的物体，相对可靠的方法是采用多帧的数据去检测。不过这种方法可能会吃更多的算力 LMNet在提取时空特征的时候单纯地把多帧拼在一起，这种方法似乎效率不高 文章提出使用双分支结构，先分别处理时间、空间信息，然后再使用运动指导的注意力融合时空信息。 这篇文章声称自己是一种在线的方案。 历史上的方法 基于清除地图的方法： 有的方法使用预创建的地图和当前的scan做比较，找出动态的部分，还有的直接对最后生成的带鬼影的地图，直接去除鬼影，还有的使用聚类技术和多物体跟踪的方式，跟踪不同的物体，基于跟踪结果生成基于激光雷达动态物体分割的训练标签，不过这种地图清除的方法多是离线的。 在线MOS(运动物体分割): 端到端的方法，从局部到整体一条龙。有些基于场景流的方法，在连续的两帧扫描中估计运动，使用每个点的速度估计物体是否运动。这种方法可能不能把噪声和缓慢移动的物体区分开。而且这种方法不能处理大规模的点云数据(100k)，实时性很难保证。 从BBOX估计：先从点云里得到检测，从检测里得到BBOX，然后对BBOX进行跟踪，根据BBOX是否移动判断动态物体。 方法 测距图像的表示 $$ \\binom{u}{v}=\\binom{\\frac{1}{2}\\left[1-\\arctan (y, x) \\pi^{-1}\\right] \\quad w}{\\left[1-\\left(\\arcsin \\left(z r^{-1}\\right)+\\mathrm{f}_{\\mathrm{up}}\\right) \\mathrm{f}^{-1}\\right] h} $$\n这个投影类似世界到相机的投影，与xoy平面的夹角相同，水平转角相同，但深度不同的点会投射到同一个uv坐标上。\n残差图 使用帧间变换把前一帧k，转换到当前帧。然后把到当前帧的前一帧投影到uv空间中得到测距图像。然后把这个测距图像和当前帧的测距图像做归一化绝对差。\n元核卷积（Meta-Kernel Convolution） 对于测距图像的残差图上的一个点，找它的3*3相邻像素，我们知道每个像素对应一个3D坐标，对每个相邻像素，计算它到中心点的3D坐标差，然后把坐标差传进MLP，得到一个9元素的权重向量，然后把这个向量和3*3的原始像素阵逐元素相乘。最后每个像素对应一个1*1的特征图，即结果是1*1*8的张量，然后对这种张量进行1*1的卷积得到最终的结果。\n这么做的目的是编码3D空间信息。\n",
+  "wordCount" : "38",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -105,7 +208,7 @@ $$
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -184,14 +287,14 @@ $$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/papers/">Papers</a></li>
+      <li><a href="https://example.org/tags/papers/">Papers</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

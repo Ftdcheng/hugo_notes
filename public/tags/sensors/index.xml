@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sensors on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/sensors/</link>
+    <link>https://example.org/tags/sensors/</link>
     <description>Recent content in Sensors on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/sensors/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/sensors/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GNSS</title>
-      <link>http://localhost:1313/posts/slam/sensors/gps/</link>
+      <link>https://example.org/posts/slam/sensors/gps/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/gps/</guid>
+      <guid>https://example.org/posts/slam/sensors/gps/</guid>
       <description>&lt;h1 id=&#34;gnss&#34;&gt;GNSS&lt;/h1&gt;
 &lt;p&gt;GNSS(Global Navigation Satellite System)是用来定位的一种卫星系统，为用户提供全球范围内的3D位置、速度和时间信息。&lt;/p&gt;
 &lt;p&gt;GPS(Global Positioning System)是一种GNSS，是美国开发的全球第一款GNSS。除了美国，中国、欧盟、俄罗斯都有自己的GNSS。
@@ -20,9 +20,9 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>IMU</title>
-      <link>http://localhost:1313/posts/slam/sensors/imu/</link>
+      <link>https://example.org/posts/slam/sensors/imu/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/imu/</guid>
+      <guid>https://example.org/posts/slam/sensors/imu/</guid>
       <description>&lt;h1 id=&#34;imu&#34;&gt;IMU&lt;/h1&gt;
 &lt;h2 id=&#34;测量数据&#34;&gt;测量数据&lt;/h2&gt;
 &lt;h3 id=&#34;姿态&#34;&gt;姿态&lt;/h3&gt;
@@ -30,16 +30,16 @@ GPS基于三角测量得出一个物体的坐标。GPS测距的原理是通过�
     </item>
     <item>
       <title>RTK</title>
-      <link>http://localhost:1313/posts/slam/sensors/rtk/</link>
+      <link>https://example.org/posts/slam/sensors/rtk/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/rtk/</guid>
+      <guid>https://example.org/posts/slam/sensors/rtk/</guid>
       <description>&lt;h1 id=&#34;rtk&#34;&gt;RTK&lt;/h1&gt;</description>
     </item>
     <item>
       <title>激光雷达</title>
-      <link>http://localhost:1313/posts/slam/sensors/lidar/</link>
+      <link>https://example.org/posts/slam/sensors/lidar/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/sensors/lidar/</guid>
+      <guid>https://example.org/posts/slam/sensors/lidar/</guid>
       <description>&lt;h1 id=&#34;激光雷达&#34;&gt;激光雷达&lt;/h1&gt;
 &lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
 &lt;h3 id=&#34;物体反射率object-reflectivity&#34;&gt;物体反射率（Object Reflectivity）&lt;/h3&gt;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>程序员读代码的禅与修炼 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="design">
 <meta name="description" content="程序员读代码的禅与修炼
@@ -103,16 +103,16 @@ Issues 与 Pull Requests（可见设计动因与变更历史）
 
 读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/design/how-to-read-code/">
+<link rel="canonical" href="https://example.org/posts/design/how-to-read-code/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/design/how-to-read-code/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/design/how-to-read-code/">
 <noscript>
     <style>
         #theme-toggle,
@@ -149,7 +149,176 @@ Issues 与 Pull Requests（可见设计动因与变更历史）
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/design/how-to-read-code/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="程序员读代码的禅与修炼">
+  <meta property="og:description" content="程序员读代码的禅与修炼 🧭 前言 代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。
+📌 1. 先读文档，再读代码 推荐优先阅读材料： README / Wiki / 项目介绍页 CONTRIBUTING.md（可见贡献规范） Issues 与 Pull Requests（可见设计动因与变更历史） 理由： 这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。
+🧪 2. 能跑，才好读 做到以下几点： 能顺利构建并运行项目（甚至部署） 能使用调试工具或 log 打印控制信息 理由： 死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。
+🎯 3. 明确阅读目标 是为了修 bug，还是加功能？ 是为了学习架构，还是了解具体模块？ 有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。
+🧠 4. BFS &gt; DFS 的阅读策略 不要陷入深度优先： 沿着一条调用链不断深入容易迷路。
+要采用广度优先： 快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。
+🧱 5. 分块阅读：构建“模块地图” 观察文件结构、类和函数边界 分析模块的职责划分（谁负责输入、谁负责输出） 熟悉块的边界感，就像会认字就能阅读文章。
+🧵 6. 管理你的大脑记忆资源 类比：
+工作记忆 = 寄存器 短期记忆 = RAM 长期记忆 = 硬盘 技巧： 精简当前需要记住的信息（只记主逻辑） 将常用 API、框架结构固化为长期记忆 用笔记或注释辅助记忆缓存 🧩 7. 把代码当成自然语言来读 命名风格是“句法” 缩进结构是“语调” 注释内容是“修辞” 文献阅读技巧可迁移： 找主语（谁调用谁） 找动词（干了啥） 找逻辑连接词（if, while, for 等控制结构） ✨ 8. 进阶技巧 Bonus 📐 制作项目“地图” 用 markdown / 画图记录模块间的关系图 使用 PlantUML / Mermaid 绘制调用图 🗃️ 卡片式阅读笔记 每个模块/函数做成一张卡片，写用途 &#43; 结构 &#43; 接口 下次切换项目时秒级上手 🔁 预测 vs 验证 猜代码逻辑，调试验证对错，训练直觉与分析力 🧘 总结 读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员读代码的禅与修炼">
+<meta name="twitter:description" content="程序员读代码的禅与修炼
+🧭 前言
+代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。
+
+📌 1. 先读文档，再读代码
+推荐优先阅读材料：
+
+README / Wiki / 项目介绍页
+CONTRIBUTING.md（可见贡献规范）
+Issues 与 Pull Requests（可见设计动因与变更历史）
+
+理由：
+
+这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。
+
+🧪 2. 能跑，才好读
+做到以下几点：
+
+能顺利构建并运行项目（甚至部署）
+能使用调试工具或 log 打印控制信息
+
+理由：
+
+死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。
+
+🎯 3. 明确阅读目标
+
+是为了修 bug，还是加功能？
+是为了学习架构，还是了解具体模块？
+
+
+有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。
+
+🧠 4. BFS &gt; DFS 的阅读策略
+不要陷入深度优先：
+
+沿着一条调用链不断深入容易迷路。
+要采用广度优先：
+
+快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。
+
+🧱 5. 分块阅读：构建“模块地图”
+
+观察文件结构、类和函数边界
+分析模块的职责划分（谁负责输入、谁负责输出）
+
+
+熟悉块的边界感，就像会认字就能阅读文章。
+
+🧵 6. 管理你的大脑记忆资源
+类比：
+
+工作记忆 = 寄存器
+短期记忆 = RAM
+长期记忆 = 硬盘
+
+技巧：
+
+精简当前需要记住的信息（只记主逻辑）
+将常用 API、框架结构固化为长期记忆
+用笔记或注释辅助记忆缓存
+
+
+🧩 7. 把代码当成自然语言来读
+
+命名风格是“句法”
+缩进结构是“语调”
+注释内容是“修辞”
+
+文献阅读技巧可迁移：
+
+找主语（谁调用谁）
+找动词（干了啥）
+找逻辑连接词（if, while, for 等控制结构）
+
+
+✨ 8. 进阶技巧 Bonus
+📐 制作项目“地图”
+
+用 markdown / 画图记录模块间的关系图
+使用 PlantUML / Mermaid 绘制调用图
+
+🗃️ 卡片式阅读笔记
+
+每个模块/函数做成一张卡片，写用途 &#43; 结构 &#43; 接口
+下次切换项目时秒级上手
+
+🔁 预测 vs 验证
+
+猜代码逻辑，调试验证对错，训练直觉与分析力
+
+
+🧘 总结
+
+读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "程序员读代码的禅与修炼",
+      "item": "https://example.org/posts/design/how-to-read-code/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "程序员读代码的禅与修炼",
+  "name": "程序员读代码的禅与修炼",
+  "description": "程序员读代码的禅与修炼 🧭 前言 代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。\n📌 1. 先读文档，再读代码 推荐优先阅读材料： README / Wiki / 项目介绍页 CONTRIBUTING.md（可见贡献规范） Issues 与 Pull Requests（可见设计动因与变更历史） 理由： 这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。\n🧪 2. 能跑，才好读 做到以下几点： 能顺利构建并运行项目（甚至部署） 能使用调试工具或 log 打印控制信息 理由： 死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。\n🎯 3. 明确阅读目标 是为了修 bug，还是加功能？ 是为了学习架构，还是了解具体模块？ 有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。\n🧠 4. BFS \u0026gt; DFS 的阅读策略 不要陷入深度优先： 沿着一条调用链不断深入容易迷路。\n要采用广度优先： 快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。\n🧱 5. 分块阅读：构建“模块地图” 观察文件结构、类和函数边界 分析模块的职责划分（谁负责输入、谁负责输出） 熟悉块的边界感，就像会认字就能阅读文章。\n🧵 6. 管理你的大脑记忆资源 类比：\n工作记忆 = 寄存器 短期记忆 = RAM 长期记忆 = 硬盘 技巧： 精简当前需要记住的信息（只记主逻辑） 将常用 API、框架结构固化为长期记忆 用笔记或注释辅助记忆缓存 🧩 7. 把代码当成自然语言来读 命名风格是“句法” 缩进结构是“语调” 注释内容是“修辞” 文献阅读技巧可迁移： 找主语（谁调用谁） 找动词（干了啥） 找逻辑连接词（if, while, for 等控制结构） ✨ 8. 进阶技巧 Bonus 📐 制作项目“地图” 用 markdown / 画图记录模块间的关系图 使用 PlantUML / Mermaid 绘制调用图 🗃️ 卡片式阅读笔记 每个模块/函数做成一张卡片，写用途 + 结构 + 接口 下次切换项目时秒级上手 🔁 预测 vs 验证 猜代码逻辑，调试验证对错，训练直觉与分析力 🧘 总结 读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。\n",
+  "keywords": [
+    "design"
+  ],
+  "articleBody": "程序员读代码的禅与修炼 🧭 前言 代码是自然语言的压缩饼干，阅读它，是一场意志与智慧的博弈。本指南旨在为你提供一套实用、进阶、符合工程思维的代码阅读方法论。\n📌 1. 先读文档，再读代码 推荐优先阅读材料： README / Wiki / 项目介绍页 CONTRIBUTING.md（可见贡献规范） Issues 与 Pull Requests（可见设计动因与变更历史） 理由： 这些内容提供了高层抽象和开发意图，有助于你构建上下文框架，避免盲目深潜。\n🧪 2. 能跑，才好读 做到以下几点： 能顺利构建并运行项目（甚至部署） 能使用调试工具或 log 打印控制信息 理由： 死代码是死的，动态运行才有灵魂。调试是观察代码行为的显微镜。\n🎯 3. 明确阅读目标 是为了修 bug，还是加功能？ 是为了学习架构，还是了解具体模块？ 有目标就能舍弃 90% 的无关细节，聚焦你需要的部分。\n🧠 4. BFS \u003e DFS 的阅读策略 不要陷入深度优先： 沿着一条调用链不断深入容易迷路。\n要采用广度优先： 快速过一遍目录结构、模块分布、关键函数。先看“路网图”，再看细节。\n🧱 5. 分块阅读：构建“模块地图” 观察文件结构、类和函数边界 分析模块的职责划分（谁负责输入、谁负责输出） 熟悉块的边界感，就像会认字就能阅读文章。\n🧵 6. 管理你的大脑记忆资源 类比：\n工作记忆 = 寄存器 短期记忆 = RAM 长期记忆 = 硬盘 技巧： 精简当前需要记住的信息（只记主逻辑） 将常用 API、框架结构固化为长期记忆 用笔记或注释辅助记忆缓存 🧩 7. 把代码当成自然语言来读 命名风格是“句法” 缩进结构是“语调” 注释内容是“修辞” 文献阅读技巧可迁移： 找主语（谁调用谁） 找动词（干了啥） 找逻辑连接词（if, while, for 等控制结构） ✨ 8. 进阶技巧 Bonus 📐 制作项目“地图” 用 markdown / 画图记录模块间的关系图 使用 PlantUML / Mermaid 绘制调用图 🗃️ 卡片式阅读笔记 每个模块/函数做成一张卡片，写用途 + 结构 + 接口 下次切换项目时秒级上手 🔁 预测 vs 验证 猜代码逻辑，调试验证对错，训练直觉与分析力 🧘 总结 读代码，是在理解另一个灵魂的思考方式。是跨越语言、跨越思维模型的深度连接。\n学会读代码，不只是成为一名好程序员，而是成为一个拥有“洞察力”的工程师。\n",
+  "wordCount" : "118",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/design/how-to-read-code/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -167,7 +336,7 @@ Issues 与 Pull Requests（可见设计动因与变更历史）
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -309,14 +478,14 @@ Issues 与 Pull Requests（可见设计动因与变更历史）
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/design/">Design</a></li>
+      <li><a href="https://example.org/tags/design/">Design</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

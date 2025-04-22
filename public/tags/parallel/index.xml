@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Parallel on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/parallel/</link>
+    <link>https://example.org/tags/parallel/</link>
     <description>Recent content in Parallel on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>并行编程库那些事</title>
-      <link>http://localhost:1313/posts/parallel/program-libs/</link>
+      <link>https://example.org/posts/parallel/program-libs/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/parallel/program-libs/</guid>
+      <guid>https://example.org/posts/parallel/program-libs/</guid>
       <description>&lt;h1 id=&#34;并行编程库那些事&#34;&gt;并行编程库那些事&lt;/h1&gt;
 &lt;h2 id=&#34;openmp&#34;&gt;OpenMP&lt;/h2&gt;
 &lt;h3 id=&#34;-简明定义先来个正经版&#34;&gt;✅ 简明定义（先来个“正经”版）：&lt;/h3&gt;

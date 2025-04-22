@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>PointCloud2 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="ROS">
 <meta name="description" content="PointCloud2
@@ -52,16 +52,16 @@ def create_pointscloud_xyzi(points, timestamp, frame_id):
     return pc2.create_cloud(header, fields, points)
 ">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/ros/pointcloud2/">
+<link rel="canonical" href="https://example.org/posts/ros/pointcloud2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/pointcloud2/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ros/pointcloud2/">
 <noscript>
     <style>
         #theme-toggle,
@@ -98,7 +98,119 @@ def create_pointscloud_xyzi(points, timestamp, frame_id):
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/ros/pointcloud2/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="PointCloud2">
+  <meta property="og:description" content="PointCloud2 参考链接：
+sensor_msgs.point_cloud2 sensor_msgs/PointField std_msgs/Header 作用 PointCloud2存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用PointField表示 sensor_msgs.point_cloud2不是数据结构，而是存放了许多操作PointCloud2的方法的命名空间，可以使用其中的方法来创建PointCloud2
+结构 # 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header # 点云的2D结构，如果点云无序，那么height为1，width为点数 uint32 height uint32 width # 描述data部分字段，即每个点的每个维度 PointField[] fields bool is_bigendian # 数据是否为大端 uint32 point_step # 一个点的字节数 uint32 row_step # 一行的字节数 uint8[] data # 存储点的字节数组，大小为(row_step*height) bool is_dense # 如果没有无效点，那么这个字段为True 创建点云 from sensor_msgs.msg import PointCloud2, PointField from sensor_msgs.point_cloud2 import create_cloud # Tips, 对于这些使用ROS消息生成系统生成的消息， # 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数， # 从而创建一个消息对象，这里的Header，PointField皆是如此。 # 此外这些字段亦可以通过对象的对应属性访问 def create_pointscloud_xyzi(points, timestamp, frame_id): header = Header(stamp=timestamp, frame_id=frame_id) dtype = PointField.FLOAT32 fields = [PointField(name=&#39;x&#39;, offset=0, datatype=dtype, count=1), PointField(name=&#39;y&#39;, offset=4, datatype=dtype, count=1), PointField(name=&#39;z&#39;, offset=8, datatype=dtype, count=1), PointField(name=&#39;intensity&#39;, offset=12, datatype=dtype, count=1),] # create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构 return pc2.create_cloud(header, fields, points) ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PointCloud2">
+<meta name="twitter:description" content="PointCloud2
+参考链接：
+
+sensor_msgs.point_cloud2
+sensor_msgs/PointField
+std_msgs/Header
+
+作用
+PointCloud2存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用PointField表示
+sensor_msgs.point_cloud2不是数据结构，而是存放了许多操作PointCloud2的方法的命名空间，可以使用其中的方法来创建PointCloud2
+结构
+# 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header
+
+# 点云的2D结构，如果点云无序，那么height为1，width为点数
+uint32 height
+uint32 width
+
+# 描述data部分字段，即每个点的每个维度
+PointField[] fields
+
+bool    is_bigendian # 数据是否为大端
+uint32  point_step   # 一个点的字节数
+uint32  row_step     # 一行的字节数
+uint8[] data         # 存储点的字节数组，大小为(row_step*height)
+
+bool is_dense        # 如果没有无效点，那么这个字段为True
+创建点云
+from sensor_msgs.msg import PointCloud2, PointField
+from sensor_msgs.point_cloud2 import create_cloud
+
+# Tips, 对于这些使用ROS消息生成系统生成的消息，
+# 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数，
+# 从而创建一个消息对象，这里的Header，PointField皆是如此。
+# 此外这些字段亦可以通过对象的对应属性访问
+def create_pointscloud_xyzi(points, timestamp, frame_id):
+    header = Header(stamp=timestamp, frame_id=frame_id)
+    dtype = PointField.FLOAT32
+    fields = [PointField(name=&#39;x&#39;, offset=0, datatype=dtype, count=1),
+                PointField(name=&#39;y&#39;, offset=4, datatype=dtype, count=1),
+                PointField(name=&#39;z&#39;, offset=8, datatype=dtype, count=1),
+                PointField(name=&#39;intensity&#39;, offset=12, datatype=dtype, count=1),]
+    # create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构
+    return pc2.create_cloud(header, fields, points)
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "PointCloud2",
+      "item": "https://example.org/posts/ros/pointcloud2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PointCloud2",
+  "name": "PointCloud2",
+  "description": "PointCloud2 参考链接：\nsensor_msgs.point_cloud2 sensor_msgs/PointField std_msgs/Header 作用 PointCloud2存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用PointField表示 sensor_msgs.point_cloud2不是数据结构，而是存放了许多操作PointCloud2的方法的命名空间，可以使用其中的方法来创建PointCloud2\n结构 # 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header # 点云的2D结构，如果点云无序，那么height为1，width为点数 uint32 height uint32 width # 描述data部分字段，即每个点的每个维度 PointField[] fields bool is_bigendian # 数据是否为大端 uint32 point_step # 一个点的字节数 uint32 row_step # 一行的字节数 uint8[] data # 存储点的字节数组，大小为(row_step*height) bool is_dense # 如果没有无效点，那么这个字段为True 创建点云 from sensor_msgs.msg import PointCloud2, PointField from sensor_msgs.point_cloud2 import create_cloud # Tips, 对于这些使用ROS消息生成系统生成的消息， # 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数， # 从而创建一个消息对象，这里的Header，PointField皆是如此。 # 此外这些字段亦可以通过对象的对应属性访问 def create_pointscloud_xyzi(points, timestamp, frame_id): header = Header(stamp=timestamp, frame_id=frame_id) dtype = PointField.FLOAT32 fields = [PointField(name=\u0026#39;x\u0026#39;, offset=0, datatype=dtype, count=1), PointField(name=\u0026#39;y\u0026#39;, offset=4, datatype=dtype, count=1), PointField(name=\u0026#39;z\u0026#39;, offset=8, datatype=dtype, count=1), PointField(name=\u0026#39;intensity\u0026#39;, offset=12, datatype=dtype, count=1),] # create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构 return pc2.create_cloud(header, fields, points) ",
+  "keywords": [
+    "ROS"
+  ],
+  "articleBody": "PointCloud2 参考链接：\nsensor_msgs.point_cloud2 sensor_msgs/PointField std_msgs/Header 作用 PointCloud2存储点云，点云是一个n维向量的集合，常见的有3,4维的，即xyz, xyzi。有些传感器产生的点云可能还带有其他字段，这些额外的字段使用PointField表示 sensor_msgs.point_cloud2不是数据结构，而是存放了许多操作PointCloud2的方法的命名空间，可以使用其中的方法来创建PointCloud2\n结构 # 包含当前点云数据采集的时间，坐标系。想知道Header到底有哪些字段，看std_msgs/Header # 点云的2D结构，如果点云无序，那么height为1，width为点数 uint32 height uint32 width # 描述data部分字段，即每个点的每个维度 PointField[] fields bool is_bigendian # 数据是否为大端 uint32 point_step # 一个点的字节数 uint32 row_step # 一行的字节数 uint8[] data # 存储点的字节数组，大小为(row_step*height) bool is_dense # 如果没有无效点，那么这个字段为True 创建点云 from sensor_msgs.msg import PointCloud2, PointField from sensor_msgs.point_cloud2 import create_cloud # Tips, 对于这些使用ROS消息生成系统生成的消息， # 你总是可以使用msg定义中的字段名作为关键字参数传递给消息类构造函数， # 从而创建一个消息对象，这里的Header，PointField皆是如此。 # 此外这些字段亦可以通过对象的对应属性访问 def create_pointscloud_xyzi(points, timestamp, frame_id): header = Header(stamp=timestamp, frame_id=frame_id) dtype = PointField.FLOAT32 fields = [PointField(name='x', offset=0, datatype=dtype, count=1), PointField(name='y', offset=4, datatype=dtype, count=1), PointField(name='z', offset=8, datatype=dtype, count=1), PointField(name='intensity', offset=12, datatype=dtype, count=1),] # create_cloud可以方便地创建点云，不用去深究PointCloud2的数据结构 return pc2.create_cloud(header, fields, points) ",
+  "wordCount" : "96",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ros/pointcloud2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -116,7 +228,7 @@ def create_pointscloud_xyzi(points, timestamp, frame_id):
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -205,14 +317,14 @@ bool is_dense        # 如果没有无效点，那么这个字段为True
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+      <li><a href="https://example.org/tags/ros/">ROS</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

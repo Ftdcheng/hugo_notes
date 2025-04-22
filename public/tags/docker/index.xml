@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Docker on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/docker/</link>
+    <link>https://example.org/tags/docker/</link>
     <description>Recent content in Docker on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Compose</title>
-      <link>http://localhost:1313/posts/docker/compose/</link>
+      <link>https://example.org/posts/docker/compose/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/compose/</guid>
+      <guid>https://example.org/posts/docker/compose/</guid>
       <description>&lt;h1 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h1&gt;
 &lt;h2 id=&#34;compose-文件&#34;&gt;Compose 文件&lt;/h2&gt;
 &lt;p&gt;默认的Compose文件是&lt;code&gt;compose.yaml&lt;/code&gt;&lt;/p&gt;
@@ -24,9 +24,9 @@
     </item>
     <item>
       <title>Dockerfile Entrypoint</title>
-      <link>http://localhost:1313/posts/docker/entry-point/</link>
+      <link>https://example.org/posts/docker/entry-point/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/entry-point/</guid>
+      <guid>https://example.org/posts/docker/entry-point/</guid>
       <description>&lt;h1 id=&#34;dockerfile-entrypoint&#34;&gt;Dockerfile Entrypoint&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.docker.com/reference/dockerfile/#entrypoint&#34;&gt;Docker Entry Point 官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;ENTRYPOINT最主要的功能是将容器变成一个“命令”, 容器在启动的时候会执行ENTRYPOINT规定的命令。&lt;/p&gt;
@@ -36,9 +36,9 @@
     </item>
     <item>
       <title>how to do something in Docker</title>
-      <link>http://localhost:1313/posts/docker/how-tos/</link>
+      <link>https://example.org/posts/docker/how-tos/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/how-tos/</guid>
+      <guid>https://example.org/posts/docker/how-tos/</guid>
       <description>&lt;h1 id=&#34;how-to-do-something-in-docker&#34;&gt;how to do something in Docker&lt;/h1&gt;
 &lt;h2 id=&#34;如何让容器能够借用宿主机显示gui&#34;&gt;如何让容器能够借用宿主机显示GUI&lt;/h2&gt;
 &lt;ol&gt;
@@ -81,9 +81,9 @@
     </item>
     <item>
       <title>网络</title>
-      <link>http://localhost:1313/posts/docker/networking/</link>
+      <link>https://example.org/posts/docker/networking/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/docker/networking/</guid>
+      <guid>https://example.org/posts/docker/networking/</guid>
       <description>&lt;h1 id=&#34;网络&#34;&gt;网络&lt;/h1&gt;
 &lt;p&gt;docker网络可以让容器访问外网或者互相访问。&lt;/p&gt;
 &lt;p&gt;默认开启了docker网络，不过容器不知道自己连接的什么对象，只知道自己的IP，网关，DNS这些网络参数。&lt;/p&gt;

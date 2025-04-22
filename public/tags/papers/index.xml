@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Papers on Citrus Cheng&#39;s wiki</title>
-    <link>http://localhost:1313/tags/papers/</link>
+    <link>https://example.org/tags/papers/</link>
     <description>Recent content in Papers on Citrus Cheng&#39;s wiki</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/papers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/tags/papers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Livox LOAM</title>
-      <link>http://localhost:1313/posts/slam/papers/livox-loam/</link>
+      <link>https://example.org/posts/slam/papers/livox-loam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/livox-loam/</guid>
+      <guid>https://example.org/posts/slam/papers/livox-loam/</guid>
       <description>&lt;h1 id=&#34;livox-loam&#34;&gt;Livox LOAM&lt;/h1&gt;
 &lt;p&gt;使用Livox固态雷达实现的LOAM。&lt;/p&gt;
 &lt;h2 id=&#34;数据处理&#34;&gt;数据处理&lt;/h2&gt;
@@ -23,9 +23,9 @@
     </item>
     <item>
       <title>LOAM</title>
-      <link>http://localhost:1313/posts/slam/papers/loam/</link>
+      <link>https://example.org/posts/slam/papers/loam/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/loam/</guid>
+      <guid>https://example.org/posts/slam/papers/loam/</guid>
       <description>&lt;h1 id=&#34;loam&#34;&gt;LOAM&lt;/h1&gt;
 &lt;h2 id=&#34;点云获取&#34;&gt;点云获取&lt;/h2&gt;
 &lt;p&gt;LOAM使用的LiDAR是&lt;code&gt;VLP-16&lt;/code&gt;，这是一种16线的激光雷达。&lt;/p&gt;
@@ -67,9 +67,9 @@
     </item>
     <item>
       <title>高效时空信息融合的动态SLAM框架</title>
-      <link>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
+      <link>https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/</link>
       <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
+      <guid>https://example.org/posts/slam/papers/effcient-spatial-temporal-information-fusion/</guid>
       <description>&lt;h1 id=&#34;高效时空信息融合的动态slam框架&#34;&gt;高效时空信息融合的动态SLAM框架&lt;/h1&gt;
 &lt;h2 id=&#34;idea&#34;&gt;idea&lt;/h2&gt;
 &lt;ol&gt;

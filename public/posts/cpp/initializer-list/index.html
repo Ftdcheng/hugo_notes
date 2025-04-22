@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>初始化列表 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="cpp">
 <meta name="description" content="初始化列表
@@ -45,16 +45,16 @@ a: 1, b: 2, c: 3
 1. 类的构造函数初始化成员变量
 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/cpp/initializer-list/">
+<link rel="canonical" href="https://example.org/posts/cpp/initializer-list/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/cpp/initializer-list/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/cpp/initializer-list/">
 <noscript>
     <style>
         #theme-toggle,
@@ -91,7 +91,112 @@ a: 1, b: 2, c: 3
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/cpp/initializer-list/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="初始化列表">
+  <meta property="og:description" content="初始化列表 初始化列表（initializer_list）是 C&#43;&#43;11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。
+🧱 1. 基本用法 initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。
+示例：基础使用 #include &lt;iostream&gt; #include &lt;initializer_list&gt; class MyClass { private: int a, b, c; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list&lt;int&gt; init) { auto it = init.begin(); a = *it&#43;&#43;; // 初始化 a b = *it&#43;&#43;; // 初始化 b c = *it; // 初始化 c } void print() { std::cout &lt;&lt; &#34;a: &#34; &lt;&lt; a &lt;&lt; &#34;, b: &#34; &lt;&lt; b &lt;&lt; &#34;, c: &#34; &lt;&lt; c &lt;&lt; std::endl; } }; int main() { MyClass obj{1, 2, 3}; // 使用初始化列表 obj.print(); return 0; } 输出： a: 1, b: 2, c: 3 🧩 2. 什么时候用初始化列表？ 1. 类的构造函数初始化成员变量 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初始化列表">
+<meta name="twitter:description" content="初始化列表
+初始化列表（initializer_list）是 C&#43;&#43;11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。
+
+🧱 1. 基本用法
+initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。
+示例：基础使用
+#include &lt;iostream&gt;
+#include &lt;initializer_list&gt;
+
+class MyClass {
+private:
+    int a, b, c;
+public:
+    // 使用初始化列表来初始化成员变量
+    MyClass(std::initializer_list&lt;int&gt; init) {
+        auto it = init.begin();
+        a = *it&#43;&#43;;  // 初始化 a
+        b = *it&#43;&#43;;  // 初始化 b
+        c = *it;    // 初始化 c
+    }
+
+    void print() {
+        std::cout &lt;&lt; &#34;a: &#34; &lt;&lt; a &lt;&lt; &#34;, b: &#34; &lt;&lt; b &lt;&lt; &#34;, c: &#34; &lt;&lt; c &lt;&lt; std::endl;
+    }
+};
+
+int main() {
+    MyClass obj{1, 2, 3};  // 使用初始化列表
+    obj.print();
+    return 0;
+}
+输出：
+a: 1, b: 2, c: 3
+
+🧩 2. 什么时候用初始化列表？
+1. 类的构造函数初始化成员变量
+在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "初始化列表",
+      "item": "https://example.org/posts/cpp/initializer-list/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "初始化列表",
+  "name": "初始化列表",
+  "description": "初始化列表 初始化列表（initializer_list）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。\n🧱 1. 基本用法 initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。\n示例：基础使用 #include \u0026lt;iostream\u0026gt; #include \u0026lt;initializer_list\u0026gt; class MyClass { private: int a, b, c; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list\u0026lt;int\u0026gt; init) { auto it = init.begin(); a = *it++; // 初始化 a b = *it++; // 初始化 b c = *it; // 初始化 c } void print() { std::cout \u0026lt;\u0026lt; \u0026#34;a: \u0026#34; \u0026lt;\u0026lt; a \u0026lt;\u0026lt; \u0026#34;, b: \u0026#34; \u0026lt;\u0026lt; b \u0026lt;\u0026lt; \u0026#34;, c: \u0026#34; \u0026lt;\u0026lt; c \u0026lt;\u0026lt; std::endl; } }; int main() { MyClass obj{1, 2, 3}; // 使用初始化列表 obj.print(); return 0; } 输出： a: 1, b: 2, c: 3 🧩 2. 什么时候用初始化列表？ 1. 类的构造函数初始化成员变量 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。\n",
+  "keywords": [
+    "cpp"
+  ],
+  "articleBody": "初始化列表 初始化列表（initializer_list）是 C++11 引入的一项特性，能让你用一种更简洁的方式初始化容器、数组、类等对象，尤其是对于类的构造函数，使用初始化列表非常方便。它不仅能让你轻松初始化成员变量，还能避免一些性能开销。\n🧱 1. 基本用法 initializer_list 允许你在构造对象时，直接用 {} 花括号传递一个列表。\n示例：基础使用 #include #include class MyClass { private: int a, b, c; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list\u003cint\u003e init) { auto it = init.begin(); a = *it++; // 初始化 a b = *it++; // 初始化 b c = *it; // 初始化 c } void print() { std::cout \u003c\u003c \"a: \" \u003c\u003c a \u003c\u003c \", b: \" \u003c\u003c b \u003c\u003c \", c: \" \u003c\u003c c \u003c\u003c std::endl; } }; int main() { MyClass obj{1, 2, 3}; // 使用初始化列表 obj.print(); return 0; } 输出： a: 1, b: 2, c: 3 🧩 2. 什么时候用初始化列表？ 1. 类的构造函数初始化成员变量 在类的构造函数中，使用初始化列表是初始化成员变量的最有效方式，特别是对于常量成员（const）和引用成员，因为它们在构造时必须被初始化。\nclass MyClass { private: const int a; int\u0026 b; public: MyClass(int x, int\u0026 y) : a(x), b(y) { // `a` 和 `b` 必须通过初始化列表来初始化 } }; 2. 避免不必要的赋值开销 如果你在构造函数体内用赋值的方式初始化成员变量，首先会先调用默认构造函数，然后再赋值。用初始化列表则可以直接初始化，避免这种无谓的开销。\nclass MyClass { private: std::vector\u003cint\u003e vec; public: MyClass() : vec{1, 2, 3} {} // 初始化列表直接创建对象 }; 🔄 3. 自定义初始化列表给类使用 你完全可以让你的类接受 initializer_list 作为参数，并使用它来初始化自己的成员变量，像上面的例子那样。\n示例：自定义类支持初始化列表 #include #include class MyClass { private: std::vector\u003cint\u003e values; public: // 使用初始化列表来初始化成员变量 MyClass(std::initializer_list\u003cint\u003e init) { for (auto\u0026 value : init) { values.push_back(value); } } void print() { for (auto\u0026 value : values) { std::cout \u003c\u003c value \u003c\u003c \" \"; } std::cout \u003c\u003c std::endl; } }; int main() { MyClass obj{1, 2, 3, 4, 5}; // 使用初始化列表 obj.print(); return 0; } 输出： 1 2 3 4 5 解析： 在 MyClass 的构造函数中，我们用 initializer_list 接收了传入的初始化列表 {1, 2, 3, 4, 5}。 使用 for 循环把每个元素逐个添加到成员 std::vector values 中。 ⚡ 4. 你会在什么情况下自己定义初始化列表？ a. 你自己设计容器类 如果你在做某些数据结构（如链表、栈、队列等）的实现，允许通过 initializer_list 来传递元素列表是非常方便的。例如，定义一个自定义容器类，它能够接受初始化列表来初始化元素。\nclass MyStack { private: std::vector\u003cint\u003e data; public: MyStack(std::initializer_list\u003cint\u003e init) { for (int i : init) { data.push_back(i); // 初始化栈的元素 } } void print() { for (auto\u0026 val : data) { std::cout \u003c\u003c val \u003c\u003c \" \"; } std::cout \u003c\u003c std::endl; } }; b. 你希望提供更直观的初始化方式 某些类，如果希望用户能够更直观地通过 {} 进行初始化，可以考虑支持 initializer_list，避免过多的构造函数重载，使得 API 更简洁易用。\nclass Point { private: int x, y; public: // 通过 initializer_list 初始化 Point(std::initializer_list\u003cint\u003e init) { auto it = init.begin(); x = *it++; y = *it; } void print() { std::cout \u003c\u003c \"(\" \u003c\u003c x \u003c\u003c \", \" \u003c\u003c y \u003c\u003c \")\" \u003c\u003c std::endl; } }; 🔒 5. initializer_list 的一些限制 不可修改元素：initializer_list 是常量的，你不能修改其中的元素。\nstd::initializer_list\u003cint\u003e init = {1, 2, 3}; init[0] = 10; // 错误，initializer_list 的元素是不可修改的 **只能用于参数传递和构造函数：**不能把 initializer_list 作为类的成员变量来存储，因为它的生命周期由它的外部作用域控制。\n不能改变大小：initializer_list 的大小是固定的，无法像 std::vector 一样动态增加元素。\n🎯 总结： initializer_list 是一个非常有用的工具，特别适合用在类的构造函数中，让类可以轻松支持像 {1, 2, 3} 这样的初始化语法。 自定义类完全可以通过它接收初始化数据，简化代码，并让用户的代码更简洁、直观。 STL 容器和其他标准库组件广泛使用了 initializer_list，为你提供更灵活的初始化方式。 ",
+  "wordCount" : "379",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/cpp/initializer-list/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -109,7 +214,7 @@ a: 1, b: 2, c: 3
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -308,14 +413,14 @@ a: 1, b: 2, c: 3
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/cpp/">Cpp</a></li>
+      <li><a href="https://example.org/tags/cpp/">Cpp</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

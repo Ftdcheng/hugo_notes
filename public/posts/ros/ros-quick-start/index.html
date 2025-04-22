@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>ROS | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="ROS">
 <meta name="description" content="ROS
@@ -50,16 +50,16 @@ rosservice list
 rosservice type &lt;服务&gt;
 查看服务的结构">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/ros/ros-quick-start/">
+<link rel="canonical" href="https://example.org/posts/ros/ros-quick-start/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/ros/ros-quick-start/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/ros/ros-quick-start/">
 <noscript>
     <style>
         #theme-toggle,
@@ -96,7 +96,132 @@ rosservice type &lt;服务&gt;
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/ros/ros-quick-start/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="ROS">
+  <meta property="og:description" content="ROS 基本概念 节点 ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。
+查看当前正在运行的节点
+rosnode list 查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务
+rosnode info &lt;节点名&gt; 运行节点
+rosrun &lt;包名&gt; &lt;节点名&gt; 测试节点连通性和延迟
+rosnode ping &lt;节点名&gt; 客户端库 ROS客户端库允许节点使用不同的语言来进行交流：
+rospy = python客户端库 roscpp = c&#43;&#43; 客户端库 roscore 你要使用ROS，就得先运行roscore。
+就是主节点(Master) &#43; rosout &#43; 参数服务器
+话题 查看话题已经发布的消息：
+rostopic echo &lt;话题&gt; 查看发布特定话题的节点和接收的节点
+rostopic list &lt;话题&gt; 查看话题消息的类型
+rostopic type &lt;话题&gt; 查看话题消息的结构
+rostopic show &lt;话题&gt; 发布消息
+rostopic pub &lt;话题&gt; &lt;类型&gt; &lt;参数&gt; 查看话题发布的频率
+rostopic hz &lt;话题&gt; 话题的时间坐标图像
+rqt_plot 服务 列出活跃的服务
+rosservice list 查看服务响应的类型
+rosservice type &lt;服务&gt; 查看服务的结构">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS">
+<meta name="twitter:description" content="ROS
+基本概念
+节点
+ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。
+查看当前正在运行的节点
+rosnode list
+查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务
+rosnode info &lt;节点名&gt;
+运行节点
+rosrun &lt;包名&gt; &lt;节点名&gt;
+测试节点连通性和延迟
+rosnode ping &lt;节点名&gt;
+客户端库
+ROS客户端库允许节点使用不同的语言来进行交流：
+
+rospy = python客户端库
+roscpp = c&#43;&#43; 客户端库
+
+roscore
+你要使用ROS，就得先运行roscore。
+就是主节点(Master) &#43; rosout &#43; 参数服务器
+话题
+查看话题已经发布的消息：
+rostopic echo &lt;话题&gt;
+查看发布特定话题的节点和接收的节点
+rostopic list &lt;话题&gt;
+查看话题消息的类型
+rostopic type &lt;话题&gt;
+查看话题消息的结构
+rostopic show &lt;话题&gt;
+发布消息
+rostopic pub &lt;话题&gt; &lt;类型&gt; &lt;参数&gt;
+查看话题发布的频率
+rostopic hz &lt;话题&gt;
+话题的时间坐标图像
+rqt_plot
+服务
+列出活跃的服务
+rosservice list
+查看服务响应的类型
+rosservice type &lt;服务&gt;
+查看服务的结构">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "ROS",
+      "item": "https://example.org/posts/ros/ros-quick-start/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ROS",
+  "name": "ROS",
+  "description": "ROS 基本概念 节点 ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。\n查看当前正在运行的节点\nrosnode list 查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务\nrosnode info \u0026lt;节点名\u0026gt; 运行节点\nrosrun \u0026lt;包名\u0026gt; \u0026lt;节点名\u0026gt; 测试节点连通性和延迟\nrosnode ping \u0026lt;节点名\u0026gt; 客户端库 ROS客户端库允许节点使用不同的语言来进行交流：\nrospy = python客户端库 roscpp = c++ 客户端库 roscore 你要使用ROS，就得先运行roscore。\n就是主节点(Master) + rosout + 参数服务器\n话题 查看话题已经发布的消息：\nrostopic echo \u0026lt;话题\u0026gt; 查看发布特定话题的节点和接收的节点\nrostopic list \u0026lt;话题\u0026gt; 查看话题消息的类型\nrostopic type \u0026lt;话题\u0026gt; 查看话题消息的结构\nrostopic show \u0026lt;话题\u0026gt; 发布消息\nrostopic pub \u0026lt;话题\u0026gt; \u0026lt;类型\u0026gt; \u0026lt;参数\u0026gt; 查看话题发布的频率\nrostopic hz \u0026lt;话题\u0026gt; 话题的时间坐标图像\nrqt_plot 服务 列出活跃的服务\nrosservice list 查看服务响应的类型\nrosservice type \u0026lt;服务\u0026gt; 查看服务的结构\n",
+  "keywords": [
+    "ROS"
+  ],
+  "articleBody": "ROS 基本概念 节点 ROS包中的可执行文件，可以发布话题，订阅话题，发布服务，请求服务。\n查看当前正在运行的节点\nrosnode list 查看节点的相关信息，包括发布了什么话题，订阅了什么话题，发布了什么服务\nrosnode info \u003c节点名\u003e 运行节点\nrosrun \u003c包名\u003e \u003c节点名\u003e 测试节点连通性和延迟\nrosnode ping \u003c节点名\u003e 客户端库 ROS客户端库允许节点使用不同的语言来进行交流：\nrospy = python客户端库 roscpp = c++ 客户端库 roscore 你要使用ROS，就得先运行roscore。\n就是主节点(Master) + rosout + 参数服务器\n话题 查看话题已经发布的消息：\nrostopic echo \u003c话题\u003e 查看发布特定话题的节点和接收的节点\nrostopic list \u003c话题\u003e 查看话题消息的类型\nrostopic type \u003c话题\u003e 查看话题消息的结构\nrostopic show \u003c话题\u003e 发布消息\nrostopic pub \u003c话题\u003e \u003c类型\u003e \u003c参数\u003e 查看话题发布的频率\nrostopic hz \u003c话题\u003e 话题的时间坐标图像\nrqt_plot 服务 列出活跃的服务\nrosservice list 查看服务响应的类型\nrosservice type \u003c服务\u003e 查看服务的结构\nrossrv show \u003c类型\u003e 参数 列出可用的参数\nrosparam list 获取参数\nrosparam get \u003c参数名\u003e 获取整个参数服务器的所有参数\nrosparam get / 设置参数，rosparam使用yaml格式\nrosparam set \u003c参数名\u003e \u003c参数值\u003e 导出参数为yaml格式\nrosparam dump \u003c文件名\u003e \u003c命名空间\u003e 加载yaml格式的参数\nrosparam load \u003c文件名\u003e \u003c命名空间\u003e 日志 可视化显示各级日志，可以进行按等级等筛选\nrosrun rqt_console rqt_console roslaunch 启动launch文件规定的一系列节点\nroslaunch \u003c包名\u003e 信息格式 msg 定义话题消息的字段的文本文件，这个文件会被转换成不同的语言\n这个文件放在包目录的msg目录下\n如果要使用这一文件，还需要在编译配置文件package.xml中加上\nmessage_generation message_runtime 还要在CMakeLists.txt中加上三方库依赖，需要在find_package中加入msg_generation\nfind_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation ) 再导出消息运行时依赖\ncatkin_package( ... CATKIN_DEPENDS message_runtime ... ) 再加上消息文件的编译选项\nadd_message_files( FILES Num.msg ) 再加上生成消息的依赖\ngenerate_messages( DEPENDENCIES std_msgs ) srv 定义服务请求和响应的字段，这个文件会被转换成不同的语言\n这个文件放在包目录的srv目录下\nsrv分为两部分，第一部分是请求，第二部分是响应，中间用—隔开\n如果要使用这一文件，还需要在编译配置文件packages.xml中加上\nmessage_generation message_runtime 还要在CMakeLists.txt中加上三方库依赖，需要在find_package中加入msg_generation\nfind_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation ) 再导出消息运行时依赖\ncatkin_package( ... CATKIN_DEPENDS message_runtime ... ) 再加上服务文件的编译选项\nadd_service_files( FILES srvs.srv ) 再加上生成消息的依赖\ngenerate_messages( DEPENDENCIES std_msgs ) 基本类型 整数：int8, int16, int32, int64\n浮点数：float32, float64\n字符串：string\n时间，时长\n其它msg文件\n数组（变长的和定长的）\nHeader（含有时间戳和坐标帧信息）\n发布者和订阅者代码(C++) 发布者 #include \"ros/ros.h\" #include \"std_msgs/String.h\" #include int main(int argc, char **argv) { /** * The ros::init() function needs to see argc and argv so that it can perform * any ROS arguments and name remapping that were provided at the command line. * For programmatic remappings you can use a different version of init() which takes * remappings directly, but for most command-line programs, passing argc and argv is * the easiest way to do it. The third argument to init() is the name of the node. * * You must call one of the versions of ros::init() before using any other * part of the ROS system. */ ros::init(argc, argv, \"talker\"); /** * NodeHandle is the main access point to communications with the ROS system. * The first NodeHandle constructed will fully initialize this node, and the last * NodeHandle destructed will close down the node. */ ros::NodeHandle n; /** * The advertise() function is how you tell ROS that you want to * publish on a given topic name. This invokes a call to the ROS * master node, which keeps a registry of who is publishing and who * is subscribing. After this advertise() call is made, the master * node will notify anyone who is trying to subscribe to this topic name, * and they will in turn negotiate a peer-to-peer connection with this * node. advertise() returns a Publisher object which allows you to * publish messages on that topic through a call to publish(). Once * all copies of the returned Publisher object are destroyed, the topic * will be automatically unadvertised. * * The second parameter to advertise() is the size of the message queue * used for publishing messages. If messages are published more quickly * than we can send them, the number here specifies how many messages to * buffer up before throwing some away. */ ros::Publisher chatter_pub = n.advertise\u003cstd_msgs::String\u003e(\"chatter\", 1000); ros::Rate loop_rate(10); /** * A count of how many messages we have sent. This is used to create * a unique string for each message. */ int count = 0; while (ros::ok()) { /** * This is a message object. You stuff it with data, and then publish it. */ std_msgs::String msg; std::stringstream ss; ss \u003c\u003c \"hello world \" \u003c\u003c count; msg.data = ss.str(); ROS_INFO(\"%s\", msg.data.c_str()); /** * The publish() function is how you send messages. The parameter * is the message object. The type of this object must agree with the type * given as a template parameter to the advertise\u003c\u003e() call, as was done * in the constructor above. */ chatter_pub.publish(msg); ros::spinOnce(); loop_rate.sleep(); ++count; } return 0; } ros::Rate可以让ros::sleep()每次休眠正确的时间，以控制循环执行的频率\nros::ok()在这些情况下会返回false:\nCtrl + C 被同名节点踢出网络 应用的其它部分调用了ros::shutdown() 所有的ros::NodeHandle都被销毁了 ros::NodeHandle可以看作是节点的替身，你可以使用NodeHandle对节点进行操作，比如发布消息等，所以NodeHandle的销毁就是节点的销毁\nros::init()是为了方便命令行进行重映射而写的\n使用NodeHandle.advertise后会返回一个Publisher，你可以使用它发布消息\nROS_INFO向rosout中发布INFO等级的日志\nros::spinOnce()会从全局回调函数队列中拿一个可以执行的回调函数进行执行。这个程序中没有订阅话题，没有回调函数，所以并不会执行回调函数。如果在一个有回调函数的程序没有写任何和spinOnce类似的代码，那么你写的回调函数永远都不会执行。\nros::sleep()让节点休眠正确的时间，让循环控制在10Hz的频率。\n订阅者 #include \"ros/ros.h\" #include \"std_msgs/String.h\" /** * This tutorial demonstrates simple receipt of messages over the ROS system. */ void chatterCallback(const std_msgs::String::ConstPtr\u0026 msg) { ROS_INFO(\"I heard: [%s]\", msg-\u003edata.c_str()); } int main(int argc, char **argv) { /** * The ros::init() function needs to see argc and argv so that it can perform * any ROS arguments and name remapping that were provided at the command line. * For programmatic remappings you can use a different version of init() which takes * remappings directly, but for most command-line programs, passing argc and argv is * the easiest way to do it. The third argument to init() is the name of the node. * * You must call one of the versions of ros::init() before using any other * part of the ROS system. */ ros::init(argc, argv, \"listener\"); /** * NodeHandle is the main access point to communications with the ROS system. * The first NodeHandle constructed will fully initialize this node, and the last * NodeHandle destructed will close down the node. */ ros::NodeHandle n; /** * The subscribe() call is how you tell ROS that you want to receive messages * on a given topic. This invokes a call to the ROS * master node, which keeps a registry of who is publishing and who * is subscribing. Messages are passed to a callback function, here * called chatterCallback. subscribe() returns a Subscriber object that you * must hold on to until you want to unsubscribe. When all copies of the Subscriber * object go out of scope, this callback will automatically be unsubscribed from * this topic. * * The second parameter to the subscribe() function is the size of the message * queue. If messages are arriving faster than they are being processed, this * is the number of messages that will be buffered up before beginning to throw * away the oldest ones. */ ros::Subscriber sub = n.subscribe(\"chatter\", 1000, chatterCallback); /** * ros::spin() will enter a loop, pumping callbacks. With this version, all * callbacks will be called from within this thread (the main one). ros::spin() * will exit when Ctrl-C is pressed, or the node is shutdown by the master. */ ros::spin(); return 0; } ros::spin()会等当前线程中的所有回调函数执行才返回值。\n服务端和客户端代码（C++） 服务端 #include \"ros/ros.h\" #include \"beginner_tutorials/AddTwoInts.h\" /** * 处理客户端请求的回调函数，一个参数是请求，一个参数是响应。 * 请求会在客户端请求的时候给服务端，也就是说在这个程序中是输入。 * 响应会根据请求生成，最后发送给客户端，在这个程序中是输出。 */ bool add(beginner_tutorials::AddTwoInts::Request \u0026req, beginner_tutorials::AddTwoInts::Response \u0026res) { res.sum = req.a + req.b; ROS_INFO(\"request: x=%ld, y=%ld\", (long int)req.a, (long int)req.b); ROS_INFO(\"sending back response: [%ld]\", (long int)res.sum); return true; } int main(int argc, char **argv) { ros::init(argc, argv, \"add_two_ints_server\"); ros::NodeHandle n; ros::ServiceServer service = n.advertiseService(\"add_two_ints\", add); ROS_INFO(\"Ready to add two ints.\"); ros::spin(); return 0; } 客户端 #include \"ros/ros.h\" #include \"beginner_tutorials/AddTwoInts.h\" #include int main(int argc, char **argv) { ros::init(argc, argv, \"add_two_ints_client\"); if (argc != 3) { ROS_INFO(\"usage: add_two_ints_client X Y\"); return 1; } ros::NodeHandle n; ros::ServiceClient client = n.serviceClient\u003cbeginner_tutorials::AddTwoInts\u003e(\"add_two_ints\"); beginner_tutorials::AddTwoInts srv; srv.request.a = atoll(argv[1]); srv.request.b = atoll(argv[2]); /** * 调用服务，向服务端发送请求，调用服务的过程是阻塞的，没有得到确切的结果就会阻塞 */ if (client.call(srv)) { ROS_INFO(\"Sum: %ld\", (long int)srv.response.sum); } else { ROS_ERROR(\"Failed to call service add_two_ints\"); return 1; } return 0; } ",
+  "wordCount" : "1149",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/ros/ros-quick-start/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -114,7 +239,7 @@ rosservice type &lt;服务&gt;
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -513,14 +638,14 @@ rosservice type &lt;服务&gt;
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/ros/">ROS</a></li>
+      <li><a href="https://example.org/tags/ros/">ROS</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by

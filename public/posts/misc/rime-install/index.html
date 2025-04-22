@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>ibus rime 安装踩坑 | Citrus Cheng&#39;s wiki</title>
 <meta name="keywords" content="misc">
 <meta name="description" content="ibus rime 安装踩坑
@@ -33,16 +33,16 @@ tail -f /var/log/syslog
 ibus-daemon -drx
 如果有更多的错误信息，可能有助于诊断问题。">
 <meta name="author" content="Citrus Cheng">
-<link rel="canonical" href="http://localhost:1313/posts/misc/rime-install/">
+<link rel="canonical" href="https://example.org/posts/misc/rime-install/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://example.org/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://example.org/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://example.org/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://example.org/apple-touch-icon.png">
+<link rel="mask-icon" href="https://example.org/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/misc/rime-install/">
+<link rel="alternate" hreflang="en" href="https://example.org/posts/misc/rime-install/">
 <noscript>
     <style>
         #theme-toggle,
@@ -79,7 +79,109 @@ ibus-daemon -drx
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://example.org/posts/misc/rime-install/">
+  <meta property="og:site_name" content="Citrus Cheng&#39;s wiki">
+  <meta property="og:title" content="ibus rime 安装踩坑">
+  <meta property="og:description" content="ibus rime 安装踩坑 日志在哪 linux端在/tmp/rime*
+没有部署按钮怎么办 ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了
+雾凇拼音挂了怎么办 把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/
+怎么在命令行部署 ibus restart
+奇怪的错误 (process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached 设定全局引擎失败。
+这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 ibus-daemon 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：
+1. 确保 ibus-daemon 正常启动 有时 ibus-daemon 可能没有正确启动或响应。可以尝试手动重新启动它：
+ibus-daemon -drx 这个命令会重启 IBUS 服务，并确保它在后台运行。
+2. 重启系统 如果 ibus-daemon 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。
+3. 查看 IBUS 日志 通过查看 IBUS 日志可以获取更多的错误信息。可以查看 /var/log/syslog 或直接在终端中查看 IBUS 输出：
+tail -f /var/log/syslog 或者直接在终端中查看 IBUS 的调试信息：
+ibus-daemon -drx 如果有更多的错误信息，可能有助于诊断问题。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-22T00:00:00+00:00">
+    <meta property="article:tag" content="Misc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ibus rime 安装踩坑">
+<meta name="twitter:description" content="ibus rime 安装踩坑
+日志在哪
+linux端在/tmp/rime*
+没有部署按钮怎么办
+ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了
+雾凇拼音挂了怎么办
+把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/
+怎么在命令行部署
+ibus restart
+奇怪的错误
+(process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached
+设定全局引擎失败。
+这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 ibus-daemon 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：
+1. 确保 ibus-daemon 正常启动
+有时 ibus-daemon 可能没有正确启动或响应。可以尝试手动重新启动它：
+ibus-daemon -drx
+这个命令会重启 IBUS 服务，并确保它在后台运行。
+2. 重启系统
+如果 ibus-daemon 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。
+3. 查看 IBUS 日志
+通过查看 IBUS 日志可以获取更多的错误信息。可以查看 /var/log/syslog 或直接在终端中查看 IBUS 输出：
+tail -f /var/log/syslog
+或者直接在终端中查看 IBUS 的调试信息：
+ibus-daemon -drx
+如果有更多的错误信息，可能有助于诊断问题。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://example.org/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "ibus rime 安装踩坑",
+      "item": "https://example.org/posts/misc/rime-install/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ibus rime 安装踩坑",
+  "name": "ibus rime 安装踩坑",
+  "description": "ibus rime 安装踩坑 日志在哪 linux端在/tmp/rime*\n没有部署按钮怎么办 ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了\n雾凇拼音挂了怎么办 把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/\n怎么在命令行部署 ibus restart\n奇怪的错误 (process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached 设定全局引擎失败。\n这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 ibus-daemon 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：\n1. 确保 ibus-daemon 正常启动 有时 ibus-daemon 可能没有正确启动或响应。可以尝试手动重新启动它：\nibus-daemon -drx 这个命令会重启 IBUS 服务，并确保它在后台运行。\n2. 重启系统 如果 ibus-daemon 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。\n3. 查看 IBUS 日志 通过查看 IBUS 日志可以获取更多的错误信息。可以查看 /var/log/syslog 或直接在终端中查看 IBUS 输出：\ntail -f /var/log/syslog 或者直接在终端中查看 IBUS 的调试信息：\nibus-daemon -drx 如果有更多的错误信息，可能有助于诊断问题。\n",
+  "keywords": [
+    "misc"
+  ],
+  "articleBody": "ibus rime 安装踩坑 日志在哪 linux端在/tmp/rime*\n没有部署按钮怎么办 ibus-daemon -x -r -d这样系统图标和候选词条框都跳出来了\n雾凇拼音挂了怎么办 把ibus-rime给卸载了，使用appimage安装，直接给appimage执行权限，执行appimage就安装成功了/\n怎么在命令行部署 ibus restart\n奇怪的错误 (process:4336): IBUS-WARNING **: 10:06:08.016: ibus_bus_call_sync: org.freedesktop.IBus.SetGlobalEngine: GDBus.Error:org.freedesktop.DBus.Error.Failed: Set global engine failed: Timeout was reached 设定全局引擎失败。\n这个错误信息表明在设置全局输入法引擎时遇到了超时问题，可能是由于 ibus-daemon 的进程没有及时响应，或者与输入法框架的通信出现了问题。你可以尝试以下方法来解决这个问题：\n1. 确保 ibus-daemon 正常启动 有时 ibus-daemon 可能没有正确启动或响应。可以尝试手动重新启动它：\nibus-daemon -drx 这个命令会重启 IBUS 服务，并确保它在后台运行。\n2. 重启系统 如果 ibus-daemon 被卡住了，简单的系统重启有时可以解决很多类似的问题，尤其是涉及到系统服务的错误。\n3. 查看 IBUS 日志 通过查看 IBUS 日志可以获取更多的错误信息。可以查看 /var/log/syslog 或直接在终端中查看 IBUS 输出：\ntail -f /var/log/syslog 或者直接在终端中查看 IBUS 的调试信息：\nibus-daemon -drx 如果有更多的错误信息，可能有助于诊断问题。\n4. 清除 IBUS 配置 如果 IBUS 的配置文件出现了问题，可以尝试清除配置并重新设置：\nrm -rf ~/.config/ibus rm -rf ~/.ibus 然后重新启动 IBUS：\nibus-daemon -drx 5. 检查 DBus 是否正常 错误信息中提到了 GDBus.Error，这可能意味着 DBus 相关的服务出现了问题。你可以检查 DBus 服务是否正常运行：\nps aux | grep dbus 如果 DBus 没有运行，可以尝试重启它：\nsudo systemctl restart dbus 6. 使用不同的引擎 如果是 rime 输入法引擎的问题，可以尝试切换到其他的输入法引擎（例如 pinyin 或 fcitx），看是否能够避免这个问题。\n在终端中可以用以下命令列出当前可用的输入法引擎：\nibus list-engine 如果是 rime 输入法引擎本身的问题，可以尝试重新安装 Rime：\nsudo apt-get remove --purge ibus-rime sudo apt-get install ibus-rime 7. 更新系统 有时候，输入法框架的问题可能与系统中其他软件版本不兼容有关。可以尝试更新系统和相关的软件包：\nsudo apt-get update sudo apt-get upgrade 试试这些方法，看看能否解决超时问题。如果问题依然存在，可以提供更多的上下文信息，帮助我进一步分析。\n",
+  "wordCount" : "144",
+  "inLanguage": "en",
+  "datePublished": "2025-04-22T00:00:00Z",
+  "dateModified": "2025-04-22T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Citrus Cheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.org/posts/misc/rime-install/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Citrus Cheng's wiki",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.org/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -97,7 +199,7 @@ ibus-daemon -drx
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
+            <a href="https://example.org/" accesskey="h" title="Citrus Cheng&#39;s wiki (Alt + H)">Citrus Cheng&#39;s wiki</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -191,14 +293,14 @@ ibus-daemon -drx
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/misc/">Misc</a></li>
+      <li><a href="https://example.org/tags/misc/">Misc</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Citrus Cheng&#39;s wiki</a></span> · 
+        <span>&copy; 2025 <a href="https://example.org/">Citrus Cheng&#39;s wiki</a></span> · 
 
     <span>
         Powered by
