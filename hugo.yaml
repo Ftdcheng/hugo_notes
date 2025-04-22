@@ -2,3 +2,6 @@ baseURL: "https://example.org/"
 languageCode: "en-us"
 title: "Citrus Cheng's wiki"
 theme: ["PaperMod"]
+caches:
+  images:
+    dir: :cacheDir/images
